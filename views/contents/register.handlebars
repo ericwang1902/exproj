@@ -1,4 +1,9 @@
-<form action="">
+{{#if errors}}
+    {{#each errors}}
+       <div class="alert alert-danger">{{msg}}</div>
+    {{/each}}
+{{/if}}
+<form method="POST" action="/register" >
   <div class="form-group">
     <label for="exampleInputEmail1">用户名</label>
     <input type="mobile" class="form-control" name="username" placeholder="请输入手机号码">
