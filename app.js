@@ -16,6 +16,10 @@ var session = require('express-session');//express-session 1. express-session
 
 var flash = require('connect-flash');//connect-flash 1. connect-flash
 
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/my_database');
+
 var app = express();
 
 // view engine setup
