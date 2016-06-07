@@ -16,6 +16,12 @@ var session = require('express-session');//express-session 1. express-session
 
 var flash = require('connect-flash');//connect-flash 1. connect-flash
 
+//
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
+var sysuserModel = require('./models/sysuserModel');
+var bcrypt = require('bcryptjs');
+
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/my_database');
@@ -65,6 +71,42 @@ app.use(expressValidator({
 }));
 //connect-flash 2
 app.use(flash());
+
+//passportjs
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    
+    sysuserModel.findOne({mobile:username},function(err,user){
+      if(err) return console.error(err);
+      
+      if(!user){
+        return done(null,false,{message:'用户名不存在'})
+      }else{
+        bcrypt.compare(password,user.psd,function(err,isMatch){
+           if(err) return console.error(err);
+           
+           if(isMatch){
+             console.log("用户名和密码验证成功！")
+             return done(null,user);
+           }else{
+             console.log("密码不匹配！")
+             return done(null,false,{message:'密码不匹配！'});
+           }
+        })
+      }
+    })
+    
+    
+    
+    
+  }
+));
+
+
 
 //路由
 app.use('/', routes);
