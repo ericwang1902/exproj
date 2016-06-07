@@ -24,8 +24,6 @@ var app = express();
 
 var seed = require('./models/seed.js');
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));//设置视图文件夹
 app.engine('handlebars',exphbs({defaultLayout:'main'}));//设置默认的模板页

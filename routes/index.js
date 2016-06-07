@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
+var sysuserModel = require('../models/sysuserModel');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,6 +12,7 @@ router.get('/login',function(req,res,next){
   res.render('./contents/login');
 });
 
+//登陆验证
 router.post('/login',function (req,res,next) {
     console.log(req.body);
     
@@ -27,6 +30,24 @@ router.post('/login',function (req,res,next) {
     }else{
       console.log('表单没错')
       //进行数据库的登录操作
+     
+      sysuserModel.findOne({mobile: username},function(err,user){
+       if(err) return console.error(err);
+       
+       if(!user){
+         console.log("不存在该用户！")
+       }else{
+         bcrypt.compare(password,user.psd,function(err,isMatch){
+           if(err) return console.error(err);
+           
+           if(isMatch){
+             console.log("用户名和密码验证成功！")
+           }
+         })
+       }
+       
+        
+      })
       
       
     }
