@@ -6,7 +6,11 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', isLogedIn,function(req, res, next) {
+  res.render('index');
+});
+
+router.post('/', isLogedIn,function(req, res, next) {
   res.render('index');
 });
 
@@ -15,13 +19,7 @@ router.get('/login',function(req,res,next){
 });
 
 //登陆验证
-router.post('/login',
-  passport.authenticate('local',{successRedirect:'/',failureRedirect:'/login',failureFlash:true}),
-  function(req, res) {
-     res.redirect('/'); 
-  });
-  
-
+router.post('/login',passport.authenticate('local',{successRedirect:'/',failureRedirect:'/login',failureFlash:true}));
 
 router.get('/register',function(req,res,next){
   res.render('./contents/register');
@@ -49,5 +47,13 @@ router.post('/register',function(req,res,next){
   
   //res.render('./contents/register');
 });
+
+//做路由登陆验证
+function isLogedIn(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect("/login");
+}
 
 module.exports = router;
