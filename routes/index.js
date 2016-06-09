@@ -6,20 +6,25 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 /* GET home page. */
-router.get('/', isLogedIn,function(req, res, next) {
+router.get('/',isLogedIn,function(req, res, next) {
   res.render('index');
 });
 
-router.post('/', isLogedIn,function(req, res, next) {
+router.post('/',function(req, res, next) {
   res.render('index');
 });
 
 router.get('/login',function(req,res,next){
+  //req.flash('sucess_msg','infotest')
+  //res.render('./contents/login',{sucess_msg:req.flash('sucess_msg')});
   res.render('./contents/login');
 });
 
 //登陆验证
-router.post('/login',passport.authenticate('local',{successRedirect:'/',failureRedirect:'/login',failureFlash:true}));
+router.post('/login',passport.authenticate('local',{successRedirect:'/',failureRedirect:'/login',failureFlash:true}),
+    function(req, res) {
+     res.redirect('/'); 
+  });
 
 router.get('/register',function(req,res,next){
   res.render('./contents/register');
@@ -52,8 +57,11 @@ router.post('/register',function(req,res,next){
 function isLogedIn(req,res,next){
   if(req.isAuthenticated()){
     return next();
+  }else{
+    req.flash('error_msg','您尚未登陆！');
+    res.redirect("/login");
   }
-  res.redirect("/login");
+  
 }
 
 module.exports = router;

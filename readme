@@ -10,9 +10,10 @@
      3.4.1 密码加密存储；√
  3.5 管理员账号登录;
      3.5.0 passport登陆控制；
-           3.5.0.0 login的passport验证；50%
-           3.5.0.1 登陆授权页面验证；
+           3.5.0.0 login的passport验证；√
+                   3.5.0.0.1 passport结合connect－falsh、express－message使用。√ 备注：这里主要一个大坑就是要注意在设置session的时候不要启用cookie的secure属性。
+           3.5.0.1 登陆授权页面验证；√ 通过编写isLogin中间件来进行相关页面的授权登录。
            3.5.0.2 登出操作；
-           3.5.0.3 flash使用。
+           3.5.0.3 flash使用；√
      3.5.1 bcryptjs解密登陆验证；√
 4.0 待定

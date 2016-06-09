@@ -8,6 +8,7 @@
 </head>
 
 <body>
+ 
 <nav class="navbar navbar-default">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,6 +36,24 @@
 </nav>
 
 <div class="container">
+  <!--flash msg-->
+            {{#if sucess_msg}}
+                <div class="alert alert-success">
+                    {{sucess_msg}}
+                </div>
+            {{/if}}
+            
+            {{#if error_msg}}
+                <div class="alert alert-danger">
+                    {{error_msg}}
+                </div>
+            {{/if}}
+         
+            {{#if error}}
+            <div class="alert alert-danger">
+                    {{error}}
+                </div>
+            {{/if}} 
 {{{body}}}
 </div>
 </body>

@@ -48,9 +48,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  saveUninitialized: true
 }));
+
+//passportjs
+app.use(passport.initialize());
+app.use(passport.session());
 
 //validator2.Express Validator
 app.use(expressValidator({
@@ -71,18 +74,20 @@ app.use(expressValidator({
 }));
 //connect-flash 2
 app.use(flash());
-
-//passportjs
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(function(req,res,next){
+  res.locals.sucess_msg=req.flash('sucess_msg');//获取flash的信息，在handlebars中显示出来。
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+})
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+  sysuserModel.findOne({_id:id}, function(err, user) {
     done(err, user);
   });
 });
@@ -94,7 +99,9 @@ passport.use(new LocalStrategy(
       if(err) return console.error(err);
       
       if(!user){
-        return done(null,false,{message:'用户名不存在'})
+        console.log('用户名不存在');
+        
+        return done(null,false,{ message: '用户名不存在！' })
       }else{
         bcrypt.compare(password,user.psd,function(err,isMatch){
            if(err) return console.error(err);
