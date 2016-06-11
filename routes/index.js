@@ -39,20 +39,25 @@ router.post('/register',checkRegForm,function(req,res,next){
     psd:req.body.password1
   }
   sysuserController.createUser(user,function(err,result){
+    if(err) render('error',{error:'注册失败！'})
     console.log(result);
+    req.flash('sucess_msg','注册成功，请登录！');
+    res.redirect('/login');
   });//创建用户
   
 });
 
 //表单验证中间件
 function checkRegForm(req,res,next) {
-    console.log(req.body);
+  console.log(req.body);
   var username = req.body.username;
   var password1 = req.body.password1;
   var password2 = req.body.password2;
+ // console.log(password2);
   
   req.checkBody('username','用户名不可为空').notEmpty();
   req.checkBody('password1','密码不可为空').notEmpty();
+  req.checkBody('password1','两次密码输入不相同').isPsd1EqPsd2(password2);//自定义验证
   req.checkBody('password2','请重复输入密码').notEmpty();
   
   var errors = req.validationErrors();

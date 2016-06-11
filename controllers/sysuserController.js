@@ -52,7 +52,7 @@ module.exports = {
             type : "",
             account : "",
             accountpsd : "",
-            //orgid : "",
+            orgid : null,
             groupid : "",
             status : "",
             isbroadcast : ""
@@ -60,7 +60,7 @@ module.exports = {
         
         sysuserModel.findOne({mobile:user.username},function(err,user){
             if(err) return console.error(err);
-            
+           
             if(user){
                 console.log('改号码已被占用！')
             }else{

@@ -70,7 +70,13 @@ app.use(expressValidator({
       msg   : msg,
       value : value
     };
-  }
+  },
+   customValidators: {
+    isPsd1EqPsd2: function(value,psd2) {
+        console.log(value+","+psd2);
+        return value===psd2;
+    }
+ }
 }));
 //connect-flash 2
 app.use(flash());
