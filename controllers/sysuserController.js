@@ -1,5 +1,6 @@
 var sysuserModel = require('../models/sysuserModel.js');
 var bcrypt = require('bcryptjs');
+var async = require("async");
 /**
  * sysuserController.js
  *
@@ -10,16 +11,34 @@ module.exports = {
     /**
      * sysuserController.list()
      */
-    list: function(req, res) {
-        sysuserModel.find(function(err, sysusers){
-            if(err) {
-                return res.json(500, {
-                    message: 'Error getting sysuser.'
-                });
+    list: function(page,condition,callback2) {
+        var pageItems = 10;//每页的数量
+        
+        
+        async.series([
+            function(callback){
+                
+               sysuserModel.count(condition,function(err,count){
+                    if(err)console.log(err);  
+                    callback(null,count);
+                })
+                
+            },
+            function(callback){
+                sysuserModel.find(condition,function(err,sysuers){
+                    if(err) console.log(err);
+                    callback(null,sysuers);
+                }).skip((page-1)*pageItems).limit(pageItems);
             }
-            return res.json(sysusers);
+        ],function(err,results){
+            //console.log(results);
+            callback2(null,results[0],results[1]);
         });
+          
+       
+        
     },
+    
 
     /**
      * sysuserController.show()

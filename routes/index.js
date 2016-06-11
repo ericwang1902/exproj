@@ -15,6 +15,26 @@ router.post('/',function(req, res, next) {
   res.render('index');
 });
 
+router.get('/userlist',function (req,res,next) {
+  var currentPage = req.query.p;
+  //console.log(currentPage);
+  
+  sysuserController.list(currentPage,{},function (err,count,users) {
+    var TotalPages= Math.ceil(count/10);//向上整除，向下整除： Math.floor
+    
+    //这里主要是为了实现分页功能，实现一个对象数组，通过userlist页面的each来显示
+    var pagesArray=[];
+    for(var i=1;i<=TotalPages;i++){
+      pagesArray.push({p:i});
+    }
+    
+    console.log("totalpages:"+TotalPages);
+    console.log("pagesArray:"+pagesArray);
+    res.render('./contents/userlist',{users:users,pagesArray:pagesArray});
+  });
+  
+})
+
 router.get('/login',function(req,res,next){
   //req.flash('sucess_msg','infotest')
   //res.render('./contents/login',{sucess_msg:req.flash('sucess_msg')});
