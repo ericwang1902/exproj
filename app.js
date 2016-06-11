@@ -73,7 +73,7 @@ app.use(expressValidator({
   },
    customValidators: {
     isPsd1EqPsd2: function(value,psd2) {
-        console.log(value+","+psd2);
+        //console.log(value+","+psd2);
         return value===psd2;
     }
  }
