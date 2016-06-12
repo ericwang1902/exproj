@@ -179,6 +179,26 @@ module.exports = {
             });
         });
     },
+    modify: function(id,userinfo,callback){
+        sysuserModel.findOne({_id:id},function(err,user){
+            if(err) callback({error:err.message+"1"},null);
+            if(!user) callback({error:"不存在该用户"},null);
+
+            user.mobile = userinfo.mobile;
+            user.usertype = userinfo.usertype;
+            user.type = userinfo.type;
+            user.account = userinfo.account;
+            user.count = userinfo.count;
+          //  user.orgid = userinfo.orgid;
+            user.status = userinfo.status;
+
+            user.save(function(err,sysuer){
+               if(err) callback({error:err.message+"2"},null);
+               callback(null,sysuer);
+            })
+
+        })
+    },
 
     /**
      * sysuserController.remove()

@@ -83,13 +83,76 @@ router.get('/userdetail',function (req,res,next) {
 //用户详情修改
 router.get('/usermodify',function(req,res,next){
   var id = req.query.id;
+  var usertypeObj={
+    sysadmin:false,
+    org:false,
+    courier:false
+  }
   
   sysuserModel.findOne({_id:id},function(err,user){
     if(err) console.log(err);
-     res.render('./contents/usermodify',{user:user});
+
+    var usertype = user.usertype;
+    //用户类型
+    if(usertype!=null){
+      switch(usertype){
+        case '1':
+              usertypeObj.sysadmin = 'checked';
+              usertypeObj.org = null;
+              usertypeObj.courier = null;
+              break;
+        case '2':
+              usertypeObj.sysadmin = null;
+              usertypeObj.org = 'checked';
+              usertypeObj.courier = null;
+              break;
+        case '3':
+              usertypeObj.sysadmin = null;
+              usertypeObj.org = null;
+              usertypeObj.courier = 'checked';
+              break;
+        default:
+              break;
+      }  
+    }
+    //用户所属快递公司
+    
+
+     res.render('./contents/usermodify',{user:user,usertypeObj:usertypeObj});
   })
 
  
+})
+
+//用户数据修改post
+router.post('/usermodify',function(req,res,next){
+  console.log(req.body);
+  var id = req.query.id;
+  var user={
+    mobile:req.body.mobile,//手机号
+    usertype:req.body.usertype,//用户类型
+    type:req.body.type,//所属公司
+    account:req.body.account,//面单账号
+    count:req.body.count,//剩余单数
+    orgid:req.body.orgid,//所属快递点
+    status:req.body.status//当前状态
+  }
+  console.log("id:"+id);
+
+  //根据id查询doc，然后更新该用户信息
+  sysuserController.modify(id,user,function(err,result){
+    if(err) {
+      req.flash('error_msg',err.error)
+      res.redirect('/usermodify?id='+id);
+    }else{
+      req.flash('sucess_msg','修改成功！')
+       res.redirect('/usermodify?id='+id);
+    }
+
+   // console.log(result);
+    
+  })
+
 })
 
 //表单验证中间件

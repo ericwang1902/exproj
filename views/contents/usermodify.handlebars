@@ -2,65 +2,67 @@
   <div class="panel-heading">用户设置</div>
   <div class="panel-body"> 
         {{#if user}}   
-        <form class="form-horizontal"> 
+        <form class="form-horizontal" method="POST" action="/usermodify?id={{user._id}}"> 
+        
         <div class="form-group">   
             <label for="inputEmail3" class="col-sm-2 control-label">电话：</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputEmail3" placeholder="注册电话也是用户名" value="{{user.mobile}}">  
+            <input type="text" name="mobile" class="form-control" id="inputEmail3" placeholder="注册电话也是用户名" value="{{user.mobile}}">  
             </div> 
         </div> 
         <div class="form-group">   
             <label for="inputPassword3" class="col-sm-2 control-label">用户类型：</label>   
             <div class="col-sm-10">
             <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio1"  value="option1" checked=true> 快递点
+            <input type="radio" name="usertype" id="inlineRadio1"  value="1" {{usertypeObj.sysadmin}} > 系统管理员
             </label>
             <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 快递员
+            <input type="radio" name="usertype" id="inlineRadio2" value="2" {{usertypeObj.org}} > 快递点
             </label>
             <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 系统管理员
+            <input type="radio" name="usertype" id="inlineRadio3" value="3" {{usertypeObj.courier}}> 快递员
             </label>
         </div> 
         </div> 
 
-        <div class="form-group">   
+        <div class="form-group">  
             <label for="inputPassword3" class="col-sm-2 control-label">所属公司：</label>   
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPassword3" placeholder="所属公司：" value="{{user.type}}"> 
-            </div> 
+                <label class="radio-inline">
+                <input type="radio" name="type" id="inlineRadio1"  value="1" {{usertypeObj.sysadmin}} > 系统管理员
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="type" id="inlineRadio2" value="2" {{usertypeObj.org}} > 快递点
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="type" id="inlineRadio3" value="3" {{usertypeObj.courier}}> 快递员
+                </label> 
+             </div> 
         </div> 
+
+
             <div class="form-group">   
             <label for="inputPassword3" class="col-sm-2 control-label">面单账号：</label>   
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPassword3" placeholder="面单账号：" value="{{user.account}}">  
+            <input type="text" class="form-control" name="account" id="inputPassword3" placeholder="面单账号：" value="{{user.account}}">  
             </div> 
         </div> 
             <div class="form-group">   
             <label for="inputPassword3" class="col-sm-2 control-label">剩余单数：</label>   
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPassword3" placeholder="剩余单数：" value="{{user.count}}">
+            <input type="text" class="form-control" name="count" id="inputPassword3" placeholder="剩余单数：" value="{{user.count}}">
             </div> 
         </div> 
             <div class="form-group">   
             <label for="inputPassword3" class="col-sm-2 control-label">所属快递点：</label>  
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPassword3" placeholder="所属快递点：" value="{{user.orgid}}">   
+            <input type="text" class="form-control" name="orgid" id="inputPassword3" placeholder="所属快递点：" value="{{user.orgid}}">   
             </div> 
         </div> 
             <div class="form-group">   
             <label for="inputPassword3" class="col-sm-2 control-label">当前状态：</label>   
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPassword3" placeholder="当前状态：" value="{{user.status}}">   
-            </div> 
-        </div> 
-        <div class="form-group">   
-            <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox"> 
-                <label>
-                <input type="checkbox"> Remember me
-                </label>   
-            </div> 
+            <input type="text" class="form-control" name="status" id="inputPassword3" placeholder="当前状态：" value="{{user.status}}">   
             </div> 
         </div> 
         <div class="form-group">   
