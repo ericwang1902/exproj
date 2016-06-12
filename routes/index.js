@@ -5,7 +5,7 @@ var sysuserModel = require('../models/sysuserModel');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var sysuserController = require('../controllers/sysuserController')
-
+var enumerableConstants = require('../models/enumerableConstants')
 /* GET home page. */
 router.get('/',isLogedIn,function(req, res, next) {
   res.render('index');
@@ -74,7 +74,27 @@ router.get('/userdetail',function (req,res,next) {
   sysuserModel.findOne({_id:id},function(err,user){
     if(err) console.log(err);
     console.log(user);
-    res.render('./contents/userdetail',{user:user});
+    res.render('./contents/userdetail',{
+      user:user,
+      helpers:{
+        getUsertype:function(type){
+          var typename='';
+          switch(type){
+            case '1':typename='系统管理员';break;
+            case '2':typename='快递点';break;
+            case '3':typename='快递员';break;
+            default:break;
+          }
+          return typename;
+        },
+        getCompany:function(num){
+          if(num!=null)
+            return enumerableConstants.expCompany[num-1].name;
+          else
+            return '';
+        }
+      }
+      });
   })
 
   
@@ -116,9 +136,27 @@ router.get('/usermodify',function(req,res,next){
       }  
     }
     //用户所属快递公司
-    
+    var typeIndex = 0;
+    if(user.type!=null){
+       typeIndex = user.type;
+    }
 
-     res.render('./contents/usermodify',{user:user,usertypeObj:usertypeObj});
+     res.render('./contents/usermodify',{
+       user:user,
+       usertypeObj:usertypeObj,
+       typeIndex:typeIndex,
+       types:enumerableConstants.expCompany,
+       helpers: {
+            type: function (num) {
+              if(num==typeIndex){
+                return 'checked';
+              }
+              else {
+                return null;
+              }
+              }
+        }
+      });
   })
 
  
@@ -190,5 +228,7 @@ function isLogedIn(req,res,next){
   }
   
 }
+
+
 
 module.exports = router;

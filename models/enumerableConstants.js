@@ -4,9 +4,82 @@ var usertype={
     'courier':3
 }
 
-var expCompany={
-    'yuantong':'圆通快递',
-    'shunfeng':'顺丰快递'
-}
+var expCompany=[
+    {
+        num:1,
+        code:'UAPEX',
+        name:'全一快递'
+    },
+    {
+        num:2,
+        code:'SF',
+        name:'顺丰速运'
+    },
+    {
+        num:3,
+        code:'LB',
+        name:'龙邦速递'
+    },
+    {
+        num:4,
+        code:'FAST',
+        name:'快捷速递'
+    },
+    {
+        num:5,
+        code:'NEDA',
+        name:'港中能达'
+    },
+     {
+         num:6,
+        code:'ZHQKD',
+        name:'汇强快递'
+    },
+     {
+         num:7,
+        code:'ZTO',
+        name:'中通速递'
+    },
+     {
+           num:8,
+        code:'GTO',
+        name:'国通快递'
+    },
+     {
+         num:9,
+        code:'QFKD',
+        name:'全峰快递'
+    },
+     {
+           num:10,
+        code:'ZJS',
+        name:'宅急送'
+    },
+    {
+         num:11,
+        code:'DBL',
+        name:'德邦物流'
+    },
+    {
+        num:12,
+        code:'YTO',
+        name:'圆通速递'
+    },
+    {
+        num:13,
+        code:'HTKY',
+        name:'汇通快运'
+    },
+    {
+        num:14,
+        code:'HOAU',
+        name:'天地华宇'
+    },
+     {
+         num:15,
+        code:'UC',
+        name:'优速快递'
+    }
+]
 
-module.exports ={usertype} ;
+module.exports ={usertype:usertype,expCompany:expCompany};

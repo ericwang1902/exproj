@@ -28,15 +28,11 @@
         <div class="form-group">  
             <label for="inputPassword3" class="col-sm-2 control-label">所属公司：</label>   
             <div class="col-sm-10">
+                {{#each types}}
                 <label class="radio-inline">
-                <input type="radio" name="type" id="inlineRadio1"  value="1" {{usertypeObj.sysadmin}} > 系统管理员
+                <input type="radio" name="type" id="inlineRadio1"  value="{{num}}" {{type num}}> {{name}}
                 </label>
-                <label class="radio-inline">
-                <input type="radio" name="type" id="inlineRadio2" value="2" {{usertypeObj.org}} > 快递点
-                </label>
-                <label class="radio-inline">
-                <input type="radio" name="type" id="inlineRadio3" value="3" {{usertypeObj.courier}}> 快递员
-                </label> 
+                {{/each}}
              </div> 
         </div> 
 
