@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var sysuserModel = require('./sysuserModel');
 var bcrypt = require('bcryptjs');
+var enumerableConstents = require('./enumerableConstants')
 
 var sysadmin = {
         mobile:"admin888",
         psd:"admin888",
-        usertype : "sysadmin",
+        usertype : enumerableConstents.usertype.sysadmin,
 	    openid : "",
 		count : 0,
 		type : "",

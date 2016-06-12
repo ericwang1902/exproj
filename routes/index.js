@@ -80,6 +80,18 @@ router.get('/userdetail',function (req,res,next) {
   
 });
 
+//用户详情修改
+router.get('/usermodify',function(req,res,next){
+  var id = req.query.id;
+  
+  sysuserModel.findOne({_id:id},function(err,user){
+    if(err) console.log(err);
+     res.render('./contents/usermodify',{user:user});
+  })
+
+ 
+})
+
 //表单验证中间件
 function checkRegForm(req,res,next) {
   console.log(req.body);
