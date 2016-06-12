@@ -67,6 +67,19 @@ router.post('/register',checkRegForm,function(req,res,next){
   
 });
 
+//用户详情页路由
+router.get('/userdetail',function (req,res,next) {
+  var id = req.query.id;
+
+  sysuserModel.findOne({_id:id},function(err,user){
+    if(err) console.log(err);
+    console.log(user);
+    res.render('./contents/userdetail',{user:user});
+  })
+
+  
+});
+
 //表单验证中间件
 function checkRegForm(req,res,next) {
   console.log(req.body);

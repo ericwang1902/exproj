@@ -3,6 +3,7 @@
       <tr>
          <th>手机号</th>
          <th>类型</th>
+         <th>状态</th>
          <th>操作</th>
       </tr>
    </thead>
@@ -11,7 +12,10 @@
             <tr>
                 <td>{{mobile}}</td>
                 <td>{{usertype}}</td>
-                <td>详情</td>
+                <th>{{status}}</th>
+                <td>
+                  <a href="/userdetail?id={{_id}}" style="cursor:hand" >详情</a>
+                </td>
             </tr>
        {{/each}}
 
@@ -19,7 +23,8 @@
    
 
 </table>
-   <nav>
+
+<nav>
     <ul class="pagination">
         </li>
         {{#each pagesArray}}
@@ -27,3 +32,7 @@
         {{/each}}
     </ul>
 </nav>
+
+<script type="text/javascript">
+
+</script>
