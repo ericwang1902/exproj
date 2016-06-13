@@ -1,0 +1,21 @@
+{
+  "name": "exproj",
+  "description": "",
+  "main": "",
+  "authors": [
+    "ericwang <2248930513@qq.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ericwang1902/exproj",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chosen": "^1.5.1",
+    "jquery": "^3.0.0"
+  }
+}
