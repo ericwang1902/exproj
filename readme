@@ -28,7 +28,10 @@
            3.6.2.2 用户设置：类型、组织id、电子免单账号和密码等；
                    3.6.2.2.1 做用户数据修改提交表单
                             a. 快递公司枚举类型、提交验证；通过handlebars的helper来实现选中显示√
-                            b. 用户状态枚举类型、提交验证。
+                            b. 用户状态枚举类型、提交验证；
+                            c. 所属快递点的下拉列表显示和表单提交；
+                                1)知识点1：jquery的chosen插件；√
+                                2)ref的objectid的插入。（详见router.post('/usermodify'）√
            3.6.2.3 在userdetail页面。√
            3.6.2.3 用户充值；
            3.6.2.4 增加enumerableConstants，来表示用户类型。√

@@ -5,7 +5,7 @@
         {{#if user}}
         <li class="list-group-item">电话：{{user.mobile}}</li>
         <li class="list-group-item">用户类型：{{getUsertype user.usertype}}</li>
-        <li class="list-group-item">所属公司：{{getCompany user.type}}</li>
+        <li class="list-group-item">所属公司：{{getCompany user}}</li>
         <li class="list-group-item">面单账号：{{user.account}}</li>
         <li class="list-group-item">剩余单数：{{user.count}}</li>
         <li class="list-group-item">所属快递点：{{user.orgid}}</li>

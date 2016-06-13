@@ -189,7 +189,7 @@ module.exports = {
             user.type = userinfo.type;
             user.account = userinfo.account;
             user.count = userinfo.count;
-          //  user.orgid = userinfo.orgid;
+            user.orgid = userinfo.orgid;
             user.status = userinfo.status;
 
             user.save(function(err,sysuer){

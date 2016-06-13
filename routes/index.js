@@ -6,6 +6,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var sysuserController = require('../controllers/sysuserController')
 var enumerableConstants = require('../models/enumerableConstants')
+var async = require('async');
 /* GET home page. */
 router.get('/',isLogedIn,function(req, res, next) {
   res.render('index');
@@ -87,9 +88,10 @@ router.get('/userdetail',function (req,res,next) {
           }
           return typename;
         },
-        getCompany:function(num){
-          if(num!=null)
-            return enumerableConstants.expCompany[num-1].name;
+        getCompany:function(user){
+          if(user.usertype!='1'){
+            return enumerableConstants.expCompany[user.type-1].name;
+          }
           else
             return '';
         }
@@ -108,63 +110,102 @@ router.get('/usermodify',function(req,res,next){
     org:false,
     courier:false
   }
+
+  async.series([
+    function(callback){
+    //查找
+    sysuserModel.find({usertype:'2'},function(err,orgs){
+        if(err) console.log(err);
+        callback(null,orgs);
+    })
+    },
+    function(callback){
+      sysuserModel.findOne({_id:id},function(err,user){
+          if(err) console.log(err);
+
+          var usertype = user.usertype;
+          //用户类型
+          if(usertype!=null){
+            switch(usertype){
+              case '1':
+                    usertypeObj.sysadmin = 'checked';
+                    usertypeObj.org = null;
+                    usertypeObj.courier = null;
+                    break;
+              case '2':
+                    usertypeObj.sysadmin = null;
+                    usertypeObj.org = 'checked';
+                    usertypeObj.courier = null;
+                    break;
+              case '3':
+                    usertypeObj.sysadmin = null;
+                    usertypeObj.org = null;
+                    usertypeObj.courier = 'checked';
+                    break;
+              default:
+                    break;
+            }  
+          }
+          //用户所属快递公司
+          var typeIndex = 0;
+          if(user.type!=''){
+            typeIndex = user.type;
+          }
+
+          var result2 = {
+            'user':user,
+            'usertypeObj':usertypeObj,
+            'typeIndex':typeIndex,
+            'types':enumerableConstants.expCompany
+          }
+          if(err) console.log(err);
+          callback(null,result2);
+
+        })
+    }
+  ],function(err,results){
+    console.log(results[0]);
+    console.log(results[1]);
+    var orginfomobile = "";
+    sysuserModel.findOne({_id:results[1].user.orgid},function(err,orginfo){
+                  if(err) console.log(err);
+                  orginfomobile= orginfo.mobile;
+    
+          res.render('./contents/usermodify',{
+              user:results[1].user,
+              usertypeObj:results[1].usertypeObj,
+              typeIndex:results[1].typeIndex,
+              types:results[1].types,
+              orgs:results[0],
+              helpers: {
+                    type: function (num) {
+                      if(num==results[1].typeIndex ){
+                        return 'checked';
+                      }
+                      else {
+                        return null;
+                      }
+                      },
+                      org:function(){
+                        return orginfomobile;          
+                            
+                      }    
+                      
+                }
+              });
+
+     })
+
   
-  sysuserModel.findOne({_id:id},function(err,user){
-    if(err) console.log(err);
-
-    var usertype = user.usertype;
-    //用户类型
-    if(usertype!=null){
-      switch(usertype){
-        case '1':
-              usertypeObj.sysadmin = 'checked';
-              usertypeObj.org = null;
-              usertypeObj.courier = null;
-              break;
-        case '2':
-              usertypeObj.sysadmin = null;
-              usertypeObj.org = 'checked';
-              usertypeObj.courier = null;
-              break;
-        case '3':
-              usertypeObj.sysadmin = null;
-              usertypeObj.org = null;
-              usertypeObj.courier = 'checked';
-              break;
-        default:
-              break;
-      }  
-    }
-    //用户所属快递公司
-    var typeIndex = 0;
-    if(user.type!=null){
-       typeIndex = user.type;
-    }
-
-     res.render('./contents/usermodify',{
-       user:user,
-       usertypeObj:usertypeObj,
-       typeIndex:typeIndex,
-       types:enumerableConstants.expCompany,
-       helpers: {
-            type: function (num) {
-              if(num==typeIndex){
-                return 'checked';
-              }
-              else {
-                return null;
-              }
-              }
-        }
-      });
   })
-
  
 })
 
 //用户数据修改post
 router.post('/usermodify',function(req,res,next){
   console.log(req.body);
+  var orgid = req.body.orgid;
+
   var id = req.query.id;
   var user={
     mobile:req.body.mobile,//手机号
@@ -172,24 +213,27 @@ router.post('/usermodify',function(req,res,next){
     type:req.body.type,//所属公司
     account:req.body.account,//面单账号
     count:req.body.count,//剩余单数
-    orgid:req.body.orgid,//所属快递点
     status:req.body.status//当前状态
   }
-  console.log("id:"+id);
 
-  //根据id查询doc，然后更新该用户信息
-  sysuserController.modify(id,user,function(err,result){
-    if(err) {
-      req.flash('error_msg',err.error)
-      res.redirect('/usermodify?id='+id);
-    }else{
-      req.flash('sucess_msg','修改成功！')
-       res.redirect('/usermodify?id='+id);
-    }
+  sysuserModel.findOne({_id:orgid},function(err,orgUser){
+      user.orgid =orgUser._id;
+      //根据id查询doc，然后更新该用户信息
+      sysuserController.modify(id,user,function(err,result){
+        if(err) {
+          req.flash('error_msg',err.error)
+          res.redirect('/usermodify?id='+id);
+        }else{
+          req.flash('sucess_msg','修改成功！')
+          res.redirect('/usermodify?id='+id);
+        }
+        
+      })
 
-   // console.log(result);
-    
   })
+
+
+
 
 })
 
