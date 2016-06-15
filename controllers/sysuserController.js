@@ -188,6 +188,7 @@ module.exports = {
             user.usertype = userinfo.usertype;
             user.type = userinfo.type;
             user.account = userinfo.account;
+            user.accountpsd = userinfo.accountpsd;
             user.count = userinfo.count;
             user.orgid = userinfo.orgid;
             user.status = userinfo.status;

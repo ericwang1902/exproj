@@ -74,8 +74,38 @@ router.get('/userdetail',function (req,res,next) {
 
   sysuserModel.findOne({_id:id},function(err,user){
     if(err) console.log(err);
-    console.log(user);
-    res.render('./contents/userdetail',{
+    console.log("user:"+user);
+    
+    if(user.usertype!=enumerableConstants.usertype.sysadmin && user.orgid!=null){
+      sysuserModel.findOne({_id:user.orgid},function(err,orginfo){
+        user.orgmobile = orginfo.mobile;
+        res.render('./contents/userdetail',{
+        user:user,
+        helpers:{
+        getUsertype:function(type){
+          var typename='';
+          switch(type){
+            case '1':typename='系统管理员';break;
+            case '2':typename='快递点';break;
+            case '3':typename='快递员';break;
+            default:break;
+          }
+          return typename;
+        },
+        getCompany:function(user){
+          if(user.usertype!='1' && user.type!='' && user.type!=null){
+            return enumerableConstants.expCompany[user.type-1].name;
+          }
+          else
+            return '';
+        }
+      }
+      });
+      })
+    }
+    else{
+      user.orgmobile ='尚未绑定快递点'
+      res.render('./contents/userdetail',{
       user:user,
       helpers:{
         getUsertype:function(type){
@@ -89,7 +119,7 @@ router.get('/userdetail',function (req,res,next) {
           return typename;
         },
         getCompany:function(user){
-          if(user.usertype!='1'){
+          if(user.usertype!='1' && user.type!='' && user.type!=null){
             return enumerableConstants.expCompany[user.type-1].name;
           }
           else
@@ -97,6 +127,10 @@ router.get('/userdetail',function (req,res,next) {
         }
       }
       });
+    }
+    
+    
+    
   })
 
   
@@ -164,14 +198,18 @@ router.get('/usermodify',function(req,res,next){
         })
     }
   ],function(err,results){
-    console.log(results[0]);
-    console.log(results[1]);
+    console.log("result[0]:"+results[0]);
+    console.log("result[1]:"+results[1].user);
     var orginfomobile = "";
+    if(results[1].user.orgid==null){    
+    }else{
     sysuserModel.findOne({_id:results[1].user.orgid},function(err,orginfo){
                   if(err) console.log(err);
-                  orginfomobile= orginfo.mobile;
-    
-          res.render('./contents/usermodify',{
+                  console.log("orginfo:"+orginfo)
+         orginfomobile= orginfo.mobile;        
+     })
+     }
+     res.render('./contents/usermodify',{
               user:results[1].user,
               usertypeObj:results[1].usertypeObj,
               typeIndex:results[1].typeIndex,
@@ -193,9 +231,6 @@ router.get('/usermodify',function(req,res,next){
                       
                 }
               });
-
-     })
-
   
   })
  
@@ -212,14 +247,13 @@ router.post('/usermodify',function(req,res,next){
     usertype:req.body.usertype,//用户类型
     type:req.body.type,//所属公司
     account:req.body.account,//面单账号
+    accountpsd:req.body.accountpsd,//面单密码
     count:req.body.count,//剩余单数
     status:req.body.status//当前状态
   }
 
-  sysuserModel.findOne({_id:orgid},function(err,orgUser){
-      user.orgid =orgUser._id;
-      //根据id查询doc，然后更新该用户信息
-      sysuserController.modify(id,user,function(err,result){
+  if(orgid==null || orgid ==''){
+          sysuserController.modify(id,user,function(err,result){
         if(err) {
           req.flash('error_msg',err.error)
           res.redirect('/usermodify?id='+id);
@@ -229,12 +263,21 @@ router.post('/usermodify',function(req,res,next){
         }
         
       })
-
+  }else{
+    sysuserModel.findOne({_id:orgid},function(err,orgUser){
+      user.orgid =orgUser._id;//查询objectid
+      //根据id查询doc，然后更新该用户信息
+      sysuserController.modify(id,user,function(err,result){
+        if(err) {
+          req.flash('error_msg',err.error)
+          res.redirect('/usermodify?id='+id);
+        }else{
+          req.flash('sucess_msg','修改成功！')
+          res.redirect('/usermodify?id='+id);
+        }       
+      })
   })
-
-
-
-
+  }
 })
 
 //表单验证中间件
