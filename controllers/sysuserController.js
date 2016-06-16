@@ -73,7 +73,7 @@ module.exports = {
             accountpsd : "",
             orgid : null,
             groupid : "",
-            status : "",
+            status : "1",
             isbroadcast : ""
         });
         

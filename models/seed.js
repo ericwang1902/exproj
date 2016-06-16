@@ -14,7 +14,7 @@ var sysadmin = {
 		accountpsd : "",
 		//orgid : "",
 		groupid : "",
-		status : "",
+		status : "1",
 		isbroadcast : ""
 }
 

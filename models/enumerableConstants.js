@@ -82,4 +82,15 @@ var expCompany=[
     }
 ]
 
-module.exports ={usertype:usertype,expCompany:expCompany};
+var userstatus=[
+    {
+        status:'正常',
+        num:1
+    },
+    {
+        status:'冻结',
+        num:2
+    }
+]
+
+module.exports ={usertype:usertype,expCompany:expCompany,userstatus:userstatus};

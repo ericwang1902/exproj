@@ -9,6 +9,7 @@ var enumerableConstants = require('../models/enumerableConstants')
 var async = require('async');
 /* GET home page. */
 router.get('/',isLogedIn,function(req, res, next) {
+ 
   res.render('index');
 });
 
@@ -16,7 +17,7 @@ router.post('/',function(req, res, next) {
   res.render('index');
 });
 
-router.get('/userlist',function (req,res,next) {
+router.get('/userlist',isLogedIn,function (req,res,next) {
   var currentPage = req.query.p;
   //console.log(currentPage);
   
@@ -31,7 +32,10 @@ router.get('/userlist',function (req,res,next) {
     
     console.log("totalpages:"+TotalPages);
     console.log("pagesArray:"+pagesArray);
-    res.render('./contents/userlist',{users:users,pagesArray:pagesArray});
+    res.render('./contents/userlist',{
+      users:users,
+      pagesArray:pagesArray
+    });
   });
   
 })
@@ -43,10 +47,28 @@ router.get('/login',function(req,res,next){
 });
 
 //登陆验证
-router.post('/login',passport.authenticate('local',{successRedirect:'/',failureRedirect:'/login',failureFlash:true}),
+// router.post('/login',passport.authenticate('local',{successRedirect:'/',failureRedirect:'/login',failureFlash:true}),
+//     function(req, res) {
+//      res.redirect('/'); 
+//   });
+  
+  router.post('/login',passport.authenticate('local'),
     function(req, res) {
-     res.redirect('/'); 
+     console.log(req.body);
+     
+     //查询用户的类型
+     sysuserModel.findOne({mobile:req.body.username},function(err,user){
+       if(user.usertype ==enumerableConstants.usertype.sysadmin){
+         res.redirect('/admindash'); 
+       }else {
+         res.redirect('/');
+       }
+     })
   });
+  
+  router.get('/admindash',isLogedIn,function(req,res,next){
+    res.render('./contents/admindash');
+  })
 
 router.get('/register',function(req,res,next){
   res.render('./contents/register');
@@ -128,9 +150,7 @@ router.get('/userdetail',function (req,res,next) {
       }
       });
     }
-    
-    
-    
+      
   })
 
   
@@ -215,6 +235,7 @@ router.get('/usermodify',function(req,res,next){
               typeIndex:results[1].typeIndex,
               types:results[1].types,
               orgs:results[0],
+              userstatus:enumerableConstants.userstatus,
               helpers: {
                     type: function (num) {
                       if(num==results[1].typeIndex ){
@@ -227,7 +248,11 @@ router.get('/usermodify',function(req,res,next){
                       org:function(){
                         return orginfomobile;          
                             
-                      }    
+                      },
+                      userstatushelper:function(statusnum){
+                          return enumerableConstants.userstatus[statusnum-1].status;
+                        }
+                          
                       
                 }
               });
@@ -273,7 +298,7 @@ router.post('/usermodify',function(req,res,next){
           res.redirect('/usermodify?id='+id);
         }else{
           req.flash('sucess_msg','修改成功！')
-          res.redirect('/usermodify?id='+id);
+          res.redirect('/userdetail?id='+id);
         }       
       })
   })
