@@ -93,4 +93,11 @@ var userstatus=[
     }
 ]
 
-module.exports ={usertype:usertype,expCompany:expCompany,userstatus:userstatus};
+var wechatinfo={
+    appid:'wx45eb07597f1e004a',
+    appsecret:'',
+    token:'exproj',
+    encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD'
+}
+
+module.exports ={usertype:usertype,expCompany:expCompany,userstatus:userstatus,wechatinfo:wechatinfo};

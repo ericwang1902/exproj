@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var WechatAPI = require('wechat-api');
+var enumberableconstants =require('./models/enumberableconstants');
+var api = new WechatAPI(enumberableconstants.wechatinfo.appid, enumberableconstants.wechatinfo.appsecret);//需要修改
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});

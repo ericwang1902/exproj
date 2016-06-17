@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var wechat = require('wechat');
+var enumberableconstants = require('./models/enumberableconstants');
 var config={
-  token: 'exproj',
-  appid: 'wx45eb07597f1e004a',
-  encodingAESKey: '12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD'
+  token: enumberableconstants.wechatinfo.token,
+  appid: enumberableconstants.wechatinfo.appid,
+  encodingAESKey: enumberableconstants.wechatinfo.encodingAESKey
 };
 // module.exports= wechat(config, function (req, res, next) {
 //   // 微信输入信息都在req.weixin上
