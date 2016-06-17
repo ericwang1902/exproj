@@ -13,4 +13,8 @@ router.get('/location',function (req,res,next) {
     res.render('./customer/location',{layout:false});
 })
 
+router.post('/location',function(req,res,next){
+    console.log(req.body);
+})
+
 module.exports = router;
