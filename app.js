@@ -32,6 +32,8 @@ var wechat = require('./routes/wechat');
 
 var seed = require('./models/seed.js');
 
+var wechatjs = require('./controllers/wechatjs');//调用wechatjs来设置
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));//设置视图文件夹
