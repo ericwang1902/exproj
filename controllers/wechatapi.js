@@ -11,3 +11,7 @@ api.getLatestToken(function (err,token) {
 api.getTicket(function (err,result) {
 console.log('ticket:'+JSON.stringify(result));
 })
+
+api.getJsConfig(function (err,result) {
+    console.log('config:'+JSON.stringify(result));
+})
