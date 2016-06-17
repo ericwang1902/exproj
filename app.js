@@ -35,7 +35,7 @@ var wechat = require('wechat');
 var config = {
   token: 'exproj',
   appid: 'wx45eb07597f1e004a',
-  encodingAESKey: 'HJkTJ1jjjcSCFvrjKE6PFmLgZfOpO7kqXOuL0aRrysS'
+  encodingAESKey: '12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD'
 };
 
 // view engine setup
