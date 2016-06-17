@@ -31,6 +31,13 @@ var app = express();
 
 var seed = require('./models/seed.js');
 
+var wechat = require('wechat');
+var config = {
+  token: 'exproj',
+  appid: 'wx45eb07597f1e004a',
+  encodingAESKey: 'HJkTJ1jjjcSCFvrjKE6PFmLgZfOpO7kqXOuL0aRrysS'
+};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));//设置视图文件夹
 app.engine('handlebars',exphbs({defaultLayout:'main'}));//设置默认的模板页
@@ -132,6 +139,35 @@ passport.use(new LocalStrategy(
 app.use('/', routes);
 app.use('/users', users);
 app.use('/customer',customer);
+app.use(express.query());
+app.use('/wechat', wechat('exproj').text(function (message, req, res, next) {
+  // TODO
+  
+}).image(function (message, req, res, next) {
+  // TODO
+  
+}).voice(function (message, req, res, next) {
+  // TODO
+  
+}).video(function (message, req, res, next) {
+  // TODO
+  
+}).location(function (message, req, res, next) {
+  // TODO
+  
+}).link(function (message, req, res, next) {
+  // TODO
+  
+}).event(function (message, req, res, next) {
+  // TODO
+  
+}).device_text(function (message, req, res, next) {
+  // TODO
+  
+}).device_event(function (message, req, res, next) {
+  // TODO
+  
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
