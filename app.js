@@ -143,6 +143,7 @@ app.use(express.query());
 app.use('/wechat', wechat(config, function (req, res, next) {
   // 微信输入信息都在req.weixin上
   var message = req.weixin;
+  console.log(message);
   if (message.FromUserName === 'diaosi') {
     // 回复屌丝(普通回复)
     res.reply('hehe');
@@ -165,7 +166,7 @@ app.use('/wechat', wechat(config, function (req, res, next) {
       }
     });
   } else {
-    console.log('受到消息了！')
+    console.log('受到消息了！');
     // 回复高富帅(图文回复)
     res.reply([
       {
