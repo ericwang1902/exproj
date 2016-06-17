@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var customer = require('./routes/customer');
 
 var exphbs = require('express-handlebars');
 
@@ -130,6 +131,7 @@ passport.use(new LocalStrategy(
 //路由
 app.use('/', routes);
 app.use('/users', users);
+app.use('/customer',customer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
