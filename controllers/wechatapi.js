@@ -8,3 +8,6 @@ api.getLatestToken(function (err,token) {
     console.log('accesstoken:'+token.accessToken);
 });
 
+api.getTicket(function (err,result) {
+console.log('ticket:'+JSON.stringify(result));
+})
