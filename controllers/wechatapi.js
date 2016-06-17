@@ -12,6 +12,11 @@ api.getTicket(function (err,result) {
 console.log('ticket:'+JSON.stringify(result));
 })
 
-api.getJsConfig(function (err,result) {
+var param = {
+ debug: false,
+ jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
+ url: 'http://exproj.robustudio.com'
+};
+api.getJsConfig(param,function (err,result) {
     console.log('config:'+JSON.stringify(result));
 })
