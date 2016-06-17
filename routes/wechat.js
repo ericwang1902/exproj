@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var wechat = require('wechat');
-var enumberableconstants = require('./models/enumberableConstants');
+var enumberableconstants = require('../models/enumberableConstants');
 var config={
   token: enumberableconstants.wechatinfo.token,
   appid: enumberableconstants.wechatinfo.appid,
