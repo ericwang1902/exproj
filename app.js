@@ -165,6 +165,7 @@ app.use('/wechat', wechat(config, function (req, res, next) {
       }
     });
   } else {
+    console.log('受到消息了！')
     // 回复高富帅(图文回复)
     res.reply([
       {
