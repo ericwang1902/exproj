@@ -4,6 +4,6 @@ var api = new WechatAPI(enumberableconstants.wechatinfo.appid, enumberableconsta
 
 api.setOpts({timeout: 15000});
 api.getLatestToken(function (err,token) {
-    console.log('token:'+token);
+    console.log('token:'+token.access_token);
 });
 
