@@ -55,10 +55,13 @@ function getjssdktoken(req,res,next){
             console.log('body:'+body);
                
         })
-        callback(null, access_token, refresh_token,openid);
+        callback(null, access_token,refresh_token,openid);
     },
     //获取用户信息
     function(access_token, refresh_token,openid, callback) {
+            console.log('access_token:'+access_token);
+            console.log('refresh_token:'+refresh_token);
+            console.log('openid:'+openid);
         var userinfooptions={
             url: 'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
         }
