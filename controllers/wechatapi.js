@@ -35,7 +35,7 @@ module.exports={
             };
         //这是用来获取configdata，给前端jssdk网页调用的。
         api.getJsConfig(param,function (err,result) {
-            console.log('config:'+JSON.stringify(result));
+            
             if(err) console.log(err);
 
             callback(null,result);//返回config
