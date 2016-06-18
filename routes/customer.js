@@ -45,7 +45,7 @@ function getjssdktoken(req,res,next){
     }
     https.get(options.hostname,function(res1) {
         console.log('url:'+options.hostname);
-        console.log("响应：" + res1);
+        console.log("响应：" + JSON.stringify(res1));
     }).on('error', function(e) {
         console.log("错误：" + e.message);
     });
