@@ -35,7 +35,12 @@ module.exports={
             };
         //这是用来获取configdata，给前端jssdk网页调用的。
         api.getJsConfig(param,function (err,result) {
-            
+                  //config:{"debug":false,
+        //"appId":"wx45eb07597f1e004a",
+        //"timestamp":"1466210272",
+        //"nonceStr":"cv6fntr2777rpb9",
+        //"signature":"2e75be9440ee086a597313842d8312eb54b8c417",
+        //"jsApiList":["onMenuShareTimeline","onMenuShareAppMessage"]}
             if(err) console.log(err);
 
             callback(null,result);//返回config

@@ -11,16 +11,26 @@ router.post('/createorder',function (req,res,next) {
 })
 
 router.get('/location',function (req,res,next) {
-    res.render('./customer/location',{layout:false});
+        //获取相关信息
+    wechatjs.getjsconfig(function (err,result) {
+        if(err) console.log(err);
+        console.log('config:'+JSON.stringify(result));
+        //config:{"debug":false,
+        //"appId":"wx45eb07597f1e004a",
+        //"timestamp":"1466210272",
+        //"nonceStr":"cv6fntr2777rpb9",
+        //"signature":"2e75be9440ee086a597313842d8312eb54b8c417",
+        //"jsApiList":["onMenuShareTimeline","onMenuShareAppMessage"]}
+        res.render('./customer/location',{layout:false,config:result});
+
+    })
+
+    
 })
 
 router.post('/location',function(req,res,next){
     console.log(req.body);
-    //获取相关信息
-    wechatjs.getjsconfig(function (err,result) {
-        if(err) console.log(err);
-        console.log('config:'+JSON.stringify(result));
-    })
+
 
 })
 
