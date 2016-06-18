@@ -27,6 +27,7 @@ router.get('/location',getjssdktoken,function (req,res,next) {
         //"nonceStr":"cv6fntr2777rpb9",
         //"signature":"2e75be9440ee086a597313842d8312eb54b8c417",
         //"jsApiList":["onMenuShareTimeline","onMenuShareAppMessage"]}
+        
         res.render('./customer/location',{layout:false,config:result});
 
     })
