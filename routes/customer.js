@@ -44,9 +44,10 @@ function getjssdktoken(req,res,next){
        url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+enumerableconstants.wechatinfo.appid+'&secret='+enumerableconstants.wechatinfo.appsecret+'&code='+req.query.code+'&grant_type=authorization_code'
     }
 
-    request(options,function (error,response,body) {     
-            var info = body.access_token;
-            console.log('body:'+info);
+    request(options,function (error,response,body) {   
+            console.log('error:'+error);  
+            console.log('response:'+response);
+            console.log('body:'+body);
            
     })
 
