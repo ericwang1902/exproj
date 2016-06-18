@@ -27,11 +27,11 @@ module.exports={
         })
     },
     //获取最新的jssdk config
-    getjsconfig:function (callback) {
+    getjsconfig:function (url,callback) {
         var param = {
             debug: false,
             jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
-            url: 'http://exproj.robustudio.com'
+            url: url
             };
         //这是用来获取configdata，给前端jssdk网页调用的。
         api.getJsConfig(param,function (err,result) {
