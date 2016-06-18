@@ -7,15 +7,7 @@ var api = new WechatAPI(enumberableconstants.wechatinfo.appid, enumberableconsta
 //api.setOpts({timeout: 15000});
 
 module.exports={
-    //获取最新ticket
-    getticket:function (callback) {
-        api.getTicket(function (err,result) {
-            console.log('ticket:'+JSON.stringify(result));
-            if(err) console.log(err);
 
-            callback(null,result);
-        })
-    },
     //获取最新的jssdk config
     getjsconfig:function (url,callback) {
         console.log(url);
