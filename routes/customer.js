@@ -46,7 +46,8 @@ function getjssdktoken(req,res,next){
         var accesstokenoptions={
         url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+enumerableconstants.wechatinfo.appid+'&secret='+enumerableconstants.wechatinfo.appsecret+'&code='+req.query.code+'&grant_type=authorization_code'
         }
-        request(accesstokenoptions,function (error,response,body) {  
+        request(accesstokenoptions,function (error,response,body) { 
+            var bodyJson = JSON.parse(body);//转成json对象 
             var access_token = body.access_token;
             var refresh_token = body.refresh_token;
             var openid=body.openid;
