@@ -17,7 +17,7 @@ router.get('/location',getjssdktoken,function (req,res,next) {
         //获取相关信息
    
        
-    wechatjs.getjsconfig(document.URL,function (err,result) {
+    wechatjs.getjsconfig(req.orginalurl,function (err,result) {
         if(err) console.log(err);
         console.log('config:'+JSON.stringify(result));
         //config:{"debug":false,
