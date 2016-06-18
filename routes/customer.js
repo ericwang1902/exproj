@@ -14,7 +14,7 @@ router.post('/createorder',function (req,res,next) {
 })
 
 router.get('/location',getuserinfo,function (req,res,next) {
-
+    //进入到这个页面的时候，通过授权来获取用户信息
         res.render('./customer/location',{layout:false});
 })
 
@@ -47,10 +47,11 @@ function getuserinfo(req,res,next){
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
-            
+            wechatjs.sendtext(openid,'hello');
             var userinfooptions = {
                 url:'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
             }
+            //这个body就是用户信息
             request(userinfooptions,function (error,response,body) {
              
             callback(null, body);

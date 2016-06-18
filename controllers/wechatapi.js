@@ -28,6 +28,11 @@ module.exports={
 
             callback(null,result);//返回config
         }) 
+    },
+    sendtext:function (openid,text) {
+        api.sendText(openid, text, function (err,result) {
+            console.log('sendtext:'+result);
+        });
     }
 }
 
