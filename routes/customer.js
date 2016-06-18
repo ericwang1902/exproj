@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var wechatjs = require('./controllers/wechatapi');//调用wechatjs来设置
+var wechatjs = require('../controllers/wechatapi');//调用wechatjs来设置
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});
