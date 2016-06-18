@@ -39,10 +39,7 @@ router.post('/location',function(req,res,next){
 })
 
 function getjssdktoken(req,res,next){
-    console.log(req.query.code);//获取微信重定向之后，生成的code
-
-
-    
+    console.log(req.query.code);//获取微信重定向之后，生成的code 
     async.waterfall([
     //获取accesstoken
     function(callback) {
@@ -53,6 +50,9 @@ function getjssdktoken(req,res,next){
             var access_token = body.access_token;
             var refresh_token = body.refresh_token;
             var openid=body.openid;
+            console.log('err:'+err);
+            console.log('response:'+response);
+            console.log('body:'+body);
                
         })
         callback(null, access_token, refresh_token,openid);
