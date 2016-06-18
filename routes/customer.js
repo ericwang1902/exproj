@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var wechatjs = require('../controllers/wechatapi');//调用wechatjs来设置
-var https =require('https');
+var request =require('request');
 var enumerableconstants = require('../models/enumerableConstants')
 
 router.get('/order1',function (req,res,next) {
@@ -41,15 +41,14 @@ function getjssdktoken(req,res,next){
     console.log(req.query.code);
 
     var options={
-       hostname: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+enumerableconstants.wechatinfo.appid+'&secret='+enumerableconstants.wechatinfo.appsecret+'&code='+req.query.code+'&grant_type=authorization_code'
+       url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+enumerableconstants.wechatinfo.appid+'&secret='+enumerableconstants.wechatinfo.appsecret+'&code='+req.query.code+'&grant_type=authorization_code'
     }
-    https.get(options.hostname,function(res1) {
-        console.log('url:'+options.hostname);
-        console.log("响应：" + JSON.stringify(res1.body));
-    }).on('error', function(e) {
-        console.log("错误：" + e.message);
-    });
-    
+
+    request(options,function (error,response,body) {     
+            var info = JSON.parse(body);
+            console.log('body:'+info);
+           
+    })
 
     return next();
 }
