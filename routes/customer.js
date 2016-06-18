@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var wechatjs = require('../controllers/wechatapi');//调用wechatjs来设置
-var http =require('https');
+var https =require('https');
 var enumerableconstants = require('../models/enumerableConstants')
 
 router.get('/order1',function (req,res,next) {
