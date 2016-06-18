@@ -32,7 +32,7 @@ module.exports={
         var param = {
             debug: false,
             jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
-            url: url
+            url: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj'
             };
         //这是用来获取configdata，给前端jssdk网页调用的。
         api.getJsConfig(param,function (err,result) {
