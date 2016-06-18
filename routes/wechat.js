@@ -30,7 +30,7 @@ module.exports= wechat(config).text(function(message,req,res,net){
   // TODO
 }).event(function (message, req, res, next) {
   // TODO
-  console.log('event:'+JSON.parse(message));
+  console.log('event:'+JSON.stringify(message));
   
 }).device_text(function (message, req, res, next) {
   // TODO
