@@ -29,10 +29,12 @@ module.exports={
             callback(null,result);//返回config
         }) 
     },
+    //客服消息
     sendtext:function (openid,text) {
         api.sendText(openid, text, function (err,result) {
             console.log('sendtext:'+result);
         });
     }
+    //模板消息
 }
 

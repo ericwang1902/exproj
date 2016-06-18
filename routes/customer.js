@@ -47,7 +47,7 @@ function getuserinfo(req,res,next){
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
-            wechatjs.sendtext(openid,'hello');
+            wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
             var userinfooptions = {
                 url:'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
             }
