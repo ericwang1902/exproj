@@ -32,7 +32,7 @@ var wechat = require('./routes/wechat');
 
 var seed = require('./models/seed.js');
 
-var wechatjs = require('./controllers/wechatapi');//调用wechatjs来设置
+
 
 
 // view engine setup
