@@ -43,8 +43,8 @@ function getjssdktoken(req,res,next){
     var options={
        hostname: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+enumerableconstants.wechatinfo.appid+'&secret='+enumerableconstants.wechatinfo.appsecret+'&code='+req.query.code+'&grant_type=authorization_code'
     }
-    https.get(options.hostname,function(res) {
-        console.log("响应：" + JSON.stringify(res));
+    https.get(options.hostname,function(res1) {
+        console.log("响应：" + JSON.stringify(res1));
     }).on('error', function(e) {
         console.log("错误：" + e.message);
     });
