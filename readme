@@ -53,3 +53,6 @@
 4.微信坑：
 4.1 接口的内容凡事都要先打印出来；
 4.2 上线之后，bower npm install不能忘记
+
+
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect

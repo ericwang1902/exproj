@@ -7,7 +7,7 @@ var api = new WechatAPI(enumberableconstants.wechatinfo.appid, enumberableconsta
 //api.setOpts({timeout: 15000});
 
 module.exports={
-    //获取最新jssdk token
+    //网页授权获取access_token
     gettoken:function (callback) {
         api.getLatestToken(function (err,token) {
         console.log('token:'+JSON.stringify(token));
@@ -47,3 +47,4 @@ module.exports={
         }) 
     }
 }
+

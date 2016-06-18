@@ -12,6 +12,7 @@ router.post('/createorder',function (req,res,next) {
 
 router.get('/location',function (req,res,next) {
         //获取相关信息
+        console.log('url:'+req.orginalurl);
     wechatjs.getjsconfig(function (err,result) {
         if(err) console.log(err);
         console.log('config:'+JSON.stringify(result));
