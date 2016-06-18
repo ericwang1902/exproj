@@ -58,19 +58,11 @@ function getjssdktoken(req,res,next){
         callback(null, access_token,refresh_token,openid);
     },
     //获取用户信息
-    function(access_token, refresh_token,openid, callback) {
-            console.log('access_token:'+access_token);
-            console.log('refresh_token:'+refresh_token);
-            console.log('openid:'+openid);
-        var userinfooptions={
-            url: 'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
-        }
-        request(userinfooptions,function (err,response,body) {
-            console.log('err:'+err);
-            console.log('response:'+response);
-            console.log('body:'+body);
-        })
-        callback(null, 'three');
+    function(arg1, arg2,arg3, callback) {
+            console.log('access_token:'+arg1);
+            console.log('refresh_token:'+arg2);
+            console.log('openid:'+arg3);
+            callback(null, 'three');
     },
     function(arg1, callback) {
         // arg1 now equals 'three'
