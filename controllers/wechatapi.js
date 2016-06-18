@@ -7,16 +7,6 @@ var api = new WechatAPI(enumberableconstants.wechatinfo.appid, enumberableconsta
 //api.setOpts({timeout: 15000});
 
 module.exports={
-    //用户网页授权获取access_token
-    gettoken:function (callback) {
-        api.getLatestToken(function (err,token) {
-        console.log('token:'+JSON.stringify(token));
-        console.log('accesstoken:'+token.accessToken);
-        if(err) console.log(err);
-
-        callback(null,token);
-        });
-    },
     //获取最新ticket
     getticket:function (callback) {
         api.getTicket(function (err,result) {
