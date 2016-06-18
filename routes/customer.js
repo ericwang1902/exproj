@@ -45,7 +45,7 @@ function getjssdktoken(req,res,next){
     }
 
     request(options,function (error,response,body) {     
-            var info = JSON.parse(body);
+            var info = body.access_token;
             console.log('body:'+info);
            
     })
