@@ -16,7 +16,7 @@ router.post('/createorder',function (req,res,next) {
 router.get('/location',getjssdktoken,function (req,res,next) {
         //获取相关信息
    
-       console.log('URL:'+req);
+       console.log('URL:'+JSON.stringify(req));
     wechatjs.getjsconfig(req.orginalurl,function (err,result) {
         if(err) console.log(err);
         
