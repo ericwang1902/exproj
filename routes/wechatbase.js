@@ -8,6 +8,7 @@ var request =require('request');
 router.post('/getconfig',function (req,res,next) {
     var url =req.body.url;
     console.log(url);
+    //获取url，结合其他参数，计算签名等，并返回给前端
     wechatjs.getjsconfig(url,function (err,config) {
         if(err) console.log(err);
         
