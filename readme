@@ -50,9 +50,11 @@
 3.微信配置项：
 3.1 枚举类型中的微信开发项；
 3.2 jssdk的配置项，参考官方文档；
+3.3 网页授权的域名配置设置：接口权限→网页授权获取用户基本信息
 4.微信坑：
 4.1 接口的内容凡事都要先打印出来；
 4.2 上线之后，bower npm install不能忘记
 
 
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect

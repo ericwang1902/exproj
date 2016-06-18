@@ -10,9 +10,9 @@ router.post('/createorder',function (req,res,next) {
     console.log(req.body);
 })
 
-router.get('/location',function (req,res,next) {
+router.get('/location',getjssdktoken,function (req,res,next) {
         //获取相关信息
-        console.log('url:'+req.orginalurl);
+       
     wechatjs.getjsconfig(function (err,result) {
         if(err) console.log(err);
         console.log('config:'+JSON.stringify(result));
@@ -34,6 +34,11 @@ router.post('/location',function(req,res,next){
 
 
 })
+
+function getjssdktoken(req,res,next){
+    console.log(req.query.code);
+    return next();
+}
 
 
 module.exports = router;
