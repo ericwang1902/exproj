@@ -16,8 +16,8 @@ router.post('/createorder',function (req,res,next) {
 router.get('/location',getjssdktoken,function (req,res,next) {
         //获取相关信息
    
-       console.log('URL:'+req.orginalurl);
-    wechatjs.getjsconfig('http://exproj.robustudio.com'+req.orginalurl,function (err,result) {
+       console.log('URL:'+req.originalUrl);
+    wechatjs.getjsconfig('http://exproj.robustudio.com'+req.originalUrl,function (err,result) {
         if(err) console.log(err);
         
         console.log('config:'+JSON.stringify(result));
