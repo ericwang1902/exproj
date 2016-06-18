@@ -32,7 +32,7 @@ module.exports={
         var param = {
             debug: false,
             jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
-            url: 'exproj.robustudio.com/customer/location'
+            url: 'http://exproj.robustudio.com/customer/location'
             };
         //这是用来获取configdata，给前端jssdk网页调用的。
         api.getJsConfig(param,function (err,result) {
