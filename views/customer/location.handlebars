@@ -95,10 +95,11 @@
     </form>
 <script type="text/javascript">
 //ajax访问／wechatbase/getconfig，来获取config
+var url = window.location.href;
 $.ajax({
   url: "/wechatbase/getconfig",
   data: {
-    url: window.location.href;
+    url: url
   },
   success: function( result ) {
     console.log(result);
