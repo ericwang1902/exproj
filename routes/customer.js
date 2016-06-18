@@ -13,37 +13,18 @@ router.post('/createorder',function (req,res,next) {
     console.log(req.body);
 })
 
-router.get('/location',getjssdktoken,function (req,res,next) {
-        //获取相关信息
-   
-       console.log('URL:'+req.originalUrl);
-    wechatjs.getjsconfig('http://exproj.robustudio.com'+req.originalUrl,function (err,result) {
-        if(err) console.log(err);
-        
-        console.log('config:'+JSON.stringify(result));
-        //config:{"debug":false,
-        //"appId":"wx45eb07597f1e004a",
-        //"timestamp":"1466210272",
-        //"nonceStr":"cv6fntr2777rpb9",
-        //"signature":"2e75be9440ee086a597313842d8312eb54b8c417",
-        //"jsApiList":["onMenuShareTimeline","onMenuShareAppMessage"]}
-        
-        res.render('./customer/location',{layout:false,config:result});
+router.get('/location',getuserinfo,function (req,res,next) {
 
-    })
-
-    
+        res.render('./customer/location',{layout:false});
 })
 
 router.post('/location',function(req,res,next){
     console.log(req.body);
-
-
 })
 
-//获取微信jstoken和用户信息
-function getjssdktoken(req,res,next){
-    console.log(req.query.code);//获取微信重定向之后，生成的code 
+//通过用户授权，获取微信jstoken和用户信息
+function getuserinfo(req,res,next){
+    console.log('code:'+req.query.code);//获取微信重定向之后，生成的code 
     async.waterfall([
     //获取accesstoken
     function(callback) {

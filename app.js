@@ -31,6 +31,7 @@ var app = express();
 var wechat = require('./routes/wechat');
 
 var seed = require('./models/seed.js');
+var wechatbase = require('./routers/wechatbase');
 
 
 
@@ -136,7 +137,8 @@ passport.use(new LocalStrategy(
 app.use('/', routes);
 app.use('/users', users);
 app.use('/customer',customer);
-app.use('/wechat',wechat);
+app.use('/wechat',wechat);//消息自动回复
+app.use('/wechatbase',wechatbase);//wx.config的信息获取接口
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
