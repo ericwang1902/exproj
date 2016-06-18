@@ -38,6 +38,7 @@ router.post('/location',function(req,res,next){
 
 })
 
+//获取微信jstoken和用户信息
 function getjssdktoken(req,res,next){
     console.log(req.query.code);//获取微信重定向之后，生成的code 
     async.waterfall([
@@ -79,8 +80,6 @@ function getjssdktoken(req,res,next){
     
 });
     
-    
-
     return next();
 }
 
