@@ -60,6 +60,3 @@
 
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
-https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx45eb07597f1e004a&secret=9c4c330a78978494d2465bc63fcf6e16&code=021mmWZa1Efhkq0qMZXa1UfWZa1mmWZi&grant_type=authorization_code
-
-https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code

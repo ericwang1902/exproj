@@ -48,9 +48,9 @@ function getjssdktoken(req,res,next){
         }
         request(accesstokenoptions,function (error,response,body) { 
             var bodyJson = JSON.parse(body);//转成json对象 
-            var access_token = body.access_token;
-            var refresh_token = body.refresh_token;
-            var openid=body.openid;
+            var access_token = bodyJson.access_token;
+            var refresh_token = bodyJson.refresh_token;
+            var openid=bodyJson.openid;
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
