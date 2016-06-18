@@ -28,6 +28,7 @@ module.exports={
     },
     //获取最新的jssdk config
     getjsconfig:function (url,callback) {
+        console.log(url);
         var param = {
             debug: false,
             jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
