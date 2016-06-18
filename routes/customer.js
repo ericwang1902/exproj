@@ -50,7 +50,7 @@ function getjssdktoken(req,res,next){
             var access_token = body.access_token;
             var refresh_token = body.refresh_token;
             var openid=body.openid;
-            console.log('err:'+err);
+            console.log('err:'+error);
             console.log('response:'+response);
             console.log('body:'+body);
                
