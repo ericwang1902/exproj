@@ -22,7 +22,7 @@ router.post('/location',function(req,res,next){
     console.log(req.body);
 })
 
-router.get('/userbind',function (req,res,next) {
+router.get('/userbind',getuserinfo,function (req,res,next) {
     res.render('./customer/userbind',{layout:false});
 })
 
