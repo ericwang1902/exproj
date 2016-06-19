@@ -22,6 +22,18 @@ router.post('/location',function(req,res,next){
     console.log(req.body);
 })
 
+router.get('/userbind',function (req,res,next) {
+    res.render('./customer/userbind',{layout:false});
+})
+
+
+
+
+
+
+
+
+
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req,res,next){
     console.log('code:'+req.query.code);//获取微信重定向之后，生成的code 

@@ -14,6 +14,7 @@ var config={
 //   res.reply('Hello world!');
 // });
 
+//一旦启用这个，用户发给公众号的信息、扫码事件都可以被这个接口获取
 module.exports= wechat(config).text(function(message,req,res,net){
   console.log(message);
   res.reply(Date.now());

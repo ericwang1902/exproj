@@ -61,7 +61,8 @@ router.get('/login',function(req,res,next){
        if(user.usertype ==enumerableConstants.usertype.sysadmin){
          res.redirect('/admindash'); 
        }else {
-         res.redirect('/usercenter');
+         
+         res.redirect('/usercenter?id='+user._id);
        }
      })
   });
@@ -70,7 +71,7 @@ router.get('/login',function(req,res,next){
     res.render('./contents/admindash');
   })
   
-  router.get('/usercenter',function(req,res,next){
+  router.get('/usercenter',isLogedIn,function(req,res,next){
     res.render('./contents/usercenter');
   })
 
