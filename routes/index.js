@@ -61,13 +61,17 @@ router.get('/login',function(req,res,next){
        if(user.usertype ==enumerableConstants.usertype.sysadmin){
          res.redirect('/admindash'); 
        }else {
-         res.redirect('/');
+         res.redirect('/usercenter');
        }
      })
   });
   
   router.get('/admindash',isLogedIn,function(req,res,next){
     res.render('./contents/admindash');
+  })
+  
+  router.get('/usercenter',function(req,res,next){
+    res.render('./contents/usercenter');
   })
 
 router.get('/register',function(req,res,next){

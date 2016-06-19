@@ -34,7 +34,24 @@ module.exports={
         api.sendText(openid, text, function (err,result) {
             console.log('sendtext:'+result);
         });
+    },
+    //生成永久二维码
+    createLimitQRCode:function (senceid,callback) {
+        api.createLimitQRCode(senceid,function (err,ticket) {
+            if(err) console.log(err);
+            
+            callback(null,ticket);//ticket是换取二维码的票据
+        })
+    },
+    //获取二维码的img地址
+    showQRCodeURL:function (ticket,callback) {
+        api.showQRCodeURL(ticket,function (err,imgurl) {
+            if(err)console.log(err);
+            
+            callback(null,imgurl);//imgurl是二维码的图片链接地址
+        })
     }
+    
     //模板消息
 }
 
