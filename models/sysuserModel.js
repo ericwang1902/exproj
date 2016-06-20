@@ -16,7 +16,9 @@ var sysuserSchema = new Schema({
 	},//所属快递点id
 	"groupid" : String,//用户分组，用于微信菜单
 	"status" : String,//设置工作状态，冻结、正常、余额不足 1
-	"isbroadcast" : String//针对org的设置项
+	"isbroadcast" : String,//针对org的设置项
+	"title":String,//标题
+	"username":String//联系人姓名
 });
 
 module.exports = mongoose.model('sysuser', sysuserSchema);

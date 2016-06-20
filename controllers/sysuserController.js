@@ -8,6 +8,7 @@ var async = require("async");
  */
 module.exports = {
 
+
     /**
      * sysuserController.list()
      */
@@ -27,6 +28,7 @@ module.exports = {
             function(callback){
                 sysuserModel.find(condition,function(err,sysuers){
                     if(err) console.log(err);
+                     console.log('sysuers:'+sysuers);
                     callback(null,sysuers);
                 }).skip((page-1)*pageItems).limit(pageItems);
             }
@@ -38,6 +40,42 @@ module.exports = {
        
         
     },
+    /**
+   *查找orgid下面的所有快递员 
+   */
+  orglist:function(page,condition,callback2){
+      var pageItems = 10;//每页显示的数量
+
+      async.series([
+        function(callback){
+            sysuserModel.count(condition,function(err,count){
+                if(err) console.log(err);
+             //   console.log('orglist count:'+count);
+                callback(null,count);
+            })
+        },
+        function(callback){
+            sysuserModel.find(condition,function(err,sysuers){
+                if(err) console.log(err);
+             //   console.log('sysuers:'+sysuers);
+                callback(null,sysuers);
+            }).skip((page-1)*pageItems).limit(pageItems);
+        }
+      ],function(err,results){
+          console.log(results);
+        callback2(null,results[0],results[1]);
+      })
+
+
+  },
+  orguserdetail:function(id,callback){
+    sysuserModel.findOne({_id:id},function (err,result) {
+        console.log(id);
+        if(err) console.log(err);
+
+        callback(null,result);
+    })
+  },
     
 
     /**
@@ -74,7 +112,9 @@ module.exports = {
             orgid : null,
             groupid : "",
             status : "1",
-            isbroadcast : ""
+            isbroadcast : "",
+            title:"",
+            username:""
         });
         
         sysuserModel.findOne({mobile:user.username},function(err,user){
@@ -192,6 +232,8 @@ module.exports = {
             user.count = userinfo.count;
             user.orgid = userinfo.orgid;
             user.status = userinfo.status;
+            user.title =userinfo.title;
+            user.username = userinfo.username;
 
             user.save(function(err,sysuer){
                if(err) callback({error:err.message+"2"},null);

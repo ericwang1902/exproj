@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="/admin/admindash">控制面板</a></li>
+  <li><a href="/org/orgdash">控制面板</a></li>
   <li class="#">用户列表</li>
 </ol>
 <table class="table table-hover">
@@ -20,7 +20,7 @@
                 <td>{{status}}</td>
                 <td>{{count}}</td>
                 <td>
-                  <a href="/admin/userdetail?id={{_id}}" style="cursor:hand" >详情</a>
+                  <a href="/org/orguserdetail?id={{_id}}" style="cursor:hand" >详情</a>
                 </td>
             </tr>
        {{/each}}
@@ -34,7 +34,7 @@
     <ul class="pagination">
         </li>
         {{#each pagesArray}}
-        <li><a href="/admin/userlist?p={{p}}">{{p}}</a></li>
+        <li><a href="/org/orguserdetail?p={{p}}">{{p}}</a></li>
         {{/each}}
     </ul>
 </nav>

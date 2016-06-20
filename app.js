@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var customer = require('./routes/customer');
+var org = require('./routes/orgroutes');
+var courier = require('./routes/courierroute');
+var admin = require('./routes/adminroute');
 
 var exphbs = require('express-handlebars');
 
@@ -137,6 +140,10 @@ app.use('/users', users);
 app.use('/customer',customer);
 app.use('/wechat',wechat);//消息自动回复
 app.use('/wechatbase',wechatbase);//wx.config的信息获取接口
+app.use('/org',org);//快递点管理页面
+app.use('/courier',courier);//快递员管理路由
+app.use('/admin',admin);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
