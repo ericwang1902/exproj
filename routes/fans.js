@@ -1,40 +1,40 @@
 var express = require('express');
 var router = express.Router();
-var customerController = require('../controllers/customerController.js');
+var fanController = require('../controllers/fanController.js');
 
 /*
  * GET
  */
 router.get('/', function(req, res) {
-    customerController.list(req, res);
+    fanController.list(req, res);
 });
 
 /*
  * GET
  */
 router.get('/:id', function(req, res) {
-    customerController.show(req, res);
+    fanController.show(req, res);
 });
 
 /*
  * POST
  */
 router.post('/', function(req, res) {
-    customerController.create(req, res);
+    fanController.create(req, res);
 });
 
 /*
  * PUT
  */
 router.put('/:id', function(req, res) {
-    customerController.update(req, res);
+    fanController.update(req, res);
 });
 
 /*
  * DELETE
  */
 router.delete('/:id', function(req, res) {
-    customerController.remove(req, res);
+    fanController.remove(req, res);
 });
 
 module.exports = router;
