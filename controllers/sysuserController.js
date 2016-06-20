@@ -176,19 +176,16 @@ module.exports = {
     /**
      * sysuserController.update()
      */
-    update: function(req, res) {
-        var id = req.params.id;
+    update: function(req,res, callback) {
+        var id = req.query.id;
+
+
         sysuserModel.findOne({_id: id}, function(err, sysuser){
             if(err) {
-                return res.json(500, {
-                    message: 'Error saving sysuser',
-                    error: err
-                });
+                callback(err,null);
             }
             if(!sysuser) {
-                return res.json(404, {
-                    message: 'No such sysuser'
-                });
+                callback(null,'no user');
             }
 
             sysuser.mobile =  req.body.mobile ? req.body.mobile : sysuser.mobile;
@@ -203,22 +200,21 @@ module.exports = {
 			sysuser.groupid =  req.body.groupid ? req.body.groupid : sysuser.groupid;
 			sysuser.status =  req.body.status ? req.body.status : sysuser.status;
 			sysuser.isbroadcast =  req.body.isbroadcast ? req.body.isbroadcast : sysuser.isbroadcast;
-			
+			sysuser.title = req.body.title ? req.body.title : sysuser.title;
+            sysuser.username = req.body.username ? req.body.username :sysuser.username;
+
             sysuser.save(function(err, sysuser){
                 if(err) {
-                    return res.json(500, {
-                        message: 'Error getting sysuser.'
-                    });
+                callback(err,null);
                 }
                 if(!sysuser) {
-                    return res.json(404, {
-                        message: 'No such sysuser'
-                    });
+                callback(null,'no user');
                 }
-                return res.json(sysuser);
+               callback(null,sysuser);
             });
         });
     },
+
     modify: function(id,userinfo,callback){
         sysuserModel.findOne({_id:id},function(err,user){
             if(err) callback({error:err.message+"1"},null);

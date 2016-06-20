@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var sysuserController = require('../controllers/sysuserController');
 var enumerableConstants = require('../models/enumerableConstants');
+var sysuserModel = require('../models/sysuserModel');
 
 /* GET users listing. */
 router.get('/orgdash', function(req, res, next) {
-  res.render('./org/orgdash');
+  res.render('./org/orgdash',{id:req.query.id});
 });
 
 router.get('/orguserlist',function (req,res,next) {
@@ -23,6 +24,7 @@ router.get('/orguserlist',function (req,res,next) {
         }
    
         res.render('./org/orguserlist',{
+                id:id,
                 users:users1,
                 pagesArray:pagesArray
             });
@@ -60,6 +62,61 @@ router.get('/orguserdetail',function (req,res,next) {
           }
         });
     })
+
+})
+
+router.get('/orgusermodify',function (req,res,next) {
+    var id =req.query.id;
+
+    sysuserModel.findOne({_id:id},function(err,user){
+        if(err) console.log(err);
+
+
+        res.render('./org/orgusermodify',{
+            user:user,
+            userstatus:enumerableConstants.userstatus,
+            helpers:{
+                getUsertype:function(usertype){
+                    var usertypename='';
+                    switch(usertype){
+                        case '1':
+                                usertypename ='系统管理员';
+                                break;
+                        case '2':
+                                usertypename ='快递点';
+                                break;
+                        case '3':
+                                usertypename ='快递员';
+                                break;
+                        default:
+                                usertypename ='';
+                                break;                    
+                    }
+                    return usertypename;
+                },
+                 userstatushelper:function(statusnum){
+                          return enumerableConstants.userstatus[statusnum-1].status;
+                 }
+            }    
+        });
+    }) 
+})
+
+router.post('/orgusermodify',function(req,res,next){
+    var id = req.query.id;
+    
+    sysuserController.update(req,res,function(err,result){
+        console.log(result);
+        if(err){
+         req.flash('error_msg',err.error)
+          res.redirect('/org/usermodify?id='+id);
+        }else{
+        req.flash('sucess_msg','修改成功！')
+        res.redirect('/org/orguserdetail?id='+id);
+        }
+       
+    })
+
 
 })
 

@@ -184,12 +184,12 @@ router.get('/usermodify',function(req,res,next){
               userstatus:enumerableConstants.userstatus,
               helpers: {
                     type: function (num) {
-                      if(num==results[1].typeIndex ){
-                        return 'checked';
-                      }
-                      else {
-                        return null;
-                      }
+                        if(num==results[1].typeIndex ){
+                          return 'checked';
+                        }
+                        else {
+                          return null;
+                        }
                       },
                       org:function(){
                         return orginfomobile;          

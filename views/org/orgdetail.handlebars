@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
-   <li><a href="/admin/admindash">控制面板</a></li>
-  <li><a href="/admin/userlist">用户列表</a></li>
+   <li><a href="/org/orgdash?id={{user.id}}">控制面板</a></li>
+  <li><a href="/org/orguserlist?id={{user.id}}">用户列表</a></li>
   <li class="#">用户详情</li>
 </ol>
 <div class="panel panel-default">
@@ -19,6 +19,6 @@
         <li class="list-group-item">联系人姓名：{{user.username}}</li>      
         {{/if}}
     </ul>
-    <a href="/admin/usermodify?id={{user._id}}" style="cursor:hand" >修改</a>
+    <a href="/org/orgusermodify?id={{user._id}}" style="cursor:hand" >修改</a>
   </div>
 </div>
