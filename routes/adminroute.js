@@ -113,7 +113,7 @@ router.get('/usermodify',function(req,res,next){
 
   async.series([
     function(callback){
-    //查找
+    //查找所有的快递点，作为快递点的选择框使用
     sysuserModel.find({usertype:'2'},function(err,orgs){
         if(err) console.log(err);
         callback(null,orgs);
@@ -196,8 +196,13 @@ router.get('/usermodify',function(req,res,next){
                             
                       },
                       userstatushelper:function(statusnum){
-                          return enumerableConstants.userstatus[statusnum-1].status;
+                        if(statusnum=='' || statusnum==null){
+                             return ''                       
                         }
+                         else{
+                                return enumerableConstants.userstatus[statusnum-1].status;
+                         }
+                       }
                           
                       
                 }
