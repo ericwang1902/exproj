@@ -4,7 +4,7 @@ var wechatjs = require('../controllers/wechatapi');//调用wechatjs来设置
 var request =require('request');
 var enumerableconstants = require('../models/enumerableConstants')
 var async = require('async');
-var sysusercontroller = require('../models/sysuserController')
+var sysusercontroller = require('../controllers/sysuserController')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
