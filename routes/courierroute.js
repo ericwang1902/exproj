@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var sysuserController = require('../controllers/sysuserController')
+var wechatjs = require('../controllers/wechatapi');//调用wechatjs来设置
 var request =require('request');
-var enumerableConstants = require('../models/enumerableConstants')
-var sysuserModel = require('../models/sysuserModel');
-var async =require('async');
+var enumerableconstants = require('../models/enumerableConstants')
+var async = require('async');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
