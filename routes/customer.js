@@ -71,10 +71,10 @@ function getuserinfo(req,res,next){
     console.log(result);
     var userinfoJson = JSON.parse(result);
     
-    
+     return next();
 });
     
-    return next();
+   
 }
 
 

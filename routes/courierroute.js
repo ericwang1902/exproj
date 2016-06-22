@@ -65,9 +65,9 @@ function getuserinfo(req,res,next){
     req.userinfoJson = userinfoJson;
     
     
+    return next();
 });
     
-    return next();
 }
 
 
