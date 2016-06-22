@@ -239,6 +239,9 @@ module.exports = {
         })
     },
     courierbind:function(username,psd,openid,callback){
+        console.log('username:'+username);
+        console.log('psd:'+psd);
+        console.log('openid:'+openid);
          sysuserModel.findOne({mobile:username},function(err,user){
              if(err) callback(null,'出错了！')
             if(!user){
