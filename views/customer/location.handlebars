@@ -39,7 +39,7 @@
                             <label class="weui_label">联系电话</label>
                         </div>
                         <div class="weui_cell_bd">
-                            <input class="weui_input" name="tel" type="tel" placeholder="必填">
+                            <input class="weui_input" name="tel" type="tele" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -76,14 +76,29 @@
                                 </div>
                             </div>
                         
-                    <div class="weui_cell">
-                        <div class="weui_cell_hd">
-                            <label class="weui_label">详细地址</label>
-                        </div>
-                        <div class="weui_cell_bd">
-                            <input class="weui_input" name="address" type="text" placeholder="必填">
-                        </div>
-                    </div>
+                            <div class="weui_cell">
+                                <div class="weui_cell_hd">
+                                    <label class="weui_label">详细地址</label>
+                                </div>
+                                <div class="weui_cell_bd">
+                                    <input class="weui_input" name="address" type="text" placeholder="必填">
+                                </div>
+                            </div>
+                            <div class="weui_cell">
+                                <div class="weui_cell_hd">
+                                    <label class="weui_label">地址类型</label>
+                                </div>
+                                <div class="weui_cell_bd">
+                                   <select class="weui_select"  name="type">
+                                    <option value="1">收件地址</option>
+                                    <option value="2">寄件地址</option>
+                                </select>
+                                </div>
+                            </div>
+                            
+                            <input class="weui_input" type="hidden" name="openid"  value="{{userinfo.openid}}" type="text" placeholder="必填">
+                       
+                            
 
                     </div>
 
