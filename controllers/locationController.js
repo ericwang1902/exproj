@@ -40,7 +40,15 @@ module.exports = {
             return res.json(location);
         });
     },
+    createLocation:function(loc,callback){
+        var location = new locationModel(loc);
 
+        location.save(function(err,loc){
+            if(err) console.log(err);
+
+            callback(null,loc);
+        })
+    },
     /**
      * locationController.create()
      */
@@ -100,7 +108,7 @@ module.exports = {
 			location.address =  req.body.address ? req.body.address : location.address;
 			location.userid =  req.body.userid ? req.body.userid : location.userid;
 			location.type = req.body.type ?req.body.type:location.type;
-            
+
             location.save(function(err, location){
                 if(err) {
                     return res.json(500, {
