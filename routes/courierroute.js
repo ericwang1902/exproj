@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/userbind',getuserinfo,function (req,res,next) {
    
+   console.log("req.userinfoJson ************"+req.userinfoJson);
     res.render('./courier/courierbind',{layout:false});
 })
 
@@ -61,6 +62,7 @@ function getuserinfo(req,res,next){
     // result now equals 'done'
     console.log(result);
     var userinfoJson = JSON.parse(result);
+    req.userinfoJson = userinfoJson;
     
     
 });
