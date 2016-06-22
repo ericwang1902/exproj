@@ -69,6 +69,9 @@ function getuserinfo(req,res,next){
 ], function (err, result) {
     // result now equals 'done'
     console.log(result);
+    if(result.errcode ='40001'){
+        res.redirect('/customer/location')
+    }
     var userinfoJson = JSON.parse(result);
     
      return next();
