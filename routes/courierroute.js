@@ -17,7 +17,7 @@ router.get('/userbind',getuserinfo,function (req,res,next) {
 
 router.post('/userbind',function (req,res,next) {
     //校验快递员的用户名和密码，用来绑定openid，只绑定一个；
-    console.log
+  //  console.log
     
 })
 

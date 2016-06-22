@@ -69,6 +69,6 @@
 
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%courier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcourier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
 http://exproj.robustudio.com/courier/userbind
