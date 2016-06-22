@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/userbind',getuserinfo,function (req,res,next) {
+   
     res.render('./courier/courierbind',{layout:false});
 })
 
