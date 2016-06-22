@@ -64,7 +64,7 @@ router.get('/userdetail',function (req,res,next) {
         },
         getCompany:function(user){
           if(user.usertype!='1' && user.type!='' && user.type!=null){
-            return enumerableConstants.expCompany[user.type-1].name;
+            return enumerableConstants.expCompany[user.type].name;
           }
           else
             return '';
@@ -90,10 +90,10 @@ router.get('/userdetail',function (req,res,next) {
         },
         getCompany:function(user){
           if(user.usertype!='1' && user.type!='' && user.type!=null){
-            return enumerableConstants.expCompany[user.type-1].name;
+            return enumerableConstants.expCompany[user.type].name;
           }
           else
-            return '';
+            return '管理员无公司设置';
         }
       }
       });
@@ -167,15 +167,8 @@ router.get('/usermodify',function(req,res,next){
     console.log("result[0]:"+results[0]);
     console.log("result[1]:"+results[1].user);
     var orginfomobile = "";
-    if(results[1].user.orgid==null){    
-    }else{
-    sysuserModel.findOne({_id:results[1].user.orgid},function(err,orginfo){
-                  if(err) console.log(err);
-                  console.log("orginfo:"+orginfo)
-         orginfomobile= orginfo.mobile;        
-     })
-     }
-     res.render('./contents/usermodify',{
+    if(results[1].user.orgid==null){  
+           res.render('./contents/usermodify',{
               user:results[1].user,
               usertypeObj:results[1].usertypeObj,
               typeIndex:results[1].typeIndex,
@@ -206,7 +199,49 @@ router.get('/usermodify',function(req,res,next){
                           
                       
                 }
+              });  
+    }else{
+    sysuserModel.findOne({_id:results[1].user.orgid},function(err,orginfo){
+                  if(err) console.log(err);
+                  console.log("orginfo:"+orginfo)
+         orginfomobile= orginfo.mobile;      
+         
+              res.render('./contents/usermodify',{
+              user:results[1].user,
+              usertypeObj:results[1].usertypeObj,
+              typeIndex:results[1].typeIndex,
+              types:results[1].types,
+              orgs:results[0],
+              orginfomobile:orginfomobile,
+              userstatus:enumerableConstants.userstatus,
+              helpers: {
+                    type: function (num) {
+                        if(num==results[1].typeIndex ){
+                          return 'checked';
+                        }
+                        else {
+                          return null;
+                        }
+                      },
+                      org:function(){
+                        return orginfomobile;          
+                            
+                      },
+                      userstatushelper:function(statusnum){
+                        if(statusnum=='' || statusnum==null){
+                             return ''                       
+                        }
+                         else{
+                                return enumerableConstants.userstatus[statusnum-1].status;
+                         }
+                       }
+                          
+                      
+                }
               });
+     })
+     }
+
   
   })
  
@@ -218,6 +253,7 @@ router.post('/usermodify',function(req,res,next){
   var orgid = req.body.orgid;
 
   var id = req.query.id;
+
   var user={
     mobile:req.body.mobile,//手机号
     usertype:req.body.usertype,//用户类型
@@ -228,6 +264,9 @@ router.post('/usermodify',function(req,res,next){
     status:req.body.status,//当前状态
     title:req.body.title,//标题
     username:req.body.username
+  }
+  if(req.body.usertype!='2' || req.body.usertype!=2){
+    user.type=0;
   }
 
   if(orgid==null || orgid ==''){

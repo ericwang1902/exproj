@@ -61,12 +61,12 @@
             <input type="text" class="form-control" name="count" id="inputPassword3" placeholder="剩余单数：" value="{{user.count}}">
             </div> 
         </div> 
-        <div class="form-group">   
+        <div class="form-group" id="orgdiv">   
             <label for="inputPassword3" class="col-sm-2 control-label">所属快递点：</label>  
-            <!--<div class="col-sm-10">
-            <input type="text" class="form-control" name="orgid" id="inputPassword3" placeholder="所属快递点：" value="{{user.orgid}}">   
-            </div> -->
-            <div class="col-sm-10">
+            <div class="col-sm-4"> 
+                {{orginfomobile}}
+            </div>
+            <div class="col-sm-6">
               <select id="obj_branch_id" name="orgid" class="class="chosen-container chosen-container-single"" data-placeholder="{{org}}">
                    {{#each orgs}}
                     <option value="{{_id}}" >{{mobile}}</option>
@@ -88,13 +88,13 @@
             </select>
             </div>         
         </div>
-        <div class="form-group">   
+        <div class="form-group" id="titlediv">   
             <label for="inputPassword3" class="col-sm-2 control-label">标题：</label>   
             <div class="col-sm-10">
             <input type="text" class="form-control" name="title" id="inputPassword3" placeholder="标题" value="{{user.title}}">  
             </div> 
         </div>
-        <div class="form-group">   
+        <div class="form-group" id="userdiv">   
             <label for="inputPassword3" class="col-sm-2 control-label">联系人姓名：</label>   
             <div class="col-sm-10">
             <input type="text" class="form-control" name="username" id="inputPassword3" placeholder="联系人姓名" value="{{user.username}}">  
@@ -116,20 +116,56 @@
 jQuery("#obj_branch_id").chosen();  
 jQuery("#obj_branch_id2").chosen();
 $(document).ready(function(){
-    if(('#courierradio').val()==true)
-    {
-        alert('test');
+    if($("input[name='usertype']:checked").val()==1){
+        $('#campanydiv').hide();
+        $('#accountdiv').hide();
+        $('#psddiv').hide();
+        $('#orgdiv').hide();
+        $('#titlediv').hide();
+        $('#userdiv').hide();
+       // $("input[name='type']").val(0)
+        $('#accountinput').val('');
+        $('#accountpsdinput').val('');    
     }
-    $('#sysradio').on('click',function( event ) {
+    if($("input[name='usertype']:checked").val()==2){
         $('#campanydiv').show();
         $('#accountdiv').show();
         $('#psddiv').show();
+        $('#orgdiv').show();
+        $('#titlediv').show();
+        $('#userdiv').show();    
+    }
+    if($("input[name='usertype']:checked").val()==3){
+        $('#campanydiv').hide();
+        $('#accountdiv').hide();
+        $('#psddiv').hide();
+        
+        $('#accountinput').val('');
+        $('#accountpsdinput').val('');      
+    }
+    
+    
+
+  
+    $('#sysradio').on('click',function( event ) {
+        $('#campanydiv').hide();
+        $('#accountdiv').hide();
+        $('#psddiv').hide();
+        $('#orgdiv').hide();
+        $('#titlediv').hide();
+        $('#userdiv').hide();
+       // $("input[name='type']").val(0)
+        $('#accountinput').val('');
+        $('#accountpsdinput').val('');
         
     })
     $('#orgradio').on('click',function( event ) {
         $('#campanydiv').show();
         $('#accountdiv').show();
         $('#psddiv').show();
+        $('#orgdiv').show();
+        $('#titlediv').show();
+        $('#userdiv').show();
         
         
     })
@@ -137,7 +173,10 @@ $(document).ready(function(){
         $('#campanydiv').hide();
         $('#accountdiv').hide();
         $('#psddiv').hide();
-        $('#campanyradio').val(null);
+        $('#orgdiv').show();
+        $('#titlediv').show();
+        $('#userdiv').show();
+        
         $('#accountinput').val('');
         $('#accountpsdinput').val('');
     })

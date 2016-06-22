@@ -6,6 +6,11 @@ var usertype={
 
 var expCompany=[
     {
+      num:0,
+      code:'无',
+      name:'无'
+    },
+    {
         num:1,
         code:'UAPEX',
         name:'全一快递'
