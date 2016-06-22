@@ -27,7 +27,7 @@ router.post('/userbind',function (req,res,next) {
     sysusercontroller.courierbind(username,psd,openid,function (err,result) {
       if(err) console.log(err);
 
-      res.send(result);
+      res.send('<h1>'+result+'</h1>');
     })
 
     
