@@ -238,6 +238,33 @@ module.exports = {
 
         })
     },
+    courierbind:function(username,psd,openid,callback){
+         sysuserModel.findOne({mobile:username},function(err,user){
+             if(err) callback(null,'出错了！')
+            if(!user){
+                callback(null,'用户名错误');
+            }else{
+                bcrypt.compare(psd,user.psd,function(err,isMatch){
+                    if(err) callback(null,'出错了！');
+
+                    if(isMatch){
+                        user.openid = openid;
+                        user.save(function(err,user){
+                            if(err) callback(null,'绑定失败！');
+                            
+                            callback(null,'绑定成功！');
+                        })
+                        
+                    }else
+                    {
+                        callback(null,'密码错误！');
+                    }
+
+                })
+            }
+
+         })
+    },
 
     /**
      * sysuserController.remove()

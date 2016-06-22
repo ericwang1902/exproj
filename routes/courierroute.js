@@ -4,6 +4,7 @@ var wechatjs = require('../controllers/wechatapi');//调用wechatjs来设置
 var request =require('request');
 var enumerableconstants = require('../models/enumerableConstants')
 var async = require('async');
+var sysusercontroller = require('../models/sysuserController')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -19,7 +20,16 @@ router.get('/userbind',getuserinfo,function (req,res,next) {
 
 router.post('/userbind',function (req,res,next) {
     //校验快递员的用户名和密码，用来绑定openid，只绑定一个；
-  //  console.log
+    var username = req.body.username;
+    var psd = req.body.psd;
+    var openid = req.body.openid;
+
+    sysusercontroller.courierbind(username,psd,openid,function (err,result) {
+      if(err) console.log(err);
+
+      res.send(result);
+    })
+
     
 })
 
