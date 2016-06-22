@@ -18,12 +18,18 @@ router.post('/createorder',function (req,res,next) {
 
 router.get('/location',getuserinfo,function (req,res,next) {
     //进入到这个页面的时候，通过授权来获取用户信息
-    var userinfo =req.userinfo;
+      var userinfo =req.userinfoJson;
+    res.render('./customer/location',{layout:false,userinfo:req.userinfoJson});
+})
+
+router.post('/location',function(req,res,next){
+
+    console.log(req.body);
 
     async.waterfall([
         //获取地址所对应的粉丝,获取到userid
         function(callback) {
-            fanModel.findOne({openid:userinfo.openid},function (err,fan) {
+            fanModel.findOne({openid:req.body.openid},function (err,fan) {
                 if(err) console.log(err);
 
                 if(!fan){
@@ -72,14 +78,6 @@ router.get('/location',getuserinfo,function (req,res,next) {
     ], function (err, result) {
         // result now equals 'done'
     });
-
-
-
-    res.render('./customer/location',{layout:false,userinfo:req.userinfoJson});
-})
-
-router.post('/location',function(req,res,next){
-    console.log(req.body);
 })
 
 
