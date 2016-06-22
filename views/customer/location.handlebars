@@ -31,7 +31,7 @@
                             <label class="weui_label">收件人</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="name" type="text" placeholder="必填">
+                            <input class="weui_input" name="name"  required="" type="text" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -39,7 +39,7 @@
                             <label class="weui_label">联系电话</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="tel" type="tele" placeholder="必填">
+                            <input class="weui_input" name="tel" required="" type="tele" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -47,7 +47,7 @@
                             <label class="weui_label">邮编</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="postcode" type="text" placeholder="选填">
+                            <input class="weui_input" name="postcode" required="" type="text" placeholder="选填">
                         </div>
                     </div>                     
                        
@@ -56,7 +56,7 @@
                                     <label class="weui_label">省</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary">
-                                    <select name="provincename" class="weui_select" data-province="---- 选择省 ----"></select>
+                                    <select name="provincename" required="" class="weui_select" data-province="---- 选择省 ----"></select>
                                 </div>
                             </div>
                             <div class="weui_cell">
@@ -64,7 +64,7 @@
                                     <label class="weui_label">市</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary">
-                                    <select name="cityname" class="weui_select" data-city="---- 选择市 ----"></select>
+                                    <select name="cityname" required="" class="weui_select" data-city="---- 选择市 ----"></select>
                                 </div>
                             </div>
                             <div class="weui_cell">
@@ -72,7 +72,7 @@
                                     <label class="weui_label">区县</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary">
-                                    <select name="expareaname" class="weui_select" data-district="---- 选择区 ----"></select>
+                                    <select name="expareaname"  required="" class="weui_select" data-district="---- 选择区 ----"></select>
                                 </div>
                             </div>
                         
@@ -81,7 +81,7 @@
                                     <label class="weui_label">详细地址</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary">
-                                    <textarea class="weui_textarea" placeholder="请填写详细地址" name="address" required=""></textarea>
+                                    <textarea class="weui_textarea"  placeholder="请填写详细地址" name="address" required=""></textarea>
                                 </div>
                             </div>
                             <div class="weui_cell weui_cell_select weui_select_after">
@@ -89,7 +89,7 @@
                                     <label for="" class="weui_label">地址类型</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary">
-                                    <select class="weui_select" name="type">
+                                    <select class="weui_select" name="type" required="">
                                         <option value="1">收件地址</option>
                                         <option value="2">寄件地址</option>
                                     </select>
