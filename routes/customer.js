@@ -35,7 +35,7 @@ router.post('/location',function(req,res,next){
                 if(!fan){
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid:userinfo.openid
+                        openid:openid
                     })
 
                     fan.save(function (err,fan) {
