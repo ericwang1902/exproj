@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 router.get('/userbind',getuserinfo,function (req,res,next) {
    
    console.log("req.userinfoJson ************"+JSON.stringify(req.userinfoJson));
-    res.render('./courier/courierbind',{layout:false});
+    res.render('./courier/courierbind',{layout:false,userinfo:req.userinfoJson});
 })
 
 router.post('/userbind',function (req,res,next) {
