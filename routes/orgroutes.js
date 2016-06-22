@@ -3,6 +3,7 @@ var router = express.Router();
 var sysuserController = require('../controllers/sysuserController');
 var enumerableConstants = require('../models/enumerableConstants');
 var sysuserModel = require('../models/sysuserModel');
+var async = require('async');
 
 /* GET users listing. */
 router.get('/orgdash', function(req, res, next) {
@@ -33,14 +34,33 @@ router.get('/orguserlist',function (req,res,next) {
 })
 
 router.get('/orguserdetail',function (req,res,next) {
-    var id = req.query.id;
+    var id = req.query.id;//快递员id
 
-    sysuserController.orguserdetail(id,function (err,user) {
+    //根据快递员id查找到他所归属的快递点，读取快递点的信息。
+    async.waterfall([
+        function(callback) {
+        sysuserController.orguserdetail(id,function (err,user) {
+            if(err) console.log(err);
+            callback(null, user);
+            })
+        },
+        function(arg1, callback) {
+        // arg1 now equals 'one' and arg2 now equals 'two'
+        sysuserController.orguserdetail(arg1.orgid,function(err,orginfo){
+            if(err) console.log(err);
+            callback(null, arg1,orginfo);
+        })
+        }
+    ], function (err, userinfo,orginfo) {
+        // result now equals 'done'
+        console.log('userinfo:'+userinfo);
+        console.log('orginfo:'+orginfo);
         if(err) console.log(err);
 
       //  res.send(user);
       res.render('./org/orgdetail',{
-          user:user,
+          user:userinfo,
+          orginfo:orginfo,//所属快递点的相关信息
           helpers:{
               getUsertype: function(usertype){
                           var typename='';
@@ -61,7 +81,9 @@ router.get('/orguserdetail',function (req,res,next) {
             }
           }
         });
-    })
+
+    });
+
 
 })
 
@@ -96,6 +118,15 @@ router.get('/orgusermodify',function (req,res,next) {
                 },
                  userstatushelper:function(statusnum){
                           return enumerableConstants.userstatus[statusnum-1].status;
+                 },
+                 broadcast:function(isbroadcast){
+                     if(isbroadcast==''||isbroadcast==null){
+                         return '';
+                     }else if(isbroadcast==user.isbroadcast){
+                        return 'checked';
+                     }else{
+                         return '';
+                     }
                  }
             }    
         });

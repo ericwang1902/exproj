@@ -112,7 +112,7 @@ module.exports = {
             orgid : null,
             groupid : "",
             status : "1",
-            isbroadcast : "",
+            isbroadcast : "1",
             title:"",
             username:""
         });

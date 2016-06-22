@@ -92,7 +92,7 @@ app.use(function(req,res,next){
   res.locals.sucess_msg=req.flash('sucess_msg');//获取flash的信息，在handlebars中显示出来。
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
+  res.locals.loginuser = req.user || null;
   next();
 })
 

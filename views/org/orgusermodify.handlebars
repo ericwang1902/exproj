@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
    <li><a href="/org/admindash">控制面板</a></li>
-  <li><a href="/org/userlist">用户列表</a></li>
+   <li><a href="/org/orguserlist?id={{loginuser.id}}">用户列表</a></li>
   <li class="#">用户资料修改</li>
 </ol>
 <div class="panel panel-default">  
@@ -47,6 +47,16 @@
             <div class="col-sm-10">
             <input type="text" class="form-control" name="username" id="inputPassword3" placeholder="联系人姓名" value="{{user.username}}">  
             </div> 
+        </div> 
+         <div class="form-group">  
+            <label for="inputPassword3" class="col-sm-2 control-label">是否接收收件通知：</label>   
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                <input type="radio" name="isbroadcast" id="inlineRadio1"  value="1" {{broadcast '1'}}> 是
+                </label>    <label class="radio-inline">
+                <input type="radio" name="isbroadcast" id="inlineRadio2"  value="2" {{broadcast '2'}}> 否
+                </label>         
+             </div> 
         </div> 
 
         <div class="form-group">   

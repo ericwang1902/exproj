@@ -27,6 +27,7 @@ router.get('/login',function(req,res,next){
      
      //查询用户的类型
      sysuserModel.findOne({mobile:req.body.username},function(err,user){
+       
        if(user.usertype ==enumerableConstants.usertype.sysadmin){
          res.redirect('/admin/admindash'); 
        }else if(user.usertype == enumerableConstants.usertype.org){    

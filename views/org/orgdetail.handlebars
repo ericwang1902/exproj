@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
    <li><a href="/org/orgdash?id={{user.id}}">控制面板</a></li>
-  <li><a href="/org/orguserlist?id={{user.id}}">用户列表</a></li>
+  <li><a href="/org/orguserlist?id={{loginuser.id}}">用户列表</a></li>
   <li class="#">用户详情</li>
 </ol>
 <div class="panel panel-default">
@@ -10,9 +10,9 @@
         {{#if user}}
         <li class="list-group-item">电话：{{user.mobile}}</li>
         <li class="list-group-item">用户类型：{{getUsertype user.usertype}}</li>
-        <li class="list-group-item">所属公司：{{getCompany user}}</li>
-        <li class="list-group-item">面单账号：{{user.account}}</li>
-        <li class="list-group-item">面单密码：{{user.accountpsd}}</li>
+        <li class="list-group-item">所属公司：{{getCompany orginfo}}</li>
+        <li class="list-group-item">面单账号：{{orginfo.account}}</li>
+        <!--<li class="list-group-item">面单密码：{{user.accountpsd}}</li>-->
         <li class="list-group-item">剩余单数：{{user.count}}</li>
         <li class="list-group-item">当前状态：{{user.status}}</li>
         <li class="list-group-item">标题：{{user.title}}</li>
