@@ -19,48 +19,45 @@ router.get('/location',getuserinfo,function (req,res,next) {
     //进入到这个页面的时候，通过授权来获取用户信息
     var userinfo =req.userinfo;
 
-    async.waterfall([
-        //获取地址所对应的粉丝
-        function(callback) {
-            fanModel.findOne({openid:userinfo.openid},function (err,fan) {
-                if(err) console.log(err);
+    // async.waterfall([
+    //     //获取地址所对应的粉丝
+    //     function(callback) {
+    //         fanModel.findOne({openid:userinfo.openid},function (err,fan) {
+    //             if(err) console.log(err);
 
-                if(!fan){
-                    //创建粉丝数据
-                    var fan = new fanModel({
-                        openid:userinfo.openid
-                    })
+    //             if(!fan){
+    //                 //创建粉丝数据
+    //                 var fan = new fanModel({
+    //                     openid:userinfo.openid
+    //                 })
 
-                    fan.save(function (err,fan) {
-                        if(err) console.log(err);
+    //                 fan.save(function (err,fan) {
+    //                     if(err) console.log(err);
                         
-                        callback(null, fan);
-                    })
+    //                     callback(null, fan);
+    //                 })
 
-                }else{
-                    //已经有粉丝了
-                     callback(null, fan);
-                }     
-            })
+    //             }else{
+    //                 //已经有粉丝了
+    //                  callback(null, fan);
+    //             }     
+    //         })
             
-        },
-        //添加地址数据
-        function(arg1, arg2, callback) {
-        // arg1 now equals 'one' and arg2 now equals 'two'
-            callback(null, 'three');
-        },
-        function(arg1, callback) {
-            // arg1 now equals 'three'
-            callback(null, 'done');
-        }
-    ], function (err, result) {
-        // result now equals 'done'
-    });
+    //     },
+    //     //添加地址数据
+    //     function(arg1, arg2, callback) {
+    //     // arg1 now equals 'one' and arg2 now equals 'two'
+    //         callback(null, 'three');
+    //     },
+    //     function(arg1, callback) {
+    //         // arg1 now equals 'three'
+    //         callback(null, 'done');
+    //     }
+    // ], function (err, result) {
+    //     // result now equals 'done'
+    // });
 
 
-    locationController.create(req,res,function (err,result) {
-        
-    });
 
     res.render('./customer/location',{layout:false,userinfo:req.userinfoJson});
 })
