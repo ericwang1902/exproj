@@ -116,6 +116,10 @@
 jQuery("#obj_branch_id").chosen();  
 jQuery("#obj_branch_id2").chosen();
 $(document).ready(function(){
+    if(('#courierradio').val()==true)
+    {
+        alert('test');
+    }
     $('#sysradio').on('click',function( event ) {
         $('#campanydiv').show();
         $('#accountdiv').show();
