@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var sysuserController = require('../controllers/sysuserController')
+var request =require('request');
 var enumerableConstants = require('../models/enumerableConstants')
 var sysuserModel = require('../models/sysuserModel');
 var async =require('async');
