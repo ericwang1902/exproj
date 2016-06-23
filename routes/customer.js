@@ -78,7 +78,7 @@ router.post('/location',function(req,res,next){
         }
     ], function (err, result) {
         // result now equals 'done'
-        res.redirect('/courier/resultinfo?result='+5);
+        res.redirect('/courier/resultinfo?result='+result);
     });
 })
 
