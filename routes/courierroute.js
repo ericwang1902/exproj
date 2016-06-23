@@ -35,7 +35,7 @@ router.post('/userbind',function (req,res,next) {
 router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
 
-    res.render('./courier/resultinfo',{
+    res.render('./contents/resultinfo',{
         result:result,
         helpers:{
             getresultinfo:function(resultnum){
