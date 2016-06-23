@@ -84,7 +84,7 @@ router.get('/resultinfo',function (req,res,next) {
                         cs='weui_icon_warn';
                         break;
                     case '5':
-                        cs='weui_icon_success!';
+                        cs='weui_icon_success';
                         break;
                     default:
                         break;
