@@ -63,8 +63,9 @@ router.post('/location',function(req,res,next){
                 userid : fan._id,
                 type:req.body.type
             };
+            var loc = new locationModel(location)
             
-            location.save(function(err,loc){
+            loc.save(function(err,loc){
                 if(err) 
                 {
                     console.log(err);
