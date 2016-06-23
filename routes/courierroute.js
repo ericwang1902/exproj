@@ -64,7 +64,7 @@ router.get('/resultinfo',function (req,res,next) {
             },
             getmsglogo:function (result) {
                  var cs = '';
-                switch(resultnum){
+                switch(result){
                     case '0':
                         cs='weui_icon_warn';
                         break;
