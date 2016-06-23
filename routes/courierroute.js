@@ -26,10 +26,43 @@ router.post('/userbind',function (req,res,next) {
     sysusercontroller.courierbind(username,psd,openid,function (err,result) {
       if(err) console.log(err);
 
-      res.send('<h1>'+result+'</h1>');
+      res.redirect('/courier/resultinfo?result='+result);
     })
 
     
+})
+
+router.get('/resultinfo',function (req,res,next) {
+    var result = req.query.result;
+
+    res.render('./courier/resultinfo',{
+        result:result,
+        helpers:{
+            getresultinfo:function(resultnum){
+                var info = '';
+                switch(resultnum){
+                    case '0':
+                        info='出错了';
+                        break;
+                    case '1':
+                        info = '用户名错误';
+                        break;
+                    case '2':
+                        info ='绑定失败';
+                        break;
+                    case '3':
+                        info ='绑定成功';
+                        break;
+                    case '4':
+                        info='密码错误';
+                        break;
+                    default:
+                        break;
+                }
+                return info;
+            }
+        }
+    })
 })
 
 //通过用户授权，获取微信jstoken和用户信息

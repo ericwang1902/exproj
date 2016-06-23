@@ -243,24 +243,24 @@ module.exports = {
         console.log('psd:'+psd);
         console.log('openid:'+openid);
          sysuserModel.findOne({mobile:username},function(err,user){
-             if(err) callback(null,'出错了！')
+             if(err) callback(null,'0');//出错了
             if(!user){
-                callback(null,'用户名错误');
+                callback(null,'1');//用户名错误
             }else{
                 bcrypt.compare(psd,user.psd,function(err,isMatch){
-                    if(err) callback(null,'出错了！');
+                    if(err) callback(null,'0');//出错了
 
                     if(isMatch){
                         user.openid = openid;
                         user.save(function(err,user){
-                            if(err) callback(null,'绑定失败！');
+                            if(err) callback(null,'2');//绑定失败！
                             
-                            callback(null,'绑定成功！');
+                            callback(null,'3');//绑定成功！
                         })
                         
                     }else
                     {
-                        callback(null,'密码错误！');
+                        callback(null,'4');//密码错误！
                     }
 
                 })
