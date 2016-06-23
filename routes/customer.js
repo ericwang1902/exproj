@@ -66,17 +66,21 @@ router.post('/location',function(req,res,next){
                 userid : fan._id,
                 type:req.body.type
             };
-
             
-
-            callback(null, 'three');
-        },
-        function(arg1, callback) {
-            // arg1 now equals 'three'
-            callback(null, 'done');
+            location.save(function(err,loc){
+                if(err) 
+                {
+                    console.log(err);
+                    callback(null, 0);
+                }
+                 else{
+                     callback(null, 5);
+                 }
+            })
         }
     ], function (err, result) {
         // result now equals 'done'
+        res.redirect('/courier/resultinfo?result='+5);
     });
 })
 

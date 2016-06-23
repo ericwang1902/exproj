@@ -57,6 +57,9 @@ router.get('/resultinfo',function (req,res,next) {
                     case '4':
                         info='密码错误';
                         break;
+                    case '5':
+                        info='地址添加成功!';
+                        break;
                     default:
                         break;
                 }
@@ -79,6 +82,9 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                     case '4':
                         cs='weui_icon_warn';
+                        break;
+                    case '5':
+                        cs='weui_icon_success!';
                         break;
                     default:
                         break;
