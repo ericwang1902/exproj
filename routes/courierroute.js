@@ -36,6 +36,7 @@ router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
 
     res.render('./contents/resultinfo',{
+        layout:false,
         result:result,
         helpers:{
             getresultinfo:function(resultnum){
@@ -60,6 +61,29 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                 }
                 return info;
+            },
+            getmsglogo:function (result) {
+                 var cs = '';
+                switch(resultnum){
+                    case '0':
+                        cs='weui_icon_warn';
+                        break;
+                    case '1':
+                        cs = 'weui_icon_warn';
+                        break;
+                    case '2':
+                        cs ='weui_icon_warn';
+                        break;
+                    case '3':
+                        cs ='weui_icon_success';
+                        break;
+                    case '4':
+                        cs='weui_icon_warn';
+                        break;
+                    default:
+                        break;
+                }
+                return cs;
             }
         }
     })
