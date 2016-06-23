@@ -35,21 +35,18 @@ router.post('/location',function(req,res,next){
                 if(!fan){
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid:openid
+                        openid:req.body.openid
                     })
-
                     fan.save(function (err,fan) {
                         if(err) console.log(err);
                         
                         callback(null, fan);
                     })
-
                 }else{
                     //已经有粉丝了
                      callback(null, fan);
                 }     
-            })
-            
+            })          
         },
         //添加地址数据
         function(fan, callback) {
