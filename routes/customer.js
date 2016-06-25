@@ -84,7 +84,7 @@ router.post('/location',function(req,res,next){
 
 
 router.get('/loclist',function(req,res,next){
-    res.render('./customer/loclist');
+    res.render('./customer/loclist',{layout:false});
 })
 
 
