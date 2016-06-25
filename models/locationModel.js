@@ -14,7 +14,8 @@ var locationSchema = new Schema({
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'fan'
 	},
-	"type":String
+	"type":String,
+	"status":String//地址状态
 });
 
 module.exports = mongoose.model('location', locationSchema);

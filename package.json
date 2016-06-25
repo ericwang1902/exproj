@@ -17,6 +17,7 @@
     "express-messages": "^1.0.1",
     "express-session": "^1.13.0",
     "express-validator": "^2.20.4",
+    "jquery-weui": "^0.7.2",
     "mongoose": "^4.4.20",
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
