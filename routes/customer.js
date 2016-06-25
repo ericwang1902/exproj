@@ -87,6 +87,9 @@ router.get('/loclist',function(req,res,next){
     res.render('./customer/loclist',{layout:false});
 })
 
+router.get('/nav',function(req,res,next){
+    res.render('./customer/nav',{layout:false});
+})
 
 
 
