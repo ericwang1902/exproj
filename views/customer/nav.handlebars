@@ -3,30 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
- <title>WeUI</title>      
+ <title>在线快递</title>      
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/lib/weui.css">
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/css/jquery-weui.css">
-
 </head>
 
 <body style="height:100%">
-
-
 <div class="weui_tab">
   <div class="weui_tab_bd">
     <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
-      <h1 class="doc-head">微信</h1>
+      <h1 class="doc-head">寄快递</h1>
     </div>
     <div id="tab2" class="weui_tab_bd_item">
-      <h1 class="doc-head">通讯录</h1>
+      <h1 class="doc-head">查快递</h1>
     </div>
     <div id="tab3" class="weui_tab_bd_item">
-      <h1 class="doc-head">发现</h1>
+     
+      <div class="weui_cells weui_cells_access">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+            <p>收件地址</p>
+            </div>
+            <div class="weui_cell_ft">查看列表</div>
+        </a>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+            <p>寄件地址</p>
+            </div>
+            <div class="weui_cell_ft">查看列表</div>
+        </a>
+      </div>
+      
+       <div class="weui_btn_area">
+            <a href="javascript:;" class="weui_btn weui_btn_primary">新增地址</a>
+       </div>
     </div>
     <div id="tab4" class="weui_tab_bd_item">
-      <h1 class="doc-head">我的</h1>
+         <h1 class="doc-head">地址库</h1>
+
+      
     </div>
   </div>
   <div class="weui_tabbar">
@@ -59,4 +75,12 @@
 
 <script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
+<style>
+    body {
+  background-color: #efeff4;
+}
+.weui_label{
+    width: 5em;
+}
+</style>
 </body>
