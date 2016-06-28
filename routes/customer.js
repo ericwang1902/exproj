@@ -83,7 +83,10 @@ router.post('/location',function(req,res,next){
 })
 
 
-router.get('/loclist',function(req,res,next){
+router.get('/loclist',getuserinfo,function(req,res,next){
+    //getuserinfo来获取openid，根据openid来获取收件地址列表
+     var userinfo =req.userinfoJson;
+     console.log('loclist openid:'+userinfo.openid);
     res.render('./customer/loclist',{layout:false});
 })
 
@@ -96,6 +99,7 @@ router.get('/sendrecord',function(req,res,next){
 })
 
 router.get('/locnav',function(req,res,next){
+
     res.render('./customer/locnav',{layout:false});
 })
 
