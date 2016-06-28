@@ -18,7 +18,7 @@ router.post('/createorder',function (req,res,next) {
 
 router.get('/location',getuserinfo,function (req,res,next) {
     //进入到这个页面的时候，通过授权来获取用户信息
-      var userinfo =req.userinfoJson;
+    var userinfo =req.userinfoJson;
     res.render('./customer/location',{layout:false,userinfo:req.userinfoJson});
 })
 
@@ -118,7 +118,7 @@ router.get('/loclist',getuserinfo,function(req,res,next){
         }
     ], function (err, result) {
         // result now equals 'done'
-        res.render('./customer/loclist',{layout:false,locs:result});
+        res.render('./customer/loclist',{layout:false,locs:result,openid:openid});
     });
      
    
@@ -126,6 +126,9 @@ router.get('/loclist',getuserinfo,function(req,res,next){
 //手机网页的入口，获取openid，创建用户
 router.get('/send',getuserinfo,function(req,res,next){
       var userinfo =req.userinfoJson;
+      if(userinfo.openid==''){
+          userinfo.openid =req.query.openid;
+      }
      console.log('send openid:'+userinfo.openid);
      
      //根据openid查找userid，根据userid查找收件地址列表
