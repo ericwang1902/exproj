@@ -17,8 +17,9 @@
 <body style="height:100%">
 <div class="weui_tab">
   <div class="weui_tab_bd">
-    {{#each locs}}
+    
     <div class="weui_cells weui_cells_access">
+      {{#each locs}}
       <a class="weui_cell" href="javascript:;">
         <div class="weui_cell_bd weui_cell_primary">
           <p>{{name}}</p>
@@ -26,8 +27,9 @@
         </div>
         <div class="weui_cell_ft">查看详情</div>
       </a>
-    </div>
       {{/each}}
+    </div>
+   
   </div>
   <div class="weui_tabbar">
     <a href="/customer/send" class="weui_tabbar_item ">
