@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
- <title>在线快递</title>      
+ <title>WeUI</title>      
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.2/style/weui.css"/>
+<script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/lib/weui.css">
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/css/jquery-weui.css">
-    <style type="text/css">
+ <style type="text/css">
         body {
             margin: auto;
             background-color: #f5f5f5
@@ -62,54 +65,44 @@
 <body style="height:100%">
 <div class="weui_tab">
   <div class="weui_tab_bd">
-
-    <div id="tab2" class="weui_tab_bd_item">
-     
-    </div>
-    <div id="tab3" class="weui_tab_bd_item">
-     
-
-      
-
-    </div>
-    <div id="tab4" class="weui_tab_bd_item">
       <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="javascript:;">
+        <a class="weui_cell" href="/customer/loclist">
             <div class="weui_cell_bd weui_cell_primary">
-            <p>默认寄件地址</p>
+            <p>收件地址</p>
             </div>
-            <div class="weui_cell_ft">进入设置</div>
+            <div class="weui_cell_ft">查看列表</div>
         </a>
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
-            <p>默认快递受理点</p>
+            <p>寄件地址</p>
             </div>
-            <div class="weui_cell_ft">进入设置</div>
+            <div class="weui_cell_ft">查看列表</div>
         </a>
       </div>
-      
-    </div>
+      <div class="weui_btn_area">
+            <a href="/customer/location" class="weui_btn weui_btn_primary">新增地址</a>
+       </div>
   </div>
   <div class="weui_tabbar">
-    <a href="#tab1" class="weui_tabbar_item weui_bar_item_on">
+    <a href="/customer/send" class="weui_tabbar_item ">
       <div class="weui_tabbar_icon">
         <img src="/img/icon_nav_button.png" alt="">
       </div>
       <p class="weui_tabbar_label">寄快递</p>
     </a>
-    <a href="#tab2" class="weui_tabbar_item">
+    <a href="/customer/sendrecord" class="weui_tabbar_item ">
       <div class="weui_tabbar_icon">
         <img src="/img/icon_nav_cell.png" alt="">
       </div>
       <p class="weui_tabbar_label">查快递</p>
     </a>
-    <a href="#tab3" class="weui_tabbar_item">
+    <a href="/customer/locnav" class="weui_tabbar_item weui_bar_item_on" >
       <div class="weui_tabbar_icon">
         <img src="/img/icon_nav_toast.png" alt="">
       </div>
       <p class="weui_tabbar_label">地址库</p>
     </a>
-    <a href="#tab4" class="weui_tabbar_item">
+    <a href="javascript:;" class="weui_tabbar_item">
       <div class="weui_tabbar_icon">
         <img src="/img/icon_nav_dialog.png" alt="">
       </div>
@@ -118,14 +111,10 @@
   </div>
 </div>
 
+
+
+
+
 <script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
-<style>
-    body {
-  background-color: #efeff4;
-}
-.weui_label{
-    width: 5em;
-}
-</style>
 </body>

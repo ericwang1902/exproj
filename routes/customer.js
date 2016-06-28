@@ -87,8 +87,16 @@ router.get('/loclist',function(req,res,next){
     res.render('./customer/loclist',{layout:false});
 })
 
-router.get('/nav',function(req,res,next){
-    res.render('./customer/nav',{layout:false});
+router.get('/send',function(req,res,next){
+    res.render('./customer/send',{layout:false});
+})
+
+router.get('/sendrecord',function(req,res,next){
+    res.render('./customer/sendrecord',{layout:false});
+})
+
+router.get('/locnav',function(req,res,next){
+    res.render('./customer/locnav',{layout:false});
 })
 
 
