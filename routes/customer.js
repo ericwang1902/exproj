@@ -87,7 +87,41 @@ router.get('/loclist',getuserinfo,function(req,res,next){
     //getuserinfo来获取openid，根据openid来获取收件地址列表
      var userinfo =req.userinfoJson;
      console.log('loclist openid:'+userinfo.openid);
-    res.render('./customer/loclist',{layout:false});
+     //根据openid查找userid，根据userid查找收件地址列表
+         async.waterfall([
+        //获取地址所对应的粉丝,获取到userid
+        function(callback) {
+            fanModel.findOne({openid:req.body.openid},function (err,fan) {
+                if(err) console.log(err);
+
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:req.body.openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        callback(null, fan);
+                    })
+                }else{
+                    //已经有粉丝了
+                     callback(null, fan);
+                }     
+            })          
+        },
+        //查找收件地址列表
+        function(fan, callback) {
+            locationModel.find({userid:fan._id,type:1},function(err,locs){
+                callback(null,locs);
+            })
+        }
+    ], function (err, result) {
+        // result now equals 'done'
+        res.render('./customer/loclist',{layout:false,locs:result});
+    });
+     
+   
 })
 
 router.get('/send',function(req,res,next){
