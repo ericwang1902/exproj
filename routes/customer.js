@@ -91,13 +91,13 @@ router.get('/loclist',getuserinfo,function(req,res,next){
          async.waterfall([
         //获取地址所对应的粉丝,获取到userid
         function(callback) {
-            fanModel.findOne({openid:req.body.openid},function (err,fan) {
+            fanModel.findOne({openid:userinfo.openid},function (err,fan) {
                 if(err) console.log(err);
 
                 if(!fan){
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid:req.body.openid
+                        openid:userinfo.openid
                     })
                     fan.save(function (err,fan) {
                         if(err) console.log(err);
