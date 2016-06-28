@@ -87,6 +87,7 @@ router.get('/loclist',getuserinfo,function(req,res,next){
     //getuserinfo来获取openid，根据openid来获取收件地址列表
      var userinfo =req.userinfoJson;
      console.log('loclist openid:'+userinfo.openid);
+     
      //根据openid查找userid，根据userid查找收件地址列表
          async.waterfall([
         //获取地址所对应的粉丝,获取到userid
@@ -123,9 +124,40 @@ router.get('/loclist',getuserinfo,function(req,res,next){
      
    
 })
+//手机网页的入口，获取openid，创建用户
+router.get('/send',getuserinfo,function(req,res,next){
+      var userinfo =req.userinfoJson;
+     console.log('send openid:'+userinfo.openid);
+     
+     //根据openid查找userid，根据userid查找收件地址列表
+         async.waterfall([
+        //获取地址所对应的粉丝,获取到userid
+        function(callback) {
+            fanModel.findOne({openid:userinfo.openid},function (err,fan) {
+                if(err) console.log(err);
 
-router.get('/send',function(req,res,next){
-    res.render('./customer/send',{layout:false});
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:userinfo.openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        callback(null, fan);
+                    })
+                }else{
+                    //已经有粉丝了
+                     callback(null, fan);
+                }     
+            })          
+        }
+    ], function (err, result) {
+        // result now equals 'done'
+        res.render('./customer/send',{layout:false});
+    });
+    
+   
 })
 
 router.get('/sendrecord',function(req,res,next){
