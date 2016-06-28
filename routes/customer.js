@@ -84,21 +84,20 @@ router.post('/location',function(req,res,next){
 
 
 router.get('/loclist',getuserinfo,function(req,res,next){
-    //getuserinfo来获取openid，根据openid来获取收件地址列表
-     var userinfo =req.userinfoJson;
-     console.log('loclist openid:'+userinfo.openid);
+    //所有的入口都放在send里，从那里开始传递openid
+     var openid = req.query.openid;
      
      //根据openid查找userid，根据userid查找收件地址列表
          async.waterfall([
         //获取地址所对应的粉丝,获取到userid
         function(callback) {
-            fanModel.findOne({openid:userinfo.openid},function (err,fan) {
+            fanModel.findOne({openid:openid},function (err,fan) {
                 if(err) console.log(err);
 
                 if(!fan){
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid:userinfo.openid
+                        openid:openid
                     })
                     fan.save(function (err,fan) {
                         if(err) console.log(err);
@@ -154,7 +153,7 @@ router.get('/send',getuserinfo,function(req,res,next){
         }
     ], function (err, result) {
         // result now equals 'done'
-        res.render('./customer/send',{layout:false});
+        res.render('./customer/send',{layout:false,openid:userinfo.openid});
     });
     
    
@@ -165,8 +164,9 @@ router.get('/sendrecord',function(req,res,next){
 })
 
 router.get('/locnav',function(req,res,next){
-
-    res.render('./customer/locnav',{layout:false});
+    var openid = req.query.openid;
+    
+    res.render('./customer/locnav',{layout:false,openid:openid});
 })
 
 
