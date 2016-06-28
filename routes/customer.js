@@ -163,7 +163,8 @@ router.get('/send',getuserinfo,function(req,res,next){
 })
 
 router.get('/sendrecord',function(req,res,next){
-    res.render('./customer/sendrecord',{layout:false});
+    var openid = req.query.openid;
+    res.render('./customer/sendrecord',{layout:false,openid:openid});
 })
 
 router.get('/locnav',function(req,res,next){
