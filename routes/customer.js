@@ -328,9 +328,9 @@ router.get('/locdetail',function(req,res,next){
                 }     
             })          
         },
-        //查找寄件地址列表
+        //查找收件地址列表
         function(fan, callback) {
-            locationModel.find({userid:fan._id,type:2},function(err,locs){
+            locationModel.find({userid:fan._id,type:1},function(err,locs){
                 callback(null,locs);
             })
         }
@@ -341,6 +341,44 @@ router.get('/locdetail',function(req,res,next){
     });
   })
 
+router.get('/sendlist',function(req,res,next){
+      var openid = req.query.openid;
+       //根据openid查找userid，根据userid查找收件地址列表
+         async.waterfall([
+        //获取地址所对应的粉丝,获取到userid
+        function(callback) {
+            fanModel.findOne({openid:openid},function (err,fan) {
+                if(err) console.log(err);
+
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        callback(null, fan);
+                    })
+                }else{
+                    //已经有粉丝了
+                    console.log(fan);
+                     callback(null, fan);
+                }     
+            })          
+        },
+        //查找寄件地址列表
+        function(fan, callback) {
+            locationModel.find({userid:fan._id,type:2},function(err,locs){
+                callback(null,locs);
+            })
+        }
+    ], function (err, result) {
+        // result now equals 'done'
+        console.log(result);
+        res.render('./customer/sendlist',{layout:false,locs:result,openid:openid});
+    });
+  })
 
 
 

@@ -68,10 +68,10 @@
      <div class = "weui_cells weui_cells_access">
         <a href = "/customer/recievelist?openid={{openid}}" class = "weui_cell weui_media_box weui_media_appmsg">
             <div class = "weui_media_hd">
-                <div class = "sender_icon">寄</div>
+                <div class = "sender_icon">收</div>
             </div>
             <div class = "weui_media_bd">
-                <h4 class = "weui_media_title">寄件人信息</h4>
+                <h4 class = "weui_media_title">收件人信息</h4>
                 <div id="sender_info">
                         <div class="desc_area">
 				            <span class="desc_title">{{loc.name}} {{loc.tele}}</span>
@@ -87,12 +87,12 @@
             <div class = "weui_cell_ft">
             </div>
         </a>
-        <a href = "./choose_address.php?type=2" class = "weui_cell weui_media_box weui_media_appmsg">
+        <a href = "/customer/sendlist?openid={{openid}}" class = "weui_cell weui_media_box weui_media_appmsg">
             <div class = "weui_media_hd">
-                <div class = "reciver_icon">收</div>
+                <div class = "reciver_icon">寄</div>
             </div>
             <div class = "weui_media_bd">
-                <h4 class = "weui_media_title">收件人信息</h4>
+                <h4 class = "weui_media_title">寄件人信息</h4>
                 <div id="receiver_info">
                 </div>
             </div>
