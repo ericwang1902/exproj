@@ -418,7 +418,7 @@ router.get('/sendlist',function(req,res,next){
   })
   
   
-  router.get('/customer/setting',function(req,res,next){
+  router.get('/setting',function(req,res,next){
       var openid = req.query.openid;
       
       res.render('./customer/setting',{layout:false,openid:openid});
