@@ -16,8 +16,9 @@
 
 <body style="height:100%">
     <form method="POST"  action="">
-        {{#each locs}}
         <div class="weui_cells weui_cells_radio">
+        {{#each locs}}
+
             <label class="weui_cell weui_check_label">
                 <div class="weui_cell_bd weui_cell_primary">
                 <p>{{name}}</p>
@@ -28,8 +29,9 @@
                 <span class="weui_icon_checked"></span>
                 </div>
             </label>       
-        </div>
+        
         {{/each}}
+        </div>
         <div class="weui_btn_area">
             <button type="submit" class="weui_btn weui_btn_primary">提交</button>
         </div>
