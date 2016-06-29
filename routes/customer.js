@@ -289,7 +289,7 @@ router.get('/locdetail',function(req,res,next){
   })
   
   
-  router.get('/customer/recievelist',function(req,res,next){
+  router.get('/recievelist',function(req,res,next){
       res.render('./customer/recievelist');
   })
 
