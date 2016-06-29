@@ -60,6 +60,9 @@ router.get('/resultinfo',function (req,res,next) {
                     case '5':
                         info='地址添加成功!';
                         break;
+                    case '6':
+                        info='地址修改成功!';
+                        break;
                     default:
                         break;
                 }
@@ -84,6 +87,9 @@ router.get('/resultinfo',function (req,res,next) {
                         cs='weui_icon_warn';
                         break;
                     case '5':
+                        cs='weui_icon_success';
+                        break;
+                    case '6':
                         cs='weui_icon_success';
                         break;
                     default:

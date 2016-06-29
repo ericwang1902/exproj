@@ -26,61 +26,87 @@ router.get('/location',getuserinfo,function (req,res,next) {
 router.post('/location',function(req,res,next){
 
     console.log(req.body);
+    
+    if(req.query.t =='0'){
+        //新增地址
+        async.waterfall([
+            //获取地址所对应的粉丝,获取到userid
+            function(callback) {
+                fanModel.findOne({openid:req.body.openid},function (err,fan) {
+                    if(err) console.log(err);
 
-    async.waterfall([
-        //获取地址所对应的粉丝,获取到userid
-        function(callback) {
-            fanModel.findOne({openid:req.body.openid},function (err,fan) {
-                if(err) console.log(err);
-
-                if(!fan){
-                    //创建粉丝数据
-                    var fan = new fanModel({
-                        openid:req.body.openid
-                    })
-                    fan.save(function (err,fan) {
-                        if(err) console.log(err);
-                        
+                    if(!fan){
+                        //创建粉丝数据
+                        var fan = new fanModel({
+                            openid:req.body.openid
+                        })
+                        fan.save(function (err,fan) {
+                            if(err) console.log(err);
+                            
+                            callback(null, fan);
+                        })
+                    }else{
+                        //已经有粉丝了
                         callback(null, fan);
-                    })
-                }else{
-                    //已经有粉丝了
-                     callback(null, fan);
-                }     
-            })          
-        },
-        //添加地址数据
-        function(fan, callback) {
-        // arg1 now equals 'one' and arg2 now equals 'two'
-            var location = {
-                company:req.body.company,
-                name:req.body.name,
-                tele : req.body.tele,
-                postcode : req.body.postcode,
-                provincename : req.body.provincename,
-                cityname : req.body.cityname,
-                expareaname : req.body.expareaname,
-                address : req.body.address,
-                userid : fan._id,
-                type:req.body.type
-            };
-            var loc = new locationModel(location)
+                    }     
+                })          
+            },
+            //添加地址数据
+            function(fan, callback) {
+            // arg1 now equals 'one' and arg2 now equals 'two'
+                var location = {
+                    company:req.body.company,
+                    name:req.body.name,
+                    tele : req.body.tele,
+                    postcode : req.body.postcode,
+                    provincename : req.body.provincename,
+                    cityname : req.body.cityname,
+                    expareaname : req.body.expareaname,
+                    address : req.body.address,
+                    userid : fan._id,
+                    type:req.body.type
+                };
+                var loc = new locationModel(location)
+                
+                loc.save(function(err,loc){
+                    if(err) 
+                    {
+                        console.log(err);
+                        callback(null, 0);
+                    }
+                    else{
+                        callback(null, 5);
+                    }
+                })
+            }
+        ], function (err, result) {
+            // result now equals 'done'
+            res.redirect('/courier/resultinfo?result='+result);
+        });
+    }
+    else if(req.query.t=='1'){
+        //修改地址
+        locationModel.findOne({_id:req.query.locid},function(err,location){
+            if(err) console.log(err);
             
-            loc.save(function(err,loc){
-                if(err) 
-                {
-                    console.log(err);
-                    callback(null, 0);
-                }
-                 else{
-                     callback(null, 5);
-                 }
+            location.company =  req.body.company ? req.body.company : location.company;
+			location.name =  req.body.name ? req.body.name : location.name;
+			location.tele =  req.body.tele ? req.body.tele : location.tele;
+			location.postcode =  req.body.postcode ? req.body.postcode : location.postcode;
+			location.provincename =  req.body.provincename ? req.body.provincename : location.provincename;
+			location.cityname =  req.body.cityname ? req.body.cityname : location.cityname;
+			location.expareaname =  req.body.expareaname ? req.body.expareaname : location.expareaname;
+			location.address =  req.body.address ? req.body.address : location.address;
+            
+            location.save(function(err,loc){
+              if(err)console.log(err);
+              
+               res.redirect('/courier/resultinfo?result=6');
             })
-        }
-    ], function (err, result) {
-        // result now equals 'done'
-        res.redirect('/courier/resultinfo?result='+result);
-    });
+            
+        })
+    }
+    
 })
 
 
@@ -185,7 +211,19 @@ router.get('/locdetail',function(req,res,next){
         
         console.log('location info:'+result);
         
-        res.render('./customer/locdetail',{layout:false,openid:openid,location:result})
+        res.render('./customer/locdetail',{
+            layout:false,
+            openid:openid,
+            location:result,
+            helpers:{
+                gettype:function(type){
+                    if(type=='1')
+                    return '收件地址';
+                    if(type=='2')
+                    return '寄件地址';
+                }
+            }
+        })
 
     })
     
