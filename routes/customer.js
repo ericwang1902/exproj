@@ -201,6 +201,8 @@ router.get('/send',getuserinfo,function(req,res,next){
       var userinfo =req.userinfoJson;
 
      userinfo.openid =req.query.openid||userinfo.openid;
+     req.session.openid = userinfo.openid;
+      var openid = req.session.openid ;
       
      console.log('send openid:'+userinfo.openid);
      
@@ -244,7 +246,7 @@ router.get('/send',getuserinfo,function(req,res,next){
         // optional callback
         function(err, results){
             if(err)console.log(err);
-            res.render('./customer/send',{layout:false,openid:userinfo.openid,recieveloc:results[0],sendloc:results[1],fan:results[2]});
+            res.render('./customer/send',{layout:false,openid:openid,recieveloc:results[0],sendloc:results[1],fan:results[2]});
         });
 })
 
@@ -300,6 +302,7 @@ router.get('/locdetail',function(req,res,next){
     var userid = req.query.userid;
     var locid = req.query.locid;//获取相应的locid
     console.log("locid:"+locid);
+    var openid = req.session.openid ;
     
         async.series([
             function(callback){
@@ -323,7 +326,7 @@ router.get('/locdetail',function(req,res,next){
             // results is now equal to ['one', 'two']
             res.render('./customer/locdetail',{
             layout:false,
-            openid:results[1].openid,
+            openid:openid,//results[1].openid
             location:results[0],
             locid:locid,
             helpers:{
@@ -340,7 +343,8 @@ router.get('/locdetail',function(req,res,next){
   
   
   router.get('/recievelist',function(req,res,next){
-      var openid = req.query.openid;
+     // var openid = req.query.openid;
+      var openid = req.session.openid ;
        //根据openid查找userid，根据userid查找收件地址列表
          async.waterfall([
         //获取地址所对应的粉丝,获取到userid
@@ -379,7 +383,8 @@ router.get('/locdetail',function(req,res,next){
   })
 
 router.get('/sendlist',function(req,res,next){
-      var openid = req.query.openid;
+     // var openid = req.query.openid;
+      var openid = req.session.openid ;
        //根据openid查找userid，根据userid查找收件地址列表
          async.waterfall([
         //获取地址所对应的粉丝,获取到userid
@@ -419,7 +424,8 @@ router.get('/sendlist',function(req,res,next){
   
   
   router.get('/setting',function(req,res,next){
-      var openid = req.query.openid;
+     // var openid = req.query.openid;
+      var openid = req.session.openid ;
       
       res.render('./customer/setting',{layout:false,openid:openid});
   })
