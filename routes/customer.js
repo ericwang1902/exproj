@@ -178,9 +178,15 @@ router.get('/locdetail',function(req,res,next){
     var openid = req.query.openid;
     var locid = req.query.locid;//获取相应的locid
     console.log("locid:"+locid);
+    //根据locid查找相应的location
+    locationModel.findOne({_id:locid},function(err,result){
+        if(err) console.log(err);
+        
+        res.render('./customer/locdetail',{layout:false,openid:openid,location:result})
+
+    })
     
-    res.render('./customer/locdetail',{layout:false,openid:openid})
-})
+  })
 
 
 
