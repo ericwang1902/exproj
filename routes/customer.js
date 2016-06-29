@@ -312,7 +312,7 @@ router.get('/locdetail',function(req,res,next){
             },
             function(callback){
                 // do some more stuff ...
-                fanModel.findOne({userid:userid},function(err,user){
+                fanModel.findOne({_id:userid},function(err,user){
                     if(err) console.log(err);
                     callback(err,user);
                 })
