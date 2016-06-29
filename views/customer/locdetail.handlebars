@@ -14,7 +14,7 @@
 
 <body>
     <form method="POST"  action="/customer/location">
-            <div class="weui_cells_title">新增地址</div>
+            <div class="weui_cells_title">地址详情</div>
                 <div class="weui_cells weui_cells_access">             
                        <div data-toggle="distpicker">
                             <div class="weui_cell">
@@ -22,7 +22,7 @@
                                     <label class="weui_label">省</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary weui_select_after">
-                                    <select name="provincename" required="" class="weui_select" data-province="---- 选择省 ----"></select>
+                                    <select name="provincename" value="{{location.provincename}}" required="" class="weui_select" data-province="---- 选择省 ----"></select>
                                 </div>
                             </div>
                             <div class="weui_cell">
@@ -30,7 +30,7 @@
                                     <label class="weui_label">市</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_select weui_select_after">
-                                    <select name="cityname" required="" class="weui_select" data-city="---- 选择市 ----"></select>
+                                    <select name="cityname" value="{{location.cityname}}" required="" class="weui_select" data-city="---- 选择市 ----"></select>
                                 </div>
                             </div>
                             <div class="weui_cell">
@@ -38,7 +38,7 @@
                                     <label class="weui_label">区县</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_select weui_select_after">
-                                    <select name="expareaname"  required="" class="weui_select" data-district="---- 选择区 ----"></select>
+                                    <select name="expareaname" value="{{location.expareaname}}"  required="" class="weui_select" data-district="---- 选择区 ----"></select>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <label class="weui_label">收件公司</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="company" type="text" placeholder="选填">
+                            <input class="weui_input" value="{{location.company}}" name="company" type="text" placeholder="选填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -57,7 +57,7 @@
                             <label class="weui_label">收件人</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="name"  required="" type="text" placeholder="必填">
+                            <input class="weui_input" value="{{location.name}}" name="name"  required="" type="text" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -65,7 +65,7 @@
                             <label class="weui_label">联系电话</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="tel" required="" type="tele" placeholder="必填">
+                            <input class="weui_input" value="{{location.tel}}" name="tel" required="" type="tele" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -73,7 +73,7 @@
                             <label class="weui_label">邮编</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="postcode"  type="text" placeholder="选填">
+                            <input class="weui_input" value="{{location.postcode}}" name="postcode"  type="text" placeholder="选填">
                         </div>
                     </div>                    
                 </div> 
@@ -84,7 +84,7 @@
                                     <label class="weui_label">详细地址</label>
                                 </div>
                                 <div class="weui_cell_bd ">
-                                    <textarea class="weui_textarea"  placeholder="请填写详细地址" name="address" required=""></textarea>
+                                    <textarea class="weui_textarea" value="{{location.address}}"  placeholder="请填写详细地址" name="address" required=""></textarea>
                                 </div>
                             </div>
                             <div class="weui_cell weui_cell_select weui_select_after">
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             
-                            <input class="weui_input" type="hidden" name="openid"  value="{{userinfo.openid}}" type="text" placeholder="必填">
+                            <input class="weui_input" type="hidden" name="openid"  value="{{openid}}" type="text" placeholder="必填">
                  </div>    
                      
                     <div class="weui_btn_area">
