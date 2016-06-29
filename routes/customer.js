@@ -104,7 +104,7 @@ router.post('/location',function(req,res,next){
             location.save(function(err,loc){
               if(err)console.log(err);
               console.log('loc:'+loc);
-               res.redirect('/courier/resultinfo?result=6');
+               res.redirect('/courier/resultinfo?result=6&openid='+req.body.openid);
             })
             
         })

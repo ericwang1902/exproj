@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>快递员绑定</title>      
+    <title>系统信息</title>      
     <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.2/style/weui.css"/>
     <script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="/bower_components/distpicker/dist/distpicker.data.js"></script>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="weui_opr_area">
                     <p class="weui_btn_area">
-                        <a href="javascript:;" class="weui_btn weui_btn_primary" onclick="WeixinJSBridge.call('closeWindow');">确定</a>
+                        <a href="/customer/send?openid={{openid}}" class="weui_btn weui_btn_primary" onclick="WeixinJSBridge.call('closeWindow');">确定</a>
                     </p>
                 </div>
             </div>

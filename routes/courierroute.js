@@ -34,10 +34,12 @@ router.post('/userbind',function (req,res,next) {
 
 router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
+    var openid = req.query.openid;
 
     res.render('./contents/resultinfo',{
         layout:false,
         result:result,
+        openid:openid,
         helpers:{
             getresultinfo:function(resultnum){
                 var info = '';
