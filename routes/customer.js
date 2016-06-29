@@ -84,9 +84,10 @@ router.post('/location',function(req,res,next){
 })
 
 
-router.get('/loclist',getuserinfo,function(req,res,next){
+router.get('/loclist',function(req,res,next){
     //所有的入口都放在send里，从那里开始传递openid
      var openid = req.query.openid;
+     console.log('loclist openid:'+openid);
      
      //根据openid查找userid，根据userid查找收件地址列表
          async.waterfall([
