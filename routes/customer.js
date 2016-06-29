@@ -182,6 +182,8 @@ router.get('/locdetail',function(req,res,next){
     locationModel.findOne({_id:locid},function(err,result){
         if(err) console.log(err);
         
+        console.log('location info:'+result);
+        
         res.render('./customer/locdetail',{layout:false,openid:openid,location:result})
 
     })
