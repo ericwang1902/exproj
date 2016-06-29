@@ -82,7 +82,7 @@ router.post('/location',function(req,res,next){
             }
         ], function (err, result) {
             // result now equals 'done'
-            res.redirect('/courier/resultinfo?result='+result+'openid='+req.body.openid);
+            res.redirect('/courier/resultinfo?result='+result+'&openid='+req.body.openid);
         });
     }
     else if(req.query.t=='1'){
