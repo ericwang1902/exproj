@@ -310,6 +310,7 @@ router.get('/locdetail',function(req,res,next){
                     })
                 }else{
                     //已经有粉丝了
+                    console.log(fan);
                      callback(null, fan);
                 }     
             })          
@@ -322,6 +323,7 @@ router.get('/locdetail',function(req,res,next){
         }
     ], function (err, result) {
         // result now equals 'done'
+        console.log(result);
         res.render('./customer/recievelist',{layout:false,locs:result,openid:openid});
     });
   })
