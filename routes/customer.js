@@ -28,7 +28,7 @@ router.post('/location',function(req,res,next){
     //console.log(req.body);
     
     if(req.query.t =='0'){
-        console.log("req.query.t =='0'")
+        console.log("req.query.t="+req.query.t);
         //新增地址
         async.waterfall([
             //获取地址所对应的粉丝,获取到userid
