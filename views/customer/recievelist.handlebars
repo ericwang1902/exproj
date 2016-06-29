@@ -15,27 +15,19 @@
 </head>
 
 <body style="height:100%">
-    <form method="POST"  action="/customer/location?t=0">
+    <form method="POST"  action="">
         <div class="weui_cells weui_cells_radio">
-            <label class="weui_cell weui_check_label" for="x11">
+            <label class="weui_cell weui_check_label">
                 <div class="weui_cell_bd weui_cell_primary">
-                <p>cell standard</p>
+                <p>{{name}}</p>
+                <p>{{provincename}}</p>
                 </div>
                 <div class="weui_cell_ft">
-                <input type="radio" class="weui_check" name="radio1" id="x11">
+                <input type="radio" class="weui_check" name="radio1" id="{{_id}}">
                 <span class="weui_icon_checked"></span>
                 </div>
             </label>
             
-            <label class="weui_cell weui_check_label" for="x12">
-                <div class="weui_cell_bd weui_cell_primary">
-                <p>cell standard</p>
-                </div>
-                <div class="weui_cell_ft">
-                <input type="radio" name="radio1" class="weui_check" id="x12" checked="checked">
-                <span class="weui_icon_checked"></span>
-                </div>
-            </label>
         </div>
         <div class="weui_btn_area">
             <button type="submit" class="weui_btn weui_btn_primary">提交</button>
