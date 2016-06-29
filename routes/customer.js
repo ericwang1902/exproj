@@ -89,6 +89,7 @@ router.post('/location',function(req,res,next){
         locationModel.findOne({_id:req.query.locid},function(err,location){
             if(err) console.log(err);
             console.log(req.body.company);
+            console.log(location.company);
             
             location.company =  req.body.company ? req.body.company : location.company;
 			location.name =  req.body.name ? req.body.name : location.name;
