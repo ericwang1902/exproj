@@ -247,19 +247,34 @@ router.get('/locnav',function(req,res,next){
 })
 
 router.get('/locdetail',function(req,res,next){
-    var openid = req.query.openid;
+    var userid = req.query.userid;
     var locid = req.query.locid;//获取相应的locid
     console.log("locid:"+locid);
-    //根据locid查找相应的location
-    locationModel.findOne({_id:locid},function(err,result){
-        if(err) console.log(err);
-        
-        console.log('location info:'+result);
-        
-        res.render('./customer/locdetail',{
+    
+        async.series([
+            function(callback){
+                  //根据locid查找相应的location
+                locationModel.findOne({_id:locid},function(err,loc){
+                    if(err) console.log(err);
+                    callback(null, loc);
+                })
+                
+            },
+            function(callback){
+                // do some more stuff ...
+                fanModel.findOne({userid:userid},function(err,user){
+                    if(err) console.log(err);
+                    callback(err,user);
+                })
+            }
+        ],
+        // optional callback
+        function(err, results){
+            // results is now equal to ['one', 'two']
+            res.render('./customer/locdetail',{
             layout:false,
-            openid:openid,
-            location:result,
+            openid:results[1].openid,
+            location:results[0],
             locid:locid,
             helpers:{
                 gettype:function(type){
@@ -269,10 +284,8 @@ router.get('/locdetail',function(req,res,next){
                     return '寄件地址';
                 }
             }
-        })
-
-    })
-    
+            })
+        });
   })
 
 
