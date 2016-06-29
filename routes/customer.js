@@ -153,6 +153,48 @@ router.get('/loclist',function(req,res,next){
      
    
 })
+
+router.get('/loclist2',function(req,res,next){
+    //所有的入口都放在send里，从那里开始传递openid
+     var openid = req.query.openid;
+     
+     
+     //根据openid查找userid，根据userid查找收件地址列表
+         async.waterfall([
+        //获取地址所对应的粉丝,获取到userid
+        function(callback) {
+            fanModel.findOne({openid:openid},function (err,fan) {
+                if(err) console.log(err);
+
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        callback(null, fan);
+                    })
+                }else{
+                    //已经有粉丝了
+                     callback(null, fan);
+                }     
+            })          
+        },
+        //查找收件地址列表
+        function(fan, callback) {
+            locationModel.find({userid:fan._id,type:2},function(err,locs){
+                callback(null,locs);
+            })
+        }
+    ], function (err, result) {
+        // result now equals 'done'
+        res.render('./customer/loclist2',{layout:false,locs:result,openid:openid});
+    });
+     
+   
+})
 //手机网页的入口，获取openid，创建用户
 router.get('/send',getuserinfo,function(req,res,next){
       var userinfo =req.userinfoJson;
