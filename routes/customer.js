@@ -174,7 +174,13 @@ router.get('/locnav',function(req,res,next){
     res.render('./customer/locnav',{layout:false,openid:openid});
 })
 
-
+router.get('/locdetail',function(req,res,next){
+    var openid = req.query.openid;
+    var locid = req.query.locid;//获取相应的locid
+    console.log("locid:"+locid);
+    
+    res.render('./customer/locdetail',{layout:false,openid:openid})
+})
 
 
 
