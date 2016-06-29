@@ -216,6 +216,7 @@ router.get('/locdetail',function(req,res,next){
             layout:false,
             openid:openid,
             location:result,
+            locid:locid,
             helpers:{
                 gettype:function(type){
                     if(type=='1')
