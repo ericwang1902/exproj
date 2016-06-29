@@ -231,8 +231,16 @@ router.get('/send',getuserinfo,function(req,res,next){
         // result now equals 'done'
         res.render('./customer/send',{layout:false,openid:userinfo.openid});
     });
+})
+
+render.post('/send',function(req,res,next){
+    //获取openid
+    var  openid = req.query.openid;
+    var locid = req.body.radio1;
     
-   
+    console.log(req.body);
+    
+    
 })
 
 router.get('/sendrecord',function(req,res,next){
