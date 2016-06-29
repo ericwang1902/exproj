@@ -88,6 +88,7 @@ router.post('/location',function(req,res,next){
         //修改地址
         locationModel.findOne({_id:req.query.locid},function(err,location){
             if(err) console.log(err);
+            console.log(req.body.company);
             
             location.company =  req.body.company ? req.body.company : location.company;
 			location.name =  req.body.name ? req.body.name : location.name;
