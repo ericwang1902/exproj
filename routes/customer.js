@@ -236,15 +236,37 @@ router.get('/send',getuserinfo,function(req,res,next){
 router.post('/send',function(req,res,next){
     //获取openid
     var  openid = req.query.openid;
-    var locid = req.body.radio1;
-    
+    if(req.query.type==1){
+        var recievelocid = req.body.radio1;
+        req.session.recieveloc = recievelocid;
+    }else if(req.query.type==2){
+        var sendlocid = req.body.radio2;
+        req.session.sendloc = sendlocid;
+    }
     console.log(req.body);//radio1:locid
     
-    locationModel.findOne({_id:locid},function(err,loc){
-        if(err)console.log(err);
-        res.render('./customer/send',{layout:false,openid:openid,loc:loc});
-    })
-    
+            async.series([
+            function(callback){
+                  //根据locid查找相应的location
+                locationModel.findOne({_id:req.session.recieveloc},function(err,recieveloc){
+                    if(err) console.log(err);
+                    callback(null, recieveloc);
+                })
+                
+            },
+            function(callback){
+                // do some more stuff ...
+                locationModel.findOne({_id:req.session.sendloc},function(err,sendloc){
+                    if(err) console.log(err);
+                    callback(null, sendloc);
+                })
+            }
+        ],
+        // optional callback
+        function(err, results){
+            if(err)console.log(err);
+            res.render('./customer/send',{layout:false,openid:openid,recieveloc:results[0],sendloc:results[1]});
+        });
     
 })
 

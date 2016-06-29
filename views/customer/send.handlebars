@@ -72,15 +72,15 @@
             </div>
             <div class = "weui_media_bd">
                 <h4 class = "weui_media_title">收件人信息</h4>
-                <div id="sender_info">
+                <div id="receiver_info">
                         <div class="desc_area">
-				            <span class="desc_title">{{loc.name}} {{loc.tele}}</span>
+				            <span class="desc_title">{{recieveloc.name}} {{recieveloc.tele}}</span>
                         </div>
                         <div class="desc_area">
-                            <span class="desc">{{loc.provincename}}{{loc.cityname}}{{loc.expareaname}}</span>
+                            <span class="desc">{{recieveloc.provincename}}{{recieveloc.cityname}}{{recieveloc.expareaname}}</span>
                         </div>
                         <div class="desc_area">
-                            <span class="desc">{{loc.address}}</span>
+                            <span class="desc">{{recieveloc.address}}</span>
                         </div>
                 </div>
             </div>
@@ -93,7 +93,16 @@
             </div>
             <div class = "weui_media_bd">
                 <h4 class = "weui_media_title">寄件人信息</h4>
-                <div id="receiver_info">
+                <div id="sender_info">
+                        <div class="desc_area">
+				            <span class="desc_title">{{sendloc.name}} {{sendloc.tele}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">{{sendloc.provincename}}{{sendloc.cityname}}{{sendloc.expareaname}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">{{sendloc.address}}</span>
+                        </div>
                 </div>
             </div>
             <div class = "weui_cell_ft">
