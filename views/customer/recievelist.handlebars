@@ -15,8 +15,8 @@
 </head>
 
 <body style="height:100%">
-    <form method="POST"  action="/customer/send?openid={{openid}}&type=1"> 
-       <div class="weui_tab">
+    <form class="weui_tab" method="POST"  action="/customer/send?openid={{openid}}&type=1"> 
+       
          <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
              {{#each locs}}
@@ -35,33 +35,9 @@
             </div>
          </div>
          <div class="weui_tabbar">
-                <!--<button type="submit" class="weui_btn weui_btn_primary">选好了</button>-->
-         <a href="/customer/send?openid={{openid}}" class="weui_tabbar_item ">
-      <div class="weui_tabbar_icon">
-        <img src="/img/icon_nav_button.png" alt="">
-      </div>
-      <p class="weui_tabbar_label">寄快递</p>
-    </a>
-    <a href="/customer/sendrecord?openid={{openid}}" class="weui_tabbar_item ">
-      <div class="weui_tabbar_icon">
-        <img src="/img/icon_nav_cell.png" alt="">
-      </div>
-      <p class="weui_tabbar_label">查快递</p>
-    </a>
-    <a href="/customer/locnav?openid={{openid}}" class="weui_tabbar_item weui_bar_item_on" >
-      <div class="weui_tabbar_icon">
-        <img src="/img/icon_nav_toast.png" alt="">
-      </div>
-      <p class="weui_tabbar_label">地址库</p>
-    </a>
-    <a href="/customer/setting?openid={{openid}}" class="weui_tabbar_item">
-      <div class="weui_tabbar_icon">
-        <img src="/img/icon_nav_dialog.png" alt="">
-      </div>
-      <p class="weui_tabbar_label">设置</p>
-    </a>
+                <button type="submit" class="weui_btn weui_btn_primary">选好了</button>
          </div>
-    </div>
+
     </form>
 <style>
     body {
