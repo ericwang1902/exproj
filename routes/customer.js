@@ -241,8 +241,8 @@ router.post('/send',function(req,res,next){
     console.log(req.body);//radio1:locid
     
     locationModel.findOne({_id:locid},function(err,loc){
-        
-        res.render('./customer/send',{layout:false,openid:openid,loc:loc})
+        if(err)console.log(err);
+        res.render('./customer/send',{layout:false,openid:openid,loc:loc});
     })
     
     
