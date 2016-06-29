@@ -120,7 +120,6 @@ router.get('/loclist',function(req,res,next){
         }
     ], function (err, result) {
         // result now equals 'done'
-        console.log('loclist openid:'+openid);
         res.render('./customer/loclist',{layout:false,locs:result,openid:openid});
     });
      
