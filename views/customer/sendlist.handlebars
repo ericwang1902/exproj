@@ -15,24 +15,25 @@
 </head>
 
 <body style="height:100%">
-    <form method="POST"  action="/customer/send?openid={{openid}}&type=2">
-        <div class="weui_cells weui_cells_radio">
-        {{#each locs}}
-
-            <label class="weui_cell weui_check_label">
-                <div class="weui_cell_bd weui_cell_primary">
-                <p>{{name}}</p>
-                <p>{{provincename}}</p>
-                </div>
-                <div class="weui_cell_ft">
-                <input type="radio" class="weui_check" value="{{_id}}" name="radio2" id="{{_id}}">
-                <span class="weui_icon_checked"></span>
-                </div>
-            </label>       
-        
-        {{/each}}
+    <form  class="weui_tab" method="POST"  action="/customer/send?openid={{openid}}&type=2">
+       <div class="weui_tab_bd">
+            <div class="weui_cells weui_cells_radio">
+            {{#each locs}}
+                <label class="weui_cell weui_check_label">
+                    <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{name}}</p>
+                    <p>{{provincename}}</p>
+                    </div>
+                    <div class="weui_cell_ft">
+                    <input type="radio" class="weui_check" value="{{_id}}" name="radio2" id="{{_id}}">
+                    <span class="weui_icon_checked"></span>
+                    </div>
+                </label>       
+            
+            {{/each}}
+            </div>
         </div>
-        <div class="weui_btn_area">
+        <div class="weui_tabbar">
             <button type="submit" class="weui_btn weui_btn_primary">选好了</button>
         </div>
     </form>
