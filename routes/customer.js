@@ -89,6 +89,7 @@ router.post('/location',function(req,res,next){
         console.log(req.query.locid);
         locationModel.findOne({_id:req.query.locid},function(err,location){
             if(err) console.log(err);
+            console.log('location:'+location);
             
             location.company =  req.body.company ? req.body.company : location.company;
 			location.name =  req.body.name ? req.body.name : location.name;
@@ -101,7 +102,7 @@ router.post('/location',function(req,res,next){
             
             location.save(function(err,loc){
               if(err)console.log(err);
-              
+              console.log('loc:'+loc);
                res.redirect('/courier/resultinfo?result=6');
             })
             
