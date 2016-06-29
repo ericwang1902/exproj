@@ -416,6 +416,13 @@ router.get('/sendlist',function(req,res,next){
         res.render('./customer/sendlist',{layout:false,locs:result,openid:openid});
     });
   })
+  
+  
+  router.get('/customer/setting',function(req,res,next){
+      var openid = req.query.openid;
+      
+      res.render('./customer/setting',{layout:false,openid:openid});
+  })
 
 
 
