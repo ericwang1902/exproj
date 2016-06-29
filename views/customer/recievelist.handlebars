@@ -16,6 +16,7 @@
 
 <body style="height:100%">
     <form method="POST"  action="">
+        {{#each locs}}
         <div class="weui_cells weui_cells_radio">
             <label class="weui_cell weui_check_label">
                 <div class="weui_cell_bd weui_cell_primary">
@@ -26,9 +27,9 @@
                 <input type="radio" class="weui_check" name="radio1" id="{{_id}}">
                 <span class="weui_icon_checked"></span>
                 </div>
-            </label>
-            
+            </label>       
         </div>
+        {{#/each}}
         <div class="weui_btn_area">
             <button type="submit" class="weui_btn weui_btn_primary">提交</button>
         </div>
