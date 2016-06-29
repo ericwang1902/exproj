@@ -233,7 +233,7 @@ router.get('/send',getuserinfo,function(req,res,next){
     });
 })
 
-render.post('/send',function(req,res,next){
+router.post('/send',function(req,res,next){
     //获取openid
     var  openid = req.query.openid;
     var locid = req.body.radio1;
