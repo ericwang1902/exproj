@@ -238,7 +238,12 @@ router.post('/send',function(req,res,next){
     var  openid = req.query.openid;
     var locid = req.body.radio1;
     
-    console.log(req.body);
+    console.log(req.body);//radio1:locid
+    
+    locationModel.findOne({_id:locid},function(err,loc){
+        
+        res.render('./customer/send',{layout:false,openid:openid,loc:loc})
+    })
     
     
 })
