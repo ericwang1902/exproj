@@ -204,10 +204,23 @@ router.get('/send',getuserinfo,function(req,res,next){
       
      console.log('send openid:'+userinfo.openid);
      
-     //根据openid查找userid，根据userid查找收件地址列表
-         async.waterfall([
-        //获取地址所对应的粉丝,获取到userid
-        function(callback) {
+     async.series([
+            function(callback){
+                  //根据locid查找相应的location
+                locationModel.findOne({_id:req.session.recieveloc},function(err,recieveloc){
+                    if(err) console.log(err);
+                    callback(null, recieveloc);
+                })
+                
+            },
+            function(callback){
+                // do some more stuff ...
+                locationModel.findOne({_id:req.session.sendloc},function(err,sendloc){
+                    if(err) console.log(err);
+                    callback(null, sendloc);
+                })
+            },
+            function(callback) {
             fanModel.findOne({openid:userinfo.openid},function (err,fan) {
                 if(err) console.log(err);
 
@@ -227,10 +240,12 @@ router.get('/send',getuserinfo,function(req,res,next){
                 }     
             })          
         }
-    ], function (err, result) {
-        // result now equals 'done'
-        res.render('./customer/send',{layout:false,openid:userinfo.openid});
-    });
+        ],
+        // optional callback
+        function(err, results){
+            if(err)console.log(err);
+            res.render('./customer/send',{layout:false,openid:userinfo.openid,recieveloc:results[0],sendloc:results[1],fan:results[2]});
+        });
 })
 
 router.post('/send',function(req,res,next){
