@@ -197,7 +197,7 @@ router.get('/loclist2',function(req,res,next){
    
 })
 
-routter.get('/defaultsend',function(req,res,next){
+router.get('/defaultsend',function(req,res,next){
     var openid = req.query.openid || req.session.openid;//获取到当前用户的openid
     
        //根据openid查找userid，根据userid查找收件地址列表
