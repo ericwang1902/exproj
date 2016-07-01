@@ -250,6 +250,8 @@ router.post('/defaultsend',function(req,res,next){
         //查找defaultsend的id
         locationModel.findOne({_id:defaultsendlocid},function(err,loc){
             if(err) console.log(err);
+            console.log('defaultsendlocid:'+defaultsendlocid);
+            console.log('defaultsend:'+loc);
             
             callback(null,loc);
         })
