@@ -242,7 +242,7 @@ router.get('/defaultsend',function(req,res,next){
 router.post('/defaultsend',function(req,res,next){
     var openid = req.query.openid || req.session.openid;//获取openid
     
-    var defaultsendlocid = req.query.defaultsendradio;//获取表单提交来的locid
+    var defaultsendlocid = req.body.defaultsendradio;//获取表单提交来的locid
      
      //设置改openid的fan的defaultsend为defaultsendlocid   
     async.series([
