@@ -196,6 +196,97 @@ router.get('/loclist2',function(req,res,next){
      
    
 })
+
+routter.get('/defaultsend',function(req,res,next){
+    var openid = req.query.openid || req.session.openid;//获取到当前用户的openid
+    
+       //根据openid查找userid，根据userid查找收件地址列表
+         async.waterfall([
+        //获取地址所对应的粉丝,获取到userid
+        function(callback) {
+            fanModel.findOne({openid:openid},function (err,fan) {
+                if(err) console.log(err);
+
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        callback(null, fan);
+                    })
+                }else{
+                    //已经有粉丝了
+                    console.log(fan);
+                     callback(null, fan);
+                }     
+            })          
+        },
+        //查找寄件地址列表
+        function(fan, callback) {
+            locationModel.find({userid:fan._id,type:2},function(err,locs){
+                callback(null,locs);
+            })
+        }
+    ], function (err, result) {
+        // result now equals 'done'
+        console.log(result);
+        res.render('./customer/defaultsend',{layout:false,locs:result,openid:openid});
+    });
+     
+    
+})
+
+router.post('/defaultsend',function(req,res,next){
+    var openid = req.query.openid || req.session.openid;//获取openid
+    
+    var defaultsendlocid = req.query.defaultsendradio;//获取表单提交来的locid
+     
+     //设置改openid的fan的defaultsend为defaultsendlocid   
+    async.series([
+        function(callback){
+        //查找defaultsend的id
+        locationModel.findOne({_id:defaultsendlocid},function(err,loc){
+            if(err) console.log(err);
+            
+            callback(null,loc);
+        })
+        
+        },
+        function(callback){
+         //根据openid查找到fan
+           fanModel.findOne({openid:openid},function(err,fan){
+            if(err) console.log(err);
+        
+            callback(null,fan);
+            })
+        }
+        
+    ],function(err,results){
+       //修改fan的查找defaultsend的id
+       var fan= results[1];
+       fan.defaultsend = results[0]._id;
+       
+        fan.save(function(err,fan){
+           if(err) console.log(err);
+           
+           console.log('设置默认地址成功！');
+           res.redirect('/courier/resultinfo?result=7&openid='+openid);
+        
+             
+        })
+       
+    })
+    
+
+
+    
+    
+    
+})
+
 //手机网页的入口，获取openid，创建用户
 router.get('/send',getuserinfo,function(req,res,next){
       var userinfo =req.userinfoJson;

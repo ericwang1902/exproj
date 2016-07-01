@@ -65,6 +65,9 @@ router.get('/resultinfo',function (req,res,next) {
                     case '6':
                         info='地址修改成功!';
                         break;
+                    case '7':
+                        info='默认寄件地址设置成功!';
+                        break;                      
                     default:
                         break;
                 }
@@ -94,6 +97,9 @@ router.get('/resultinfo',function (req,res,next) {
                     case '6':
                         cs='weui_icon_success';
                         break;
+                    case '7':
+                        cs='weui_icon_success';
+                        break;                       
                     default:
                         break;
                 }
