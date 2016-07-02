@@ -534,6 +534,7 @@ router.get('/sendlist',function(req,res,next){
           locationModel.findOne({_id:fan.defaultsend},function(err,loc){
              if(err) console.log(err);
             
+            
              callback(null,loc)               
           })
 
