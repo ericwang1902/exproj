@@ -70,6 +70,9 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                      case '8':
                         info='设置默认快递点成功!';
+                        break; 
+                     case '8':
+                        info='尚未维护寄件地址，请进入‘地址库’维护!';
                         break;                                             
                     default:
                         break;
@@ -105,7 +108,10 @@ router.get('/resultinfo',function (req,res,next) {
                         break;  
                     case '8':
                         cs='weui_icon_success';
-                        break;                     
+                        break;
+                    case '9':
+                        cs='weui_icon_warn';
+                        break;            
                     default:
                         break;
                 }

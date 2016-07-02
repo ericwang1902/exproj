@@ -269,6 +269,7 @@ router.post('/defaultsend',function(req,res,next){
         
     ],function(err,results){
        //修改fan的查找defaultsend的id
+       try{
        var fan= results[1];
        fan.defaultsend = results[0]._id;
        
@@ -276,12 +277,17 @@ router.post('/defaultsend',function(req,res,next){
            if(err) console.log(err);
            
            console.log('设置默认地址成功！');
-           res.redirect('/courier/resultinfo?result=7&openid='+openid);
-        
-             
+           res.redirect('/courier/resultinfo?result=7&openid='+openid);         
         })
+       }catch(err){
+           //尚未维护寄件地址
+           res.redirect('/courier/resultinfo?result=9&openid='+openid); 
+       }
+ 
        
     })
+    
+    
 })
 
 router.get('/defaultorg',function(req,res,next){
