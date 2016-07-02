@@ -642,6 +642,10 @@ router.get('/sendlist',function(req,res,next){
 function getuserinfo(req,res,next){
     
     if(req.query.openid){
+        var userinfoJson={
+            openid:req.query.openid
+        }
+         req.userinfoJson = userinfoJson;
        return next();
     }
     console.log('code:'+req.query.code);//获取微信重定向之后，生成的code 
