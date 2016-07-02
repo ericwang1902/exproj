@@ -369,10 +369,17 @@ router.get('/send',getuserinfo,function(req,res,next){
             },
             function(callback){
                 // do some more stuff ...
-                locationModel.findOne({_id:req.session.sendloc},function(err,sendloc){
+                fanModel.findOne({openid:userinfo.openid},function(err,fan){
+                    if(err) console.log(err);
+                    
+                    var sendloc = fan.defaultsend || req.session.sendloc;
+                    
+                    locationModel.findOne({_id:sendloc},function(err,sendloc){
                     if(err) console.log(err);
                     callback(null, sendloc);
-                })
+                    })
+                        
+                })      
             },
             function(callback) {
             fanModel.findOne({openid:userinfo.openid},function (err,fan) {
