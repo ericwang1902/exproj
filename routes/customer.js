@@ -668,19 +668,7 @@ function getuserinfo(req,res,next){
             var userinfooptions = {
                 url:'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
             }
-            //这个body就是用户信息
-            request(userinfooptions,function (error,response,body) {
-             
-            callback(null, body);
-            })      
-    }
-], function (err, result) {
-    // result now equals 'done'
-    console.log(result);
-    var userinfoJson = JSON.parse(result);
-    req.userinfoJson = userinfoJson;
-    
-     fanModel.findOne({openid:openid},function (err,fan) {
+            fanModel.findOne({openid:openid},function (err,fan) {
                 if(err) console.log(err);
 
                 if(!fan){
@@ -691,16 +679,31 @@ function getuserinfo(req,res,next){
                     fan.save(function (err,fan) {
                         if(err) console.log(err);
                         
-                        return next();
+                        //这个body就是用户信息
+                        request(userinfooptions,function (error,response,body) {
+                        callback(null, body);
+                        })    
                     })
                 }else{
                     //已经有粉丝了
                     console.log(fan);
-                    return next();
+                    //这个body就是用户信息
+                    request(userinfooptions,function (error,response,body) {
+                    callback(null, body);
+                    })    
                 }     
-            }) 
+            })  
+      
+    }
+], function (err, result) {
+    // result now equals 'done'
+    console.log(result);
+    var userinfoJson = JSON.parse(result);
+    req.userinfoJson = userinfoJson;
     
-     
+    
+    
+     return next();
 });
     
    
