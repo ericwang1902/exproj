@@ -15,6 +15,9 @@ router.get('/order1',function (req,res,next) {
 })
 
 router.post('/createorder',function (req,res,next) {
+    //存储到exproj的数据库中，同时做通知默认快递点的几个快递员，根据fan的orgid，去查找改orgid下面的快递员的openid，给这些openid发送模板消息。
+    //当快递员点击进入模板消息，可以在网页内拨打用户电话，页面上有取件按钮。
+    
     console.log(req.body);
 })
 
