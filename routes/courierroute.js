@@ -67,7 +67,10 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                     case '7':
                         info='默认寄件地址设置成功!';
-                        break;                      
+                        break;
+                     case '8':
+                        info='设置默认快递点成功!';
+                        break;                                             
                     default:
                         break;
                 }
@@ -99,7 +102,10 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                     case '7':
                         cs='weui_icon_success';
-                        break;                       
+                        break;  
+                    case '8':
+                        info='weui_icon_success';
+                        break;                     
                     default:
                         break;
                 }

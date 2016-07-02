@@ -7,6 +7,7 @@ var async = require('async');
 var locationController = require('../controllers/locationController');
 var fanModel =require('../models/fanModel');
 var locationModel = require('../models/locationModel');
+var sysuserModel = require('../models/sysuserModel');
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});
@@ -281,9 +282,65 @@ router.post('/defaultsend',function(req,res,next){
         })
        
     })
+})
+
+router.get('/defaultorg',function(req,res,next){
+    var openid = req.query.openid || req.session.openid;
     
+    //查找系统里的代理点
+    sysuserModel.find({usertype:2},function(err,orgs){
+        if(err) console.log(err);
+        
+        res.render('./customer/defaultorg',{
+            layout:false,
+            orgs:orgs,
+            helpers:{
+                getorgtype:function(type){
+                    return enumerableconstants.expCompany[type].name;
+                }
+            }
+        })
+    })    
+})
 
-
+router.post('/defaultorg',function(req,res,next){
+    var openid = req.query.openid || req.session.openid;
+    var defaultorgid = req.body.defaultorgradio;
+    
+    async.series([
+        function(callback){
+            //查找到org的id
+            sysuserModel.findOne({_id:defaultorgid},function(err,org){
+                if(err) console.log(err);
+                
+                callback(null,org);
+            })
+            
+        },
+        function(callback){
+            //查找到fan的doc
+            fanModel.findOne({openid:openid},function(err,fan){
+                if(err) console.log(err);
+                
+                callback(null,fan);
+            })
+        }
+    ],function(err,results){
+        var fan = results[1];
+        var org = results[0];
+        
+        fan.orgid = org._id || fan.orgid;
+        
+        fan.save(function(err,fan){
+            if(err) console.log(err);
+            
+            console.log(fan);
+            console.log('默认快递代理点设置成功');
+            
+            res.redirect('/courier/resultinfo?result=8&openid='+openid);
+        })
+          
+    })
     
     
     
@@ -534,19 +591,37 @@ router.get('/sendlist',function(req,res,next){
           locationModel.findOne({_id:fan.defaultsend},function(err,loc){
              if(err) console.log(err);
             
-            
-             callback(null,loc)               
+             callback(null,fan,loc)               
           })
-
+          },
+          function(fan,loc,callback){
+           //查找fan的默认快递点的信息
+            sysuserModel.findOne({_id:fan.orgid},function(err,sysuser){
+                if(err) console.log(err);
+                
+                var result = {
+                    sysuser:sysuser,
+                    loc:loc
+                }
+                
+                callback(null,result);
+            })   
           }
       ],function(err,result){
           if(err) console.log(err);
           
-          res.render('./customer/setting',{layout:false,openid:openid,defaultsend:result});
-      })
-      
-      
-      
+          res.render('./customer/setting',{
+              layout:false,
+              openid:openid,
+              defaultsend:result.loc,
+              defaultorg:result.sysuser,
+              helpers:{
+                getorgtype:function(type){
+                    return enumerableconstants.expCompany[type].name;
+                }
+            }
+        });
+      })     
   })
 
 

@@ -6,7 +6,7 @@ var fanSchema = new Schema({
 	"orgid" : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'sysuser'
-	},
+	},//默认寄件受理点
 	"defaultsend":{
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'location'
