@@ -19,12 +19,9 @@ router.post('/createorder',function (req,res,next) {
 })
 
 router.get('/location',function (req,res,next) {
-    //进入到这个页面的时候，通过授权来获取用户信息
-    var userinfo =req.userinfoJson;
-    console.log('userinfo:'+ userinfo);
-    userinfo.openid = req.query.openid;
+    var openid = req.query.openid;
     console.log('openid:'+req.query.openid);
-    res.render('./customer/location',{layout:false,userinfo:req.userinfoJson});
+    res.render('./customer/location',{layout:false,openid:openid});
 })
 
 router.post('/location',function(req,res,next){
