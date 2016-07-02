@@ -370,7 +370,7 @@ router.get('/send',getuserinfo,function(req,res,next){
             },
             function(callback){
                 // do some more stuff ...
-                fanModel.findOne({openid:userinfo.openid},function(err,fan){
+                fanModel.findOne({openid:openid},function(err,fan){
                     if(err) console.log(err);
                     
                     var sendloc = fan.defaultsend || req.session.sendloc;
@@ -383,13 +383,13 @@ router.get('/send',getuserinfo,function(req,res,next){
                 })      
             },
             function(callback) {
-            fanModel.findOne({openid:userinfo.openid},function (err,fan) {
+            fanModel.findOne({openid:openid},function (err,fan) {
                 if(err) console.log(err);
 
                 if(!fan){
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid:userinfo.openid
+                        openid:openid
                     })
                     fan.save(function (err,fan) {
                         if(err) console.log(err);
