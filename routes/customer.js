@@ -392,11 +392,9 @@ router.get('/send',getuserinfo,function(req,res,next){
                          // do some more stuff ...
                 fanModel.findOne({openid:openid},function(err,fan){
                     if(err) console.log(err);
+                               
                     
-                    console.log(fan.hasOwnProperty('defaultsend'));
-                    
-                    
-                    if(fan.hasOwnProperty('defaultsend')){
+                    try{
                             var sendloc = fan.defaultsend || req.session.sendloc;
                     
                             locationModel.findOne({_id:sendloc},function(err,sendloc){
@@ -404,7 +402,7 @@ router.get('/send',getuserinfo,function(req,res,next){
                             callback(null, sendloc);
                             
                             })
-                    }else{
+                    }catch(err){
                         callback(null,'');
                     }
 
