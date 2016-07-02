@@ -368,44 +368,49 @@ router.get('/send',getuserinfo,function(req,res,next){
                 
             },
             function(callback){
-                // do some more stuff ...
+                fanModel.findOne({openid:openid},function (err,fan) {
+                    if(err) console.log(err);
+
+                    if(!fan){
+                        //创建粉丝数据
+                        var fan = new fanModel({
+                            openid:openid
+                        })
+                        fan.save(function (err,fan) {
+                            if(err) console.log(err);
+                            
+                            callback(null, fan);
+                        })
+                    }else{
+                        //已经有粉丝了
+                        callback(null, fan);
+                    }     
+                }) 
+    
+            },
+            function(callback) {
+                         // do some more stuff ...
                 fanModel.findOne({openid:openid},function(err,fan){
                     if(err) console.log(err);
                     
+                    if(fan.defaultsend ==null){
+                        callback(null,'')
+                    }else{
                     var sendloc = fan.defaultsend || req.session.sendloc;
                     
                     locationModel.findOne({_id:sendloc},function(err,sendloc){
                     if(err) console.log(err);
                     callback(null, sendloc);
+                    
                     })
-                        
-                })      
-            },
-            function(callback) {
-            fanModel.findOne({openid:openid},function (err,fan) {
-                if(err) console.log(err);
-
-                if(!fan){
-                    //创建粉丝数据
-                    var fan = new fanModel({
-                        openid:openid
-                    })
-                    fan.save(function (err,fan) {
-                        if(err) console.log(err);
-                        
-                        callback(null, fan);
-                    })
-                }else{
-                    //已经有粉丝了
-                     callback(null, fan);
-                }     
-            })          
+                    }    
+                })  
         }
         ],
         // optional callback
         function(err, results){
             if(err)console.log(err);
-            res.render('./customer/send',{layout:false,openid:openid,recieveloc:results[0],sendloc:results[1],fan:results[2]});
+            res.render('./customer/send',{layout:false,openid:openid,recieveloc:results[0],sendloc:results[2],fan:results[1]});
         });
 })
 
