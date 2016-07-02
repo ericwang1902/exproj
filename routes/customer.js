@@ -22,6 +22,7 @@ router.get('/location',function (req,res,next) {
     //进入到这个页面的时候，通过授权来获取用户信息
     var userinfo =req.userinfoJson;
     userinfo.openid = req.query.openid;
+    console.log('openid:'+req.query.openid);
     res.render('./customer/location',{layout:false,userinfo:req.userinfoJson});
 })
 
@@ -700,6 +701,7 @@ function getuserinfo(req,res,next){
     console.log(result);
     var userinfoJson = JSON.parse(result);
     req.userinfoJson = userinfoJson;
+    
     
     
     
