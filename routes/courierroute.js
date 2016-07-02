@@ -72,12 +72,24 @@ router.get('/resultinfo',function (req,res,next) {
                         info='设置默认快递点成功!';
                         break; 
                      case '9':
-                        info='尚未维护寄件地址，请进入‘地址库’维护!';
+                        info='设置寄件人出错！';
                         break;                                             
                     default:
                         break;
                 }
                 return info;
+            },
+            getresultdes:function (resultnum) {
+                var des='';
+                switch (resultnum) {
+                    case '9':
+                        des='尚未维护寄件人，或您未选中寄件人！'
+                        break;
+                
+                    default:
+                        break;
+                }
+                return des;
             },
             getmsglogo:function (result) {
                  var cs = '';
