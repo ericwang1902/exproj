@@ -242,7 +242,7 @@ router.get('/defaultsend',function(req,res,next){
 router.post('/defaultsend',function(req,res,next){
     var openid = req.query.openid || req.session.openid;//获取openid
     
-    var defaultsendlocid = req.query.defaultsendradio;//获取表单提交来的locid
+    var defaultsendlocid = req.body.defaultsendradio;//获取表单提交来的locid
      
      //设置改openid的fan的defaultsend为defaultsendlocid   
     async.series([
@@ -518,9 +518,34 @@ router.get('/sendlist',function(req,res,next){
   
   router.get('/setting',function(req,res,next){
      // var openid = req.query.openid;
-      var openid = req.session.openid ;
+      var openid = req.session.openid || req.query.openid ;
       
-      res.render('./customer/setting',{layout:false,openid:openid});
+      async.waterfall([
+          function(callback){
+           //查找用户数据
+           fanModel.findOne({openid:openid},function(err,fan){
+             if(err) console.log(err);
+             
+             callback(null,fan);  
+           })
+          },
+          function(fan,callback){
+          //查找默认寄件地址信息    
+          locationModel.findOne({_id:fan.defaultsend},function(err,loc){
+             if(err) console.log(err);
+            
+             callback(null,loc)               
+          })
+
+          }
+      ],function(err,result){
+          if(err) console.log(err);
+          
+          res.render('./customer/setting',{layout:false,openid:openid,defaultsend:result});
+      })
+      
+      
+      
   })
 
 

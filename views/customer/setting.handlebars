@@ -75,6 +75,17 @@
         <a class="weui_cell" href="/customer/defaultsend?openid={{openid}}">
             <div class="weui_cell_bd weui_cell_primary">
             <p>默认寄件地址</p>
+                <div id="sender_info">
+                        <div class="desc_area">
+				            <span class="desc_title">{{defaultsend.name}} {{defaultsend.tele}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">{{defaultsend.provincename}}{{defaultsend.cityname}}{{defaultsend.expareaname}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">{{defaultsend.address}}</span>
+                        </div>
+                </div>
             </div>
             <div class="weui_cell_ft">进入设置</div>
         </a>
