@@ -393,6 +393,9 @@ router.get('/send',getuserinfo,function(req,res,next){
                 fanModel.findOne({openid:openid},function(err,fan){
                     if(err) console.log(err);
                     
+                    console.log(fan.hasOwnProperty('defaultsend'));
+                    
+                    
                     if(fan.hasOwnProperty('defaultsend')){
                             var sendloc = fan.defaultsend || req.session.sendloc;
                     
