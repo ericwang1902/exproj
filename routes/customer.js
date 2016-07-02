@@ -393,17 +393,19 @@ router.get('/send',getuserinfo,function(req,res,next){
                 fanModel.findOne({openid:openid},function(err,fan){
                     if(err) console.log(err);
                     
-                    if(fan.defaultsend ==null){
-                        callback(null,'')
+                    if(fan.hasOwnProperty('defaultsend')){
+                            var sendloc = fan.defaultsend || req.session.sendloc;
+                    
+                            locationModel.findOne({_id:sendloc},function(err,sendloc){
+                            if(err) console.log(err);
+                            callback(null, sendloc);
+                            
+                            })
                     }else{
-                    var sendloc = fan.defaultsend || req.session.sendloc;
-                    
-                    locationModel.findOne({_id:sendloc},function(err,sendloc){
-                    if(err) console.log(err);
-                    callback(null, sendloc);
-                    
-                    })
-                    }    
+                        callback(null,'');
+                    }
+
+                        
                 })  
         }
         ],
