@@ -18,7 +18,7 @@ router.post('/createorder',function (req,res,next) {
     console.log(req.body);
 })
 
-router.get('/location',getuserinfo,function (req,res,next) {
+router.get('/location',function (req,res,next) {
     //进入到这个页面的时候，通过授权来获取用户信息
     var userinfo =req.userinfoJson;
     userinfo.openid = req.query.openid;
