@@ -352,8 +352,8 @@ router.post('/defaultorg',function(req,res,next){
 router.get('/send',getuserinfo,function(req,res,next){
       var userinfo =req.userinfoJson;
 
-     userinfo.openid =req.query.openid||userinfo.openid;
-     req.session.openid = userinfo.openid;
+     req.session.openid =req.query.openid||userinfo.openid;
+     
       var openid = req.session.openid ;
       
      console.log('send openid:'+userinfo.openid);
