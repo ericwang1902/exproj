@@ -614,12 +614,15 @@ router.get('/sendlist',function(req,res,next){
               layout:false,
               openid:openid,
               defaultsend:result.loc,
-              defaultorg:result.sysuser
-            //   helpers:{
-            //     getorgtype:function(type){
-            //         return enumerableconstants.expCompany[type].name;
-            //     }
-            // }
+              defaultorg:result.sysuser,
+              helpers:{
+                getorgtype:function(type){
+                    if(type=='' || type==null)
+                        return '';
+                    else
+                        return enumerableconstants.expCompany[type].name;
+                }
+            }
         });
       })     
   })

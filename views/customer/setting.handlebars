@@ -69,6 +69,7 @@
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
             <p>默认快递受理点</p>
+            {{#if defaultorg}}
             <div id="sender_info">
                         <div class="desc_area">
 				            <span class="desc_title">{{defaultorg.title}}</span>
@@ -77,10 +78,12 @@
                             <span class="desc">{{defaultorg.username}}</span>
                         </div>
                         <div class="desc_area">
-                            <span class="desc">{{defaultorg.type}}</span>
+                            <span class="desc">{{getorgtype defaultorg.type}}</span>
                         </div>
-                </div>
+             </div>
+             {{/if}}
             </div>
+            
             <div class="weui_cell_ft">进入设置</div>
         </a>
         <a class="weui_cell" href="/customer/defaultsend?openid={{openid}}">
