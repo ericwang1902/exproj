@@ -71,7 +71,7 @@ router.get('/resultinfo',function (req,res,next) {
                      case '8':
                         info='设置默认快递点成功!';
                         break; 
-                     case '8':
+                     case '9':
                         info='尚未维护寄件地址，请进入‘地址库’维护!';
                         break;                                             
                     default:
