@@ -680,7 +680,27 @@ function getuserinfo(req,res,next){
     var userinfoJson = JSON.parse(result);
     req.userinfoJson = userinfoJson;
     
-     return next();
+     fanModel.findOne({openid:openid},function (err,fan) {
+                if(err) console.log(err);
+
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        return next();
+                    })
+                }else{
+                    //已经有粉丝了
+                    console.log(fan);
+                    return next();
+                }     
+            }) 
+    
+     
 });
     
    
