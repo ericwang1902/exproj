@@ -640,6 +640,10 @@ router.get('/sendlist',function(req,res,next){
 
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req,res,next){
+    
+    if(req.query.openid){
+       return next;
+    }
     console.log('code:'+req.query.code);//获取微信重定向之后，生成的code 
     async.waterfall([
     //获取accesstoken
