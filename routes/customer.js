@@ -291,6 +291,8 @@ router.get('/defaultorg',function(req,res,next){
     sysuserModel.find({usertype:2},function(err,orgs){
         if(err) console.log(err);
         
+        console.log(orgs);
+        
         res.render('./customer/defaultorg',{
             layout:false,
             orgs:orgs,
