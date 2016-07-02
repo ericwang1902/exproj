@@ -109,24 +109,29 @@
             </div>
         </a>
     </div>
-    <form id="wb_form">
+    <form id="wb_form" method="POST" action="/customer/createorder?openid={{openid}}">
         <div class = "weui_cells weui_cells_access">           
             <div class = "weui_cell" >
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">物品描述</label></div>
                 <div class = "weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" placeholder = "物品类型" name="object_desc">
+                    <input class="weui_input" placeholder = "物品类型" name="goodsname">
                 </div>
             </div>
             <div class = "weui_cell">
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">备注</label></div>
                 <div class = "weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" placeholder = "备注" name="memo">
+                    <input class="weui_input" placeholder = "备注" name="goodsdes">
                 </div>
             </div>
         </div>
         <!--隐藏的收件人和寄件人的信息表单-->
-        <input class="weui_input" type="hidden" name="openid"  value="" type="text" placeholder="必填">
-        
+        <input class="weui_input" type="hidden" name="courierid"  value="{{courierid}}" type="text" placeholder="必填">
+        <!--收件人地址id-->
+        <input class="weui_input" type="hidden" name="receiveid"  value="{{recieveloc._id}}" type="text" placeholder="必填">
+        <!--寄件人地址id-->
+        <input class="weui_input" type="hidden" name="sendid"  value="{{sendloc._id}}" type="text" placeholder="必填">
+            
+
         <div class = "button_sp_area" id="btn">
             <input type="submit" class="weui_btn weui_btn_warn" value="提交订单">
         </div>

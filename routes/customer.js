@@ -8,6 +8,7 @@ var locationController = require('../controllers/locationController');
 var fanModel =require('../models/fanModel');
 var locationModel = require('../models/locationModel');
 var sysuserModel = require('../models/sysuserModel');
+var sysorderModel = require('../models/sysorderModel');
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});
@@ -635,7 +636,7 @@ router.get('/sendlist',function(req,res,next){
         });
       })     
   })
-
+  
 
 
 //通过用户授权，获取微信jstoken和用户信息

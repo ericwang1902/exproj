@@ -98,11 +98,39 @@ var userstatus=[
     }
 ]
 
+var orderstatus=[
+    {
+        num:0,
+        name:'未取件'
+    },
+    {
+        num:1,
+        name:'已取件'
+    },
+    {
+        num:2,
+        name:'运送中'  
+    },
+    {
+        num:3,
+        name:'已送达'
+    },
+    {
+        num:4,
+        name:'未知状态'
+    }
+    
+    
+    
+]
+
 var wechatinfo={
     appid:'wx45eb07597f1e004a',
     appsecret:'9c4c330a78978494d2465bc63fcf6e16',
     token:'exproj',
     encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD'
 }
+
+
 
 module.exports ={usertype:usertype,expCompany:expCompany,userstatus:userstatus,wechatinfo:wechatinfo};

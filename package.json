@@ -24,6 +24,7 @@
     "passport-local": "^1.0.0",
     "request": "^2.72.0",
     "serve-favicon": "~2.3.0",
+    "utf8": "^2.1.1",
     "wechat": "^2.0.3",
     "wechat-api": "^1.28.0"
   },
