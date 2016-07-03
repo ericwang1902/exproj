@@ -492,6 +492,7 @@ router.get('/send',getuserinfo,function(req,res,next){
         // optional callback
         function(err, results){
             if(err)console.log(err);
+            console.log('result[2]:'+results[2]);
             res.render('./customer/send',{layout:false,openid:openid,recieveloc:results[0],sendloc:results[2],fan:results[1]});
         });
 })
