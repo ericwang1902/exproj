@@ -9,14 +9,87 @@ var fanModel =require('../models/fanModel');
 var locationModel = require('../models/locationModel');
 var sysuserModel = require('../models/sysuserModel');
 var sysorderModel = require('../models/sysorderModel');
+var uniqid = require('uniqid');
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});
 })
 
 router.post('/createorder',function (req,res,next) {
-    //存储到exproj的数据库中，同时做通知默认快递点的几个快递员，根据fan的orgid，去查找改orgid下面的快递员的openid，给这些openid发送模板消息。
+    //创建sysorder，同时做通知默认快递点的几个快递员，根据fan的orgid，
+    //去查找改orgid下面的快递员的openid，给这些openid发送模板消息。
     //当快递员点击进入模板消息，可以在网页内拨打用户电话，页面上有取件按钮。
+    var openid = req.query.openid;
+    var sendid =req.body.sendid;
+    var recieveid = req.body.receiveid;
+    var goodsname = req.body.goodsname;
+    var goodsdes = req.body.goodsdes;
+    
+    try{
+        async.waterfall([
+            function(callback){
+              //查找到sendloc
+              locationModel.findOne({_id:sendid},function(err,sendloc){
+                if(err) console.log(err);
+                
+                callback(null,sendloc);  
+              })
+            },
+            function(sendloc,callback){
+               //查找recieveloc
+                locationModel.findOne({_id:recieveid},function(err,recieveloc){
+                  if(err) console.log(err);
+                  
+                  callback(null,sendloc,recieveloc); 
+                })           
+            }, 
+            function(sendloc,recieveloc,callback){
+              fanModel.findOne({openid:openid},function(err,fan){
+                  if(err) console.log(err);
+                  
+                  callback(null,sendloc,recieveloc,fan);
+              })  
+            },      
+            function(sendloc,recieveloc,fan,callback){           
+                //创建订单
+               var sysorder  = new sysorderModel({
+                   fanopenid:openid,
+                   ordercode:uniqid(),//订单号
+                   goodsname:goodsname,
+                   goodsdes:goodsdes,
+                   recieveid:recieveloc._id,
+                   sendid:sendloc._id,
+                   orgid:fan._id                                                             
+               })
+               sysorder.save(function(err,sysorder){
+                   if(err) console.log(err);
+                   
+                   callback(null,sysorder);
+               })
+                
+            },
+            function(sysorder,callback){
+                //查找到sysorder.orgid的courierid对应的sysuser
+                sysuserModel.find({orgid:sysorder.orgid},function(err,couriers){
+                    if(err) console.log(err);
+                  
+                    //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
+                    for(i in couriers){
+                        wechatjs.sendtext(i.openid,'hello');
+                    }  
+                })
+                
+            }
+        ],function(err,result){
+            
+        })
+        
+    }catch(err){
+        
+    }
+    
+    
+    
     
     console.log(req.body);
 })

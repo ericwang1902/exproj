@@ -3,7 +3,8 @@ var Schema   = mongoose.Schema;
 
 var sysorderSchema = new Schema({
 	"status" : String,//enumberableConstants.orderstatus
-	"logisticorder" : String,//快递单号
+	"logisticorder" : String,////下单给快递鸟的时候设置
+	"fanopenid":String,//创建的order的时候获取
 	"courierid" : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'sysuser'
@@ -11,30 +12,30 @@ var sysorderSchema = new Schema({
 	"orgid" : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'sysuser'
-	},
+	},//创建的order的时候获取
 	"logs" : Array,
-	"customername" : String,
-	"customerpwd" : String,
-	"sendsite" : String,
-	"shippercode" : String,
+	"customername" : String,//下单给快递鸟的时候设置
+	"customerpwd" : String,//下单给快递鸟的时候设置
+	"sendsite" : String,//下单给快递鸟的时候设置
+	"shippercode" : String,//下单给快递鸟的时候设置
 	"ordercode" : String,//系统内的订单编号
-	"paytype" : String,
-	"exptype" : String,
+	"paytype" : String,//下单给快递鸟的时候设置
+	"exptype" : String,//下单给快递鸟的时候设置
 	"receiveid" : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'location'
-	},
+	},//创建的order的时候获取
 	"sendid" : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'location'
-	},
-	"goodsname" : String,
-	"goodsdes":String,//后加的属性
-	"isreturnprinttemplate" : String,
-	"ebusinessid" : String,
-	"requesttype" : String,
-	"datasign" : String,
-	"datatype" : String
+	},//创建的order的时候获取
+	"goodsname" : String,//创建的order的时候获取
+	"goodsdes":String,//创建的order的时候获取
+	"isreturnprinttemplate" : String,//下单给快递鸟的时候设置
+	"ebusinessid" : String,//下单给快递鸟的时候设置
+	"requesttype" : String,//下单给快递鸟的时候设置
+	"datasign" : String,//下单给快递鸟的时候设置
+	"datatype" : String//下单给快递鸟的时候设置
 });
 
 module.exports = mongoose.model('sysorder', sysorderSchema);
