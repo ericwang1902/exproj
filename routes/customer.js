@@ -67,21 +67,18 @@ router.post('/createorder',function (req,res,next) {
                    callback(null,sysorder);
                })
                 
-            },
-            function(sysorder,callback){
-                //查找到sysorder.orgid的courierid对应的sysuser
-                sysuserModel.find({orgid:sysorder.orgid},function(err,couriers){
+            }
+        ],function(err,result){
+            //查找到sysorder.orgid的courierid对应的sysuser
+                sysuserModel.find({orgid:result.orgid},function(err,couriers){
                     if(err) console.log(err);
                   
                     //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
                     for(i in couriers){
                         wechatjs.sendtext(i.openid,'hello');
-                    }  
+                    }
+                     res.redirect('/courier/resultinfo?result=10&openid='+openid);
                 })
-                
-            }
-        ],function(err,result){
-            
         })
         
     }catch(err){
