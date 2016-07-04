@@ -134,4 +134,4 @@ var wechatinfo={
 
 
 
-module.exports ={usertype:usertype,expCompany:expCompany,userstatus:userstatus,wechatinfo:wechatinfo};
+module.exports ={orderstatus:orderstatus,usertype:usertype,expCompany:expCompany,userstatus:userstatus,wechatinfo:wechatinfo};
