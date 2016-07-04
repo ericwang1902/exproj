@@ -72,6 +72,7 @@ router.post('/createorder',function (req,res,next) {
             //查找到sysorder.orgid的courierid对应的sysuser
                 sysuserModel.find({orgid:result.orgid},function(err,couriers){
                     if(err) console.log(err);
+                    console.log(couriers);
                   
                     //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
                     for(i in couriers){
