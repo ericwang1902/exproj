@@ -132,6 +132,15 @@ $(function(){
                     pageEnd = num * counter;
                     pageStart = pageEnd - num;
                     for(var i = pageStart; i < pageEnd; i++){
+                      
+                       if((i + 1) >= data.length){
+                          alert(data.length)
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
                         result +='<a class="weui_cell" href="">'
                                   +'<div class="weui_cell_bd weui_cell_primary">'
                                     +'<div id="receiver_info">'
@@ -148,14 +157,7 @@ $(function(){
                                 +'</div>'
                                 +'<div class="weui_cell_ft">详情</div>'
                               +'</a>'
-                        if((i + 1) >= data.length){
-                          alert(data.length)
-                            // 锁定
-                            me.lock();
-                            // 无数据
-                            me.noData();
-                            break;
-                        }
+  
                     }
                     // 为了测试，延迟1秒加载
                     setTimeout(function(){
