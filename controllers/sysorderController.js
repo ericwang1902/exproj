@@ -24,6 +24,7 @@ module.exports = {
     listapi:function(openid,req,res){
         sysorderModel
         .find({fanopenid:openid})
+        .sort([['orderdate', -1]])
         .populate('sendid')
         .populate('receiveid')
         .exec(function(err,orders){
