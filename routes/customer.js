@@ -80,7 +80,7 @@ router.post('/createorder',function (req,res,next) {
                     //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
                     for(i in couriers){
                         console.log('i in couriers:'+couriers[i].openid);
-                        wechatjs.sendtext(couriers[i].openid,'hello');
+                        wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
                     }
                      res.redirect('/courier/resultinfo?result=10&openid='+openid);
                 })
