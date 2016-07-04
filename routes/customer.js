@@ -543,10 +543,9 @@ router.post('/send',function(req,res,next){
 
 router.get('/sendrecord',function(req,res,next){
     var openid = req.query.openid;
-    
-    async.waterfall([
-        function(callback){
-            //根据openid查找orderlist
+       
+       try{
+        //根据openid查找orderlist
             sysorderModel
             .find({fanopenid:openid})
             .populate('sendid')
@@ -555,14 +554,13 @@ router.get('/sendrecord',function(req,res,next){
                 if(err) console.log(err);
                 
                 console.log(orders);
+                res.render('./customer/sendrecord',{layout:false,openid:openid,orders:orders});
             })
-        }
-    ],function(err,result){
-        
-    })
+        }catch(err){
+            res.redirect('/courier/resultinfo?result=-1&openid='+openid);
+                    
+       }
 
-    
-    res.render('./customer/sendrecord',{layout:false,openid:openid});
 })
 
 router.get('/locnav',function(req,res,next){

@@ -74,8 +74,12 @@ router.get('/resultinfo',function (req,res,next) {
                         break; 
                      case '9':
                         info='设置寄件人出错！';
+                        break;   
+                     case '10':
+                        info='下单成功！';
                         break;                                             
                     default:
+                        info='出错了！';
                         break;
                 }
                 return info;
@@ -124,8 +128,12 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                     case '9':
                         cs='weui_icon_warn';
-                        break;            
+                        break;     
+                    case '10':
+                        cs='weui_icon_success';
+                        break;                                 
                     default:
+                        cs='weui_icon_warn';                   
                         break;
                 }
                 return cs;
