@@ -20,6 +20,19 @@ module.exports = {
             return res.json(sysorders);
         });
     },
+    
+    listapi:function(openid,req,res){
+        sysorderModel.find({fanopenid:openid},function(err,orders){
+            if(err) {
+                return res.json(500, {
+                    message: 'Error getting sysorder.'
+                });
+            }
+            return res.json(orders);
+        })
+        
+    },
+    
 
     /**
      * sysorderController.show()

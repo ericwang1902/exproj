@@ -10,6 +10,7 @@ var locationModel = require('../models/locationModel');
 var sysuserModel = require('../models/sysuserModel');
 var sysorderModel = require('../models/sysorderModel');
 var uniqid = require('uniqid');
+var sysorderController = require('../controllers/sysorderController');
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});
@@ -561,6 +562,11 @@ router.get('/sendrecord',function(req,res,next){
                     
        }
 
+})
+router.get('/sendrecordapi',function(req,res,next){
+    var openid =req.session.openid || req.query.openid;
+    
+    sysorderController.listapi(openid,req,res);
 })
 
 router.get('/locnav',function(req,res,next){

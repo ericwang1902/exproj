@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/lib/weui.css">
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/css/jquery-weui.css">
+<link rel="stylesheet" href="/js/dropload/dropload.css">
 
  <style type="text/css">
         body {
@@ -65,15 +66,11 @@
 
 <body  style="height:100%">
 <div class="weui_tab">
-  <div ontouchstart id="scrolldiv" class="weui_tab_bd">
+  <div id="scrolldiv" class="weui_tab_bd">
     
     <div id="list" class="weui_cells weui_cells_access">
     </div>
-    
-    <div class="weui-infinite-scroll">
-      <div class="infinite-preloader"></div><!-- 菊花 -->
-      正在加载... <!-- 文案，可以自行修改 -->
-      </div>
+   
    
   </div>
   <div class="weui_tabbar">
@@ -113,16 +110,67 @@
 </style>
 <script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
-
-    <script>
-      var loading = false;
-      $("#scrolldiv").infinite().on("infinite", function() {
-        if(loading) return;
-        loading = true;
-        setTimeout(function() {
-          $("#list").append("<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》英文版有1100多页，教学内容非常丰富，不但涵盖了人工智能基础、问题求解、知识推理与规划等经典内容，而且还包括不确定知识与推理、机器学习、通讯感知与行动等专门知识的介绍。目前我们为本科生开设的学科基础必修课“人工智能导论”主要介绍其中的经典内容，而研究生必修的核心课程“人工智能原理”主要关注其中的专门知识。其实《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》也适合希望提高自身计算系统设计水平的广大应用计算技术的社会公众，对参加信息学奥林匹克竞赛和ACM程序设计竞赛的选手及其教练员也有一定的参考作用。</p>");
-          loading = false;
-        }, 2000);
-      });
-    </script>
+<script src="/js/dropload/dropload.js"></script>
+<script src="/js/dropload/dropload.min.js"></script>
+<script>
+$(function(){
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,pageEnd = 0;
+    // dropload
+    $('#scrolldiv').dropload({
+        scrollArea : window,
+        loadDownFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: '/customer/sendrecordapi?openid='+{{openid}},
+                dataType: 'json',
+                success: function(data){
+                    var result = '';
+                    counter++;
+                    pageEnd = num * counter;
+                    pageStart = pageEnd - num;
+                    for(var i = pageStart; i < pageEnd; i++){
+                        result +='<a class="weui_cell" href="">'
+                                  +'<div class="weui_cell_bd weui_cell_primary">'
+                                    +'<div id="receiver_info">'
+                                      +'<div class="desc_area">'
+				                                +'<span class="desc_title">'+'test'+'</span>'
+                                      +'</div>'
+                                      +'<div class="desc_area">'
+                                        +'<span class="desc">'+'test'+'</span>'
+                                      +'</div>'
+                                      +'<div class="desc_area">'
+                                       +'<span class="desc">'+'test'+'</span>'
+                                      +'</div>'
+                                  +'</div>'
+                                +'</div>'
+                                +'<div class="weui_cell_ft">详情</div>'
+                              +'</a>'
+                        if((i + 1) >= data.lists.length){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
+                    }
+                    // 为了测试，延迟1秒加载
+                    setTimeout(function(){
+                        $('#list').append(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },1000);
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        }
+    });
+});
+</script>
 </body>
