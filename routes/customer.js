@@ -60,7 +60,7 @@ router.post('/createorder',function (req,res,next) {
                    goodsdes:goodsdes,
                    recieveid:recieveloc._id,
                    sendid:sendloc._id,
-                   orgid:fan._id                                                             
+                   orgid:fan.orgid                                                             
                })
                console.log('sysorder orgid:'+sysorder.orgid);
                sysorder.save(function(err,sysorder){
@@ -760,7 +760,7 @@ function getuserinfo(req,res,next){
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
-            wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
+            //wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
             var userinfooptions = {
                 url:'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
             }

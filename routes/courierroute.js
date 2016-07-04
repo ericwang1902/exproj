@@ -135,6 +135,14 @@ router.get('/resultinfo',function (req,res,next) {
 
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req,res,next){
+    
+    if(req.query.openid){
+        var userinfoJson={
+            openid:req.query.openid
+        }
+         req.userinfoJson = userinfoJson;
+       return next();
+    }
     console.log('code:'+req.query.code);//获取微信重定向之后，生成的code 
     async.waterfall([
     //获取accesstoken
@@ -158,26 +166,47 @@ function getuserinfo(req,res,next){
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
-            wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
+          //  wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
             var userinfooptions = {
                 url:'https://api.weixin.qq.com/sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN'
             }
-            //这个body就是用户信息
-            request(userinfooptions,function (error,response,body) {
-             
-            callback(null, body);
-            })      
+            fanModel.findOne({openid:openid},function (err,fan) {
+                if(err) console.log(err);
+
+                if(!fan){
+                    //创建粉丝数据
+                    var fan = new fanModel({
+                        openid:openid
+                    })
+                    fan.save(function (err,fan) {
+                        if(err) console.log(err);
+                        
+                        //这个body就是用户信息
+                        request(userinfooptions,function (error,response,body) {
+                        callback(null, body);
+                        })    
+                    })
+                }else{
+                    //已经有粉丝了
+                    console.log(fan);
+                    //这个body就是用户信息
+                    request(userinfooptions,function (error,response,body) {
+                    callback(null, body);
+                    })    
+                }     
+            })  
+      
     }
 ], function (err, result) {
     // result now equals 'done'
     console.log(result);
     var userinfoJson = JSON.parse(result);
     req.userinfoJson = userinfoJson;
-    
-    
-    return next();
+     
+     return next();
 });
     
+   
 }
 
 
