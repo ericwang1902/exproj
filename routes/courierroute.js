@@ -5,6 +5,7 @@ var request =require('request');
 var enumerableconstants = require('../models/enumerableConstants')
 var async = require('async');
 var sysusercontroller = require('../controllers/sysuserController')
+var fanModel =require('../models/fanModel');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
