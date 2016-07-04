@@ -86,6 +86,7 @@ router.post('/createorder',function (req,res,next) {
                             if(err) console.log(err);
                             
                             if(i == couriers.length-1){
+                                console.log('test:'+i);
                                 res.redirect('/courier/resultinfo?result=10&openid='+openid);
                             }
                         })
