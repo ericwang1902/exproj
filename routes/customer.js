@@ -83,15 +83,10 @@ router.post('/createorder',function (req,res,next) {
                        // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
                         wechatjs.sendTemplate(couriers[i].openid,'','书籍','张三','18501609618',function(err,result){
                             if(err) console.log(err);
-                            console.log('couriers length:'+couriers.length);
-                            console.log(i+' in couriers:'+couriers[i].openid);
-                            console.log('result:'+result);
-                            if(i == couriers.length-1){
-                                console.log('test:'+i);
-                                res.redirect('/courier/resultinfo?result=10&openid='+openid);
-                            }
+                            console.log('result:'+JSON.stringify(result));
                         })
                     }
+                    res.redirect('/courier/resultinfo?result=10&openid='+openid);
                     
                 })
         })
