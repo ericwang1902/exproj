@@ -543,6 +543,14 @@ router.post('/send',function(req,res,next){
 
 router.get('/sendrecord',function(req,res,next){
     var openid = req.query.openid;
+    //根据openid查找orderlist
+    sysorderModel.find({fanopenid:openid},function(err,orders){
+        if(err) console.log(err);
+        
+        console.log(orders);
+        
+    })
+    
     res.render('./customer/sendrecord',{layout:false,openid:openid});
 })
 
