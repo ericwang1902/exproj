@@ -22,7 +22,11 @@ module.exports = {
     },
     
     listapi:function(openid,req,res){
-        sysorderModel.find({fanopenid:openid},function(err,orders){
+        sysorderModel
+        .find({fanopenid:openid})
+        .populate('sendid')
+        .populate('receiveid')
+        .exec(function(err,orders){
             if(err) {
                 return res.json(500, {
                     message: 'Error getting sysorder.'
@@ -30,6 +34,7 @@ module.exports = {
             }
             return res.json(orders);
         })
+
         
     },
     
