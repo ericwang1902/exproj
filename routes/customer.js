@@ -58,11 +58,11 @@ router.post('/createorder',function (req,res,next) {
                    ordercode:uniqid(),//订单号
                    goodsname:goodsname,
                    goodsdes:goodsdes,
-                   recieveid:recieveloc._id,
+                   receiveid:recieveloc._id,
                    sendid:sendloc._id,
                    orgid:fan.orgid                                                             
                })
-               console.log('sysorder orgid:'+sysorder.orgid);
+               console.log('sysorder orgid:'+sysorder.recieveid);
                sysorder.save(function(err,sysorder){
                    if(err) console.log(err);
                    
@@ -543,13 +543,19 @@ router.post('/send',function(req,res,next){
 
 router.get('/sendrecord',function(req,res,next){
     var openid = req.query.openid;
-    //根据openid查找orderlist
-    sysorderModel.find({fanopenid:openid},function(err,orders){
-        if(err) console.log(err);
+    
+    // async.waterfall([
+    //     function(callback){
+    //         //根据openid查找orderlist
+    //         sysorderModel
+    //         .find({fanopenid:openid})
+    //         .populate('sendid')
+    //         .populate('receiveid')
+    //     }
+    // ],function(err,result){
         
-        console.log(orders);
-        
-    })
+    // })
+
     
     res.render('./customer/sendrecord',{layout:false,openid:openid});
 })
