@@ -62,6 +62,7 @@ router.post('/createorder',function (req,res,next) {
                    sendid:sendloc._id,
                    orgid:fan._id                                                             
                })
+               console.log('sysorder orgid:'+sysorder.orgid);
                sysorder.save(function(err,sysorder){
                    if(err) console.log(err);
                    
