@@ -72,6 +72,7 @@ router.post('/createorder',function (req,res,next) {
             }
         ],function(err,result){
             //查找到sysorder.orgid的courierid对应的sysuser
+                console.log('result orgid:'+result);
                 sysuserModel.find({orgid:result.orgid},function(err,couriers){
                     if(err) console.log(err);
                     console.log(couriers);
