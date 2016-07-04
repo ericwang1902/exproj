@@ -478,6 +478,7 @@ router.get('/send',getuserinfo,function(req,res,next){
                     
                             locationModel.findOne({_id:sendloc},function(err,sendloc){
                             if(err) console.log(err);
+                            req.session.sendloc = sendloc;
                             callback(null, sendloc);
                             
                             })
