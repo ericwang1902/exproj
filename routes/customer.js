@@ -11,6 +11,7 @@ var sysuserModel = require('../models/sysuserModel');
 var sysorderModel = require('../models/sysorderModel');
 var uniqid = require('uniqid');
 var sysorderController = require('../controllers/sysorderController');
+var moment = require('moment')
 
 router.get('/order1',function (req,res,next) {
     res.render('./customer/order1',{layout: false});
@@ -62,7 +63,8 @@ router.post('/createorder',function (req,res,next) {
                    receiveid:recieveloc._id,
                    sendid:sendloc._id,
                    orgid:fan.orgid,
-                   status:enumerableconstants.orderstatus[0].num                                                     
+                   status:enumerableconstants.orderstatus[0].num,
+                   orderdate:moment()                                                   
                })
                console.log('sysorder orgid:'+sysorder.recieveid);
                sysorder.save(function(err,sysorder){

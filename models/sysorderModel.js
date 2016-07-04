@@ -35,7 +35,8 @@ var sysorderSchema = new Schema({
 	"ebusinessid" : String,//下单给快递鸟的时候设置
 	"requesttype" : String,//下单给快递鸟的时候设置
 	"datasign" : String,//下单给快递鸟的时候设置
-	"datatype" : String//下单给快递鸟的时候设置
+	"datatype" : String,//下单给快递鸟的时候设置
+	"orderdate":Date//下单的时间
 });
 
 module.exports = mongoose.model('sysorder', sysorderSchema);
