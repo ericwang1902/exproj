@@ -127,7 +127,7 @@ $(function(){
                 url: '/customer/sendrecordapi?openid={{openid}}',
                 dataType: 'json',
                 success: function(data){
-                  if(data.lengh==0){
+                  if(data.lengh>0){
                     var result = '';
                     counter++;
                     pageEnd = num * counter;
