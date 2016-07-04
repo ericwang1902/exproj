@@ -128,7 +128,8 @@ var wechatinfo={
     appid:'wx45eb07597f1e004a',
     appsecret:'9c4c330a78978494d2465bc63fcf6e16',
     token:'exproj',
-    encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD'
+    encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD',
+    templateId:'bAencoI6OcRtG9SRaIkLlrxEk0upreRrHFSu9EyhNYk'
 }
 
 

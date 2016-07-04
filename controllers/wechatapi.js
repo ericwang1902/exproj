@@ -50,8 +50,37 @@ module.exports={
             
             callback(null,imgurl);//imgurl是二维码的图片链接地址
         })
-    }
+    },
     
     //模板消息
+    sendTemplate:function (openid,url,content,sendname,sendtele,callback) {
+        var templateId=enumberableconstants.wechatinfo.templateId;
+        // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）
+        var url='http://www.baidu.com';
+        var data = {
+            "first": {
+                "value":"客户下单啦！",
+                "color":"#173177"
+            },
+            "keyword1":{
+                "value":content,
+                "color":"#173177"
+            },
+            "keyword2": {
+                "value":sendname,
+                "color":"#173177"
+            },
+            "keyword3": {
+                "value":sendtele,
+                "color":"#173177"
+            },
+            "remark":{
+                "value":"请点击进入处理！",
+                "color":"#173177"
+            }
+        };
+        api.sendTemplate(openid, templateId, url, data, callback);
+        
+    }
 }
 
