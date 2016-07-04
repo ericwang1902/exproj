@@ -124,7 +124,7 @@ $(function(){
         loadDownFn : function(me){
             $.ajax({
                 type: 'GET',
-                url: '/customer/sendrecordapi?openid='+{{openid}},
+                url: '/customer/sendrecordapi?openid={{openid}}',
                 dataType: 'json',
                 success: function(data){
                     var result = '';
