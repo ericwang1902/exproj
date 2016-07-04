@@ -112,6 +112,7 @@
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script src="/js/dropload/dropload.js"></script>
 <script src="/js/dropload/dropload.min.js"></script>
+<script src="/node_modules/moment/min/moment.min.js"></script>
 <script>
 $(function(){
     var counter = 0;
@@ -145,7 +146,7 @@ $(function(){
                                   +'<div class="weui_cell_bd weui_cell_primary">'
                                     +'<div id="receiver_info">'
                                       +'<div class="desc_area">'
-				                                +'<span class="desc_title">'+data[i].orderdate+'</span>'
+				                                +'<span class="desc_title">'+moment(data[i].orderdate).format("dddd, MMMM Do YYYY, h:mm:ss a")+'</span>'
                                       +'</div>'
                                       +'<div class="desc_area">'
                                         +'<span class="desc">'+data[i].receiveid.provincename+data[i].receiveid.cityname+data[i].receiveid.expareaname+'</span>'
