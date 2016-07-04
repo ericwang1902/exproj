@@ -127,7 +127,6 @@ $(function(){
                 url: '/customer/sendrecordapi?openid={{openid}}',
                 dataType: 'json',
                 success: function(data){
-                  if(data.length>0){
                     var result = '';
                     counter++;
                     pageEnd = num * counter;
@@ -163,7 +162,6 @@ $(function(){
                         // 每次数据加载完，必须重置
                         me.resetload();
                     },1000);
-                    }
                 },
                 error: function(xhr, type){
                     alert('Ajax error!');
