@@ -65,8 +65,32 @@
 
 <body style="height:100%">
 <div class="weui_tab">
-  <div id="list" class="weui_tab_bd">
-
+  <div class="weui_tab_bd">
+    
+    <div id="list" class="weui_cells weui_cells_access">
+      {{#each orders}}
+      <a class="weui_cell" href="/customer/locdetail?locid={{_id}}">
+        <div class="weui_cell_bd weui_cell_primary">
+                   <div id="sender_info">
+                        <div class="desc_area">
+				            <span class="desc_title">{{ordercode}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">收件人:{{receiveid.provincename}}{{receiveid.cityname}}{{receiveid.expareaname}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">{{receiveid.address}}</span>
+                        </div>
+                        <div class="desc_area">
+                            <span class="desc">{{status}}</span>
+                        </div>
+                </div>
+        </div>
+        <div class="weui_cell_ft">详情</div>
+      </a>
+      {{/each}}
+    </div>
+    
     <div class="weui-infinite-scroll">
       <div class="infinite-preloader"></div><!-- 菊花 -->
       正在加载... <!-- 文案，可以自行修改 -->
