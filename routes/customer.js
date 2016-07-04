@@ -81,7 +81,7 @@ router.post('/createorder',function (req,res,next) {
                     for(i in couriers){
                         console.log('i in couriers:'+couriers[i].openid);
                        // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
-                        wechatjs.sendTemplate(couriers[i].openid,'','张三','18501609618',function(err,result){
+                        wechatjs.sendTemplate(couriers[i].openid,'','书籍','张三','18501609618',function(err,result){
                             if(err) console.log(err);
                             
                             if(i == couriers.length-1){
