@@ -46,6 +46,7 @@ router.post('/createorder',function (req,res,next) {
             function(sendloc,recieveloc,callback){
               fanModel.findOne({openid:openid},function(err,fan){
                   if(err) console.log(err);
+                  console.log('fan:'+fan);
                   
                   callback(null,sendloc,recieveloc,fan);
               })  
@@ -86,10 +87,6 @@ router.post('/createorder',function (req,res,next) {
         
     }
     
-    
-    
-    
-    console.log(req.body);
 })
 
 router.get('/location',function (req,res,next) {
