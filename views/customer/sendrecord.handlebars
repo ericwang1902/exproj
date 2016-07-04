@@ -116,6 +116,29 @@
 <script src="/node_modules/moment/min/locales.min.js"></script>
 <script>
 moment.locale('zh-cn')
+var getstatusname=function(num){
+    var name ='';
+    switch(num){
+        case '0':
+            name='未取件';
+            break;
+        case '1':
+            name='已取件';
+            break;
+        case '2':
+            name='运送中';
+            break;
+        case '3':
+            name='已送达';
+            break;   
+        case '4':
+            name='未知状态';
+            break;   
+       default:
+           break;                                      
+    }
+    return name;
+}
 $(function(){
     var counter = 0;
     // 每页展示4个
@@ -157,7 +180,7 @@ $(function(){
                                        +'<span class="desc">收件人:'+data[i].receiveid.name+'</span>'
                                       +'</div>'
                                       +'<div class="desc_area">'
-                                       +'<span class="desc">状态:'+data[i].status+'</span>'
+                                       +'<span class="desc">状态:'+getstatusname(data[i].status)+'</span>'
                                       +'</div>'
                                   +'</div>'
                                 +'</div>'
