@@ -79,7 +79,8 @@ router.post('/createorder',function (req,res,next) {
                   
                     //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
                     for(i in couriers){
-                        console.log('i in couriers:'+couriers[i].openid);
+                        console.log('couriers length:'+couriers.length);
+                        console.log(i+' in couriers:'+couriers[i].openid);
                        // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
                         wechatjs.sendTemplate(couriers[i].openid,'','书籍','张三','18501609618',function(err,result){
                             if(err) console.log(err);
