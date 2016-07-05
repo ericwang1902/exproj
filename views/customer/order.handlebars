@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
- <title>选择寄件人</title>      
+ <title>订单详情</title>      
 <!--<link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.2/style/weui.css"/>
 <script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>-->
 <!--<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
@@ -67,20 +67,43 @@
     <form  class="weui_tab" method="POST"  action="/customer/defaultsend?openid={{openid}}">
        <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
-            {{#each locs}}
+            {{#if order}}
                 <label class="weui_cell weui_check_label">
                     <div class="weui_cell_bd weui_cell_primary">
-                        <div id="sender_info">
+                        <div>
                                 <div class="desc_area">
-                                    <span class="desc_title">{{name}} {{tele}}</span>
+                                    <span class="desc_title">收件人信息</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{provincename}}{{cityname}}{{expareaname}}</span>
+                                    <span class="desc">{{receiveid.provincename}}{{receiveid.cityname}}{{receiveid.expareaname}}</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{address}}</span>
+                                    <span class="desc">{{receiveid.address}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{receiveid.name}} {{receiveid.tele}}</span>
                                 </div>
                         </div>
+                        <div>
+                                <div class="desc_area">
+                                    <span class="desc_title">寄件人信息</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{sendid.provincename}}{{sendid.cityname}}{{sendid.expareaname}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{sendid.address}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{sendid.name}} {{sendid.tele}}</span>
+                                </div>
+                        </div>
+                        <div>
+                                <div class="desc_area">
+                                    <span class="desc">状态：{{getstatusname status}}</span>
+                                </div>
+                        </div>
+                        
                     </div>
                     <div class="weui_cell_ft">
                     <input type="radio" class="weui_check" required value="{{_id}}" name="defaultsendradio" id="{{_id}}">

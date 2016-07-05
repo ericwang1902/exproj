@@ -13,8 +13,35 @@ var uniqid = require('uniqid');
 var sysorderController = require('../controllers/sysorderController');
 var moment = require('moment')
 
-router.get('/order1',function (req,res,next) {
-    res.render('./customer/order1',{layout: false});
+router.get('/order',function (req,res,next) {
+    var openid =req.query.openid || req.session.openid;
+    var orderid = req.query.orderid;
+    
+    try{
+    //查找改订单详情
+    sysorderModel
+    .findOne({_id:orderid})
+    .populate('sendid')
+    .populate('receiveid')
+    .exec(function(err,order){
+        if(err) console.log(err);
+        
+        res.render('./customer/order',{
+            layout: false,
+            order:order,
+            helpers:{
+                getstatusname:function(num){
+                    return enumerableconstants.orderstatus[num].name;
+                }
+            }
+        });
+    })
+    }catch(err){
+        res.redirect('/courier/resultinfo?result=-1&openid='+req.body.openid);
+    }
+    
+    
+    
 })
 
 router.post('/createorder',function (req,res,next) {
