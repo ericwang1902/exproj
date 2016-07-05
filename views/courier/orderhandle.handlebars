@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/lib/weui.css">
 <link rel="stylesheet" href="/node_modules/jquery-weui/dist/css/jquery-weui.css">
-<script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
+
  <style type="text/css">
         body {
             margin: auto;
@@ -64,7 +64,7 @@
 </head>
 
 <body style="height:100%">
-    <form  class="weui_tab" method="POST"  action="/customer/defaultsend?openid={{openid}}">
+    <form id="pickform" class="weui_tab" method="POST"  action="/customer/defaultsend?openid={{openid}}">
        <div class="weui_tab_bd">
            <div class="weui_cells_title">运单信息</div>
             <div class="weui_cells weui_cells_access">
@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class="weui_tabbar">
-            <button type="submit" class="weui_btn weui_btn_primary">确认取件</button>
+            <button id="submitbtn" type="submit" class="weui_btn weui_btn_primary">确认取件</button>
         </div>
     </form>
 <style>
@@ -144,6 +144,23 @@ body {
     width: 5em;
 }
 </style>
-
+<script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
+<script>
+    $('#submitbtn').on('click',function(event){
+
+        
+        $.confirm("自定义的消息内容", function() {
+        //点击确认后的回调函数
+            $('#submitbtn').attr('disabled',true);
+            $('#submitbtn').attr('value','提交中...');
+            $('#submitbtn').css('background','#999999');
+            $('#pickform').submit();
+        }, function() {
+        //点击取消后的回调函数
+        
+        });
+
+    })
+</script>
 </body>
