@@ -67,7 +67,6 @@
     <form  class="weui_tab" method="POST"  action="/customer/defaultsend?openid={{openid}}">
        <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
-            {{#if order}}
                 <label class="weui_cell weui_check_label">
                     <div class="weui_cell_bd weui_cell_primary">
                         <div>
@@ -105,13 +104,7 @@
                         </div>
                         
                     </div>
-                    <div class="weui_cell_ft">
-                    <input type="radio" class="weui_check" required value="{{_id}}" name="defaultsendradio" id="{{_id}}">
-                    <span class="weui_icon_checked"></span>
-                    </div>
                 </label>       
-            
-            {{/if}}
             </div>
         </div>
         <div class="weui_tabbar">
