@@ -133,7 +133,7 @@
             
 
         <div class = "button_sp_area" id="btn">
-            <input type="submit" class="weui_btn weui_btn_warn" value="提交订单">
+            <input id='sumitbtn' type="submit" class="weui_btn weui_btn_warn" value="提交订单">
         </div>
     </form>
  
@@ -172,4 +172,10 @@
 
 <script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
+<script>
+    $('#sumitbtn').on('click',function(event){
+        $('#sumitbtn').attr('disabled',true);
+        $('#sumitbtn').attr('value','提交中...');
+    })
+    </script>
 </body>
