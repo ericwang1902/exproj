@@ -68,7 +68,6 @@
        <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
             {{#if order}}
-                <label class="weui_cell weui_check_label">
                     <div class="weui_cell_bd weui_cell_primary">
                         <div>
                                 <div class="desc_area">
@@ -87,6 +86,8 @@
                                     <span class="desc">{{order.receiveid.name}} {{order.receiveid.tele}}</span>
                                 </div>
                         </div>
+                   </div>  
+                   <div class="weui_cell_bd weui_cell_primary">
                         <div>
                                 <div class="desc_area">
                                     <span class="desc_title">寄件人信息</span>
@@ -100,18 +101,20 @@
                                 <div class="desc_area">
                                     <span class="desc">{{order.sendid.name}} {{order.sendid.tele}}</span>
                                 </div>
+
+                        </div>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">                        
+                        <div>
                                 <div class="desc_area">
                                     <span class="desc">下单时间:{{getorderdate order.orderdate}}</span>
-                                </div>
-                        </div>
-                        <div>
+                                </div>                            
                                 <div class="desc_area">
                                     <span class="desc">状态：{{getstatusname order.status}}</span>
                                 </div>
                         </div>
                         
-                    </div>
-                </label>       
+                    </div>     
             
             {{/if}}
             </div>
