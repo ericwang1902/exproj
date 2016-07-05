@@ -148,17 +148,17 @@ body {
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
     $('#submitbtn').on('click',function(event){
-
-        
-        $.confirm("自定义的消息内容", function() {
-        //点击确认后的回调函数
             $('#submitbtn').attr('disabled',true);
             $('#submitbtn').attr('value','提交中...');
             $('#submitbtn').css('background','#999999');
+        $.confirm("自定义的消息内容", function() {
+        //点击确认后的回调函数
             $('#pickform').submit();
         }, function() {
-        //点击取消后的回调函数
-        
+        //点击取消后的回调函数ef4f4f
+            $('#submitbtn').attr('disabled',false);
+            $('#submitbtn').attr('value','确认取件');
+            $('#submitbtn').css('background','#04be02');
         });
 
     })
