@@ -54,7 +54,7 @@ module.exports={
     
     //模板消息发送给快递员
     sendTemplate1:function (openid,url,content,sendname,sendtele,callback) {
-        var templateId=enumberableconstants.wechatinfo.templateId;
+        var templateId=enumberableconstants.wechatinfo.templateId1;
         // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）
         //var url='http://www.baidu.com';
         var data = {
