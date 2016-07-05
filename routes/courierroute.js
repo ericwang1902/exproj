@@ -180,8 +180,26 @@ router.get('/orderhandle',function (req,res,next) {
     }catch(err){
         res.redirect('/courier/resultinfo?result=-1&openid='+openid);
     }
+})
+//订单状态修改,快递员取件接口
+router.post('/updateorder',function(req,res,next){
+    var openid = req.query.openid;//客户的openid
+    var targetstatus = req.body.targetstatus;
+    var orderid = req.body.orderid;
     
-
+    //更新订单状态，更新页面
+    sysorderModel.findOne({_id:orderid},function(err,order){
+        if(err) console.log(err);
+        
+        order.status=targetstatus;
+        order.save(function(err,result){
+            if(err) console.log(err);
+            
+            console.log(result);
+        res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+result._id)
+        })
+    })
+    
 })
 
 //通过用户授权，获取微信jstoken和用户信息
