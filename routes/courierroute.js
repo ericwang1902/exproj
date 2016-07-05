@@ -221,11 +221,12 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,callback){
             //发送模板消息
-         //   wechatjs.sendTemplate2(openid,enumerableconstants.wechatinfo.templateId2,'http://exproj.robustudio.com/',order.ordercode,'状态','张三','1231414',function(err,result){})
+            wechatjs.sendTemplate2(openid,enumerableconstants.wechatinfo.templateId2,'http://exproj.robustudio.com/',order.ordercode,'状态','张三','1231414',function(err,result){})
             
+            callback(null,order);
         }
     ],function(err,result){
-        res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+result._id)
+        res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+orderid)
     
     })
     
