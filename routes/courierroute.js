@@ -196,25 +196,38 @@ router.get('/orderhandle',function (req,res,next) {
     }
 })
 //订单状态修改,快递员取件接口
-router.post('/updateorder',function(req,res,next){
+router.post('/pickupdateorder',function(req,res,next){
     var openid = req.query.openid;//客户的openid
     var targetstatus = req.body.targetstatus;
     var orderid = req.body.orderid;
     
-    //更新订单状态，更新页面
-    sysorderModel.findOne({_id:orderid},function(err,order){
-        if(err) console.log(err);
-        if(order.status =='0'){
-          order.status=targetstatus;   
-        }
-
-        order.save(function(err,result){
-            if(err) console.log(err);
+    async.waterfall([
+        function(callback){
+            //更新订单状态
+            sysorderModel.findOne({_id:orderid},function(err,order){
+                if(err) console.log(err);
+                
+                if(order.status == '0')
+                {
+                    order.status =targetstatus;
+                }
+                order.save(function(err,result){
+                    if(err) console.log(err);
+                    
+                    callback(null,result);
+                })
+            })
+        },
+        function(order,callback){
+            //发送模板消息
+            wechatjs.sendTemplate(openid,enumerableconstants.wechatinfo.templateId2,'http://exproj.robustudio.com/',order.ordercode,'状态','张三','1231414',function(err,result){})
             
-            console.log(result);
+        }
+    ],function(err,result){
         res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+result._id)
-        })
+    
     })
+    
     
 })
 

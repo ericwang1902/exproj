@@ -129,7 +129,8 @@ var wechatinfo={
     appsecret:'9c4c330a78978494d2465bc63fcf6e16',
     token:'exproj',
     encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD',
-    templateId:'bAencoI6OcRtG9SRaIkLlrxEk0upreRrHFSu9EyhNYk'
+    templateId:'bAencoI6OcRtG9SRaIkLlrxEk0upreRrHFSu9EyhNYk',//新订单提醒（OPENTM207719853）
+    templateId2:'dBPyanyWnu4l07WrSqEARUXbQVhGdNOdd80VzZJv11I'//订单状态提醒
 }
 
 

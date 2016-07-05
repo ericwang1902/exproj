@@ -52,8 +52,8 @@ module.exports={
         })
     },
     
-    //模板消息
-    sendTemplate:function (openid,url,content,sendname,sendtele,callback) {
+    //模板消息发送给快递员
+    sendTemplate1:function (openid,url,content,sendname,sendtele,callback) {
         var templateId=enumberableconstants.wechatinfo.templateId;
         // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）
         //var url='http://www.baidu.com';
@@ -79,8 +79,37 @@ module.exports={
                 "color":"#173177"
             }
         };
-        api.sendTemplate(openid, templateId, url, data, callback);
-        
-    }
+        api.sendTemplate(openid, templateId, url, data, callback);     
+    },
+    //模板消息发送给寄件人
+    sendTemplate2:function (openid,url,ordernum,orderstatus,orderdate,couriername,couriertele,callback) {
+        var templateId=enumberableconstants.wechatinfo.templateId2;
+        // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）
+        //var url='http://www.baidu.com';
+        var data = {
+            "first": {
+                "value":"已经确认接单！",
+                "color":"#173177"
+            },
+            "keyword1":{
+                "value":content,
+                "color":"#173177"
+            },
+            "keyword2": {
+                "value":orderstatus,
+                "color":"#173177"
+            },
+            "keyword3": {
+                "value":orderdate,
+                "color":"#173177"
+            },
+            "remark":{
+                "value":"为您服务的是:"+couriername+" "+couriertele,
+                "color":"#173177"
+            }
+        };
+        api.sendTemplate(openid, templateId, url, data, callback);     
+    },
+    
 }
 

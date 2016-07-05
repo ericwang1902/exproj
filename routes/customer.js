@@ -126,7 +126,7 @@ router.post('/createorder',function (req,res,next) {
                     for(i in couriers){
                         
                        // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
-                        wechatjs.sendTemplate(couriers[i].openid,'http://exproj.robustudio.com/courier/orderhandle?openid='+openid+'&orderid='+result._id,'书籍','张三','18501609618',function(err,result){
+                        wechatjs.sendTemplate1(couriers[i].openid,'http://exproj.robustudio.com/courier/orderhandle?openid='+openid+'&orderid='+result._id,'书籍','张三','18501609618',function(err,result){
                             if(err) console.log(err);
                             console.log('result:'+JSON.stringify(result));
                         })
