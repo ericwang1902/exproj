@@ -104,7 +104,8 @@
                                     <span class="desc">{{order.sendid.address}}</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{order.sendid.name}} {{order.sendid.tele}}</span>
+                                    <span class="desc">{{order.sendid.name}}</span>
+                                    <a href="tel:{{order.sendid.tele}}" class="weui_btn weui_btn_mini weui_btn_primary">拨打:{{order.sendid.tele}}</a>
                                 </div>
 
                         </div>
@@ -130,14 +131,7 @@
             </div>
         </div>
         <div class="weui_tabbar">
-            <div class="weui_cell">
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <button type="submit" class="weui_btn weui_btn_primary">联系寄件人</button>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <button type="submit" class="weui_btn weui_btn_primary">取件确认</button>
-                      </div>                      
-
+            <button type="submit" class="weui_btn weui_btn_primary">联系寄件人</button>
         </div>
     </form>
 <style>
