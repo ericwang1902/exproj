@@ -161,6 +161,7 @@ router.get('/orderhandle',function (req,res,next) {
             
             res.render('./courier/orderhandle',{
                 layout:false,
+                openid:openid,
                 order:order,
                             helpers:{
                 getstatusname:function(num){
@@ -220,7 +221,7 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,callback){
             //发送模板消息
-            wechatjs.sendTemplate2(openid,enumerableconstants.wechatinfo.templateId2,'http://exproj.robustudio.com/',order.ordercode,'状态','张三','1231414',function(err,result){})
+         //   wechatjs.sendTemplate2(openid,enumerableconstants.wechatinfo.templateId2,'http://exproj.robustudio.com/',order.ordercode,'状态','张三','1231414',function(err,result){})
             
         }
     ],function(err,result){
