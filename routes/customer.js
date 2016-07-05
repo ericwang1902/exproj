@@ -35,6 +35,10 @@ router.get('/order',function (req,res,next) {
                 getstatusname:function(num){
                     
                     return enumerableconstants.orderstatus[num].name;
+                },
+                getorderdate:function(orderdate){
+                    moment.locale('zh-cn');
+                    return moment(orderdate).format("LLL");
                 }
             }
         });
