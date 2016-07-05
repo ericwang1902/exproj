@@ -157,7 +157,7 @@ router.get('/orderhandle',function (req,res,next) {
             if(err) console.log(err);
             
             console.log(order);
-            console.log(order.status =='0');
+            
             
             res.render('./courier/orderhandle',{
                 layout:false,
@@ -178,10 +178,15 @@ router.get('/orderhandle',function (req,res,next) {
                         return ordernum;
                 },
                 ifshowbtn:function(statusnum,options){
+                    console.log(statusnum);
+                    console.log(statusnum =='0');
                     if(statusnum=='0')
+                    {
                         options.fn(this);
-                    else
+                        }
+                    else{
                         options.inverse(this);
+                        }
                 }
             }
             })
