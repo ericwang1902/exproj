@@ -33,6 +33,7 @@ router.get('/order',function (req,res,next) {
             order:order,
             helpers:{
                 getstatusname:function(num){
+                    
                     return enumerableconstants.orderstatus[num].name;
                 }
             }
