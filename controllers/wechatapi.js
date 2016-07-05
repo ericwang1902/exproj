@@ -92,7 +92,7 @@ module.exports={
                 "color":"#173177"
             },
             "keyword1":{
-                "value":content,
+                "value":ordernum,
                 "color":"#173177"
             },
             "keyword2": {
