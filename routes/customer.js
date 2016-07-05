@@ -39,6 +39,12 @@ router.get('/order',function (req,res,next) {
                 getorderdate:function(orderdate){
                     moment.locale('zh-cn');
                     return moment(orderdate).format("LLL");
+                },
+                getlogisticorder:function(ordernum){
+                    if(ordernum=='')
+                        return '尚未生成单号';
+                    else
+                        return ordernum;
                 }
             }
         });
