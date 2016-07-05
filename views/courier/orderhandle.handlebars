@@ -151,7 +151,7 @@ body {
             $('#submitbtn').attr('disabled',true);
             $('#submitbtn').attr('value','提交中...');
             $('#submitbtn').css('background','#999999');
-        $.confirm("自定义的消息内容", function() {
+        $.confirm("确认您已经取件？请做好标记。", function() {
         //点击确认后的回调函数
             $('#pickform').submit();
         }, function() {
