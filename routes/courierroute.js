@@ -6,6 +6,8 @@ var enumerableconstants = require('../models/enumerableConstants')
 var async = require('async');
 var sysusercontroller = require('../controllers/sysuserController')
 var fanModel =require('../models/fanModel');
+var sysorderModel = require('../models/sysorderModel');
+var moment = require('moment')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -140,6 +142,46 @@ router.get('/resultinfo',function (req,res,next) {
             }
         }
     })
+})
+
+router.get('/orderhandle',function (req,res,next) {
+    var openid = req.query.openid;
+    var orderid = req.query.orderid;
+    
+    try{
+        sysorderModel
+        .findOne({_id:orderid})
+        .populate('sendid')
+        .populate('receiveid')
+        .exec(function(err,order){
+            if(err) console.log(err);
+            
+            res.render('./courier/orderhandle',{
+                layout:false,
+                order:order,
+                            helpers:{
+                getstatusname:function(num){
+                    
+                    return enumerableconstants.orderstatus[num].name;
+                },
+                getorderdate:function(orderdate){
+                    moment.locale('zh-cn');
+                    return moment(orderdate).format("LLL");
+                },
+                getlogisticorder:function(ordernum){
+                    if(ordernum=='')
+                        return '尚未生成单号';
+                    else
+                        return ordernum;
+                }
+            }
+            })
+        })
+    }catch(err){
+        res.redirect('/courier/resultinfo?result=-1&openid='+openid);
+    }
+    
+
 })
 
 //通过用户授权，获取微信jstoken和用户信息

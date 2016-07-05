@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height:100%">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+ <title>订单详情</title>      
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.2/style/weui.css"/>
+<script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>-->
+<!--<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<link rel="stylesheet" href="/node_modules/jquery-weui/dist/lib/weui.css">
+<link rel="stylesheet" href="/node_modules/jquery-weui/dist/css/jquery-weui.css">
+<script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
+ <style type="text/css">
+        body {
+            margin: auto;
+            background-color: #f5f5f5
+        }
+        .button_sp_area {
+            margin-right: 30px;
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+        .sender_icon {
+            width: 60px;
+            height: 60px;
+            background-color: #ef4f4f;
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-size: 36px;
+            text-align: center;
+            line-height: 60px;
+        }
+        .reciver_icon {
+            width: 60px;
+            height: 60px;
+            background-color: #04be02;
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-size: 36px;
+            text-align: center;
+            line-height: 60px;
+        }
+        .desc_area{
+            display: flex;
+        }
+        .desc_area .desc_title{
+            flex:1;
+            color: #000000;
+            font-size: 14px;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow:ellipsis;
+        }
+        .desc_area .desc{
+            flex:1;
+            color: #999999;
+            font-size: 13px;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow:ellipsis;
+        }
+    </style>
+</head>
+
+<body style="height:100%">
+    <form  class="weui_tab" method="POST"  action="/customer/defaultsend?openid={{openid}}">
+       <div class="weui_tab_bd">
+           <div class="weui_cells_title">运单信息</div>
+            <div class="weui_cells weui_cells_access">
+
+            {{#if order}}
+                   <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <div>
+                                <div class="desc_area">
+                                    <span class="desc_title">单号:{{getlogisticorder order.logisticorder}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc_title">收件人信息</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{order.receiveid.provincename}}{{order.receiveid.cityname}}{{order.receiveid.expareaname}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{order.receiveid.address}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{order.receiveid.name}} {{order.receiveid.tele}}</span>
+                                </div>
+                        </div>
+                   </div>    
+                </div>
+                <div class="weui_cell">
+                      <div class="weui_cell_bd weui_cell_primary">
+                        <div>
+                                <div class="desc_area">
+                                    <span class="desc_title">寄件人信息</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{order.sendid.provincename}}{{order.sendid.cityname}}{{order.sendid.expareaname}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{order.sendid.address}}</span>
+                                </div>
+                                <div class="desc_area">
+                                    <span class="desc">{{order.sendid.name}} {{order.sendid.tele}}</span>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>       
+                <div class="weui_cell">                 
+                    <div class="weui_cell_bd weui_cell_primary">                        
+                        <div>
+                                <div class="desc_area">
+                                    <span class="desc">下单时间:{{getorderdate order.orderdate}}</span>
+                                </div>                            
+                                <div class="desc_area">
+                                    <span class="desc">状态：{{getstatusname order.status}}</span>
+                                </div>
+                        </div>               
+                    </div>   
+                </div>  
+            {{/if}}
+
+            </div>
+            <div class="weui_cells_title">物流信息</div>
+            <div class="weui_cells weui_cells_access">
+            </div>
+        </div>
+        <!--<div class="weui_tabbar">
+            <button type="submit" class="weui_btn weui_btn_primary">设为默认寄件地址</button>
+        </div>-->
+    </form>
+<style>
+body {
+  background-color: #efeff4;
+}
+.weui_label{
+    width: 5em;
+}
+</style>
+
+<script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
+</body>

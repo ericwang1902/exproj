@@ -50,7 +50,7 @@ router.get('/order',function (req,res,next) {
         });
     })
     }catch(err){
-        res.redirect('/courier/resultinfo?result=-1&openid='+req.body.openid);
+        res.redirect('/courier/resultinfo?result=-1&openid='+openid);
     }
     
     
@@ -126,7 +126,7 @@ router.post('/createorder',function (req,res,next) {
                     for(i in couriers){
                         
                        // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
-                        wechatjs.sendTemplate(couriers[i].openid,'','书籍','张三','18501609618',function(err,result){
+                        wechatjs.sendTemplate(couriers[i].openid,'/courier/orderhandle?openid='+openid+'&orderid='+sysorder._id,'书籍','张三','18501609618',function(err,result){
                             if(err) console.log(err);
                             console.log('result:'+JSON.stringify(result));
                         })
