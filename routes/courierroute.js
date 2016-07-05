@@ -173,6 +173,12 @@ router.get('/orderhandle',function (req,res,next) {
                         return '尚未生成单号';
                     else
                         return ordernum;
+                },
+                ifshowbtn:function(statusnum,options){
+                    if(statusnum=='1')
+                        options.fn(this);
+                    else
+                        options.inverse(this);
                 }
             }
             })
@@ -190,8 +196,10 @@ router.post('/updateorder',function(req,res,next){
     //更新订单状态，更新页面
     sysorderModel.findOne({_id:orderid},function(err,order){
         if(err) console.log(err);
-        
-        order.status=targetstatus;
+        if(order.status =='0'){
+          order.status=targetstatus;   
+        }
+
         order.save(function(err,result){
             if(err) console.log(err);
             
