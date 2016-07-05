@@ -182,10 +182,10 @@ router.get('/orderhandle',function (req,res,next) {
                     console.log(statusnum =='0');
                     if(statusnum=='0')
                     {
-                        options.fn(this);
+                        return options.fn(this);
                         }
                     else{
-                        options.inverse(this);
+                        return options.inverse(this);
                         }
                 }
             }
