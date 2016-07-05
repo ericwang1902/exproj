@@ -175,7 +175,7 @@ router.get('/orderhandle',function (req,res,next) {
                         return ordernum;
                 },
                 ifshowbtn:function(statusnum,options){
-                    if(statusnum=='1')
+                    if(statusnum=='0')
                         options.fn(this);
                     else
                         options.inverse(this);
