@@ -26,6 +26,8 @@ router.get('/order',function (req,res,next) {
     .exec(function(err,order){
         if(err) console.log(err);
         
+        console.log(order);
+        
         res.render('./customer/order',{
             layout: false,
             order:order,
