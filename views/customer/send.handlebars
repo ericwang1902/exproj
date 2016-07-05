@@ -176,6 +176,8 @@
     $('#sumitbtn').on('click',function(event){
         $('#sumitbtn').attr('disabled',true);
         $('#sumitbtn').attr('value','提交中...');
+        $('#sumitbtn').css('background','#999999');
+        $("form").submit(function(e){});
     })
     </script>
 </body>
