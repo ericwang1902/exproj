@@ -67,6 +67,7 @@
     <form  class="weui_tab" method="POST"  action="/customer/defaultsend?openid={{openid}}">
        <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
+            {{#if order}}
                 <label class="weui_cell weui_check_label">
                     <div class="weui_cell_bd weui_cell_primary">
                         <div>
@@ -74,13 +75,13 @@
                                     <span class="desc_title">收件人信息</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{receiveid.provincename}}{{receiveid.cityname}}{{receiveid.expareaname}}</span>
+                                    <span class="desc">{{order.receiveid.provincename}}{{order.receiveid.cityname}}{{order.receiveid.expareaname}}</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{receiveid.address}}</span>
+                                    <span class="desc">{{order.receiveid.address}}</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{receiveid.name}} {{receiveid.tele}}</span>
+                                    <span class="desc">{{order.receiveid.name}} {{order.receiveid.tele}}</span>
                                 </div>
                         </div>
                         <div>
@@ -88,23 +89,25 @@
                                     <span class="desc_title">寄件人信息</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{sendid.provincename}}{{sendid.cityname}}{{sendid.expareaname}}</span>
+                                    <span class="desc">{{order.sendid.provincename}}{{order.sendid.cityname}}{{order.sendid.expareaname}}</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{sendid.address}}</span>
+                                    <span class="desc">{{order.sendid.address}}</span>
                                 </div>
                                 <div class="desc_area">
-                                    <span class="desc">{{sendid.name}} {{sendid.tele}}</span>
+                                    <span class="desc">{{order.sendid.name}} {{order.sendid.tele}}</span>
                                 </div>
                         </div>
                         <div>
                                 <div class="desc_area">
-                                    <span class="desc">状态：{{status}}</span>
+                                    <span class="desc">状态：{{getstatusname order.status}}</span>
                                 </div>
                         </div>
                         
                     </div>
                 </label>       
+            
+            {{/if}}
             </div>
         </div>
         <div class="weui_tabbar">
