@@ -94,7 +94,8 @@ router.post('/createorder',function (req,res,next) {
                    sendid:sendloc._id,
                    orgid:fan.orgid,
                    status:enumerableconstants.orderstatus[0].num,
-                   orderdate:moment()                                                   
+                   orderdate:moment(),
+                   logisticorder:''                                                   
                })
                console.log('sysorder orgid:'+sysorder.recieveid);
                sysorder.save(function(err,sysorder){
