@@ -157,6 +157,7 @@ router.get('/orderhandle',function (req,res,next) {
             if(err) console.log(err);
             
             console.log(order);
+            console.log(order.status =='0');
             
             res.render('./courier/orderhandle',{
                 layout:false,
