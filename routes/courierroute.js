@@ -205,6 +205,7 @@ router.post('/pickupdateorder',function(req,res,next){
     var targetstatus = req.body.targetstatus;
     var orderid = req.body.orderid;
     var courierid = req.body.courierid;//获取取件快递员的openid
+    console.log('/pickupdateorder courierid：'+courierid);
     
     async.waterfall([
         function(callback){
