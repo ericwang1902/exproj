@@ -281,6 +281,7 @@ router.post('/pickupdateorder',function(req,res,next){
           var datasign = kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey)
           var datatype = 2;//json格式
           
+          
           var test=   {
                   RequestData:requestdata,
                   EBusinessID:ebusinessid,
