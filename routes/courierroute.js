@@ -220,8 +220,10 @@ router.post('/pickupdateorder',function(req,res,next){
             })
         },
         function(order,callback){
+            moment.locale('zh-cn');
+           var orderdatecn= moment(order.orderdate).format("LLL");
             //发送模板消息
-            wechatjs.sendTemplate2(openid,'http://exproj.robustudio.com/',order.ordercode,'状态','时间','张三','1231414',function(err,result){})
+            wechatjs.sendTemplate2(openid,'http://exproj.robustudio.com/customer/order?orderid='+order._id+'&openid='+openid,order.ordercode,enumerableconstants.orderstatus[order.status].name,orderdatecn,'张三','1231414',function(err,result){})
             
             callback(null,order);
         }
