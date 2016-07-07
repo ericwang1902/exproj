@@ -132,13 +132,13 @@ var wechatinfo={
     templateId1:'bAencoI6OcRtG9SRaIkLlrxEk0upreRrHFSu9EyhNYk',//新订单提醒（OPENTM207719853）
     templateId2:'dBPyanyWnu4l07WrSqEARUXbQVhGdNOdd80VzZJv11I'//订单状态提醒
 }
-
+//圆通的
 var kdniao ={
     businessid:'1256928',
     apikey:'df11131b-a116-41c7-8a89-486c1f9747a7',
     apiurl:'http://api.kdniao.cc/api/EOrderService',
     customername:'k11107837',
-    customerpsd:'puUo48U6'
+    MonthCode:'puUo48U6'
 }
 
 

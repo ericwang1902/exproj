@@ -244,11 +244,11 @@ router.post('/pickupdateorder',function(req,res,next){
               OrderCode:order.ordercode,
               ShipperCode:enumerableconstants.expCompany[org.type].code,//快递公司代码
               CustomerName:enumerableconstants.kdniao.customername,//电子面单账号
-              CustomerPwd:enumerableconstants.kdniao.customerpsd,//电子面单密码
+             // CustomerPwd:enumerableconstants.kdniao.customerpsd,//电子面单密码
               PayType:'1',
               LogisticCode:'',
               ExpType:'1',
-              MonthCode:'',
+              MonthCode:enumerableconstants.kdniao.customerpsd,
               Sender:{
                   Company:order.sendid.company,
                   Name:order.sendid.name,
