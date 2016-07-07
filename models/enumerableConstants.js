@@ -136,7 +136,7 @@ var wechatinfo={
 var kdniao ={
     businessid:'1256928',
     apikey:'df11131b-a116-41c7-8a89-486c1f9747a7',
-    apiurl:'http://api.kdniao.cc/Ebusiness/EbusinessOrderHandle.aspx'
+    apiurl:'http://api.kdniao.cc/api/EOrderService'
 }
 
 
