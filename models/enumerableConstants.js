@@ -133,6 +133,12 @@ var wechatinfo={
     templateId2:'dBPyanyWnu4l07WrSqEARUXbQVhGdNOdd80VzZJv11I'//订单状态提醒
 }
 
+var kdniao ={
+    businessid:'1256928',
+    apikey:'df11131b-a116-41c7-8a89-486c1f9747a7',
+    apiurl:'http://api.kdniao.cc/Ebusiness/EbusinessOrderHandle.aspx'
+}
 
 
-module.exports ={orderstatus:orderstatus,usertype:usertype,expCompany:expCompany,userstatus:userstatus,wechatinfo:wechatinfo};
+
+module.exports ={kdniao:kdniao,orderstatus:orderstatus,usertype:usertype,expCompany:expCompany,userstatus:userstatus,wechatinfo:wechatinfo};

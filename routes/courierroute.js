@@ -9,6 +9,7 @@ var fanModel =require('../models/fanModel');
 var sysorderModel = require('../models/sysorderModel');
 var moment = require('moment')
 var sysuserModel = require('../models/sysuserModel');
+var kdniao = require('../controllers/kdniao');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -209,12 +210,103 @@ router.post('/pickupdateorder',function(req,res,next){
     
     async.waterfall([
         function(callback){
+            //查找order的全部信息做下单准备用
+            sysorderModel
+                .findOne({_id:orderid})
+                .populate('sendid')
+                .populate('receiveid')
+                .exec(function(err,order){
+                    if(err) console.log(err);
+                    
+                    callback(null,order)
+                })
+        },
+        function(order,callback){
+          //查找courier对应的快递点的快递公司、电子面单号、电子面单密码
+          sysuserModel.findOne({_id:courierid},function(err,courier){
+              if(err) console.log(err);
+              
+              sysuserModel.findOne({_id:courier.orgid},function(err,org){
+                  if(err) console.log(err);
+                  
+                  callback(null,order,org);
+              })
+          })  
+        },
+        function(order,org,callback){
+          //快递鸟下单，下单成功后，进行本地订单数据更新
+          var lordernum = '';
+          
+          //快递鸟下单的order
+          var requestdata={
+              OrderCode:order.ordercode,
+              ShipperCode:enumerableconstants.expCompany[org.type].code,//快递公司代码
+             // CustomerName:'',//电子面单账号
+             // CustomerPwd:'',//电子面单密码
+              PayType:'1',
+              LogisticCode:'',
+              ExpType:'1',
+              Sender:{
+                  Company:order.sendid.company,
+                  Name:order.sendid.name,
+                  Mobile:order.sendid.tele,
+                  PostCode:order.sendid.postcode,
+                  ProvinceName:order.sendid.provincename,
+                  CityName:order.sendid.cityname,
+                  ExpAreaName:order.sendid.expareaname,
+                  Address:order.sendid.address        ￼￼￼
+              },
+              Receiver:{
+                  Company:order.receiveid.company,
+                  Name:order.receiveid.name,
+                  Mobile:order.receiveid.tele,
+                  PostCode:order.receiveid.postcode,
+                  ProvinceName:order.receiveid.provincename,
+                  CityName:order.receiveid.cityname,
+                  ExpAreaName:order.receiveid.expareaname,
+                  Address:order.receiveid.address    ￼￼￼
+              },
+              Commodity:{
+                  GoodsName:order.goodsname,
+                  GoodsDesc:order.goodsdes
+              },
+              IsReturnPrintTemplate:'1'
+          }
+          var ebusinessid =enumerableconstants.kdniao.businessid;
+          var requestype = '1007';
+          var datasign = kdniao.dataSign(requestdata,enumerableconstants.kdniao.apikey)
+          var datatype = 2;//json格式
+          var requestdatautf8 = kdniao.requestData(requestdata);
+          
+          var orderoptions={
+              url:enumerableconstants.kdniao.apiurl,
+              method:'POST',
+              json:true,
+              body:{
+                  RequestData:requestdatautf8,
+                  EBusinessID:ebusinessid,
+                  RequestType:requestype,
+                  DataSign:datasign,
+                  DataType:datatype
+              }
+          }
+          request(orderoptions,function(err,response,body){
+              console.log(body);
+              //需要在返回的数据中获取物流运单号
+              callback(null,lordernum);
+          })
+          
+          
+          
+        },
+        function(lordernum,callback){
             //更新订单状态
             sysorderModel.findOne({_id:orderid},function(err,order){
                 if(err) console.log(err);
                 
                 if(order.status == '0')
                 {
+                    order.logisticorder=lordernum;
                     order.status =targetstatus;
                 }
                 order.save(function(err,result){
@@ -225,7 +317,7 @@ router.post('/pickupdateorder',function(req,res,next){
             })
         },
         function(order,callback){
-            //查找courier
+            //查找courier,用来返回快递员信息，放在模板消息里发出去的
             sysuserModel.findOne({openid:courierid},function(err,courier){
                 if(err) console.log(err);
                 
