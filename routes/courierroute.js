@@ -268,10 +268,10 @@ router.post('/pickupdateorder',function(req,res,next){
                   ExpAreaName:order.receiveid.expareaname,
                   Address:order.receiveid.address
               },
-              Commodity:{
+              Commodity:[{
                   GoodsName:order.goodsname,
                   GoodsDesc:order.goodsdes
-              },
+              }],
               IsReturnPrintTemplate:'1'
           }
           var ebusinessid =enumerableconstants.kdniao.businessid;
