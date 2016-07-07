@@ -292,7 +292,7 @@ router.post('/pickupdateorder',function(req,res,next){
                   DataType:datatype
               }
           }
-          console.log('orderoptions.body:'+orderoptions.body);
+          console.log('orderoptions.body:'+JSON.stringify(orderoptions.body));
           
           request(orderoptions,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
