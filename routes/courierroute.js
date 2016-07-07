@@ -247,7 +247,7 @@ router.post('/pickupdateorder',function(req,res,next){
             callback(null,order);
         }
     ],function(err,result){
-        res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+orderid)
+        res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+orderid+'&courierid'+courierid);
     
     })
     
