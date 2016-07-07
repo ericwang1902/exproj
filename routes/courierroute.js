@@ -280,6 +280,15 @@ router.post('/pickupdateorder',function(req,res,next){
           var datasign = kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey)
           var datatype = 2;//json格式
           
+          var test=   {
+                  RequestData:requestdata,
+                  EBusinessID:ebusinessid,
+                  RequestType:requestype,
+                  DataSign:datasign,
+                  DataType:datatype
+              }
+          console.log('=============='+JSON.stringify(test));
+          
           var orderoptions={
               url:enumerableconstants.kdniao.apiurl,
               method:'POST',
@@ -292,6 +301,7 @@ router.post('/pickupdateorder',function(req,res,next){
                   DataType:datatype
               }
           }
+          
           console.log('orderoptions.body:'+JSON.stringify(orderoptions.body));
           
           request(orderoptions,function(err,response,body){

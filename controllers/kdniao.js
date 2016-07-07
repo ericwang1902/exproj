@@ -4,6 +4,7 @@ var crypto = require('crypto');
 module.exports={
     //加密datasign
     dataSign:function (data,apikey) {
+        var before
         var hasher=crypto.createHash("md5");
         hasher.update(data+apikey);
         var hashmsg=hasher.digest('base64');//hashmsg为加密之后的数据
