@@ -149,7 +149,7 @@ router.get('/orderhandle',function (req,res,next) {
     var openid = req.query.openid;
     var orderid = req.query.orderid;
     var courierid = req.query.courierid;//快递员的openid，用来接单后传递给order的
-    
+    console.log('/orderhandle:'+courierid);
     try{
         sysorderModel
         .findOne({_id:orderid})
