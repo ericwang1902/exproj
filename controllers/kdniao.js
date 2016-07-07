@@ -5,7 +5,7 @@ module.exports={
     //加密datasign
     dataSign:function (data,apikey) {
         var hasher=crypto.createHash("md5");
-        hasher.update(data+appkey);
+        hasher.update(data+apikey);
         var hashmsg=hasher.digest('base64');//hashmsg为加密之后的数据
         var utf8msg = utf8.encode(hashmsg);
         
