@@ -8,6 +8,7 @@ var sysusercontroller = require('../controllers/sysuserController')
 var fanModel =require('../models/fanModel');
 var sysorderModel = require('../models/sysorderModel');
 var moment = require('moment')
+var sysuserModel = require('../models/sysuserModel');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -147,6 +148,7 @@ router.get('/resultinfo',function (req,res,next) {
 router.get('/orderhandle',function (req,res,next) {
     var openid = req.query.openid;
     var orderid = req.query.orderid;
+    var courierid = req.query.courierid;//快递员的openid，用来接单后传递给order的
     
     try{
         sysorderModel
@@ -163,6 +165,7 @@ router.get('/orderhandle',function (req,res,next) {
                 layout:false,
                 openid:openid,
                 order:order,
+                courierid:courierid,
                             helpers:{
                 getstatusname:function(num){
                     
@@ -201,6 +204,7 @@ router.post('/pickupdateorder',function(req,res,next){
     var openid = req.query.openid;//客户的openid
     var targetstatus = req.body.targetstatus;
     var orderid = req.body.orderid;
+    var courierid = req.body.courierid;//获取取件快递员的openid
     
     async.waterfall([
         function(callback){
@@ -220,10 +224,24 @@ router.post('/pickupdateorder',function(req,res,next){
             })
         },
         function(order,callback){
+            //查找courier
+            sysuserModel.findOne({openid:courierid},function(err,courier){
+                if(err) console.log(err);
+                
+                callback(null,order,courier);
+            })
+        },
+        function(order,courier,callback){
             moment.locale('zh-cn');
            var orderdatecn= moment(order.orderdate).format("LLL");
             //发送模板消息
-            wechatjs.sendTemplate2(openid,'http://exproj.robustudio.com/customer/order?orderid='+order._id+'&openid='+openid,order.ordercode,enumerableconstants.orderstatus[order.status].name,orderdatecn,'张三','1231414',function(err,result){})
+            wechatjs.sendTemplate2(openid,
+            'http://exproj.robustudio.com/customer/order?orderid='+order._id+'&openid='+openid+'&courierid='+courierid,
+            order.ordercode,
+            enumerableconstants.orderstatus[order.status].name,
+            orderdatecn,courier.name,
+            courier.tele,
+            function(err,result){})
             
             callback(null,order);
         }

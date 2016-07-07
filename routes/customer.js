@@ -17,8 +17,9 @@ router.get('/order',function (req,res,next) {
     var openid =req.query.openid || req.session.openid;
     var orderid = req.query.orderid;
     
+    
     try{
-    //查找改订单详情
+    //查找订单详情
     sysorderModel
     .findOne({_id:orderid})
     .populate('sendid')
@@ -126,7 +127,7 @@ router.post('/createorder',function (req,res,next) {
                     for(i in couriers){
                         
                        // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
-                        wechatjs.sendTemplate1(couriers[i].openid,'http://exproj.robustudio.com/courier/orderhandle?openid='+openid+'&orderid='+result._id,'书籍','张三','18501609618',function(err,result){
+                        wechatjs.sendTemplate1(couriers[i].openid,'http://exproj.robustudio.com/courier/orderhandle?openid='+openid+'&orderid='+result._id+'&courierid='+couriers[i].openid,'书籍','张三','18501609618',function(err,result){
                             if(err) console.log(err);
                             console.log('result:'+JSON.stringify(result));
                         })
