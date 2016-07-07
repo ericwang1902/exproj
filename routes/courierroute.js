@@ -223,7 +223,8 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,callback){
           //查找courier对应的快递点的快递公司、电子面单号、电子面单密码
-          sysuserModel.findOne({_id:courierid},function(err,courier){
+          var courierobjid = new ObjectId(courierid);
+          sysuserModel.findOne({_id:courierobjid},function(err,courier){
               if(err) console.log(err);
               
               sysuserModel.findOne({_id:courier.orgid},function(err,org){
