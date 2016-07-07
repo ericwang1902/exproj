@@ -293,7 +293,7 @@ router.post('/pickupdateorder',function(req,res,next){
               }
           }
           request(orderoptions,function(err,response,body){
-              console.log('~~~~~~~~~~~~~~'+body);
+              console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
               //需要在返回的数据中获取物流运单号
               callback(null,lordernum);
           })
