@@ -240,8 +240,9 @@ router.post('/pickupdateorder',function(req,res,next){
             'http://exproj.robustudio.com/customer/order?orderid='+order._id+'&openid='+openid+'&courierid='+courierid,
             order.ordercode,
             enumerableconstants.orderstatus[order.status].name,
-            orderdatecn,courier.name,
-            courier.tele,
+            orderdatecn,
+            courier.username,
+            courier.mobile,
             function(err,result){})
             
             callback(null,order);
