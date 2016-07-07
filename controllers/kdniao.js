@@ -15,6 +15,7 @@ module.exports={
     //将返回数据utf8编码
     requestData:function (data) {
         var datauft8 = utf8.encode(data);
+
         
         return datauft8;
     }

@@ -278,7 +278,7 @@ router.post('/pickupdateorder',function(req,res,next){
           var requestype = '1007';
           var datasign = kdniao.dataSign(requestdata,enumerableconstants.kdniao.apikey)
           var datatype = 2;//json格式
-          var requestdatautf8 = kdniao.requestData(requestdata);
+          var requestdatautf8 = requestdata
           
           var orderoptions={
               url:enumerableconstants.kdniao.apiurl,
