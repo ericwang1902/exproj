@@ -277,7 +277,7 @@ router.post('/pickupdateorder',function(req,res,next){
           var ebusinessid =enumerableconstants.kdniao.businessid;
           var requestype = '1007';
           var requestdatautf8 = kdniao.requestData(JSON.stringify(requestdata));
-          var datasign = kdniao.dataSign(requestdatautf8,enumerableconstants.kdniao.apikey)
+          var datasign = kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey)
           var datatype = 2;//json格式
           
           var orderoptions={
