@@ -10,6 +10,7 @@ var sysorderModel = require('../models/sysorderModel');
 var moment = require('moment')
 var sysuserModel = require('../models/sysuserModel');
 var kdniao = require('../controllers/kdniao');
+var mongoose = require('mongoose');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -223,7 +224,7 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,callback){
           //查找courier对应的快递点的快递公司、电子面单号、电子面单密码
-          var courierobjid = new ObjectId(courierid);
+          var courierobjid = mongoose.Types.ObjectId(courierid);
           sysuserModel.findOne({_id:courierobjid},function(err,courier){
               if(err) console.log(err);
               
