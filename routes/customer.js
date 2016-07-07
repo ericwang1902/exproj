@@ -108,13 +108,25 @@ router.post('/createorder',function (req,res,next) {
                    orderdate:moment(),
                    logisticorder:''                                                   
                })
-               console.log('sysorder orgid:'+sysorder.recieveid);
+             
                sysorder.save(function(err,sysorder){
                    if(err) console.log(err);
                    
-                   callback(null,sysorder);
+                   callback(null,sysorder._id);
                })
                 
+            },
+            function(sysorderid,callback){
+                //查找order全部信息
+                 sysorderModel
+                        .findOne({_id:sysorderid})
+                        .populate('sendid')
+                        .populate('receiveid')
+                        .exec(function(err,order){
+                            if(err) console.log(err);
+                            callback(null,order);
+                        })
+             
             }
         ],function(err,result){
             //查找到sysorder.orgid的courierid对应的sysuser
