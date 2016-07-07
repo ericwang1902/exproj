@@ -254,7 +254,7 @@ router.post('/pickupdateorder',function(req,res,next){
                   ProvinceName:order.sendid.provincename,
                   CityName:order.sendid.cityname,
                   ExpAreaName:order.sendid.expareaname,
-                  Address:order.sendid.address      ￼￼￼
+                  Address:order.sendid.address
               },
               Receiver:{
                   Company:order.receiveid.company,
