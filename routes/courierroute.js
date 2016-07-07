@@ -248,7 +248,7 @@ router.post('/pickupdateorder',function(req,res,next){
               PayType:'1',
               LogisticCode:'',
               ExpType:'1',
-              MonthCode:enumerableconstants.kdniao.customerpsd,
+              MonthCode:enumerableconstants.kdniao.MonthCode,
               Sender:{
                   Company:order.sendid.company,
                   Name:order.sendid.name,
