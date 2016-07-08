@@ -9,7 +9,7 @@ var fanModel =require('../models/fanModel');
 var sysorderModel = require('../models/sysorderModel');
 var moment = require('moment')
 var sysuserModel = require('../models/sysuserModel');
-var kdniao = require('../controllers/kdniao');
+var orderoptions =require('../controllers/orderoptions');
 var mongoose = require('mongoose');
 
 /* GET users listing. */
@@ -238,71 +238,9 @@ router.post('/pickupdateorder',function(req,res,next){
         function(order,org,callback){
           //快递鸟下单，下单成功后，进行本地订单数据更新
           var lordernum = '';
+          var orderoptions ={};
           
-          //快递鸟下单的order
-          var requestdata={
-              OrderCode:order.ordercode,
-              ShipperCode:enumerableconstants.expCompany[org.type].code,//快递公司代码
-              CustomerName:enumerableconstants.kdniao.customername,//电子面单账号
-             // CustomerPwd:enumerableconstants.kdniao.customerpsd,//电子面单密码
-              PayType:'1',
-              LogisticCode:'',
-              ExpType:'1',
-              MonthCode:enumerableconstants.kdniao.MonthCode,
-              Sender:{
-                  Company:order.sendid.company,
-                  Name:order.sendid.name,
-                  Mobile:order.sendid.tele,
-                  PostCode:order.sendid.postcode,
-                  ProvinceName:order.sendid.provincename,
-                  CityName:order.sendid.cityname,
-                  ExpAreaName:order.sendid.expareaname,
-                  Address:order.sendid.address
-              },
-              Receiver:{
-                  Company:order.receiveid.company,
-                  Name:order.receiveid.name,
-                  Mobile:order.receiveid.tele,
-                  PostCode:order.receiveid.postcode,
-                  ProvinceName:order.receiveid.provincename,
-                  CityName:order.receiveid.cityname,
-                  ExpAreaName:order.receiveid.expareaname,
-                  Address:order.receiveid.address
-              },
-              Commodity:[{
-                  GoodsName:order.goodsname,
-                  GoodsDesc:order.goodsdes
-              }],
-              IsReturnPrintTemplate:'1'
-          }
-          var ebusinessid =enumerableconstants.kdniao.businessid;
-          var requestype = '1007';
-          var requestdatautf8 = kdniao.requestData(JSON.stringify(requestdata));
-          var datasign = kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey)
-          var datatype = 2;//json格式
-          
-          
-          var test=   {
-                  RequestData:requestdata,
-                  EBusinessID:ebusinessid,
-                  RequestType:requestype,
-                  DataSign:datasign,
-                  DataType:datatype
-              }
-          console.log('=============='+JSON.stringify(test));
-          
-          var orderoptions={
-              url:enumerableconstants.kdniao.apiurl,
-              method:'POST',
-              json:true,
-              body:{
-                  RequestData:requestdatautf8,
-                  EBusinessID:ebusinessid,
-                  RequestType:requestype,
-                  DataSign:datasign,
-                  DataType:datatype
-              }
-          }
+          orderoptions=orderoptions.ytoOrderOptions(order,org);
           
           console.log('orderoptions.body:'+JSON.stringify(orderoptions.body));
           
