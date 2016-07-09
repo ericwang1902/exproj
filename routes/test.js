@@ -13,7 +13,7 @@ var apikey = enumerableconstants.kdniao.apikey;
 
 console.log('测试～～～～～～:'+kdniao.dataSign(JSON.parse(JSON.stringify(requestdata)),enumerableconstants.kdniao.apikey));
 
-var oo = rderoptions.ytoOrderOptions(order,org);
+var oo = orderoptions.ytoOrderOptions(order,org);
 
           request(oo,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
