@@ -242,7 +242,7 @@ router.post('/pickupdateorder',function(req,res,next){
           
           orderoptions1=orderoptions.ytoOrderOptions(order,org);
           
-          console.log('orderoptions.body:'+JSON.stringify(orderoptions.body));
+          console.log('orderoptions.body:'+JSON.stringify(orderoptions1.body));
           
           request(orderoptions1,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
