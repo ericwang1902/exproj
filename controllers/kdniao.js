@@ -9,7 +9,7 @@ module.exports={
         
         console.log('md5:'+utils.md5(str));
         console.log('base64:'+utils.base64encode(utils.md5(str)));
-        console.log('utf8:'+iconv.encode(utils.base64encode(utils.md5(str))),'utf8');
+        console.log('utf8:'+iconv.encode(utils.base64encode(utils.md5(str)),'utf8'));
         
         return  utf8.encode(utils.base64encode(utils.md5(str)));
     },
