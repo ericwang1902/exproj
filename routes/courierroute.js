@@ -238,13 +238,13 @@ router.post('/pickupdateorder',function(req,res,next){
         function(order,org,callback){
           //快递鸟下单，下单成功后，进行本地订单数据更新
           var lordernum = '';
-          var orderoptions ={};
+          var orderoptions1 ={};
           
-          orderoptions=orderoptions.ytoOrderOptions(order,org);
+          orderoptions1=orderoptions.ytoOrderOptions(order,org);
           
           console.log('orderoptions.body:'+JSON.stringify(orderoptions.body));
           
-          request(orderoptions,function(err,response,body){
+          request(orderoptions1,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
               //需要在返回的数据中获取物流运单号
               callback(null,lordernum);
