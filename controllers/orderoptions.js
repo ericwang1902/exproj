@@ -58,8 +58,8 @@ module.exports={
                     DataType:datatype
                     }
                 }
-           console.log(orderoptions);
-           
+            console.log('测试orderoptions～～～～～～:'+JSON.stringify(orderoptions));
+
            return orderoptions;
                
           }
