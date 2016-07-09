@@ -1,7 +1,6 @@
 var kdniao = require('../controllers/kdniao');
 var enumerableconstants = require('../models/enumerableConstants')
 var  utils = require('utility');
-var utf8 = require('utf8')
 var request =require('request');
 var orderoptions =require('../controllers/orderoptions');
 

@@ -1,5 +1,6 @@
 var  utils = require('utility');
-var utf8 = require('utf8')
+var  utf8 = require('utf8');
+var iconv = require('iconv-lite');
 
 module.exports={
     //加密datasign
@@ -8,7 +9,7 @@ module.exports={
         
         console.log('md5:'+utils.md5(str));
         console.log('base64:'+utils.base64encode(utils.md5(str)));
-        console.log('utf8:'+utf8.encode(utils.base64encode(utils.md5(str))));
+        console.log('utf8:'+iconv.encode(utils.base64encode(utils.md5(str))),'utf8');
         
         return  utf8.encode(utils.base64encode(utils.md5(str)));
     },
@@ -16,7 +17,7 @@ module.exports={
     //将返回数据utf8编码
     requestData:function (data) {
         var datauft8 = utf8.encode(data);
-        
+
         return datauft8;
     }
     

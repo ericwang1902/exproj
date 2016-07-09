@@ -17,6 +17,7 @@
     "express-messages": "^1.0.1",
     "express-session": "^1.13.0",
     "express-validator": "^2.20.4",
+    "iconv-lite": "^0.4.13",
     "jquery-weui": "^0.7.2",
     "moment": "^2.14.1",
     "mongoose": "^4.4.20",
