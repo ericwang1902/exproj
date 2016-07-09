@@ -8,8 +8,5 @@ var apikey = enumerableconstants.kdniao.apikey;
 
 //console.log('加密测试：'+kdniao.dataSign(requestdata,apikey))
 
-var str = requestdata+apikey;
 
-console.log('md5:'+utils.md5(str));
-console.log('base64:'+utils.base64encode(utils.md5(str)));
-console.log('utf8:'+utf8.encode(utils.base64encode(utils.md5(str))));
+console.log('测试～～～～～～:'+kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey));

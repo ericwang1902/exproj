@@ -36,7 +36,7 @@ var wechat = require('./routes/wechat');
 var seed = require('./models/seed.js');
 var wechatbase = require('./routes/wechatbase');
 
-//var test = require('./routes/test');
+var test = require('./routes/test');
 
 
 // view engine setup
