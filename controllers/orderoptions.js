@@ -4,7 +4,7 @@ var kdniao =require('./kdniao')
 module.exports={
    //圆通快递的电子面单账号配置，返回orderoptions
     ytoOrderOptions:function (order,org) {
-            var kdnorder ={
+            var requestdata ={
                         OrderCode:order.ordercode,
                         ShipperCode:enumerableconstants.expCompany[org.type].code,//快递公司代码
                         CustomerName:org.account,//电子面单账号
