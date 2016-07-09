@@ -34,7 +34,7 @@ var apikey = enumerableconstants.kdniao.apikey;
            console.log('测试orderoptions～～～～～～:'+orderoptions);
 
 
-          request(oo,function(err,response,body){
+          request(orderoptions,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
               //需要在返回的数据中获取物流运单号
              
