@@ -58,12 +58,8 @@ module.exports={
                     DataType:datatype
                     }
                 }
-           var result = {
-               datasign:datasign,
-               orderoptions:orderoptions
-           }
            
-           return result;
+           return orderoptions;
                
           }
 }
