@@ -1,24 +1,21 @@
 var  utils = require('utility');
 var  utf8 = require('utf8');
 var iconv = require('iconv-lite');
+var encoding = require("encoding");
+var urlencode = require('urlencode');
+
 
 module.exports={
     //加密datasign
     dataSign:function (data,apikey) {
         var str =data+apikey;
-        
-        console.log('md5:'+utils.md5(str));
-        console.log('base64:'+utils.base64encode(utils.md5(str)));
-        console.log('utf8:'+iconv.encode(utils.base64encode(utils.md5(str)),'utf8'));
-        
-        return  utf8.encode(utils.base64encode(utils.md5(str)));
+        return   urlencode(utils.base64encode(utils.md5(str)));
     },
     
-    //将返回数据utf8编码
+    //将返回数据进行url编码
     requestData:function (data) {
-        var datauft8 = utf8.encode(data);
-
-        return datauft8;
+        var data1 = urlencode(data);
+        return data1;
     }
     
     
