@@ -43,7 +43,7 @@ module.exports={
             var ebusinessid =enumerableconstants.kdniao.businessid;
             var requestype = '1007';
             var requestdatautf8 = kdniao.requestData(JSON.stringify(requestdata));
-            var datasign = kdniao.dataSign(requestdata,enumerableconstants.kdniao.apikey)
+            var datasign = kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey)
             var datatype = 2;//json格式
 
             var orderoptions={
