@@ -9,10 +9,10 @@ module.exports={
                         ShipperCode:enumerableconstants.expCompany[org.type].code,//快递公司代码
                         CustomerName:org.account,//电子面单账号
                         // CustomerPwd:enumerableconstants.kdniao.customerpsd,//电子面单密码
+                        MonthCode:org.accountpsd,
                         PayType:'1',
                         LogisticCode:'',
                         ExpType:'1',
-                        MonthCode:org.accountpsd,
                         Sender:{
                             Company:order.sendid.company,
                             Name:order.sendid.name,
@@ -58,6 +58,7 @@ module.exports={
                     DataType:datatype
                     }
                 }
+           console.log(orderoptions);
            
            return orderoptions;
                
