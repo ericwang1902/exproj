@@ -9,4 +9,4 @@ var apikey = enumerableconstants.kdniao.apikey;
 //console.log('加密测试：'+kdniao.dataSign(requestdata,apikey))
 
 
-console.log('测试～～～～～～:'+kdniao.dataSign(JSON.stringify(requestdata),enumerableconstants.kdniao.apikey));
+console.log('测试～～～～～～:'+kdniao.dataSign(JSON.parse(JSON.stringify(requestdata)),enumerableconstants.kdniao.apikey));
