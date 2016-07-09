@@ -31,7 +31,7 @@ var apikey = enumerableconstants.kdniao.apikey;
                     }
                 }
                 
-           console.log('测试orderoptions～～～～～～:'+orderoptions);
+           console.log('测试orderoptions～～～～～～:'+JSNON.stringify(orderoptions));
 
 
           request(orderoptions,function(err,response,body){
