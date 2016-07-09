@@ -18,5 +18,5 @@ var oo = orderoptions.ytoOrderOptions(order,org);
           request(oo,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
               //需要在返回的数据中获取物流运单号
-              callback(null,lordernum);
+             
           })
