@@ -11,9 +11,28 @@ var apikey = enumerableconstants.kdniao.apikey;
 //console.log('加密测试：'+kdniao.dataSign(requestdata,apikey))
 
 
-console.log('测试～～～～～～:'+kdniao.dataSign(JSON.parse(JSON.stringify(requestdata)),enumerableconstants.kdniao.apikey));
 
-var oo = orderoptions.ytoOrderOptions(order,org);
+            var ebusinessid =enumerableconstants.kdniao.businessid;
+            var requestype = '1007';
+            var requestdatautf8 = kdniao.requestData(requestdata);
+            var datasign = kdniao.dataSign(requestdata,enumerableconstants.kdniao.apikey)
+            var datatype = 2;//json格式
+            
+           var orderoptions={
+                url:enumerableconstants.kdniao.apiurl,
+                method:'POST',
+                json:true,
+                body:{
+                    RequestData:requestdatautf8,
+                    EBusinessID:ebusinessid,
+                    RequestType:requestype,
+                    DataSign:datasign,
+                    DataType:datatype
+                    }
+                }
+                
+           console.log('测试orderoptions～～～～～～:'+orderoptions);
+
 
           request(oo,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
