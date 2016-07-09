@@ -1,7 +1,4 @@
 var  utils = require('utility');
-var  utf8 = require('utf8');
-var iconv = require('iconv-lite');
-var encoding = require("encoding");
 var urlencode = require('urlencode');
 
 
