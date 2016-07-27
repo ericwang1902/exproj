@@ -125,12 +125,12 @@ var orderstatus=[
 ]
 
 var wechatinfo={
-    appid:'wx45eb07597f1e004a',
-    appsecret:'9c4c330a78978494d2465bc63fcf6e16',
+    appid:'wx7a633de91613786a',
+    appsecret:'67be6d29ba3ae217d748adf0f0729f63',
     token:'exproj',
     encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD',
-    templateId1:'bAencoI6OcRtG9SRaIkLlrxEk0upreRrHFSu9EyhNYk',//新订单提醒（OPENTM207719853）
-    templateId2:'dBPyanyWnu4l07WrSqEARUXbQVhGdNOdd80VzZJv11I'//订单状态提醒
+    templateId1:'G9RVRDm6Fu7kqeCrOXwHSTrF-UgbN4k4xx_iK8-ElSo',//新订单提醒（OPENTM207719853）
+    templateId2:'4NrD6ODjMOpbEmxMXVKNA9y12INjBkZsKNWiUvOLxqM'//订单状态提醒
 }
 
 //快递鸟的开发配置

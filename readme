@@ -58,6 +58,10 @@
 6.0 订单模块开发
     6.0.1 模板消息发送给快递员，快递员处理（针对状态进行处理）
     6.0.2 做订单页面（订单详情、状态、物流信息）
+    6.0.3 用主动查询接口（需要修改订单数据结构，每次查询的时候，就将traces存放在订单的info字段）
+
+7.0 打印
+    7.0.1 快递员后台管理中心（订单列表，订单详情，打印）
     
     
 
@@ -79,9 +83,12 @@
 
 
 维护地址：
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
 绑定快递员：
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45eb07597f1e004a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcourier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcourier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+
+寄件：
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2fsend&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
 http://exproj.robustudio.com/courier/userbind
