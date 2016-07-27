@@ -33,7 +33,7 @@ router.get('/login',function(req,res,next){
        }else if(user.usertype == enumerableConstants.usertype.org){    
          res.redirect('/org/orguserlist?id='+user._id);
        }else{
-        res.send('请找管理员设置您的相关信息！')
+        res.send('目前只有快递代收点的管理人员才可以登录管理后台。')
        }
      })
   });

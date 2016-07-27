@@ -132,6 +132,7 @@ var wechatinfo={
     templateId1:'bAencoI6OcRtG9SRaIkLlrxEk0upreRrHFSu9EyhNYk',//新订单提醒（OPENTM207719853）
     templateId2:'dBPyanyWnu4l07WrSqEARUXbQVhGdNOdd80VzZJv11I'//订单状态提醒
 }
+
 //快递鸟的开发配置
 var kdniao ={
     businessid:'1256928',
