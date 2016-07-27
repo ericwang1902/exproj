@@ -245,7 +245,7 @@ router.post('/pickupdateorder',function(req,res,next){
           
           request(orderoptions1,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
-              //需要在返回的数据中获取物流运单号
+              //需要在返回的数据中获取物流运单号和打印模板
               callback(null,lordernum);
           })
           
