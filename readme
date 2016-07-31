@@ -91,4 +91,8 @@ https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&red
 寄件：
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2fsend&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
+测试账号寄件：
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx838604caabf1e7fe&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2fsend&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+
+
 http://exproj.robustudio.com/courier/userbind
