@@ -82,6 +82,9 @@ router.get('/resultinfo',function (req,res,next) {
                         break;   
                      case '10':
                         info='下单成功！';
+                        break;
+                     case '11':
+                        info='单号不足！';
                         break;                                             
                     default:
                         info='出错了！';
@@ -136,7 +139,10 @@ router.get('/resultinfo',function (req,res,next) {
                         break;     
                     case '10':
                         cs='weui_icon_success';
-                        break;                                 
+                        break;  
+                    case '11':
+                        cs='weui_icon_warn';                   
+                        break;                               
                     default:
                         cs='weui_icon_warn';                   
                         break;
@@ -253,11 +259,12 @@ router.post('/pickupdateorder',function(req,res,next){
               callback(null,lordernum);
               }           
               else if(body.ResultCode=='105'){
-              //错误处理
-              callback(new Error('单号不足！',null)); 
+              //错误处理,单号不足
+              callback(new Error('1',null)); 
               }
               else{
-              callback(new Error('电子面单接口出错！'),null);
+               //其他错误
+              callback(new Error('2'),null);
               }
              
           })
@@ -305,7 +312,13 @@ router.post('/pickupdateorder',function(req,res,next){
         }
     ],function(err,result){
         if(err){
-         res.redirect('/courier/resultinfo?result=0');
+            if(err.message =='1'){
+                res.redirect('/courier/resultinfo?result=11');
+            }
+            else{
+                res.redirect('/courier/resultinfo?result=0');
+            }
+         
         }else{   
         res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+orderid+'&courierid='+courierid);
          }
