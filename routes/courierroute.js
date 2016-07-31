@@ -246,14 +246,13 @@ router.post('/pickupdateorder',function(req,res,next){
           request(orderoptions1,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
               //先判断状态码是否正确
-              if(JSON.parse(body).ResultCode=='100'){
+              if(body.ResultCode=='100'){
               //需要在返回的数据中获取物流运单号和打印模板,100表示成功
               var orderResult = JSON.parse(body);
               lordernum = orderResult.Order.OrderCode;
               callback(null,lordernum);
-              }
-                
-              else if(JSON.parse(body).ResultCode=='101'){
+              }           
+              else if(body.ResultCode=='105'){
               //错误处理
               callback(new Error('单号不足！',null)); 
               }
