@@ -245,12 +245,24 @@ router.post('/pickupdateorder',function(req,res,next){
           
           request(orderoptions1,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
-              //需要在返回的数据中获取物流运单号和打印模板
+              //先判断状态码是否正确
+              if(JSON.parse(body).ResultCode=='100'){
+              //需要在返回的数据中获取物流运单号和打印模板,100表示成功
+              var orderResult = JSON.parse(body);
+              lordernum = orderResult.Order.OrderCode;
               callback(null,lordernum);
+              }
+                
+              else if(JSON.parse(body).ResultCode=='101'){
+              //错误处理
+              callback(new Error('单号不足！',null)); 
+              }
+              else{
+              callback(new Error('电子面单接口出错！'),null);
+              }
+             
           })
-          
-          
-          
+                 
         },
         function(lordernum,callback){
             //更新订单状态
@@ -293,8 +305,11 @@ router.post('/pickupdateorder',function(req,res,next){
             callback(null,order);
         }
     ],function(err,result){
+        if(err){
+         res.redirect('/courier/resultinfo?result=0');
+        }else{   
         res.redirect('/courier/orderhandle?openid='+openid+'&orderid='+orderid+'&courierid='+courierid);
-    
+         }
     })
     
     
