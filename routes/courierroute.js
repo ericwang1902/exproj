@@ -281,7 +281,7 @@ router.post('/pickupdateorder',function(req,res,next){
                     console.log('订单状态为0~~~~~~~~~~~~~~~')
                     order.logisticorder=orderResult.Order.LogisticCode;
                     order.status =targetstatus;
-                    //order.template = orderResult.Order.PrintTemplate;
+                    order.template = orderResult.PrintTemplate;
                 }
                 order.save(function(err,result){
                     if(err) console.log(err);
