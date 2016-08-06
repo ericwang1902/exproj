@@ -254,7 +254,7 @@ router.post('/pickupdateorder',function(req,res,next){
               //先判断状态码是否正确
               if(body.ResultCode=='100'){
                 //需要在返回的数据中获取物流运单号和打印模板,100表示成功
-                var orderResult = JSON.parse(body);
+                var orderResult = body;
                 
                 callback(null,orderResult);
               }           
