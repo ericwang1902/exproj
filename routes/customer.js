@@ -106,7 +106,8 @@ router.post('/createorder',function (req,res,next) {
                    orgid:fan.orgid,
                    status:enumerableconstants.orderstatus[0].num,
                    orderdate:moment(),
-                   logisticorder:''                                                   
+                   logisticorder:'',
+                   template:''                                                   
                })
              
                sysorder.save(function(err,sysorder){
