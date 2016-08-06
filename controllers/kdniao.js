@@ -11,6 +11,7 @@ module.exports={
     
     //将返回数据进行url编码
     requestData:function (data) {
+        
         var data1 = urlencode(data);
         return data1;
     }
