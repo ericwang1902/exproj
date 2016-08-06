@@ -82,6 +82,9 @@
 4.2 上线之后，bower npm install不能忘记
 
 
+//圆通测试帐号：MonthCode:123456,CustomName:K10101010
+
+
 维护地址：
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 

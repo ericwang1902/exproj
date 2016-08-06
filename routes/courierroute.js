@@ -243,7 +243,7 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,org,callback){
           //快递鸟下单，下单成功后，进行本地订单数据更新
-          var lordernum = '';
+          
           var orderoptions1 ={};
           
           orderoptions1=orderoptions.ytoOrderOptions(order,org);
@@ -253,10 +253,10 @@ router.post('/pickupdateorder',function(req,res,next){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
               //先判断状态码是否正确
               if(body.ResultCode=='100'){
-              //需要在返回的数据中获取物流运单号和打印模板,100表示成功
-              var orderResult = JSON.parse(body);
-              lordernum = orderResult.Order.OrderCode;
-              callback(null,lordernum);
+                //需要在返回的数据中获取物流运单号和打印模板,100表示成功
+                var orderResult = JSON.parse(body);
+                
+                callback(null,orderResult);
               }           
               else if(body.ResultCode=='105'){
               //错误处理,单号不足
@@ -270,7 +270,10 @@ router.post('/pickupdateorder',function(req,res,next){
           })
                  
         },
-        function(lordernum,callback){
+        //处理返回的订单信息，orderResult是个json对象
+        function(orderResult,callback){
+            var lordernum = '';
+            lordernum = orderResult.Order.OrderCode;
             //更新订单状态
             sysorderModel.findOne({_id:orderid},function(err,order){
                 if(err) console.log(err);
@@ -279,6 +282,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 {
                     order.logisticorder=lordernum;
                     order.status =targetstatus;
+                    order.template = orderResult.Order.PrintTemplate;
                 }
                 order.save(function(err,result){
                     if(err) console.log(err);

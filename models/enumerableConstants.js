@@ -142,11 +142,14 @@ var wechatinfo={
 }
 
 //快递鸟的开发配置
+
+
 var kdniao ={
     businessid:'1256928',
     apikey:'df11131b-a116-41c7-8a89-486c1f9747a7',
     //apiurl:'http://api.kdniao.cc/api/EOrderService',
     apiurl:'http://testapi.kdniao.cc:8081/api/EOrderService'//电子面单测试接口
+
 }
 
 

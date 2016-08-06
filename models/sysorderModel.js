@@ -36,7 +36,8 @@ var sysorderSchema = new Schema({
 	"requesttype" : String,//下单给快递鸟的时候设置
 	"datasign" : String,//下单给快递鸟的时候设置
 	"datatype" : String,//下单给快递鸟的时候设置
-	"orderdate":Date//下单的时间
+	"orderdate":Date,//下单的时间
+	"template":String//下单成功之后，电子面单的模板
 });
 
 module.exports = mongoose.model('sysorder', sysorderSchema);
