@@ -285,6 +285,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 }
                 order.save(function(err,result){
                     if(err) console.log(err);
+                    console.log('订单信息：'+JSON.stringify(result))
                     
                     callback(null,result);
                 })
@@ -304,7 +305,7 @@ router.post('/pickupdateorder',function(req,res,next){
             //发送模板消息
             wechatjs.sendTemplate2(openid,
             'http://exproj.robustudio.com/customer/order?orderid='+order._id+'&openid='+openid+'&courierid='+courierid,
-            order.ordercode,
+            order.logisticorder,
             enumerableconstants.orderstatus[order.status].name,
             orderdatecn,
             courier.username,
