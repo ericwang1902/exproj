@@ -272,15 +272,14 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         //处理返回的订单信息，orderResult是个json对象
         function(orderResult,callback){
-            var lordernum = '';
-            lordernum = orderResult.Order.OrderCode;
             //更新订单状态
             sysorderModel.findOne({_id:orderid},function(err,order){
                 if(err) console.log(err);
                 
                 if(order.status == '0')
                 {
-                    order.logisticorder=lordernum;
+                    console.log('订单状态为0~~~~~~~~~~~~~~~')
+                    order.logisticorder=orderResult.Order.LogisticCode;
                     order.status =targetstatus;
                     order.template = orderResult.Order.PrintTemplate;
                 }
