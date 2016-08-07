@@ -166,11 +166,12 @@ router.get('/orderlist',function(req,res,next){
         for(var i=1;i<=Totalpages;i++){
             pagesArray.push({p:i,orgid:id});
         }
-        console.log('订单列表：'+JSON.stringify(orders));
+      //  console.log('订单列表：'+JSON.stringify(orders));
             
             moment.locale('zh-cn');
         for(var i=0;i<orders.length;i++){
             orders[i].orderdate = moment(orders[i].orderdate).format("LLL");
+            console.log(moment(orders[i].orderdate).format("LLL"));
         }
 
         res.render('./contents/orderlist',{
