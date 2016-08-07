@@ -21,7 +21,7 @@
                 <td>{{orderdate}}</td>
                 <td>{{count}}</td>
                 <td>
-                  <a href="/admin/userdetail?id={{_id}}" style="cursor:hand" >详情</a>
+                  <a href="/org/orderdetail?id={{_id}}" style="cursor:hand" >详情</a>
                 </td>
             </tr>
        {{/each}}
@@ -35,7 +35,7 @@
     <ul class="pagination">
         </li>
         {{#each pagesArray}}
-        <li><a href="/admin/userlist?p={{p}}">{{p}}</a></li>
+        <li><a href="/org/orderlist?id={{id}}&p={{p}}">{{p}}</a></li>
         {{/each}}
     </ul>
 </nav>
