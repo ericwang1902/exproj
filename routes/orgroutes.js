@@ -154,11 +154,12 @@ router.post('/orgusermodify',function(req,res,next){
 })
 
 router.get('/orderlist',function(req,res,next){
-    var id = req.query.id;
+    var id = req.query.id;//这是组织的id
     var currentPage = req.query.p;
 
+
     //根据快递员id，来获取该快递员取件的快递列表
-    sysorderController.list(currentPage,{courierid:id},function(err,count,orders){
+    sysorderController.list(currentPage,{orgid:id},function(err,count,orders){
         var Totalpages = Math.ceil(count/10);
 
         var pagesArray=[];

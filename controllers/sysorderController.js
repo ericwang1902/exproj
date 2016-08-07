@@ -26,6 +26,7 @@ module.exports = {
                 .populate('sendid')
                 .populate('receiveid')
                 .populate('courierid')
+                .populate('orgid')
                 .skip((page-1)*pageItems)
                 .limit(pageItems)
                 .exec(function(err,orders){
