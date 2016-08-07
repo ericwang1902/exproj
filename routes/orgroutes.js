@@ -182,4 +182,17 @@ router.get('/orderlist',function(req,res,next){
 
 })
 
+router.get('/orderdetail',function(req,res,next){
+    var orderid = req.query.orderid;//订单id
+
+    //查询快递单详情
+    sysorderController.showdetail(orderid,function(err,sysorder){
+        console.log('快递单详情：'+JSON.stringify(sysorder));
+
+        res.render('./contents/orderdetail',{
+            sysorder:sysorder
+        })
+    })
+})
+
 module.exports = router;

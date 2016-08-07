@@ -81,6 +81,19 @@ module.exports = {
         });
     },
 
+    showdetail:function(orderid,callback){
+        sysorderModel
+        .find({_id:id})
+        .populate('receiveid')
+        .populate('courierid')
+        .populate('orgid')
+        .exec(function(err,sysorder){
+            if(err) console.log(err);
+
+            callback(null,sysorder);
+        })
+    },
+
     /**
      * sysorderController.create()
      */
