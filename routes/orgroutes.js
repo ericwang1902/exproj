@@ -169,6 +169,7 @@ router.get('/orderlist',function(req,res,next){
         console.log('订单列表：'+JSON.stringify(orders));
 
         res.render('./contents/orderlist',{
+            orgid:id,
             orders:orders,
             pagesArray:pagesArray
         })
