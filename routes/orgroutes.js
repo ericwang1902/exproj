@@ -164,12 +164,11 @@ router.get('/orderlist',function(req,res,next){
 
         var pagesArray=[];
         for(var i=1;i<=Totalpages;i++){
-            pagesArray.push({p:i});
+            pagesArray.push({p:i,orgid:id});
         }
         console.log('订单列表：'+JSON.stringify(orders));
 
         res.render('./contents/orderlist',{
-            orgid:id,
             orders:orders,
             pagesArray:pagesArray
         })
