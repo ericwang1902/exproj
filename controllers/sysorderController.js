@@ -83,7 +83,7 @@ module.exports = {
 
     showdetail:function(orderid,callback){
         sysorderModel
-        .find({_id:id})
+        .find({_id:orderid})
         .populate('receiveid')
         .populate('courierid')
         .populate('orgid')
