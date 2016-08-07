@@ -1,5 +1,5 @@
 var sysorderModel = require('../models/sysorderModel.js');
-
+var async = require("async");
 /**
  * sysorderController.js
  *
@@ -10,16 +10,35 @@ module.exports = {
     /**
      * sysorderController.list()
      */
-    list: function(req, res) {
-        sysorderModel.find(function(err, sysorders){
-            if(err) {
-                return res.json(500, {
-                    message: 'Error getting sysorder.'
-                });
+    list: function(page,condition, callback2) {
+        var pageItems = 10;
+
+        async.series([
+            function(callback){
+                sysorderModelcount(condition,function(err,count){
+                    if(err) console.log(err);
+                    callback(null,count);
+                })
+            },
+            function(callback){
+                sysorderModel
+                .find(condition)
+                .populate('sendid')
+                .populate('receiveid')
+                .skip((page-1)*pageItems)
+                .limit(pageItems)
+                .exec(function(err,orders){
+                    if(err)console.log(err);
+
+                    callback(null,orders);
+                })
             }
-            return res.json(sysorders);
-        });
+
+        ],function(err,results){
+            callback2(null,results[0],results[1]);
+        })
     },
+
     
     listapi:function(openid,req,res){
         sysorderModel

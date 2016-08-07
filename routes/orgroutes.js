@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var sysuserController = require('../controllers/sysuserController');
+var sysorderController = require('../controllers/sysorderController');
 var enumerableConstants = require('../models/enumerableConstants');
 var sysuserModel = require('../models/sysuserModel');
+var sysorderModel = require('../models/sysorderModel');
 var async = require('async');
 
 /* GET users listing. */
@@ -148,6 +150,28 @@ router.post('/orgusermodify',function(req,res,next){
        
     })
 
+
+})
+
+router.get('/orderlist',function(req,res,next){
+    var id = req.query.id;
+    var currentPage = req.query.p;
+
+    //根据快递员id，来获取该快递员取件的快递列表
+    sysorderController.list(currentPage,{courierid:id},function(err,count,orders){
+        var Totalpages = Math.ceil(count/10);
+
+        var pagesArray=[];
+        for(var i=1;i<=Totalpages;i++){
+            pagesArray.push({p:i});
+        }
+        console.log('订单列表：'+JSON.stringify(orders));
+
+        res.render('./contents/orderlist',{
+            orders:orders,
+            pagesArray:pagesArray
+        })
+    })
 
 })
 
