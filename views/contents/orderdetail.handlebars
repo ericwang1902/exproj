@@ -3,7 +3,7 @@
   <div class="panel-heading">用户详情</div>
   <div class="panel-body">
     <ul class="list-group">
-        {{#if user}}
+
         <li class="list-group-item">电话：{{user.mobile}}</li>
         <li class="list-group-item">用户类型：{{getUsertype user.usertype}}</li>
         <li class="list-group-item">所属公司：{{getCompany orginfo}}</li>
@@ -13,7 +13,7 @@
         <li class="list-group-item">当前状态：{{user.status}}</li>
         <li class="list-group-item">标题：{{user.title}}</li>
         <li class="list-group-item">{{sysorder.template}}</li>      
-        {{/if}}
+
     </ul>
     <a href="/org/orgusermodify?id={{user._id}}" style="cursor:hand" >修改</a>
   </div>
