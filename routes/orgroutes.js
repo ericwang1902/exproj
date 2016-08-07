@@ -170,7 +170,7 @@ router.get('/orderlist',function(req,res,next){
             
             moment.locale('zh-cn');
         for(var i=0;i<orders.length;i++){
-            orders[i].orderdate = moment(orders[i].orderdate).format("LLL");
+            orders[i].orderdate = moment(orders[i].orderdate).format("LLL").toString();
             console.log(orders[i].orderdate);
         }
 
