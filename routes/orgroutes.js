@@ -6,7 +6,7 @@ var enumerableConstants = require('../models/enumerableConstants');
 var sysuserModel = require('../models/sysuserModel');
 var sysorderModel = require('../models/sysorderModel');
 var async = require('async');
-
+var moment = require('moment')
 /* GET users listing. */
 router.get('/orgdash', function(req, res, next) {
   res.render('./org/orgdash',{id:req.query.id});
@@ -167,6 +167,11 @@ router.get('/orderlist',function(req,res,next){
             pagesArray.push({p:i,orgid:id});
         }
         console.log('订单列表：'+JSON.stringify(orders));
+            
+            moment.locale('zh-cn');
+        for(var i=0;i<orders.length;i++){
+            orders[i].orderdate = moment(orders[i].orderdate).format("LLL");
+        }
 
         res.render('./contents/orderlist',{
             orders:orders,
