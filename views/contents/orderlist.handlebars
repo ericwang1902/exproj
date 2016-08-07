@@ -8,18 +8,17 @@
      <thead>
       <tr>
          <th>快递单号</th>
-         <th>类型</th>
-         <th>状态</th>
-         <th>余单数</th>
+         <th>寄件人</th>
+         <th>寄件日期</th>
          <th>操作</th>
       </tr>
    </thead>
    <tbody>
-       {{#each users}}
+       {{#each orders}}
             <tr>
-                <td>{{mobile}}</td>
-                <td>{{usertype}}</td>
-                <td>{{status}}</td>
+                <td>{{logisticorder}}</td>
+                <td>{{sendid.name}}</td>
+                <td>{{orderdate}}</td>
                 <td>{{count}}</td>
                 <td>
                   <a href="/admin/userdetail?id={{_id}}" style="cursor:hand" >详情</a>
