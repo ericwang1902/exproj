@@ -167,16 +167,16 @@ router.get('/orderlist',function(req,res,next){
             pagesArray.push({p:i,orgid:id});
         }
       //  console.log('订单列表：'+JSON.stringify(orders));
-            
-            moment.locale('zh-cn');
-        for(var i=0;i<orders.length;i++){
-            orders[i].orderdate = moment(orders[i].orderdate).format("LLL").toString();
-            console.log(orders[i].orderdate);
-        }
 
         res.render('./contents/orderlist',{
             orders:orders,
-            pagesArray:pagesArray
+            pagesArray:pagesArray,
+            helpers:{
+             getorderdate:function(orderdate){
+                    moment.locale('zh-cn');
+                    return moment(orderdate).format("LLL");
+                }
+            }
         })
     })
 
