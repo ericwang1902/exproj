@@ -187,7 +187,7 @@ router.get('/orderdetail',function(req,res,next){
 
     //查询快递单详情
     sysorderController.showdetail(orderid,function(err,sysorder){
-        console.log('快递单详情：'+JSON.stringify(sysorder));
+        console.log('快递单详情：'+JSON.stringify(sysorder.template));
 
         res.render('./contents/orderdetail',{
             sysorder:sysorder
