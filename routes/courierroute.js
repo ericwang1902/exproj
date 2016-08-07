@@ -237,11 +237,11 @@ router.post('/pickupdateorder',function(req,res,next){
               sysuserModel.findOne({_id:courier.orgid},function(err,org){
                   if(err) console.log(err);
                   
-                  callback(null,order,org);
+                  callback(null,order,org,courier);
               })
           })  
         },
-        function(order,org,callback){
+        function(order,org,courier,callback){
           //快递鸟下单，下单成功后，进行本地订单数据更新
           
           var orderoptions1 ={};
@@ -256,7 +256,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 //需要在返回的数据中获取物流运单号和打印模板,100表示成功
                 var orderResult = body;
                 
-                callback(null,orderResult);
+                callback(null,orderResult,courier);
               }           
               else if(body.ResultCode=='105'){
               //错误处理,单号不足
@@ -271,7 +271,7 @@ router.post('/pickupdateorder',function(req,res,next){
                  
         },
         //处理返回的订单信息，orderResult是个json对象
-        function(orderResult,callback){
+        function(orderResult,courier,callback){
             //更新订单状态
             sysorderModel.findOne({_id:orderid},function(err,order){
                 if(err) console.log(err);
@@ -282,7 +282,7 @@ router.post('/pickupdateorder',function(req,res,next){
                     order.logisticorder=orderResult.Order.LogisticCode;
                     order.status =targetstatus;
                     order.template = orderResult.PrintTemplate;
-                    order.courierid = new mongoose.Types.ObjectId(courierid);//获取取件员的id
+                    order.courierid = courier._id;//获取取件员的id
                 }
                 order.save(function(err,result){
                     if(err) console.log(err);
