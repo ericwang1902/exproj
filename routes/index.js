@@ -32,7 +32,7 @@ router.get('/login',function(req,res,next){
          res.redirect('/admin/admindash'); 
        }else if(user.usertype == enumerableConstants.usertype.org){ 
          //跳转到org的dashboard 
-           res.redirect('/org/orgdash')
+           res.redirect('/org/orgdash?id='+user._id)
          //res.redirect('/org/orguserlist?id='+user._id);
        }else{
         res.send('目前只有快递代收点的管理人员才可以登录管理后台。')
