@@ -15,7 +15,7 @@ module.exports = {
 
         async.series([
             function(callback){
-                sysorderModelcount(condition,function(err,count){
+                sysorderModel.count(condition,function(err,count){
                     if(err) console.log(err);
                     callback(null,count);
                 })
