@@ -282,6 +282,7 @@ router.post('/pickupdateorder',function(req,res,next){
                     order.logisticorder=orderResult.Order.LogisticCode;
                     order.status =targetstatus;
                     order.template = orderResult.PrintTemplate;
+                    order.courierid = new mongoose.Types.ObjectId(courierid);//获取取件员的id
                 }
                 order.save(function(err,result){
                     if(err) console.log(err);
