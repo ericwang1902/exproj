@@ -13,6 +13,19 @@
 
 <script type="text/javascript">
   var printorder = function(){
-    $.print("#orderDetail" /*, options*/);
+     $("#myElementId").print({
+            globalStyles: false,
+            mediaPrint: false,
+            stylesheet: null,
+            noPrintSelector: ".no-print",
+            iframe: true,
+            append: null,
+            prepend: null,
+            manuallyCopyFormValues: true,
+            deferred: $.Deferred(),
+            timeout: 250,
+                title: null,
+                doctype: '<!doctype html>'
+    });
   }
 </script>
