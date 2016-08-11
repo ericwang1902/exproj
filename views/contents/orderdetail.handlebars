@@ -4,8 +4,15 @@
   <div class="panel-body">
     <ul class="list-group">
 
-        <li class="list-group-item">{{{sysorder.template}}}</li>      
+        <li id="orderDetail" class="list-group-item">{{{sysorder.template}}}</li>      
     </ul>
-    <a href="/org/orgusermodify?id={{user._id}}" style="cursor:hand" >修改</a>
+    <button  onclick="">打印</button>
+    
   </div>
 </div>
+
+<script type="text/javascript">
+  var printorder = function(){
+    $.print("#orderDetail" /*, options*/);
+  }
+</script>
