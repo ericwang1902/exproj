@@ -1,8 +1,8 @@
 <!--订单列表-->
 <ol class="breadcrumb">
   <li>控制面板</li>
-  <li><a href="/org/orguserlist?id={{id}}">用户列表</a></li>
-  <li><a href="/org/orderlist?id={{id}}">订单列表</a></li>
+  <li><a href="/org/orguserlist">用户列表</a></li>
+  <li><a href="/org/orderlist">订单列表</a></li>
 </ol>
 <table class="table table-hover">
      <thead>
@@ -35,7 +35,7 @@
     <ul class="pagination">
         </li>
         {{#each pagesArray}}
-        <li><a href="/org/orderlist?id={{orgid}}&p={{p}}">{{p}}</a></li>
+        <li><a href="/org/orderlist?p={{p}}">{{p}}</a></li>
         {{/each}}
     </ul>
 </nav>

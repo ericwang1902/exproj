@@ -154,7 +154,7 @@ router.post('/orgusermodify',function(req,res,next){
 })
 
 router.get('/orderlist',function(req,res,next){
-    var id = req.query.id;//这是组织的id
+    var id = req.session.CLuserid;//这是组织的id
     var currentPage = req.query.p;
 
 
