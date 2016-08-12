@@ -13,7 +13,7 @@ router.post('/bookorder',function (req,res,next) {
     "Success": true,
     "Reason":""
     }
-    res.send(result);
+    res.json(result);
 
 })
 
