@@ -21,6 +21,12 @@ router.get('/login',function(req,res,next){
   res.render('./contents/login');
 });
 
+router.get('/logout',function (req,res) {
+    req.logout();
+    req.flash('sucess_msg','你已经登出');
+    res.redirect('/login');
+})
+
   router.post('/login',passport.authenticate('local'),
     function(req, res) {
      console.log(req.body);
