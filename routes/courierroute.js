@@ -295,7 +295,7 @@ router.post('/pickupdateorder',function(req,res,next){
         //订阅运单信息
         function(order,org,callback){
               //订阅接口 参数
-              var bookoptions = orderoptions.bookorderoptions(org,order.LogisticCode);
+              var bookoptions = orderoptions.bookorderoptions(org,order.logisticorder);
               request(bookoptions,function(err,response,body){
                   console.log('订阅接口：'+JSON.stringify(body));
                   
