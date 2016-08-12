@@ -1,18 +1,21 @@
 
 var express = require('express');
 var router = express.Router();
+var enumerableconstants = require('../models/enumerableConstants')
 
+var moment = require('moment')
 
 router.post('/bookorder',function (req,res,next) {
     console.log('bookorder:'+req.body);
     //解析trace，寻找到运单，存储近order的trace
     
     var result={
-    "EBusinessID": "1256928",
-    "UpdateTime": "2015-3-11 16:26:11",
+    "EBusinessID": enumerableconstants.kdniao.businessid,
+    "UpdateTime": moment(),
     "Success": true,
     "Reason":""
     }
+    
     res.send(result);
 
 })
