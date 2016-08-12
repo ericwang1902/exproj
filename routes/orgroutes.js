@@ -13,7 +13,7 @@ router.get('/orgdash', function(req, res, next) {
 });
 
 router.get('/orguserlist',function (req,res,next) {
-    var id = req.query.id;
+    var id = req.session.CLuserid;
     var p = req.query.p;//当前页号
     //查找该org下的所有的快递员
     
@@ -36,7 +36,7 @@ router.get('/orguserlist',function (req,res,next) {
 })
 
 router.get('/orguserdetail',function (req,res,next) {
-    var id = req.query.id;//快递员id
+    var id = req.session.CLuserid;//快递员id
 
     //根据快递员id查找到他所归属的快递点，读取快递点的信息。
     async.waterfall([
