@@ -19,7 +19,8 @@ router.post('/bookorder',function (req,res,next) {
         sysorderModel.findOne({logisticorder:logisticorder},function (err,orderinfo) {
             if(err) console.log(err);
             
-            orderinfo.trace=trace;
+            console.log(orderinfo);
+           // orderinfo.trace=trace;
         })
         
     })
