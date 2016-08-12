@@ -11,6 +11,7 @@ var customer = require('./routes/customer');
 var org = require('./routes/orgroutes');
 var courier = require('./routes/courierroute');
 var admin = require('./routes/adminroute');
+var kdniao = require('./routes/kdniao');
 
 var exphbs = require('express-handlebars');
 
@@ -147,6 +148,7 @@ app.use('/wechatbase',wechatbase);//wx.config的信息获取接口
 app.use('/org',org);//快递点管理页面
 app.use('/courier',courier);//快递员管理路由
 app.use('/admin',admin);
+app.use('/kdniao',kdniao);
 
 
 // catch 404 and forward to error handler
