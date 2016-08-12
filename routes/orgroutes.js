@@ -9,7 +9,7 @@ var async = require('async');
 var moment = require('moment')
 /* GET users listing. */
 router.get('/orgdash', function(req, res, next) {
-  res.render('./org/orgdash',{id:req.query.id});
+  res.render('./org/orgdash',{id:req.session.CLuserid});
 });
 
 router.get('/orguserlist',function (req,res,next) {

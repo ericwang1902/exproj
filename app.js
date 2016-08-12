@@ -125,6 +125,8 @@ passport.use(new LocalStrategy(
            
            if(isMatch){
              console.log("用户名和密码验证成功！")
+            //存储当前的登陆用户id
+             req.session.CLuserid = user._id;
              return done(null,user);
            }else{
              console.log("密码不匹配！")
