@@ -11,7 +11,7 @@ var customer = require('./routes/customer');
 var org = require('./routes/orgroutes');
 var courier = require('./routes/courierroute');
 var admin = require('./routes/adminroute');
-var kdniao = require('./routes/kdniao');
+var kdniao = require('./routes/kdniaoroute');
 
 var exphbs = require('express-handlebars');
 
