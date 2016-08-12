@@ -33,7 +33,8 @@ router.get('/logout',function (req,res) {
      
      //查询用户的类型
      sysuserModel.findOne({mobile:req.body.username},function(err,user){
-       
+       //存储当前的登陆用户id
+       req.session.CLuserid = user._id;
        if(user.usertype ==enumerableConstants.usertype.sysadmin){
          res.redirect('/admin/admindash'); 
        }else if(user.usertype == enumerableConstants.usertype.org){ 
