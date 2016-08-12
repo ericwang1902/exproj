@@ -256,7 +256,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 //需要在返回的数据中获取物流运单号和打印模板,100表示成功
                 var orderResult = body;
                 
-                callback(null,orderResult,courier);
+                callback(null,orderResult,courier,org);
               }           
               else if(body.ResultCode=='105'){
               //错误处理,单号不足
@@ -271,7 +271,7 @@ router.post('/pickupdateorder',function(req,res,next){
                  
         },
         //处理返回的订单信息，orderResult是个json对象
-        function(orderResult,courier,callback){
+        function(orderResult,courier,org,callback){
             //更新订单状态
             sysorderModel.findOne({_id:orderid},function(err,order){
                 if(err) console.log(err);
@@ -288,9 +288,19 @@ router.post('/pickupdateorder',function(req,res,next){
                     if(err) console.log(err);
                     console.log('订单信息：'+JSON.stringify(result))
                     
-                    callback(null,result);
+                    callback(null,result,org);
                 })
             })
+        },
+        //订阅运单信息
+        function(order,org,callback){
+              //订阅接口 参数
+              var bookoptions = orderoptions.bookorderoptions(org,order.LogisticCode);
+              request(bookoptions,function(err,response,body){
+                  console.log('订阅接口：'+JSON.stringify(body));
+                  
+                  callback(null,order);
+              })
         },
         function(order,callback){
             //查找courier,用来返回快递员信息，放在模板消息里发出去的
