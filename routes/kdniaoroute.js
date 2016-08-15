@@ -72,7 +72,7 @@ router.post('/bookorder',function (req,res,next) {
                                 })
                         }
                     })
-            },
+                },
                     //查找到该order，关联到logisticdata字段
                     function(logisticId,callback){
                         sysorderModel
@@ -84,6 +84,14 @@ router.post('/bookorder',function (req,res,next) {
                                 sysorder.logisticdata =logisticId;
                             }else{
                                 console.log("不存在该运单。");
+                                 var result={
+                                "EBusinessID": enumerableconstants.kdniao.businessid,
+                                "UpdateTime": moment(),
+                                "Success": false,
+                                "Reason":"不存在该运单"
+                                }
+                                
+                                res.send(result);
                             }
                             
                             
@@ -112,6 +120,7 @@ router.post('/bookorder',function (req,res,next) {
         })
                
     })
+        
             
    
   
