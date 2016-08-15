@@ -84,12 +84,11 @@ router.post('/bookorder',function (req,res,next) {
                                 sysorder.logisticdata =logisticId;
                                 sysorder.save(function(err,order){
                                 if(err) console.log(err);
-                                
-                                callback(null,sysorder);
+                                callback(null,order)
                             })
-                            }else{             
-                                //不存在该运单                   
-                                callback(null,'false');
+                            }
+                            else{
+                               callback(null,'没有这个单子')
                             }
                         })
                     }
@@ -102,11 +101,7 @@ router.post('/bookorder',function (req,res,next) {
                     "Reason":""
             }
            
-           if(result=='false'){
-               info.Success=false;
-               info.Reason="不存在该运单"
-               return res.send(info);
-           }else if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
+            if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
            {
               return res.send(info);
            }          
