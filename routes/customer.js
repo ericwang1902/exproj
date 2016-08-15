@@ -96,6 +96,7 @@ router.post('/createorder',function (req,res,next) {
             },      
             function(sendloc,recieveloc,fan,callback){           
                 //创建订单
+                
                var sysorder  = new sysorderModel({
                    fanopenid:openid,
                    ordercode:uniqid(),//订单号
