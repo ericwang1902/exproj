@@ -11,19 +11,19 @@ var mongoose = require('mongoose');
 var enumerableConstants = require('../models/enumerableConstants');
 
 router.post('/bookorder',function (req,res,next) {
-    
-    var LogisticDataArray= req.body.Data;
-    //循环orderArray,每一个item是一个订单
-    LogisticDataArray.forEach(function (item) {   
+   
+            var LogisticDataArray= req.body.Data;
+            //循环orderArray,每一个item是一个订单
+            LogisticDataArray.forEach(function (item) {   
         
-        var logisticorder = item.LogisticCode;//订单的运单号，用来匹配订单
-        console.log('logisticorder:'+logisticorder);
-        async.waterfall([      
+            var logisticorder = item.LogisticCode;//订单的运单号，用来匹配订单
+            console.log('logisticorder:'+logisticorder);
+            async.waterfall([      
             //构造trace，形成trace数组
-            function (callback) {
-                var TraceArray=[];
+                function (callback) {
+                    var TraceArray=[];
                 
-                item.Traces.forEach(function (trace) { 
+                    item.Traces.forEach(function (trace) { 
                     //构造trace
                     var TraceData = {
                         AcceptTime : trace.AcceptTime,
@@ -32,65 +32,92 @@ router.post('/bookorder',function (req,res,next) {
                     }
                     //形成数组
                     TraceArray.push(TraceData);             
-                })
-                callback(null,TraceArray);
-            },
-            //构造LogisticData,存储,然后传递其id用来关联order
-            function (TraceArray,callback) {
-              //先查找，如果有就修改，没有新增  
-                
-              //存储
-              var LogisticData = new LogisticDataModel({
-                EBusinessID : enumerableConstants.kdniao.businessid,
-                OrderCode : item.OrderCode,
-                ShipperCode : item.ShipperCode,
-                LogisticCode : item.LogisticCode,
-                Success : item.Success,
-                Reason : item.Reason,
-                State : item.State,
-                CallBack : item.CallBack,
-                Traces:TraceArray
-                })
-               LogisticData.save(function (err,LogisticData) {
-                   if(err) console.log(err);
-                   
-                   var LogisticDataId = LogisticData._id;
-                   callback(null,LogisticDataId);
-               })
-            },
-            //查找到该order，关联到logisticdata字段
-            function(logisticId,callback){
-                sysorderModel
-                .findOne({logisticorder:logisticorder})
-                .exec(function(err,sysorder){
-                    if(err) console.log(err);
-                    console.log('order result:'+sysorder);
-                    
-                    sysorder.logisticdata =logisticId;
-                    
-                    sysorder.save(function(err,order){
-                        if(err) console.log(err);
-                        
-                        callback(null,sysorder);
                     })
-                })
-            }
+                    callback(null,TraceArray);
+                },
+                //构造LogisticData,存储,然后传递其id用来关联order
+                function (TraceArray,callback) {
+                //先根据LogisticCode查找，如果有就修改，没有新增  
+                    LogisticDataModel
+                    .findOne({LogisticCode:item.LogisticCode})
+                    .exec(function(err,result){
+                        if(result){
+                            //存在该运单路径纪录，更新即可
+                            result.Traces = TraceArray;
+                            
+                            result.save(function(err,saveresult){
+                                if(err) console.log(err);
+                                
+                                var LogisticDataId = saveresult._id;
+                                callback(null,LogisticDataId);
+                            })                     
+                        }else{
+                            //不存在改运单路径纪录，新增
+                                var LogisticData = new LogisticDataModel({
+                                    EBusinessID : enumerableConstants.kdniao.businessid,
+                                    OrderCode : item.OrderCode,
+                                    ShipperCode : item.ShipperCode,
+                                    LogisticCode : item.LogisticCode,
+                                    Success : item.Success,
+                                    Reason : item.Reason,
+                                    State : item.State,
+                                    CallBack : item.CallBack,
+                                    Traces:TraceArray
+                                    })
+                                LogisticData.save(function (err,LogisticData) {
+                                    if(err) console.log(err);
+                                    
+                                    var LogisticDataId = LogisticData._id;
+                                    callback(null,LogisticDataId);
+                                })
+                        }
+                    })
+            },
+                    //查找到该order，关联到logisticdata字段
+                    function(logisticId,callback){
+                        sysorderModel
+                        .findOne({logisticorder:logisticorder})
+                        .exec(function(err,sysorder){
+                            if(err) console.log(err);
+                            console.log('order result:'+sysorder);
+                            if(sysorder){
+                                sysorder.logisticdata =logisticId;
+                            }else{
+                                console.log("不存在该运单。");
+                            }
+                            
+                            
+                            sysorder.save(function(err,order){
+                                if(err) console.log(err);
+                                
+                                callback(null,sysorder);
+                            })
+                        })
+                    }
             
         ],function (err,resut) {
            console.log(resut) ;
-            
+           //判断所有order循环结束
+           if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
+           {
+               var result={
+                    "EBusinessID": enumerableconstants.kdniao.businessid,
+                    "UpdateTime": moment(),
+                    "Success": true,
+                    "Reason":""
+                    }
+                    
+                    res.send(result);
+           }          
         })
                
     })
-      
-    var result={
-    "EBusinessID": enumerableconstants.kdniao.businessid,
-    "UpdateTime": moment(),
-    "Success": true,
-    "Reason":""
-    }
+            
+   
+  
     
-    res.send(result);
+      
+    
 
 })
 
