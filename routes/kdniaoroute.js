@@ -106,7 +106,7 @@ router.post('/bookorder',function (req,res,next) {
                info.Success=false;
                info.Reason="不存在该运单"
                res.send(info);
-               return false;
+               //return false;
            }
         
            //判断所有order循环结束
