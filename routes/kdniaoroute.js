@@ -17,6 +17,7 @@ router.post('/bookorder',function (req,res,next) {
     LogisticDataArray.forEach(function (item) {   
         
         var logisticorder = item.LogisticCode;//订单的运单号，用来匹配订单
+        console.log('logisticorder:'+logisticorder);
         async.waterfall([      
             //构造trace，形成trace数组
             function (callback) {
