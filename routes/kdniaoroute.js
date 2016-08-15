@@ -82,40 +82,37 @@ router.post('/bookorder',function (req,res,next) {
                             console.log('order result:'+sysorder);
                             if(sysorder){
                                 sysorder.logisticdata =logisticId;
-                            }else{
-                                console.log("不存在该运单。");
-                                 var result={
-                                "EBusinessID": enumerableconstants.kdniao.businessid,
-                                "UpdateTime": moment(),
-                                "Success": false,
-                                "Reason":"不存在该运单"
-                                }
-                                
-                                res.send(result);
-                            }
-                            
-                            
-                            sysorder.save(function(err,order){
+                                sysorder.save(function(err,order){
                                 if(err) console.log(err);
                                 
                                 callback(null,sysorder);
                             })
+                            }else{             
+                                //不存在该运单                   
+                                callback(null,'false');
+                            }
                         })
                     }
             
         ],function (err,resut) {
-           console.log(resut) ;
-           //判断所有order循环结束
-           if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
-           {
-               var result={
+           var info={
                     "EBusinessID": enumerableconstants.kdniao.businessid,
                     "UpdateTime": moment(),
                     "Success": true,
                     "Reason":""
-                    }
-                    
-                    res.send(result);
+            }
+           
+           if(result=='false'){
+               info.Success=false;
+               info.Reason="不存在该运单"
+               res.send(info);
+               return false;
+           }
+        
+           //判断所有order循环结束
+           if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
+           {
+               res.send(info);
            }          
         })
                
