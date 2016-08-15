@@ -63,6 +63,7 @@ router.post('/bookorder',function (req,res,next) {
                 .findOne({logisticorder:logisticorder})
                 .exec(function(err,sysorder){
                     if(err) console.log(err);
+                    console.log('order result:'+sysorder);
                     
                     sysorder.logisticdata =logisticId;
                     
