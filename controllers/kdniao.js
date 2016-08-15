@@ -18,7 +18,7 @@ module.exports={
     //url解码
     urldecode:function (data) {
         
-        return urlencode.decode(data, 'gbk');
+        return urlencode.decode(data, 'utf8');
     }
     
     
