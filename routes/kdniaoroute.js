@@ -105,22 +105,14 @@ router.post('/bookorder',function (req,res,next) {
            if(result=='false'){
                info.Success=false;
                info.Reason="不存在该运单"
-               res.send(info);
-               //return false;
+               return res.send(info);
            }else if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
            {
-               res.send(info);
+              return res.send(info);
            }          
         })
                
     })
-        
-            
-   
-  
-    
-      
-    
 
 })
 
