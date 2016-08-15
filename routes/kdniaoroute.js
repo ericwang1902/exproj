@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 var enumerableConstants = require('../models/enumerableConstants');
 
 router.post('/bookorder',function (req,res,next) {
+    
+        console.log(req.body);
    
             var LogisticDataArray= req.body.Data;
             //循环orderArray,每一个item是一个订单
