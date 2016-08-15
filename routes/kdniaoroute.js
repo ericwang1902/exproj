@@ -107,10 +107,7 @@ router.post('/bookorder',function (req,res,next) {
                info.Reason="不存在该运单"
                res.send(info);
                //return false;
-           }
-        
-           //判断所有order循环结束
-           if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
+           }else if(LogisticDataArray.indexOf(item)== LogisticDataArray.length-1)
            {
                res.send(info);
            }          
