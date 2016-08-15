@@ -13,7 +13,7 @@ var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
     
-            console.log(req.body);
+            console.log(req.body.RequestData);
    
             var LogisticDataArray= req.body.RequestData;
             //循环orderArray,每一个item是一个订单
