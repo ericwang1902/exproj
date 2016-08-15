@@ -147,9 +147,9 @@ var wechatinfo={
 var kdniao ={
     businessid:'1256928',
     apikey:'df11131b-a116-41c7-8a89-486c1f9747a7',
-    //apiurl:'http://api.kdniao.cc/api/EOrderService',//正式的下单地址
+    apiurl:'http://api.kdniao.cc/api/EOrderService',//正式的下单地址
     //bookorderurl:'http://api.kdniao.cc/api/dist',//正式的订阅地址
-    apiurl:'http://testapi.kdniao.cc:8081/api/EOrderService',//电子面单测试接口
+    //apiurl:'http://testapi.kdniao.cc:8081/api/EOrderService',//电子面单测试接口
     bookorderurl:'http://testapi.kdniao.cc:8081/api/dist'//电子面单订阅测试接口
 }
 

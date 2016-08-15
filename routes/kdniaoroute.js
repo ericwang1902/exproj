@@ -36,6 +36,9 @@ router.post('/bookorder',function (req,res,next) {
             },
             //构造LogisticData,存储,然后传递其id用来关联order
             function (TraceArray,callback) {
+              //先查找，如果有就修改，没有新增  
+                
+              //存储
               var LogisticData = new LogisticDataModel({
                 EBusinessID : enumerableConstants.kdniao.businessid,
                 OrderCode : item.OrderCode,
