@@ -14,7 +14,7 @@ var kdniao = require('../controllers/kdniao')
 router.post('/bookorder',function (req,res,next) {
     
             console.log(req.body);
-            console.log(kdniao.urldecode(req.body));
+            console.log(JSON.stringify(kdniao.urldecode(req.body)));
             var LogisticDataArray= kdniao.urldecode(req.body.Data.RequestData);
             //循环orderArray,每一个item是一个订单
             LogisticDataArray.forEach(function (item) {   
