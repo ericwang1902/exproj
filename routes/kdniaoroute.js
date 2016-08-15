@@ -94,7 +94,7 @@ router.post('/bookorder',function (req,res,next) {
                         })
                     }
             
-        ],function (err,resut) {
+        ],function (err,result) {
            var info={
                     "EBusinessID": enumerableconstants.kdniao.businessid,
                     "UpdateTime": moment(),
