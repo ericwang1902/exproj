@@ -25,9 +25,9 @@ router.post('/bookorder',function (req,res,next) {
                 item.Traces.forEach(function (trace) { 
                     //构造trace
                     var TraceData = {
-                        AcceptTime = trace.AcceptTime,
-                        AcceptStation = trace.AcceptStation,
-                        Remark = trace.Remark                        
+                        AcceptTime : trace.AcceptTime,
+                        AcceptStation : trace.AcceptStation,
+                        Remark : trace.Remark                        
                     }
                     //形成数组
                     TraceArray.push(TraceData);             
