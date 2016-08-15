@@ -9,12 +9,13 @@ var TraceModel = require('../models/traceModel');
 var async = require('async');
 var mongoose = require('mongoose');
 var enumerableConstants = require('../models/enumerableConstants');
+var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
     
-        console.log(req.body);
-   
-            var LogisticDataArray= req.body.Data;
+            console.log(req.body);
+            console.log(kdniao.urldecode(req.body));
+            var LogisticDataArray= kdniao.urldecode(req.body.Data);
             //循环orderArray,每一个item是一个订单
             LogisticDataArray.forEach(function (item) {   
         

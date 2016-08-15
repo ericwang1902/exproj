@@ -14,6 +14,11 @@ module.exports={
         
         var data1 = urlencode(data);
         return data1;
+    },
+    //url解码
+    urldecode:function (data) {
+        
+        return urlencode.decode(data, 'gbk');
     }
     
     
