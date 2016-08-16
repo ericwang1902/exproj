@@ -12,8 +12,9 @@ var enumerableConstants = require('../models/enumerableConstants');
 var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
-    
-            console.log(JSON.stringify(req.body));
+            
+            console.log("body:"+req.body);
+            console.log("stringify:"+JSON.stringify(req.body));
    
             var LogisticDataArray= req.body.Data;
             //循环orderArray,每一个item是一个订单
