@@ -18,8 +18,9 @@ router.post('/bookorder',function (req,res,next) {
             console.log(req.body.RequestData);
 
             var strReplaceR = strRequestData.replace(/\\r\\n/g,'');
-            var strReplaceS = strReplaceR.replace(/\\/g,'');
             console.log(strReplaceR)
+            var strReplaceS = strReplaceR.replace(/\\/g,'');
+            console.log(strReplaceS)
           //  console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
 
             var LogisticDataArray = JSON.parse(req.body.RequestData).Data;
