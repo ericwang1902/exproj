@@ -17,10 +17,10 @@ router.post('/bookorder',function (req,res,next) {
            var strRequestData = req.body.RequestData;
             console.log(req.body.RequestData);
 
-            var strReplaceR = strRequestData.replace(/\\r\\n/g,'');
+            var strReplaceR = strRequestData.replace(/'\\r\\n'/g,'');
            // var strReplaceN = strReplaceR.replace(\n,'');
-             var strReplaceS = strReplaceR.replace(\\,'');
-            console.log(strReplaceS)
+            // var strReplaceS = strReplaceR.replace(/'\\','');
+            console.log(strReplaceR)
           //  console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
 
             var LogisticDataArray = JSON.parse(req.body.RequestData).Data;
