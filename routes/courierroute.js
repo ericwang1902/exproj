@@ -207,7 +207,7 @@ router.get('/orderhandle',function (req,res,next) {
         res.redirect('/courier/resultinfo?result=-1&openid='+openid);
     }
 })
-//订单状态修改,快递员取件接口
+//订单状态修改,快递员取件接口，订阅运单
 router.post('/pickupdateorder',function(req,res,next){
     var openid = req.query.openid;//客户的openid
     var targetstatus = req.body.targetstatus;
