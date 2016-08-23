@@ -13,8 +13,14 @@ var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
            // console.log("stringify:"+JSON.stringify(req.body));可以打印出所有body
-           // console.log(req.body.RequestData);
-            console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
+
+           var strRequestData = req.body.RequestData;
+            console.log(req.body.RequestData);
+
+            var strReplaceRN = strRequestData.replace('\r\n','');
+            var strReplaceS = strReplaceRN.replace('\\','');
+            console.log(strReplaceS);
+          //  console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
 
             var LogisticDataArray = JSON.parse(req.body.RequestData).Data;
             //循环orderArray,每一个item是一个订单
