@@ -21,9 +21,9 @@ router.post('/bookorder',function (req,res,next) {
             console.log(strReplaceR)
             var strReplaceS = strReplaceR.replace(/\\/g,'');
             console.log(strReplaceS)
-          //  console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
+            
 
-            var LogisticDataArray = JSON.parse(req.body.RequestData).Data;
+            var LogisticDataArray = JSON.parse(strReplaceS).Data;
             //循环orderArray,每一个item是一个订单
             LogisticDataArray.forEach(function (item) {   
         
