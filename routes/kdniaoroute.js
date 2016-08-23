@@ -15,7 +15,7 @@ router.post('/bookorder',function (req,res,next) {
            // console.log("stringify:"+JSON.stringify(req.body));可以打印出所有body
             console.log(req.body.RequestData);
 
-            var LogisticDataArray = JSON.parse(req.body.RequestData);
+            var LogisticDataArray = JSON.parse(req.body.RequestData).Data;
             //循环orderArray,每一个item是一个订单
             LogisticDataArray.forEach(function (item) {   
         
