@@ -109,7 +109,7 @@ router.post('/bookorder',function (req,res,next) {
              moment.locale('zh-cn');
            var info={
                     "EBusinessID": enumerableconstants.kdniao.businessid,
-                    "UpdateTime": moment().format("YYYY-M MM-D DD H HH:m mm:s ss"),
+                    "UpdateTime": moment().format("YYYY-M-D H:m:s"),
                     "Success": true,
                     "Reason":""
             }
