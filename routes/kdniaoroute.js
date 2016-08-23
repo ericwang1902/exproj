@@ -15,6 +15,8 @@ router.post('/bookorder',function (req,res,next) {
             
             console.log("body:"+req.body);
             console.log("stringify:"+JSON.stringify(req.body));
+
+            res.send("test")
 })
 
 module.exports = router;
