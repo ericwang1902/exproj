@@ -17,8 +17,8 @@ router.post('/bookorder',function (req,res,next) {
            var strRequestData = req.body.RequestData;
             console.log(req.body.RequestData);
 
-            var strReplaceR = strRequestData.replace('\r','');
-            var strReplaceN = strReplaceR.replace('\n','');
+            var strReplaceR = strRequestData.replace(\r,'');
+            var strReplaceN = strReplaceR.replace(\n,'');
           //  var strReplaceS = strReplaceRN.replace('\\','');
             console.log(strReplaceN)
           //  console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
