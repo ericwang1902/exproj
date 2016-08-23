@@ -12,9 +12,8 @@ var enumerableConstants = require('../models/enumerableConstants');
 var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
-            
-          //  console.log("body:"+req.body);
-            console.log("stringify:"+JSON.stringify(req.body));
+           // console.log("stringify:"+JSON.stringify(req.body));
+            console.log(req.body.RequestData);
 
             res.send("test")
 })
