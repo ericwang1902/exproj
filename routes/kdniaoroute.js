@@ -99,15 +99,17 @@ router.post('/bookorder',function (req,res,next) {
                             })
                             }
                             else{
+                            console.log('没有这个单子')
                                callback(null,'没有这个单子')
                             }
                         })
                     }
             
         ],function (err,result) {
+             moment.locale('zh-cn');
            var info={
                     "EBusinessID": enumerableconstants.kdniao.businessid,
-                    "UpdateTime": moment(),
+                    "UpdateTime": moment().format("YYYY-M MM-D DD H HH:m mm:s ss"),
                     "Success": true,
                     "Reason":""
             }
