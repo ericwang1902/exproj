@@ -13,7 +13,7 @@ var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
             
-            console.log("body:"+req.body);
+            console.log("body:"+req.body.key1);
             console.log("stringify:"+JSON.stringify(req.body));
 
             res.send("test")
