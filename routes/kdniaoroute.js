@@ -13,7 +13,7 @@ var kdniao = require('../controllers/kdniao')
 
 router.post('/bookorder',function (req,res,next) {
            // console.log("stringify:"+JSON.stringify(req.body));可以打印出所有body
-            console.log(req.body.RequestData);
+           // console.log(req.body.RequestData);
             console.log(JSON.stringify(JSON.parse(req.body.RequestData).Data))
 
             var LogisticDataArray = JSON.parse(req.body.RequestData).Data;
