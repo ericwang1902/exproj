@@ -84,7 +84,7 @@ router.post('/bookorder',function (req,res,next) {
                         }
                     })
                 },
-                    //查找到该order，关联到logisticdata字段
+                    //根据物流单号查找到该order，将物流数据关联到order的logisticdata字段
                     function(logisticId,callback){
                         sysorderModel
                         .findOne({logisticorder:logisticorder})
