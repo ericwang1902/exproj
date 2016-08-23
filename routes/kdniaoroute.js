@@ -84,7 +84,7 @@ router.post('/bookorder',function (req,res,next) {
                         }
                     })
                 },
-                    //根据物流单号查找到该order，将物流数据关联到order的logisticdata字段
+                    //根据物流单号查找到该order，将物流数据关联到order的logisticdata字段 
                     function(logisticId,callback){
                         sysorderModel
                         .findOne({logisticorder:logisticorder})
@@ -99,7 +99,7 @@ router.post('/bookorder',function (req,res,next) {
                             })
                             }
                             else{
-                            console.log('没有这个单子')
+                            console.log('没有这个单子!')
                                callback(null,'没有这个单子')
                             }
                         })
