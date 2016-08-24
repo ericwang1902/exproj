@@ -283,6 +283,7 @@ router.post('/pickupdateorder',function(req,res,next){
                     order.status =targetstatus;
                     order.template = orderResult.PrintTemplate;
                     order.courierid = courier._id;//获取取件员的id
+                    order.pickdate=moment();
                 }
                 order.save(function(err,result){
                     if(err) console.log(err);
@@ -312,7 +313,7 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,courier,callback){
             moment.locale('zh-cn');
-           var orderdatecn= moment(order.orderdate).format("LLL");
+           var orderdatecn= moment(order.pickdate).format("LLL");
             //发送模板消息
             wechatjs.sendTemplate2(openid,
             'http://exproj.robustudio.com/customer/order?orderid='+order._id+'&openid='+openid+'&courierid='+courierid,

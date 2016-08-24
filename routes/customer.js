@@ -110,7 +110,8 @@ router.post('/createorder',function (req,res,next) {
                    orderdate:moment(),
                    logisticorder:'',
                    template:'' ,
-                   logisticdata:null                       
+                   logisticdata:null,
+                   pickdate:null                       
                })
              
                sysorder.save(function(err,sysorder){

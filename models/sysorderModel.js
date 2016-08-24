@@ -41,7 +41,8 @@ var sysorderSchema = new Schema({
 	"logisticdata":{
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'LogisticData'
-	}
+	},
+	"pickdate":Date//快递员接单时间
 });
 
 module.exports = mongoose.model('sysorder', sysorderSchema);
