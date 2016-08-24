@@ -224,8 +224,13 @@ module.exports = {
             if(org){
                 console.log('org:'+org);
                 org.count=org.count+value;
+                org.save(function(err,orgresult){
+                    if(err) console.log(err);
+
+                     callback(null,orgresult)
+                })
             }
-            callback(null,org)
+           
         })
     },
 
