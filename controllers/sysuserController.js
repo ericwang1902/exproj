@@ -222,6 +222,7 @@ module.exports = {
             if(err) console.log(err);
             //查找到该org，对该org的count进行修改
             if(org){
+                console.log('org:'+org);
                 org.count=org.count+value;
             }
             callback(null,org)
