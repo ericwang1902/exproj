@@ -163,6 +163,7 @@ router.get('/orderhandle',function (req,res,next) {
         .findOne({_id:orderid})
         .populate('sendid')
         .populate('receiveid')
+        .populate('logisticdata')
         .exec(function(err,order){
             if(err) console.log(err);
             
