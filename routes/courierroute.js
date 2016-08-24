@@ -324,7 +324,7 @@ router.post('/pickupdateorder',function(req,res,next){
             
             callback(null,order,org);
         },
-        function(org,callback){
+        function(order,org,callback){
             //扣减在线快递系统的count余额
             sysusercontroller.modifyCount(org,-1,function(err,org){
                 if(err){
