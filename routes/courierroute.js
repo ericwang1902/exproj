@@ -244,11 +244,8 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function(order,org,courier,callback){
           //快递鸟下单，下单成功后，进行本地订单数据更新，圆通快递下单接口
-          
           var orderoptions1 ={};
-          
           orderoptions1=orderoptions.ytoOrderOptions(order,org);
-         
           
           request(orderoptions1,function(err,response,body){
               console.log('~~~~~~~~~~~~~~'+JSON.stringify(body));
@@ -301,18 +298,18 @@ router.post('/pickupdateorder',function(req,res,next){
               request(bookoptions,function(err,response,body){
                   console.log('订阅接口：'+JSON.stringify(body));
                   
-                  callback(null,order);
+                  callback(null,order,org);
               })
         },
-        function(order,callback){
+        function(order,org,callback){
             //查找courier,用来返回快递员信息，放在模板消息里发出去的
             sysuserModel.findOne({openid:courierid},function(err,courier){
                 if(err) console.log(err);
                 
-                callback(null,order,courier);
+                callback(null,order,courier,org);
             })
         },
-        function(order,courier,callback){
+        function(order,courier,org,callback){
             moment.locale('zh-cn');
            var orderdatecn= moment(order.pickdate).format("LLL");
             //发送模板消息
@@ -325,7 +322,19 @@ router.post('/pickupdateorder',function(req,res,next){
             courier.mobile,
             function(err,result){})
             
-            callback(null,order);
+            callback(null,order,org);
+        },
+        function(org,callback){
+            //扣减在线快递系统的count余额
+            sysusercontroller.modifyCount(org,-1,function(err,org){
+                if(err){
+                  console.log(err);      
+                } 
+                else{
+                    callback(null,org);
+                }
+                
+            })
         }
     ],function(err,result){
         if(err){

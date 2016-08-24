@@ -214,6 +214,19 @@ module.exports = {
             });
         });
     },
+    //修改下单余额,后期补流水余额
+    modifyCount:function(org,value,callback){
+        sysuserModel
+        .findOne({_id:org._id})
+        .exec(function(err,org){
+            if(err) console.log(err);
+            //查找到该org，对该org的count进行修改
+            if(org){
+                org.count=org.count+value;
+            }
+            callback(null,org)
+        })
+    },
 
     modify: function(id,userinfo,callback){
         sysuserModel.findOne({_id:id},function(err,user){
@@ -225,7 +238,7 @@ module.exports = {
             user.type = userinfo.type;
             user.account = userinfo.account;
             user.accountpsd = userinfo.accountpsd;
-            user.count = user.count;//不让修改剩余单数
+            user.count = userinfo.count;//修改该快递组织的剩余单号
             user.orgid = userinfo.orgid;
             user.status = userinfo.status;
             user.title =userinfo.title;
