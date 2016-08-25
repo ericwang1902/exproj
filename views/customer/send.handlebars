@@ -173,9 +173,7 @@
 <script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
-    $('#sumitbtn').on('click',function(event){
-        
-        
+    $('#sumitbtn').on('click',function(event){   
         if($('#sendid').val()=='' || $('#receiveid').val()=='' || $('#goodsname').val()==''){
             $.alert("寄件人、收件人、物品描述不可为空", "警告");
             return false;
@@ -191,12 +189,6 @@
                         $('#sumitbtn').css('background','#ef4f4f');
                     })
         }
-
-        
-
-
-        
-
     })
     </script>
 </body>
