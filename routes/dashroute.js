@@ -6,8 +6,10 @@ var sysordercontroller = require('../controllers/sysorderController');
 router.post('/orgdashweek', function(req, res) {
     //获取一周的订单数据,dashdata/orgdashweek
     console.log(JSON.stringify(req.body));
-    
-    sysordercontroller.getweekData('57663f682161fb550677ce11',function(err,result){
+
+    var orgid = new mongoose.Types.ObjectId('57663f682161fb550677ce11');
+
+    sysordercontroller.getweekData(orgid,function(err,result){
          console.log(JSON.stringify(result));
     });
 
