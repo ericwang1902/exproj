@@ -23,6 +23,7 @@ module.exports = {
             function(callback){
                 sysorderModel
                 .find(condition)
+                .sort([['orderdate', -1]])
                 .populate('sendid')
                 .populate('receiveid')
                 .populate('courierid')
