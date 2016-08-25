@@ -208,7 +208,7 @@ module.exports = {
         });
     },
     //统计一周的订单数据
-    getweekData: function (org, callback) {
+    getweekData: function (org, callback1) {
         var today = moment().date();//今天的日期
        
         async.series([
@@ -304,7 +304,7 @@ module.exports = {
                     });
             }
         ], function (err, results) {
-            callback(null,results);
+            callback1(null,results);
         })
 
 
