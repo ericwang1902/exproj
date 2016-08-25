@@ -181,18 +181,20 @@
             //点击确认后的回调函数
                 return false；
             });
+        }else{
+                    $('#sumitbtn').attr('disabled',true);
+                    $('#sumitbtn').attr('value','提交中...');
+                    $('#sumitbtn').css('background','#999999');
+                    $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
+                        $('#wb_form').submit();
+                    },function(){
+                        $('#sumitbtn').attr('disabled',false);
+                        $('#sumitbtn').attr('value','提交订单');
+                        $('#sumitbtn').css('background','#ef4f4f');
+                    })
         }
 
-                    // $('#sumitbtn').attr('disabled',true);
-                    // $('#sumitbtn').attr('value','提交中...');
-                    // $('#sumitbtn').css('background','#999999');
-                    // $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
-                    //     $('#wb_form').submit();
-                    // },function(){
-                    //     $('#sumitbtn').attr('disabled',false);
-                    //     $('#sumitbtn').attr('value','提交订单');
-                    //     $('#sumitbtn').css('background','#ef4f4f');
-                    // })
+
         
 
     })
