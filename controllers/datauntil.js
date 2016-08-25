@@ -2,28 +2,103 @@ var async = require("async");
 var moment = require("moment");
 
 module.exports = {
-    getweekDataUtil: function (org, weekdata, dayrange,index, callback) {
+    getweekDataUtil: function (org, weekdata, callback) {
         var today = moment().date();//今天的日期
+        async.series([
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-1),
+                            "$lt": today.day(0)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
 
-        var condition = {
-            orderdate: {
-                "$gte": today.day(-index-1),
-                "$lt": today.day(-index)
+                    });
             },
-            orgid:org
-        }
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-2),
+                            "$lt": today.day(-1)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
 
-        //计算count
-        sysorderModel.count(condition, function (err, count) {
-            weekdata[index] = count;
-            index = index + 1;
-            console.log(index)
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-3),
+                            "$lt": today.day(-2)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
 
-            this.getweekDataUtil(org, weekdata, dayrange,index, callback)
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-4),
+                            "$lt": today.day(-3)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
 
-           
-            callback(null, weekdata,index);
-            
-        });
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-5),
+                            "$lt": today.day(-4)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
+
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-6),
+                            "$lt": today.day(-5)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
+
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            "$gte": today.day(-7),
+                            "$lt": today.day(-6)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
+
+                    });
+            },                                                         
+        ], function (err, results) {
+            callback(null,results);
+        })
+
     }
 }

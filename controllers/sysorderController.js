@@ -213,7 +213,7 @@ module.exports = {
         var index = 0;
 
         datauntil
-            .getweekDataUtil(org, weekdata, weekdata.length, index,
+            .getweekDataUtil(org, weekdata, 
             function (err, resultData, resultindex) {
                 if (resultindex = resultData.length - 1) {
                    // console.log(JSON.stringify(resultData));
