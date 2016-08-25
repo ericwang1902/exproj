@@ -4,6 +4,7 @@ var moment = require("moment");
 module.exports = {
     getweekDataUtil: function (org, weekdata, callback) {
         var today = moment().date();//今天的日期
+        console.log(JSON.stringify(weekdata))
         async.series([
             function (callback) {
                 sysorderModel.count(
