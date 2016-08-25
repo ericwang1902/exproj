@@ -114,7 +114,7 @@
             <div class = "weui_cell" >
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">物品描述</label></div>
                 <div class = "weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" id="goodsname" required="" type="text" placeholder="必填" name="goodsname">
+                    <input class="weui_input" id="goodsname" type="text" placeholder="必填" name="goodsname">
                 </div>
             </div>
             <div class = "weui_cell">
@@ -180,7 +180,7 @@
            $.alert('寄件人不可为空！'); 
         }else if($('#receiveid').val()==''){
            $.alert('收件人不可为空！'); 
-        }else if($('#goodsname').val==''){
+        }else if($('#goodsname').val()==''){
            $.alert('物品描述不可为空！')
         }else{
         $('#sumitbtn').attr('disabled',true);
