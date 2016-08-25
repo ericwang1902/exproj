@@ -178,6 +178,7 @@
         
         if($('#sendid').val()=='' || $('#receiveid').val()=='' || $('#goodsname').val()==''){
            alert("寄件人、收件人、物品描述不可为空");
+           return false;
         }
 
                     // $('#sumitbtn').attr('disabled',true);
