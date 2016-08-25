@@ -222,6 +222,7 @@ module.exports = {
                         orgid: org
                     }, function (err, count) {
                         callback(null, count);
+                        console.log(count);
 
                     });
             },
