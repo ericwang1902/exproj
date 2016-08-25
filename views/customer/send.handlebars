@@ -174,15 +174,15 @@
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
     $('#sumitbtn').on('click',function(event){
-
+        
         
         if($('sendid').val()==''){
-           alert('寄件人不可为空！'); 
+           $.alert('寄件人不可为空！'); 
         }else if($('receiveid').val()==''){
-           alert('收件人不可为空！'); 
+           $.alert('收件人不可为空！'); 
         }else{
         $('#sumitbtn').attr('disabled',true);
-        $('#sumitbtn').attr('value','提交中...');
+        $('#sumitbtn').attr('value',$('receiveid').val());
         $('#sumitbtn').css('background','#999999');
         $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
             $('#wb_form').submit();
