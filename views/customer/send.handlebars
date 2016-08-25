@@ -179,18 +179,19 @@
         if($('#sendid').val()=='' || $('#receiveid').val()=='' || $('#goodsname').val()==''){
            $.alert('寄件人、收件人、物品描述不可为空！'); 
         }
-        if($('#sendid').val()!=='' && $('#receiveid').val()!=='' && $('#goodsname').val()!==''){
-        $('#sumitbtn').attr('disabled',true);
-        $('#sumitbtn').attr('value','提交中...');
-        $('#sumitbtn').css('background','#999999');
-        $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
-            $('#wb_form').submit();
-        },function(){
-            $('#sumitbtn').attr('disabled',false);
-            $('#sumitbtn').attr('value','提交订单');
-            $('#sumitbtn').css('background','#ef4f4f');
-        })
-        }
+        
+        // if($('#sendid').val()!=='' && $('#receiveid').val()!=='' && $('#goodsname').val()!==''){
+        // $('#sumitbtn').attr('disabled',true);
+        // $('#sumitbtn').attr('value','提交中...');
+        // $('#sumitbtn').css('background','#999999');
+        // $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
+        //     $('#wb_form').submit();
+        // },function(){
+        //     $('#sumitbtn').attr('disabled',false);
+        //     $('#sumitbtn').attr('value','提交订单');
+        //     $('#sumitbtn').css('background','#ef4f4f');
+        // })
+        // }
 
     })
     </script>
