@@ -120,7 +120,7 @@
             <div class = "weui_cell">
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">备注</label></div>
                 <div class = "weui_cell_bd weui_cell_primary">
-                    <input class="weui_input"  placeholder = "备注" name="goodsdes" value="{{recieveloc._id}}">
+                    <input class="weui_input"  placeholder = "备注" name="goodsdes">
                 </div>
             </div>
         </div>
@@ -174,24 +174,24 @@
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
     $('#sumitbtn').on('click',function(event){
-        alert($('receiveid').val().length);
 
-        // if($('sendid').val().length==0){
-        //    alert('寄件人不可为空！'); 
-        // }else if($('receiveid').val().length==0){
-        //    alert('收件人不可为空！'); 
-        // }else{
-        // $('#sumitbtn').attr('disabled',true);
-        // $('#sumitbtn').attr('value','提交中...');
-        // $('#sumitbtn').css('background','#999999');
-        // $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
-        //     $('#wb_form').submit();
-        // },function(){
-        //     $('#sumitbtn').attr('disabled',false);
-        //     $('#sumitbtn').attr('value','提交订单');
-        //     $('#sumitbtn').css('background','#ef4f4f');
-        // })
-        // }
+        
+        if($('sendid').val()==''){
+           alert('寄件人不可为空！'); 
+        }else if($('receiveid').val()==''){
+           alert('收件人不可为空！'); 
+        }else{
+        $('#sumitbtn').attr('disabled',true);
+        $('#sumitbtn').attr('value','提交中...');
+        $('#sumitbtn').css('background','#999999');
+        $.confirm("提交订单后，我们快递员将第一时间收到您的寄件信息，是否确认？",function(){
+            $('#wb_form').submit();
+        },function(){
+            $('#sumitbtn').attr('disabled',false);
+            $('#sumitbtn').attr('value','提交订单');
+            $('#sumitbtn').css('background','#ef4f4f');
+        })
+        }
 
     })
     </script>
