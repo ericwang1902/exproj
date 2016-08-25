@@ -13,6 +13,9 @@
 
 
 <script type="text/javascript">
+var ctx = $("#myChart").get(0).getContext("2d");
+new Chart(ctx).Line(lineChartData, lineChartOptions);
+
 var x_labels = ["January","February","March","April","May","June","July"];
 var default_datasets = [
         {
@@ -174,9 +177,6 @@ var lineChartOptions ={
             onAnimationComplete: function(){}
           };
 
-var ctx = $("#myChart").get(0).getContext("2d");
-// This will get the first returned node in the jQuery collection.
-//var myNewChart = new Chart(ctx);
-var myLineChart = new Chart(ctx).Line(lineChartData, lineChartOptions);
+
 
 </script>
