@@ -5,7 +5,9 @@ var sysordercontroller = require('../controllers/sysorderController');
 
 router.post('/orgdashweek', function(req, res) {
     //获取一周的订单数据,dashdata/orgdashweek
-    sysordercontroller.getweekData();
+    sysordercontroller.getweekData('57663f682161fb550677ce11',function(err,result){
+         console.log(JSON.stringify(result));
+    });
 
 });
 

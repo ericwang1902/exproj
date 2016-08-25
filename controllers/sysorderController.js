@@ -216,7 +216,8 @@ module.exports = {
             .getweekDataUtil(org, weekdata, weekdata.length, index,
             function (err, resultData, resultindex) {
                 if (resultindex = resultData.length - 1) {
-                    console.log(JSON.stringify(result));
+                   // console.log(JSON.stringify(resultData));
+                    callback(null,resultData)
                 }
 
             })
