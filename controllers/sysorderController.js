@@ -302,7 +302,7 @@ module.exports = {
                         callback(null, count);
 
                     });
-            },
+            }
         ], function (err, results) {
             callback(null,results);
         })

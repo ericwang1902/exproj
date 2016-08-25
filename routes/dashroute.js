@@ -11,6 +11,7 @@ router.post('/orgdashweek', function(req, res) {
 
     sysordercontroller.getweekData(orgid,function(err,result){
          console.log(JSON.stringify(result));
+         res.send(JSON.stringify(result))
     });
 
 });
