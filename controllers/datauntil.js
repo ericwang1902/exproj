@@ -9,7 +9,8 @@ module.exports = {
             orderdate: {
                 "$gte": today.day(-index-1),
                 "$lt": today.day(-index)
-            }
+            },
+            orgid:org
         }
 
         //计算count
