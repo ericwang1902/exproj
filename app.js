@@ -12,6 +12,7 @@ var org = require('./routes/orgroutes');
 var courier = require('./routes/courierroute');
 var admin = require('./routes/adminroute');
 var kdniao = require('./routes/kdniaoroute');
+var dashroute = require('./routes/dashroute');
 
 var exphbs = require('express-handlebars');
 
@@ -149,7 +150,7 @@ app.use('/org',org);//快递点管理页面
 app.use('/courier',courier);//快递员管理路由
 app.use('/admin',admin);
 app.use('/kdniao',kdniao);
-
+app.use('/dashdata',dashroute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
