@@ -177,10 +177,8 @@
         
         
         if($('#sendid').val()=='' || $('#receiveid').val()=='' || $('#goodsname').val()==''){
-           $.alert("寄件人、收件人、物品描述不可为空", "警告", function() {
-            //点击确认后的回调函数
-                return false；
-            });
+            $.alert("寄件人、收件人、物品描述不可为空", "警告");
+            return false;
         }else{
                     $('#sumitbtn').attr('disabled',true);
                     $('#sumitbtn').attr('value','提交中...');
@@ -193,6 +191,8 @@
                         $('#sumitbtn').css('background','#ef4f4f');
                     })
         }
+
+        
 
 
         
