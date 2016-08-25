@@ -17,6 +17,7 @@ module.exports = {
         sysorderModel.count(condition, function (err, count) {
             weekdata[index] = count;
             index = index + 1;
+            console.log(index)
 
             this.getweekDataUtil(org, weekdata, dayrange,index, callback)
 
