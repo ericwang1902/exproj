@@ -9,12 +9,7 @@ var async = require('async');
 var moment = require('moment')
 /* GET users listing. */
 router.get('/orgdash', function(req, res, next) {
-  res.render('./org/orgdash',{
-      id:req.session.CLuserid,
-      testData:[
-          12,19,3,5,2,3
-      ]
-});
+  res.render('./org/orgdash',{id:req.session.CLuserid});
 });
 
 router.get('/orguserlist',function (req,res,next) {
