@@ -180,6 +180,8 @@
            $.alert('寄件人不可为空！'); 
         }else if($('#receiveid').val()==''){
            $.alert('收件人不可为空！'); 
+        }else if($('#goodsname').val==''){
+           $.alert('物品描述不可为空！')
         }else{
         $('#sumitbtn').attr('disabled',true);
         $('#sumitbtn').attr('value','提交中...');
