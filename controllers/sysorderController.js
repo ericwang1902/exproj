@@ -212,6 +212,8 @@ module.exports = {
         var weekdata = [0, 0, 0, 0, 0, 0, 0]
         var index = 0;
 
+        console.log(org)
+
         datauntil
             .getweekDataUtil(org, weekdata, 
             function (err, resultData, resultindex) {
