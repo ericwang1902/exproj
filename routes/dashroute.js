@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var fanController = require('../controllers/fanController.js');
-var sysordercontroller = require('../controllers/sysordercontroller');
+var sysordercontroller = require('../controllers/sysorderController');
 
 
 router.post('/orgdashweek', function(req, res) {
