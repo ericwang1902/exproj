@@ -212,7 +212,7 @@ module.exports = {
         today.second(0);
         today.minute(0);
         today.hour(0);
-
+        console.log(new Date(today));
         //  console.log("today:"+today.add(1, 'days').format('LLL'))
         async.series([
           function (callback) {
