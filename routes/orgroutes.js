@@ -12,14 +12,27 @@ router.get('/orgdash', function (req, res, next) {
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
 
-    sysordercontroller.getweekData(userid, function (err, result) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(JSON.stringify(result));
-   //     res.send(JSON.stringify(result));
+        var today = moment().date();//今天的日期
+        async.series([
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: today.day(-1),
+                            $lt: today.day(0)
+                        },
+                        orgid: org
+                    }, function (err, count) {
+                        callback(null, count);
+                        console.log(count);
+                    });
+            }
+        ], function (err, results) {
+            console.log(JSON.stringify(results));
+        })
+
         res.render('./org/orgdash', { id: req.session.CLuserid });
-    });
+
 
    
 });
