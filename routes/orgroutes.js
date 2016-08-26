@@ -14,7 +14,7 @@ router.get('/orgdash', function (req, res, next) {
     var userid = req.session.CLuserid
 
     var dateArray = [
-        (moment().date() - 6).toString() + '号',
+        '(moment().date() - 6).toString()' + '号',
         (moment().date() - 5).toString() + '号',
         (moment().date() - 4).toString() + '号',
         (moment().date() - 3).toString() + '号',
