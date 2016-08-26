@@ -210,28 +210,98 @@ module.exports = {
     getweekData: function (userid, callback1) {
         //  console.log("today:"+today.add(1, 'days').format('LLL'))
         async.series([
-          function (callback) {
+            function (callback) {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: moment().second(0).minute(0).hour(0).add(-6,'days'),
-                            $lt: moment().second(0).minute(0).hour(0).add(0,'days')
+                            $gte: moment().second(0).minute(0).hour(0).add(-6, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-5, 'days')
                         },
                         orgid: userid
                     }, function (err, count1) {
-                        console.log( moment().second(0).minute(0).hour(0).add(-6,'days'));
-                         console.log(moment().second(0).minute(0).hour(0).add(0,'days'));
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-5, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-4, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-4, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-3, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-3, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-2, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-2, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-1, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-1, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(0, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(0, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
                         callback(null, count1);
                     });
             }
         ], function (err, results) {
-           
+
             if (err) {
                 console.log(err)
             } else {
-                callback1(null,results)
+                callback1(null, results)
             }
-           
+
         })
 
 
