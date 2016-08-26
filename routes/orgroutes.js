@@ -27,7 +27,7 @@ router.get('/orgdash', function (req, res, next) {
                             $gte: today.add(-1, 'days'),
                             $lt: today.add(0, 'days')
                         },
-                        orgid: org
+                        orgid: userid
                     }, function (err, count1) {
                         callback(null, count1);
                     });
