@@ -208,29 +208,19 @@ module.exports = {
     },
     //统计一周的订单数据
     getweekData: function (userid, callback1) {
-        var today = moment();//今天的日期
-        today.second(0);
-        today.minute(0);
-        today.hour(0);
-        
         //  console.log("today:"+today.add(1, 'days').format('LLL'))
         async.series([
           function (callback) {
-              var temp = today;
-              var start=new Date(temp.add(-6, 'days'));
-              var temp1= today;
-              var end=new Date(temp.add(0, 'days'));
-
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: start,
-                            $lt:end
+                            $gte: moment().second(0).minute(0).hour(0).add(-6,'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(0,'days')
                         },
                         orgid: userid
                     }, function (err, count1) {
-                        console.log(start);
-                         console.log(end);
+                        console.log( moment().second(0).minute(0).hour(0).add(-6,'days'));
+                         console.log(moment().second(0).minute(0).hour(0).add(0,'days'));
                         callback(null, count1);
                     });
             },function (callback) {
