@@ -15,6 +15,7 @@ router.get('/orgdash', function (req, res, next) {
 
 
 sysorderController.getweekData(userid,function(err,result){
+     console.log(JSON.stringify(result));
      res.render('./org/orgdash', { id: req.session.CLuserid });
 })
         

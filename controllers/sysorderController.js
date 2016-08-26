@@ -286,7 +286,7 @@ module.exports = {
                     {
                         orderdate: {
                             $gte: today.add(-1, 'days'),
-                            $lt: today.add(-0, 'days')
+                            $lt: today.add(0, 'days')
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -294,7 +294,12 @@ module.exports = {
                     });
             }
         ], function (err, results) {
-            console.log(JSON.stringify(results));
+           
+            if (err) {
+                console.log(err)
+            } else {
+                callback1(null,results)
+            }
            
         })
 
