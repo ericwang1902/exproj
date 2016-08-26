@@ -215,18 +215,7 @@ module.exports = {
 
         //  console.log("today:"+today.add(1, 'days').format('LLL'))
         async.series([
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            $gte: today.add(-7, 'days'),
-                            $lt: today.add(-6, 'days')
-                        },
-                        orgid: userid
-                    }, function (err, count1) {
-                        callback(null, count1);
-                    });
-            },function (callback) {
+          function (callback) {
                 sysorderModel.count(
                     {
                         orderdate: {
@@ -287,6 +276,17 @@ module.exports = {
                         orderdate: {
                             $gte: today.add(-1, 'days'),
                             $lt: today.add(0, 'days')
+                        },
+                        orgid: userid
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: today.add(0, 'days'),
+                            $lt: today.add(1, 'days')
                         },
                         orgid: userid
                     }, function (err, count1) {
