@@ -9,29 +9,35 @@ var async = require('async');
 var moment = require('moment')
 /* GET users listing. */
 router.get('/orgdash', function (req, res, next) {
+     moment.locale('zh-cn')
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
 
-        var today = moment().date();//今天的日期
+        var today = moment();//今天的日期
+        today.second(0);
+        today.minute(0);
+        today.hour(0);
+       
+      //  console.log("today:"+today.add(1, 'days').format('LLL'))
         async.series([
             function (callback) {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.day(-1),
-                            $lt: today.day(0)
+                            $gte: today.add(-1, 'days'),
+                            $lt: today.add(0, 'days')
                         },
                         orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-                        console.log(count);
+                    }, function (err, count1) {
+                        callback(null, count1);
                     });
             }
         ], function (err, results) {
             console.log(JSON.stringify(results));
+            res.render('./org/orgdash', { id: req.session.CLuserid });
         })
 
-        res.render('./org/orgdash', { id: req.session.CLuserid });
+        
 
 
    
