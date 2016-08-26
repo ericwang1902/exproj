@@ -9,19 +9,19 @@ var async = require('async');
 var moment = require('moment')
 /* GET users listing. */
 router.get('/orgdash', function (req, res, next) {
-     moment.locale('zh-cn')
+    moment.locale('zh-cn')
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
 
 
-sysorderController.getweekData(userid,function(err,result){
-     console.log(JSON.stringify(result));
-     res.render('./org/orgdash', { id: req.session.CLuserid });
-})
-        
+    sysorderController.getweekData(userid, function (err, result) {
+        console.log(JSON.stringify(result));
+        res.render('./org/orgdash', { id: req.session.CLuserid,weekdata:result });
+    })
 
 
-   
+
+
 });
 
 router.get('/orguserlist', function (req, res, next) {
