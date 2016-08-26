@@ -207,7 +207,7 @@ module.exports = {
         });
     },
     //统计一周的订单数据
-    getweekData: function (org, callback1) {
+    getweekData: function (userid, callback1) {
         var today = moment();//今天的日期
         today.second(0);
         today.minute(0);
@@ -295,7 +295,7 @@ module.exports = {
             }
         ], function (err, results) {
             console.log(JSON.stringify(results));
-            res.render('./org/orgdash', { id: req.session.CLuserid });
+           
         })
 
 
