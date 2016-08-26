@@ -209,98 +209,18 @@ module.exports = {
     //统计一周的订单数据
     getweekData: function (org, callback1) {
         var today = moment().date();//今天的日期
-       
         async.series([
             function (callback) {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            "$gte": today.day(-1),
-                            "$lt": today.day(0)
+                            $gte: today.day(-1),
+                            $lt: today.day(0)
                         },
                         orgid: org
                     }, function (err, count) {
                         callback(null, count);
                         console.log(count);
-
-                    });
-            },
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            "$gte": today.day(-2),
-                            "$lt": today.day(-1)
-                        },
-                        orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-
-                    });
-            },
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            "$gte": today.day(-3),
-                            "$lt": today.day(-2)
-                        },
-                        orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-
-                    });
-            },
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            "$gte": today.day(-4),
-                            "$lt": today.day(-3)
-                        },
-                        orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-
-                    });
-            },
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            "$gte": today.day(-5),
-                            "$lt": today.day(-4)
-                        },
-                        orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-
-                    });
-            },
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            "$gte": today.day(-6),
-                            "$lt": today.day(-5)
-                        },
-                        orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-
-                    });
-            },
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            "$gte": today.day(-7),
-                            "$lt": today.day(-6)
-                        },
-                        orgid: org
-                    }, function (err, count) {
-                        callback(null, count);
-
                     });
             }
         ], function (err, results) {
