@@ -16,11 +16,17 @@
 <script type="text/javascript">
 var ctx = document.getElementById("myChart");
 
+var datearray1 = [{{datearray}}];
+
+for(var index = 0;index<datearray1.length;index++){
+    datearray1[index]=datearray1[index]+"号";
+}
+
 
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: {{datearray}},
+        labels: datearray1,
         datasets: [{
             label: '# of Votes',
             data: [{{weekdata}}],

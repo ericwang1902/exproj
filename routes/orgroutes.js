@@ -13,23 +13,15 @@ router.get('/orgdash', function (req, res, next) {
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
 
-    var dateArray = [
-        (moment().date() - 6).toString() + '号',
-        (moment().date() - 5).toString() + '号',
-        (moment().date() - 4).toString() + '号',
-        (moment().date() - 3).toString() + '号',
-        (moment().date() - 2).toString() + '号',
-        (moment().date() - 1).toString() + '号',
-        (moment().date() - 0).toString() + '号',
-    ]
+    var dateArray = []
 
-    for (var index = 0; index < dateArray.length; index++) {
-        dateArray[index] = "\"" + dateArray[index] + "\"";
+    for (var index =6; index >=0; index--) {
+        dateArray.push((moment().date() - index))
     }
 
     sysorderController.getweekData(userid, function (err, result) {
         console.log(JSON.stringify(result));
-        res.render('./org/orgdash', { id: req.session.CLuserid, weekdata: result, datearray: dateArray.toString() });
+        res.render('./org/orgdash', { id: req.session.CLuserid, weekdata: result, datearray: dateArray});
     })
 
 
