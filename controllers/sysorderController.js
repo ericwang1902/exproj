@@ -220,10 +220,11 @@ module.exports = {
                     {
                         orderdate: {
                             $gte: new Date(today.add(-6, 'days')),
-                            $lt: new Date(today.add(-5, 'days'))
+                            $lt: new Date(today.add(0, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
+                        
                         callback(null, count1);
                     });
             },function (callback) {
