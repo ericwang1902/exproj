@@ -4,7 +4,7 @@
   <li role="presentation" ><a href="/org/orderlist?p=1">订单列表</a></li>
 </ul>
 
-<div style="width:400px;height:400px">
+<div style="width:100%;height:400px">
     <canvas id="myChart" width="400px" height="400px"></canvas>
 </div>
 
@@ -20,7 +20,7 @@ var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: [{{datearray}}],
+        labels: {{datearray}},
         datasets: [{
             label: '# of Votes',
             data: [{{weekdata}}],
