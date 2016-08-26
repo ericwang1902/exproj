@@ -219,8 +219,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(-6, 'days'),
-                            $lt: today.add(-5, 'days')
+                            $gte: new Date(today.add(-6, 'days')),
+                            $lt: new Date(today.add(-5, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -230,8 +230,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(-5, 'days'),
-                            $lt: today.add(-4, 'days')
+                            $gte: new Date(today.add(-5, 'days')),
+                            $lt: new Date(today.add(-4, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -241,8 +241,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(-4, 'days'),
-                            $lt: today.add(-3, 'days')
+                            $gte: new Date(today.add(-4, 'days')),
+                            $lt: new Date(today.add(-3, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -252,8 +252,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(-3, 'days'),
-                            $lt: today.add(-2, 'days')
+                            $gte: new Date(today.add(-3, 'days')),
+                            $lt: new Date(today.add(-2, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -263,8 +263,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(-2, 'days'),
-                            $lt: today.add(-1, 'days')
+                            $gte: new Date(today.add(-2, 'days')),
+                            $lt: new Date(today.add(-1, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -274,8 +274,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(-1, 'days'),
-                            $lt: today.add(0, 'days')
+                            $gte: new Date(today.add(-1, 'days')),
+                            $lt:new Date( today.add(0, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
@@ -285,8 +285,8 @@ module.exports = {
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: today.add(0, 'days'),
-                            $lt: today.add(1, 'days')
+                            $gte: new Date(today.add(0, 'days')),
+                            $lt: new Date(today.add(1, 'days'))
                         },
                         orgid: userid
                     }, function (err, count1) {
