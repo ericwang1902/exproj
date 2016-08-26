@@ -14,13 +14,13 @@ router.get('/orgdash', function (req, res, next) {
     var userid = req.session.CLuserid
 
     var dateArray = [
-        moment().date() - 6 + '号',
-        moment().date() - 5 + '号',
-        moment().date() - 4 + '号',
-        moment().date() - 3 + '号',
-        moment().date() - 2 + '号',
-        moment().date() - 1 + '号',
-        moment().date() - 0 + '号',
+        (moment().date() - 6).toString() + '号',
+        (moment().date() - 5).toString() + '号',
+        (moment().date() - 4).toString() + '号',
+        (moment().date() - 3).toString() + '号',
+        (moment().date() - 2).toString() + '号',
+        (moment().date() - 1).toString() + '号',
+        (moment().date() - 0).toString() + '号',
     ]
 
     sysorderController.getweekData(userid, function (err, result) {
