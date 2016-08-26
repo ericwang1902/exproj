@@ -13,29 +13,7 @@ router.get('/orgdash', function (req, res, next) {
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
 
-        var today = moment();//今天的日期
-        today.second(0);
-        today.minute(0);
-        today.hour(0);
-       
-      //  console.log("today:"+today.add(1, 'days').format('LLL'))
-        async.series([
-            function (callback) {
-                sysorderModel.count(
-                    {
-                        orderdate: {
-                            $gte: today.add(-1, 'days'),
-                            $lt: today.add(0, 'days')
-                        },
-                        orgid: userid
-                    }, function (err, count1) {
-                        callback(null, count1);
-                    });
-            }
-        ], function (err, results) {
-            console.log(JSON.stringify(results));
-            res.render('./org/orgdash', { id: req.session.CLuserid });
-        })
+
 
         
 
