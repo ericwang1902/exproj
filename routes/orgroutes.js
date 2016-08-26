@@ -12,12 +12,13 @@ router.get('/orgdash', function (req, res, next) {
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
 
-//     sysordercontroller.getweekData(userid, function (err, result) {
-//         console.log(JSON.stringify(result));
-//    //     res.send(JSON.stringify(result));
-//     });
-
+    sysordercontroller.getweekData(userid, function (err, result) {
+        console.log(JSON.stringify(result));
+   //     res.send(JSON.stringify(result));
     res.render('./org/orgdash', { id: req.session.CLuserid });
+    });
+
+   
 });
 
 router.get('/orguserlist', function (req, res, next) {
