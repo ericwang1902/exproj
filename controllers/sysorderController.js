@@ -224,7 +224,8 @@ module.exports = {
                         },
                         orgid: userid
                     }, function (err, count1) {
-                        
+                        console.log(new Date(today.add(-6, 'days')));
+                         console.log(new Date(today.add(0, 'days')));
                         callback(null, count1);
                     });
             },function (callback) {
