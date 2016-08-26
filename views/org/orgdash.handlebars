@@ -16,11 +16,11 @@
 <script type="text/javascript">
 var ctx = document.getElementById("myChart");
 
-var datearray1 = [{{datearray}}];
+var datearray1 = '{{datearray}}'.split(',');
 
-for(var index = 0;index<datearray1.length;index++){
-    datearray1[index]=datearray1[index]+"号";
-}
+// for(var index = 0;index<datearray1.length;index++){
+//     datearray1[index]=datearray1[index]+"号";
+// }
 
 
 var myChart = new Chart(ctx, {
