@@ -212,20 +212,25 @@ module.exports = {
         today.second(0);
         today.minute(0);
         today.hour(0);
-        console.log(new Date(today));
+        
         //  console.log("today:"+today.add(1, 'days').format('LLL'))
         async.series([
           function (callback) {
+              var temp = today;
+              var start=new Date(temp.add(-6, 'days'));
+              var temp1= today;
+              var end=new Date(temp.add(0, 'days'));
+
                 sysorderModel.count(
                     {
                         orderdate: {
-                            $gte: new Date(today.add(-6, 'days')),
-                            $lt: new Date(today.add(0, 'days'))
+                            $gte: start,
+                            $lt:end
                         },
                         orgid: userid
                     }, function (err, count1) {
-                        console.log(new Date(today.add(-6, 'days')));
-                         console.log(new Date(today.add(0, 'days')));
+                        console.log(start);
+                         console.log(end);
                         callback(null, count1);
                     });
             },function (callback) {
