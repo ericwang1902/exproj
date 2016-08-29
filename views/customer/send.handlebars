@@ -123,16 +123,18 @@
                     <input class="weui_input"  placeholder = "备注" name="goodsdes">
                 </div>
             </div>
-            <div class = "weui_cell">
+           <a style="margin-left:0px" href="/customer/setting?openid={{openid}}" class="weui_cell weui_media_box weui_media_appmsg">
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">默认代收点</label></div>
-                <a style="margin-left:0px" href="/customer/setting?openid={{openid}}" class="weui_btn weui_btn_mini weui_btn_primary">
+
+                
                 <div class = "weui_cell_bd weui_cell_primary">
                     <input class="weui_input"   name="defaultorg" value="{{defaultorg}}" disabled=true>
+                </div>
                 <div class="weui_cell_ft">
                 </div>
-                </div>
-                </a>
-            </div>            
+                
+                
+            </a>           
         </div>
         <!--隐藏的收件人和寄件人的信息表单-->
         <input class="weui_input" type="hidden" name="courierid"  value="{{courierid}}" type="text" placeholder="必填">
