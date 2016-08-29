@@ -689,7 +689,7 @@ router.get('/sendrecordapi', function (req, res, next) {
 })
 
 router.get('/locnav', function (req, res, next) {
-    var openid = req.query.openid;
+    var openid = req.query.openid || req.session.openid
 
     res.render('./customer/locnav', { layout: false, openid: openid });
 })

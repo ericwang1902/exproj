@@ -27,7 +27,7 @@ router.post('/userbind',function (req,res,next) {
     //校验快递员的用户名和密码，用来绑定openid，只绑定一个；
     var username = req.body.username;
     var psd = req.body.psd;
-    var openid = req.body.openid;
+    var openid = req.body.openid || req.session.openid;
 
     sysusercontroller.courierbind(username,psd,openid,function (err,result) {
       if(err) console.log(err);
@@ -40,7 +40,7 @@ router.post('/userbind',function (req,res,next) {
 
 router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
-    var openid = req.query.openid;
+    var openid = req.query.openid || req.session.openid;
 
     res.render('./contents/resultinfo',{
         layout:false,
@@ -154,7 +154,7 @@ router.get('/resultinfo',function (req,res,next) {
 })
 
 router.get('/orderhandle',function (req,res,next) {
-    var openid = req.query.openid;
+    var openid = req.query.openid || req.session.openid;
     var orderid = req.query.orderid;
     var courierid = req.query.courierid;//快递员的openid，用来接单后传递给order的
     console.log('/orderhandle:'+courierid);
@@ -210,7 +210,7 @@ router.get('/orderhandle',function (req,res,next) {
 })
 //订单状态修改,快递员取件接口，订阅运单
 router.post('/pickupdateorder',function(req,res,next){
-    var openid = req.query.openid;//客户的openid
+    var openid = req.query.openid || req.session.openid;//客户的openid
     var targetstatus = req.body.targetstatus;
     var orderid = req.body.orderid;
     var courierid = req.body.courierid;//获取取件快递员的openid
@@ -374,7 +374,7 @@ function getuserinfo(req,res,next){
             var bodyJson = JSON.parse(body);//转成json对象 
             var access_token = bodyJson.access_token;
             var refresh_token = bodyJson.refresh_token;
-            var openid=bodyJson.openid;
+            var openid=bodyJson.openid || req.session.openid;
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
