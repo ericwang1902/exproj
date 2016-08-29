@@ -571,8 +571,12 @@ router.get('/send', getuserinfo, function (req, res, next) {
                 .exec(function (err, fan) {
                     if (err) console.log(err);
                     console.log(fan)
-
-                    var defaultorg = fan.orgid.title || '尚未设置';//获取默认寄件点
+                    var defaultorg
+                    if(fan.orderid){
+                      defaultorg = fan.orgid.title;//获取默认寄件点
+                    }else{
+                      defaultorg ='尚未设置';
+                    }
 
                     callback(null, defaultorg);
                 })
@@ -589,7 +593,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                     recieveloc: results[0],
                     sendloc: results[2],
                     fan: results[1],
-                    defaultorg:results[3]
+                    defaultorg: results[3]
                 });
         });
 })
@@ -894,7 +898,11 @@ function getuserinfo(req, res, next) {
                 if (!fan) {
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid: openid
+                        openid: openid,
+                        orgid: null,
+                        sendlist: null,
+                        receivelist: null,
+                        defaultsend: null
                     })
                     fan.save(function (err, fan) {
                         if (err) console.log(err);
@@ -919,11 +927,11 @@ function getuserinfo(req, res, next) {
         // result now equals 'done'
         console.log(result);
 
-        if(result){
+        if (result) {
             var userinfoJson = JSON.parse(result);
             req.userinfoJson = userinfoJson;
             return next();
-        }else{
+        } else {
             getuserinfo();
         }
     });

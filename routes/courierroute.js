@@ -396,7 +396,11 @@ function getuserinfo(req,res,next){
                 if(!fan){
                     //创建粉丝数据
                     var fan = new fanModel({
-                        openid:openid
+                        openid: openid,
+                        orgid: null,
+                        sendlist: null,
+                        receivelist: null,
+                        defaultsend: null
                     })
                     fan.save(function (err,fan) {
                         if(err) console.log(err);

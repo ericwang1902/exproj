@@ -45,7 +45,12 @@ module.exports = {
      * fanController.create()
      */
     create: function(req, res) {
-        var fan = new fanModel({			openid : req.body.openid,			orgid : req.body.orgid,			sendlist : req.body.sendlist,			receivelist : req.body.receivelist
+        var fan = new fanModel({
+			openid : req.body.openid,
+			orgid : req.body.orgid,
+			sendlist : req.body.sendlist,
+			receivelist : req.body.receivelist,
+            defaultsend:null
         });
 
         fan.save(function(err, fan){
@@ -80,7 +85,11 @@ module.exports = {
                 });
             }
 
-            fan.openid =  req.body.openid ? req.body.openid : fan.openid;			fan.orgid =  req.body.orgid ? req.body.orgid : fan.orgid;			fan.sendlist =  req.body.sendlist ? req.body.sendlist : fan.sendlist;			fan.receivelist =  req.body.receivelist ? req.body.receivelist : fan.receivelist;			
+            fan.openid =  req.body.openid ? req.body.openid : fan.openid;
+			fan.orgid =  req.body.orgid ? req.body.orgid : fan.orgid;
+			fan.sendlist =  req.body.sendlist ? req.body.sendlist : fan.sendlist;
+			fan.receivelist =  req.body.receivelist ? req.body.receivelist : fan.receivelist;
+			
             fan.save(function(err, fan){
                 if(err) {
                     return res.json(500, {
