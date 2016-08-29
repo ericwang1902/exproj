@@ -419,11 +419,15 @@ function getuserinfo(req,res,next){
     }
 ], function (err, result) {
     // result now equals 'done'
-    console.log(result);
-    var userinfoJson = JSON.parse(result);
-    req.userinfoJson = userinfoJson;
-     
-     return next();
+        console.log(result);
+
+        if(result){
+            var userinfoJson = JSON.parse(result);
+            req.userinfoJson = userinfoJson;
+            return next();
+        }else{
+            getuserinfo();
+        }
 });
     
    
