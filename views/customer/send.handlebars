@@ -126,7 +126,7 @@
            <a style="margin-left:0px" href="/customer/setting?openid={{openid}}" class="weui_cell weui_media_box weui_media_appmsg">
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">代收点</label></div>
                 <div class = "weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" style="color:crimson"   name="defaultorg" value="{{defaultorg}}" disabled=true>
+                    <input class="weui_input" style="color:crimson" id="defaultorg"  name="defaultorg" value="{{defaultorg}}" disabled=true>
                 </div>
                 <div class="weui_cell_ft">
                 </div>
@@ -184,8 +184,8 @@
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
     $('#sumitbtn').on('click',function(event){   
-        if($('#sendid').val()=='' || $('#receiveid').val()=='' || $('#goodsname').val()==''){
-            $.alert("寄件人、收件人、物品描述不可为空", "警告");
+        if($('#sendid').val()=='' || $('#receiveid').val()=='' || $('#goodsname').val()=='' ||$('#defaultorg').val()==''){
+            $.alert("寄件人、收件人、物品描述、默认代收点不可为空", "警告");
             return false;
         }else{
                     $('#sumitbtn').attr('disabled',true);
