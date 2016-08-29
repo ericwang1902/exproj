@@ -570,6 +570,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                 .populate("orgid")//获取默认受理点
                 .exec(function (err, fan) {
                     if (err) console.log(err);
+                    console.log(fan)
 
                     var defaultorg = fan.orgid.title || '尚未设置';//获取默认寄件点
 
