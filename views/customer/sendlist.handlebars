@@ -67,6 +67,7 @@
     <form  class="weui_tab" method="POST"  action="/customer/send?openid={{openid}}&type=2">
        <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
+            {{#if locs}}
             {{#each locs}}
                 <label class="weui_cell weui_check_label">
                     <div class="weui_cell_bd weui_cell_primary">
@@ -86,14 +87,21 @@
                     <input type="radio" class="weui_check" value="{{_id}}" name="radio2" id="{{_id}}">
                     <span class="weui_icon_checked"></span>
                     </div>
-                </label>       
-            
+                </label>           
             {{/each}}
+            {{else}}
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">尚未维护寄件地址</h2>
+                <p class="weui_msg_desc">请进入地址库进行维护，之后才可以在这里进行选择</p>
+            </div>
+            {{/if}}            
             </div>
         </div>
+        {{#if locs}}
         <div class="weui_tabbar">
             <button type="submit" class="weui_btn weui_btn_primary">选好了</button>
         </div>
+         {{/if}}
     </form>
 <style>
     body {
