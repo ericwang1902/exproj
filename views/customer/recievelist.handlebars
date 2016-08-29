@@ -131,7 +131,7 @@
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
         $('#sumitbtn').on('click',function(event){   
-        if($("input[name='radio1']").val()==''){
+        if(!$(':radio[name=radio1]:checked').length){
             $.alert("必须选择一个收件人", "警告");
             return false;
         }
