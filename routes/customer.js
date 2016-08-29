@@ -571,7 +571,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                 .exec(function (err, fan) {
                     if (err) console.log(err);
 
-                    var defaultorg = fan.defaultsend.title || '尚未设置';//获取默认寄件点
+                    var defaultorg = fan.orgid.title || '尚未设置';//获取默认寄件点
 
                     callback(null, defaultorg);
                 })
