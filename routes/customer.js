@@ -912,36 +912,41 @@ function getuserinfo(req, res, next) {
             var userinfooptions = {
                 url: 'https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN'
             }
-            fanModel.findOne({ openid: openid }, function (err, fan) {
-                if (err) console.log(err);
 
-                if (!fan) {
-                    //创建粉丝数据
-                    var fan = new fanModel({
-                        openid: openid,
-                        orgid: null,
-                        sendlist: null,
-                        receivelist: null,
-                        defaultsend: null
-                    })
-                    fan.save(function (err, fan) {
-                        if (err) console.log(err);
+            if(openid){
+                fanModel.findOne({ openid: openid }, function (err, fan) {
+                    if (err) console.log(err);
 
+                    if (!fan) {
+                        //创建粉丝数据
+                        var fan = new fanModel({
+                            openid: openid,
+                            orgid: null,
+                            sendlist: null,
+                            receivelist: null,
+                            defaultsend: null
+                        })
+                        fan.save(function (err, fan) {
+                            if (err) console.log(err);
+
+                            //这个body就是用户信息
+                            request(userinfooptions, function (error, response, body) {
+                                callback(null, body);
+                            })
+                        })
+                    } else {
+                        //已经有粉丝了
+                        console.log(fan);
                         //这个body就是用户信息
                         request(userinfooptions, function (error, response, body) {
                             callback(null, body);
                         })
-                    })
-                } else {
-                    //已经有粉丝了
-                    console.log(fan);
-                    //这个body就是用户信息
-                    request(userinfooptions, function (error, response, body) {
-                        callback(null, body);
-                    })
-                }
-            })
-
+                    }
+                })
+            }else
+            {
+                callback(null, null);
+            }
         }
     ], function (err, result) {
         // result now equals 'done'
