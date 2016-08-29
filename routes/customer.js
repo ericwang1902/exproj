@@ -626,6 +626,24 @@ router.post('/send', function (req, res, next) {
                 if (err) console.log(err);
                 callback(null, sendloc);
             })
+        },
+        function(callback){
+           //获取粉丝信息，设置默认受理点
+            fanModel
+                .findOne({ openid: openid })
+                .populate("orgid")//获取默认受理点
+                .exec(function (err, fan) {
+                    if (err) console.log(err);
+                    console.log(fan)
+                    var defaultorg=''
+                    if(fan.orgid){
+                      defaultorg = fan.orgid.title;//获取默认寄件点
+                    }else{
+                      defaultorg ='尚未设置';
+                    }
+
+                    callback(null, defaultorg);
+                })
         }
     ],
         // optional callback
@@ -636,7 +654,8 @@ router.post('/send', function (req, res, next) {
                     layout: false,
                     openid: openid,
                     recieveloc: results[0],
-                    sendloc: results[1]
+                    sendloc: results[1],
+                    defaultorg:results[2]
                 });
         });
 
