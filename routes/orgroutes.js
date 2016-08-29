@@ -8,7 +8,7 @@ var sysorderModel = require('../models/sysorderModel');
 var async = require('async');
 var moment = require('moment')
 /* GET users listing. */
-router.get('/orgdash', function (req, res, next) {
+router.get('/orgdash',isLogedIn, function (req, res, next) {
     moment.locale('zh-cn')
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
@@ -29,7 +29,7 @@ router.get('/orgdash', function (req, res, next) {
 
 });
 
-router.get('/orguserlist', function (req, res, next) {
+router.get('/orguserlist',isLogedIn, function (req, res, next) {
     var id = req.session.CLuserid;
     var p = req.query.p;//当前页号
     //查找该org下的所有的快递员
@@ -52,7 +52,7 @@ router.get('/orguserlist', function (req, res, next) {
 
 })
 
-router.get('/orguserdetail', function (req, res, next) {
+router.get('/orguserdetail',isLogedIn, function (req, res, next) {
     var id = req.session.CLuserid;//快递员id
 
     //根据快递员id查找到他所归属的快递点，读取快递点的信息。
@@ -106,7 +106,7 @@ router.get('/orguserdetail', function (req, res, next) {
 
 })
 
-router.get('/orgusermodify', function (req, res, next) {
+router.get('/orgusermodify',isLogedIn, function (req, res, next) {
     var id = req.query.id;
 
     sysuserModel.findOne({ _id: id }, function (err, user) {
@@ -170,7 +170,7 @@ router.post('/orgusermodify', function (req, res, next) {
 
 })
 
-router.get('/orderlist', function (req, res, next) {
+router.get('/orderlist',isLogedIn, function (req, res, next) {
     var id = req.session.CLuserid;//这是组织的id
     var currentPage = req.query.p;
 
@@ -199,7 +199,7 @@ router.get('/orderlist', function (req, res, next) {
 
 })
 
-router.get('/orderdetail', function (req, res, next) {
+router.get('/orderdetail',isLogedIn, function (req, res, next) {
     var orderid = req.query.orderid;//订单id
 
     //查询快递单详情
@@ -211,5 +211,17 @@ router.get('/orderdetail', function (req, res, next) {
         })
     })
 })
+
+//做路由登陆验证
+function isLogedIn(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  }else{
+    req.flash('error_msg','您尚未登陆！');
+    res.redirect("/login");
+  }
+  
+}
+
 
 module.exports = router;

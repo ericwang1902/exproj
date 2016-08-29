@@ -39,7 +39,7 @@ router.get('/userlist',isLogedIn,function (req,res,next) {
 
 
 //用户详情页路由
-router.get('/userdetail',function (req,res,next) {
+router.get('/userdetail',isLogedIn,function (req,res,next) {
   var id = req.query.id;
 
   sysuserModel.findOne({_id:id},function(err,user){
@@ -103,7 +103,7 @@ router.get('/userdetail',function (req,res,next) {
 
 
 //用户详情修改
-router.get('/usermodify',function(req,res,next){
+router.get('/usermodify',isLogedIn,function(req,res,next){
   var id = req.query.id;
   var usertypeObj={
     sysadmin:false,
