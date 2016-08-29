@@ -447,6 +447,7 @@ router.get('/defaultorg', function (req, res, next) {
         console.log(orgs);
 
         res.render('./customer/defaultorg', {
+            openid:openid,
             layout: false,
             orgs: orgs,
             helpers: {

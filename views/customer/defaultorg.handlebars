@@ -67,6 +67,7 @@
     <form  class="weui_tab" method="POST"  action="/customer/defaultorg?openid={{openid}}">
        <div class="weui_tab_bd">
             <div class="weui_cells weui_cells_radio">
+            {{#if orgs}}
             {{#each orgs}}
                 <label class="weui_cell weui_check_label">
                     <div class="weui_cell_bd weui_cell_primary">
@@ -83,14 +84,36 @@
                     <input type="radio" class="weui_check" required value="{{_id}}" name="defaultorgradio" id="{{_id}}">
                     <span class="weui_icon_checked"></span>
                     </div>
-                </label>       
-            
+                </label>         
             {{/each}}
+            {{else}}
+                <div class="container" id="container">
+                    <div class="msg">
+                        <div class="weui_msg">
+                            <div class="weui_icon_area">
+                                <i class="weui_icon_warn weui_icon_msg"></i>
+                            </div>
+                            <div class="weui_text_area">
+                                <h2 class="weui_msg_title">系统内无快递代收点</h2>
+                                <p class="weui_msg_desc">请联系管理员进行设置</p>
+                            </div>
+                            <div class="weui_opr_area">
+                                <p class="weui_btn_area">
+                                    <!--onclick="WeixinJSBridge.call('closeWindow');"-->
+                                    <a href="/customer/send?openid={{openid}}" class="weui_btn weui_btn_primary" >知道了</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            {{/if}}
             </div>
         </div>
+        {{#if orgs}}
         <div class="weui_tabbar">
             <button type="submit" class="weui_btn weui_btn_primary">设为默认快递代理点</button>
         </div>
+         {{/if}}
     </form>
 <style>
     body {
