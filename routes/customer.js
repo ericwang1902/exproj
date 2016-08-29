@@ -571,8 +571,8 @@ router.get('/send', getuserinfo, function (req, res, next) {
                 .exec(function (err, fan) {
                     if (err) console.log(err);
                     console.log(fan)
-                    var defaultorg
-                    if(fan.orderid){
+                    var defaultorg=''
+                    if(fan.orgid){
                       defaultorg = fan.orgid.title;//获取默认寄件点
                     }else{
                       defaultorg ='尚未设置';
