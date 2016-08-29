@@ -115,7 +115,7 @@
          </div>
           {{#if locs}}
          <div class="weui_tabbar">
-                <button type="submit" class="weui_btn weui_btn_primary">选好了</button>
+                <button type="submit" id="sumitbtn" class="weui_btn weui_btn_primary">选好了</button>
          </div>
           {{/if}}
     </form>
@@ -129,4 +129,13 @@
 </style>
 
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
+<script>
+        $('#sumitbtn').on('click',function(event){   
+        if($("input[name='radio1']").val()==''){
+            $.alert("必须选择一个收件人", "警告");
+            return false;
+        }
+    })
+</script>
+
 </body>

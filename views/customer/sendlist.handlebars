@@ -128,4 +128,12 @@
 </style>
 
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
+<script>
+        $('#sumitbtn').on('click',function(event){   
+        if($("input[name='radio2']").val()==''){
+            $.alert("必须选择一个寄件人", "警告");
+            return false;
+        }
+    })
+</script>
 </body>
