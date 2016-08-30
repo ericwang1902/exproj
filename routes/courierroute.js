@@ -347,10 +347,10 @@ router.post('/pickupdateorder',function(req,res,next){
     ],function(err,result){
         if(err){
             if(err.message =='1'){
-                res.redirect('/courier/resultinfo?result=11');
+                res.redirect('/courier/resultinfo?result=11'+'&openid='+openid);
             }
             else{
-                res.redirect('/courier/resultinfo?result=0');
+                res.redirect('/courier/resultinfo?result=0'+'&openid='+openid);
             }
          
         }else{   
