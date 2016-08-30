@@ -32,7 +32,7 @@ router.post('/userbind',function (req,res,next) {
     sysusercontroller.courierbind(username,psd,openid,function (err,result) {
       if(err) console.log(err);
 
-      res.redirect('/courier/resultinfo?result='+result);
+      res.redirect('/courier/resultinfo?result='+result+'&openid='+openid);
     })
 
     
@@ -40,7 +40,7 @@ router.post('/userbind',function (req,res,next) {
 
 router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
-    var openid = req.session.openid;
+    var openid = req.session.openid ||req.query.openid;
     console.log('resultinfo:'+openid)
 
     res.render('./contents/resultinfo',{
