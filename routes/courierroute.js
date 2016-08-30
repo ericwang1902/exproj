@@ -85,7 +85,7 @@ router.get('/resultinfo',function (req,res,next) {
                         info='下单成功！';
                         break;
                      case '11':
-                        info='单号不足！';
+                        info='电子面单系统出错！';
                         break;                                             
                     default:
                         info='出错了！';
@@ -99,7 +99,8 @@ router.get('/resultinfo',function (req,res,next) {
                     case '9':
                         des='尚未维护寄件人，或您未选中寄件人！'
                         break;
-                
+                    case '11':
+                        des ='请联系管理员或稍后再试！'
                     default:
                         break;
                 }
@@ -149,6 +150,13 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                 }
                 return cs;
+            },
+            ifClose:function(result){
+                if(result=='11'){
+                    return true
+                }else{
+                    return false
+                }
             }
         }
     })
