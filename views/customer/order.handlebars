@@ -122,9 +122,8 @@
                         </div>               
                     </div>   
                 </div>  
-            {{/if}}
 
-            </div>
+           
             <div class="weui_cells_title">物流信息</div>
             <div class="weui_cells weui_cells_access">
                 {{#each order.logisticdata.Traces}}
@@ -150,7 +149,8 @@
                         {{{order.template}}}
                     </div>    
             </div>
-         
+          {{/if}}
+         </div>
             
         </div>
         <!--<div class="weui_tabbar">

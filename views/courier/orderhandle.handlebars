@@ -132,7 +132,7 @@
        
             
 
-            </div>
+            
             <div class="weui_cells_title">物流信息</div>
             <div class="weui_cells weui_cells_access">
                  {{#each order.logisticdata.Traces}}
@@ -150,7 +150,7 @@
                 </div>
                 {{/each}}                 
             </div>
-        </div>
+        
         <div class="weui_cells_title">电子面单</div>
             <div class="weui_cells weui_cells_access">               
                     <div class="weui_panel weui_panel_access">                        
@@ -164,9 +164,10 @@
                 <button id="submitbtn" type="submit" class="weui_btn weui_btn_primary">确认取件</button>
             </div>
         {{/ifshowbtn}}
-        {{else}}
         
         {{/if}}
+        </div>
+        </div>
     </form>
 <style>
 body {
