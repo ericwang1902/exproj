@@ -42,11 +42,17 @@ router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
     var openid = req.session.openid ||req.query.openid;
     console.log('resultinfo:'+openid)
+    
+    var ifclose=false;
+    if(result=='11'){
+        ifclose=true
+    }
 
     res.render('./contents/resultinfo',{
         layout:false,
         result:result,
         openid:openid,
+        ifclose:ifclose,
         helpers:{
             getresultinfo:function(resultnum){
                 var info = '';
@@ -150,13 +156,6 @@ router.get('/resultinfo',function (req,res,next) {
                         break;
                 }
                 return cs;
-            },
-            ifClose:function(result){
-                if(result=='11'){
-                    return true
-                }else{
-                    return false
-                }
             }
         }
     })
