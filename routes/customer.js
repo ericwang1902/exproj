@@ -883,6 +883,7 @@ function getuserinfo(req, res, next) {
             openid: req.query.openid
         }
         req.userinfoJson = userinfoJson;
+        req.session.openid = userinfoJson.openid;
         return next();
     }
     console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
