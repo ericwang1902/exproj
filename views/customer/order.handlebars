@@ -143,12 +143,14 @@
                 {{/each}}    
 
             </div>
+             {{#if order.template}}
             <div class="weui_cells_title">电子面单</div>
             <div class="weui_cells weui_cells_access">               
                     <div class="weui_panel weui_panel_access">                        
                         {{{order.template}}}
                     </div>    
             </div>
+            {{/if}}
             
         </div>
         <!--<div class="weui_tabbar">

@@ -151,14 +151,14 @@
                 {{/each}}                 
             </div>
         </div>
-        
+        {{#if order.template}}
             <div class="weui_cells_title">电子面单</div>
             <div class="weui_cells weui_cells_access">               
                     <div class="weui_panel weui_panel_access">                        
                         {{{order.template}}}
                     </div>    
             </div>
-        
+        {{/if}}
         {{#ifshowbtn order.status}}
             <div class="weui_tabbar">
                 <button id="submitbtn" type="submit" class="weui_btn weui_btn_primary">确认取件</button>
