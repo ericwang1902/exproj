@@ -898,6 +898,7 @@ function getuserinfo(req, res, next) {
                 var access_token = bodyJson.access_token;
                 var refresh_token = bodyJson.refresh_token;
                 var openid = bodyJson.openid;
+                req.session.openid =openid;
                 console.log('access_token:' + access_token);
                 console.log('refresh_token:' + refresh_token);
                 console.log('openid:' + openid);

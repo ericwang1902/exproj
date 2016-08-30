@@ -41,6 +41,7 @@ router.post('/userbind',function (req,res,next) {
 router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
     var openid = req.session.openid;
+    
 
     res.render('./contents/resultinfo',{
         layout:false,
@@ -375,7 +376,8 @@ function getuserinfo(req,res,next){
             var bodyJson = JSON.parse(body);//转成json对象 
             var access_token = bodyJson.access_token;
             var refresh_token = bodyJson.refresh_token;
-            var openid=bodyJson.openid || req.session.openid;
+            var openid=bodyJson.openid;
+            req.session.openid =openid;
             console.log('access_token:'+access_token);
             console.log('refresh_token:'+refresh_token);
             console.log('openid:'+openid);
