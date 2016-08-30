@@ -40,7 +40,7 @@ router.post('/userbind',function (req,res,next) {
 
 router.get('/resultinfo',function (req,res,next) {
     var result = req.query.result;
-    var openid = req.query.openid || req.session.openid;
+    var openid = req.session.openid;
 
     res.render('./contents/resultinfo',{
         layout:false,
