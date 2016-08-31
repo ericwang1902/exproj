@@ -9,8 +9,8 @@ var enumerableConstants = require('../models/enumerableConstants')
 var async = require('async');
 /* GET home page. */
 router.get('/',isLogedIn,function(req, res, next) {
- 
-  res.render('index');
+ res.redirect('/login');
+ // res.render('index');
 });
 
 router.post('/',function(req, res, next) {
