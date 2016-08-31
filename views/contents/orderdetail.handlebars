@@ -15,8 +15,10 @@
 <script type="text/javascript">
  $(window).load(function() {
         html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
+            
             canvas.setAttribute("id", "detailprintcanvas");
-            document.querySelector("#drawid").appendChild(canvas);
+            $("#orderDetail").html(canvas)
+           // document.querySelector("#drawid").appendChild(canvas);
         });
        });
 
@@ -24,6 +26,7 @@
 
 
   var printorder = function(){
+    
         var canvas = document.getElementById('detailprintcanvas');
         document.querySelector("#drawid2").appendChild(
                Canvas2Image.convertToPNG(
