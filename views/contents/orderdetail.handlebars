@@ -18,11 +18,10 @@
             document.querySelector("#drawid").appendChild(canvas);
 
              $("#drawid2").appendChild(
-               Canvas2Image.convertToImage(
+               Canvas2Image.convertToJPEG(
                   $("#detailprintcanvas"), 
                   $("#detailprintcanvas").width(),
-                  $("#detailprintcanvas").height(),
-                  'jpeg'))
+                  $("#detailprintcanvas").height()))
         });
       
        });
