@@ -11,8 +11,12 @@
         html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
             
             canvas.setAttribute("id", "detailprintcanvas");
-            $("#orderDetail").html(canvas)
-           // document.querySelector("#drawid").appendChild(canvas);
+          //  $("#orderDetail").html(canvas)
+             $("#orderDetail").html(
+               Canvas2Image.convertToPNG(
+                  canvas,
+                  $("#orderDetail").attr('width'),
+                  $("#orderDetail").attr('height')))
         });
        });
 
@@ -21,12 +25,12 @@
 
   var printorder = function(){
     
-        var canvas = document.getElementById('detailprintcanvas');
-        $("#orderDetail").html(
-               Canvas2Image.convertToPNG(
-                  canvas,
-                  $("#orderDetail").attr('width'),
-                  $("#orderDetail").attr('height')))
+        // var canvas = document.getElementById('detailprintcanvas');
+        // $("#orderDetail").html(
+        //        Canvas2Image.convertToPNG(
+        //           canvas,
+        //           $("#orderDetail").attr('width'),
+        //           $("#orderDetail").attr('height')))
 
 
      $("#orderDetail").print({
