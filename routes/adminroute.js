@@ -13,7 +13,7 @@ var async = require('async');
     res.render('./contents/admindash');
   })
 
-//管理员的用户列表
+//管理员的快递员列表
 router.get('/userlist',isLogedIn,function (req,res,next) {
   var currentPage = req.query.p;
   //console.log(currentPage);
