@@ -3,7 +3,6 @@
   <div class="panel-heading">订单详情</div>
   <div  class="panel-body">
         <div id="orderDetail">{{{sysorder.template}}}</div>
-        <div id="detailprint"></div>
         <canvas id="detailprintcanvas" ></canvas>         
         <button class="btn btn-primary" onclick="printorder()">打印</button>
   </div>
@@ -20,7 +19,7 @@
             console.log('Drew on the existing canvas');
         });
 
-     $("#detailprint").print({
+     $("#detailprintcanvas").print({
             globalStyles: false,
             mediaPrint: false,
             stylesheet: null,
