@@ -130,9 +130,9 @@
             <input class="weui_input" type="hidden" name="targetstatus"  value="1" type="text" placeholder="必填">
             <input class="weui_input" type="hidden" name="courierid"  value="{{courierid}}" type="text" placeholder="必填">
        
-            
-
             </div>
+
+            {{#if order.logisticdata}}
             <div class="weui_cells_title">物流信息</div>
             <div class="weui_cells weui_cells_access">
                  {{#each order.logisticdata.Traces}}
@@ -150,15 +150,26 @@
                 </div>
                 {{/each}}                 
             </div>
-        </div>
-        
+            {{/if}}
+            
+        {{#if order.template}}
+        <div class="weui_cells_title">电子面单</div>
+            <div class="weui_cells weui_cells_access">               
+                    <div class="weui_panel weui_panel_access">                        
+                        {{{order.template}}}
+                    </div>    
+            </div>
+        {{/if}}
+
         {{#ifshowbtn order.status}}
             <div class="weui_tabbar">
                 <button id="submitbtn" type="submit" class="weui_btn weui_btn_primary">确认取件</button>
             </div>
-        {{else}}
         {{/ifshowbtn}}
+        
         {{/if}}
+        </div>
+        
     </form>
 <style>
 body {
