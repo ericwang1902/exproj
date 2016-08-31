@@ -3,7 +3,7 @@
         
 <div class="row">
   <div class="col-md-6"><div id="orderDetail">{{{sysorder.template}}}</div></div>
-  <div class="col-md-6"><div id="drawid"></div></div>
+  <div class="col-md-6"><div id="printdiv"><div id="drawid"></div></div></div>
 </div>
 <button class="btn btn-primary" onclick="printorder()">打印</button>
 
@@ -19,7 +19,7 @@
 
 
   var printorder = function(){
-     $("#drawid").print({
+     $("#printdiv").print({
             globalStyles: false,
             mediaPrint: false,
             stylesheet: null,
