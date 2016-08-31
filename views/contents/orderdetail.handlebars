@@ -24,9 +24,10 @@
 
 
   var printorder = function(){
+    var canvas = document.getElementById('detailprintcanvas');
       $("#drawid2").appendChild(
                Canvas2Image.convertToJPEG(
-                  $("#detailprintcanvas"), 
+                  canvas, 
                   $("#detailprintcanvas").width(),
                   $("#detailprintcanvas").height()))
 
