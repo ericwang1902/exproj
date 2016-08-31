@@ -2,26 +2,18 @@
 <div class="panel panel-default">
   <div class="panel-heading">订单详情</div>
   <div  class="panel-body">
-        <div id="orderDetail">{{{sysorder.template}}}</div>
-        <canvas id="detailprintcanvas" ></canvas>         
+        <div id="orderDetail">{{{sysorder.template}}}</div>    
         <button class="btn btn-primary" onclick="printorder()">打印</button>
   </div>
 </div>
 
 <script type="text/javascript">
-  var printorder = function(){
-    var height1 = $("#orderDetail").height()
-    var width1=$("#orderDetail").width()
-    $("#detailprintcanvas").height(height1)
-    $("#detailprintcanvas").width(width1)
-    var canvas = document.querySelector("#detailprintcanvas");
-      //  html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
-      //       console.log('Drew on the existing canvas');
-      //   });
         html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
+          canvas.setAttribute("id", "detailprintcanvas");
             document.querySelector("#orderDetail").appendChild(canvas);
         });
 
+  var printorder = function(){
      $("#detailprintcanvas").print({
             globalStyles: false,
             mediaPrint: false,
