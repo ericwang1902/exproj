@@ -8,12 +8,14 @@
 </div>
 
 <script type="text/javascript">
-        html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
+
+
+  var printorder = function(){
+            html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
           canvas.setAttribute("id", "detailprintcanvas");
             document.querySelector("#orderDetail").appendChild(canvas);
         });
-
-  var printorder = function(){
+        
      $("#detailprintcanvas").print({
             globalStyles: false,
             mediaPrint: false,
