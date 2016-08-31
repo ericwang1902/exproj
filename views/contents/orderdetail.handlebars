@@ -21,12 +21,12 @@
 
   var printorder = function(){
     
-        // var canvas = document.getElementById('detailprintcanvas');
-        // $("#orderDetail").html(
-        //        Canvas2Image.convertToPNG(
-        //           canvas,
-        //           $("#detailprintcanvas").attr('width'),
-        //           $("#detailprintcanvas").attr('height')))
+        var canvas = document.getElementById('detailprintcanvas');
+        $("#orderDetail").html(
+               Canvas2Image.convertToPNG(
+                  canvas,
+                  $("#detailprintcanvas").attr('width'),
+                  $("#detailprintcanvas").attr('height')))
 
 
      $("#orderDetail").print({
