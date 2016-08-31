@@ -71,6 +71,7 @@
 1. objectID为空的情况下，存储出错的解决办法。
 答案：赋值为null就可以了。
 2. 使用express－validator的自定义验证器。
+
 3.微信配置项：
 3.1 枚举类型中的微信开发项；
 3.2 jssdk的配置项，参考官方文档；(这是在微信的网页里调用微信原生功能，暂时没有用到）
@@ -86,10 +87,10 @@
 //圆通正式账号：MonthCode:6Bzy2tkh,CustomName:K270113766
 
 
-维护地址：
+维护地址(在线快递)：
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
-绑定快递员：
+绑定快递员（在线快递）：
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcourier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
 寄件：

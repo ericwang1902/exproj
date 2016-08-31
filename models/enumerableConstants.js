@@ -125,18 +125,20 @@ var orderstatus=[
 ]
 
 var wechatinfo={
+    token:'exproj',
+    encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD',
+
+
+    //正式帐号
     //appid:'wx7a633de91613786a',
     //appsecret:'67be6d29ba3ae217d748adf0f0729f63',
+    //templateId1:'G9RVRDm6Fu7kqeCrOXwHSTrF-UgbN4k4xx_iK8-ElSo',//新订单提醒（OPENTM207719853）
+    //templateId2:'4NrD6ODjMOpbEmxMXVKNA9y12INjBkZsKNWiUvOLxqM'//订单状态提醒
+    
+
    //测试账号
     appid:'wx838604caabf1e7fe',
     appsecret:'ed8423f1dde7929a036b9a6d9951d4eb',
-    
-    token:'exproj',
-    encodingAESKey:'12RQxjmBlNmQ8HwKRb654CaUPWzx3TjyfFSEZXOhEJD',
-    
-    //templateId1:'G9RVRDm6Fu7kqeCrOXwHSTrF-UgbN4k4xx_iK8-ElSo',//新订单提醒（OPENTM207719853）
-    //templateId2:'4NrD6ODjMOpbEmxMXVKNA9y12INjBkZsKNWiUvOLxqM'//订单状态提醒
-    //测试模板消息id
      templateId1:'wxIRgaeKX-FJ0silwTTHFqE6GM24b6COzGkv5wVVWuQ',//新订单提醒（OPENTM207719853）
     templateId2:'rgDcQq49KhrX813RT71yLpoVuMR242ZOmfRQhVhSwrk'//订单状态提醒
 }
