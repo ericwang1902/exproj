@@ -17,6 +17,13 @@
             canvas.setAttribute("id", "detailprintcanvas");
             document.querySelector("#drawid").appendChild(canvas);
         });
+
+        var canvas = document.getElementById('detailprintcanvas');
+        document.querySelector("#drawid2").appendChild(
+               Canvas2Image.convertToPNG(
+                  canvas, 
+                  $("#detailprintcanvas").width(),
+                  $("#detailprintcanvas").height()))
       
        });
 
@@ -24,12 +31,7 @@
 
 
   var printorder = function(){
-    var canvas = document.getElementById('detailprintcanvas');
-    document.querySelector("#drawid2").appendChild(
-               Canvas2Image.convertToPNG(
-                  canvas, 
-                  $("#detailprintcanvas").width(),
-                  $("#detailprintcanvas").height()))
+
 
      $("#printdiv").print({
             globalStyles: false,
