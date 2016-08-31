@@ -2,9 +2,12 @@
  
         
 <div class="row">
-  <div class="col-md-4"><div id="orderDetail">{{{sysorder.template}}}</div></div>
-  <div class="col-md-4"><div ><div id="drawid"></div></div></div>
-  <div class="col-md-4"><div id="printdiv"><div id="drawid2"></div></div></div>
+  <div class="col-md-6"><div id="orderDetail">{{{sysorder.template}}}</div></div>
+  <div class="col-md-6"><div ><div id="drawid"></div></div></div>
+  
+</div>
+<div class="row">
+  <div class="col-md-6"><div id="printdiv"><div id="drawid2"></div></div></div>
 </div>
 <button class="btn btn-primary" onclick="printorder()">打印</button>
 
@@ -13,9 +16,13 @@
         html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
             canvas.setAttribute("id", "detailprintcanvas");
             document.querySelector("#drawid").appendChild(canvas);
-            
-             $("#drawid2").appendChild( Canvas2Image.convertToImage($("#detailprintcanvas"), $("#detailprintcanvas").width(), $("#detailprintcanvas").height(), 'jpeg'))
 
+             $("#drawid2").appendChild(
+               Canvas2Image.convertToImage(
+                  $("#detailprintcanvas"), 
+                  $("#detailprintcanvas").width(),
+                  $("#detailprintcanvas").height(),
+                  'jpeg'))
         });
       
        });
