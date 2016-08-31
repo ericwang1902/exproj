@@ -11,9 +11,9 @@
 
 <script type="text/javascript">
   var printorder = function(){
-    var heght1 = $("#orderDetail").heght()
+    var height1 = $("#orderDetail").height()
     var weight1=$("#orderDetail").weight()
-    $("#detailprintcanvas").heght(heght1)
+    $("#detailprintcanvas").height(height1)
     $("#detailprintcanvas").weight(weight1)
     var canvas = document.querySelector("#detailprintcanvas");
        html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
