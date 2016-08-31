@@ -12,9 +12,9 @@
 <script type="text/javascript">
   var printorder = function(){
     var height1 = $("#orderDetail").height()
-    var weight1=$("#orderDetail").weight()
+    var width1=$("#orderDetail").width()
     $("#detailprintcanvas").height(height1)
-    $("#detailprintcanvas").weight(weight1)
+    $("#detailprintcanvas").width(width1)
     var canvas = document.querySelector("#detailprintcanvas");
        html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
             console.log('Drew on the existing canvas');
