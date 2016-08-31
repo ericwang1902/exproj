@@ -878,7 +878,7 @@ router.get('/setting', function (req, res, next) {
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
 
-    if (!req.session.openid) {
+    if (req.query && req.query.openid) {
         var userinfoJson = {
             openid: req.query.openid
         }
