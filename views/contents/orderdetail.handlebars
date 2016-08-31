@@ -15,8 +15,11 @@
     $("#detailprintcanvas").height(height1)
     $("#detailprintcanvas").width(width1)
     var canvas = document.querySelector("#detailprintcanvas");
-       html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
-            console.log('Drew on the existing canvas');
+      //  html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
+      //       console.log('Drew on the existing canvas');
+      //   });
+        html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
+            document.querySelector("#orderDetail").appendChild(canvas);
         });
 
      $("#detailprintcanvas").print({
@@ -36,13 +39,3 @@
   }
 </script>
     <script type="text/javascript" src="/js/html2canvas.js"></script>
-    <!--<script type="text/javascript">
-        // html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
-        //     document.querySelector("#detailprint").appendChild(canvas);
-        // });
-
-       var canvas = document.querySelector("#detailprintcanvas");
-       html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
-            console.log('Drew on the existing canvas');
-        });
-    </script>-->
