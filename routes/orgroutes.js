@@ -93,7 +93,7 @@ router.get('/orguserdetail',isLogedIn, function (req, res, next) {
                 },
                 getCompany: function (user) {
                     if (user.usertype != '1' && user.type != '' && user.type != null) {
-                        return enumerableConstants.expCompany[user.type - 1].name;
+                        return enumerableConstants.expCompany[user.type ].name;
                     }
                     else
                         return '';
