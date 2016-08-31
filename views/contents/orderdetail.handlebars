@@ -3,7 +3,7 @@
   <div class="panel-heading">订单详情</div>
   <div  class="panel-body">
         <div id="orderDetail" style="visible:false" >{{{sysorder.template}}}</div>
-        <div id="detailprint"></div>          
+        <canvas id="detailprint"></canvas>         
         <button class="btn btn-primary" onclick="printorder()">打印</button>
   </div>
 </div>
@@ -28,7 +28,11 @@
 </script>
     <script type="text/javascript" src="/js/html2canvas.js"></script>
     <script type="text/javascript">
-        html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
-            document.querySelector("#detailprint").appendChild(canvas);
+   var canvas = document.querySelector("#detailprint");
+
+    document.querySelector("button").addEventListener("click", function() {
+        html2canvas(document.querySelector("#orderDetail"), {canvas: canvas}).then(function(canvas) {
+            console.log('Drew on the existing canvas');
         });
+    }, false);
     </script>
