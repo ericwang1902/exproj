@@ -1,14 +1,17 @@
 
-
-        <div id="orderDetail">{{{sysorder.template}}}</div>    
-        <button class="btn btn-primary" onclick="printorder()">打印</button>
-
+ 
+        
+<div class="row">
+  <div class="col-md-6"><div id="orderDetail">{{{sysorder.template}}}</div></div>
+  <div class="col-md-6"><div id="drawid"></div></div>
+</div>
+<button class="btn btn-primary" onclick="printorder()">打印</button>
 
 <script type="text/javascript">
  $(window).load(function() {
         html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
-          canvas.setAttribute("id", "detailprintcanvas");
-            document.querySelector("#orderDetail").appendChild(canvas);
+         // canvas.setAttribute("id", "detailprintcanvas");
+            document.querySelector("#drawid").appendChild(canvas);
         });
   });
 
