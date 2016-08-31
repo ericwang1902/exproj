@@ -89,7 +89,7 @@
 
 
 维护地址(在线快递)：
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2flocation&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2fsend&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
 绑定快递员（在线快递）：
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcourier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
