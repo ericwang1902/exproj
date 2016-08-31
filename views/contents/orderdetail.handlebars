@@ -1,15 +1,16 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">订单详情</div>
-  <div class="panel-body">
-        <div id="orderDetail" >{{{sysorder.template}}}</div>          
+  <div  class="panel-body">
+        <div id="orderDetail" style="visible:false" >{{{sysorder.template}}}</div>
+        <div id="detailprint"></div>          
         <button class="btn btn-primary" onclick="printorder()">打印</button>
   </div>
 </div>
 
 <script type="text/javascript">
   var printorder = function(){
-     $("#orderDetail").print({
+     $("#detailprint").print({
             globalStyles: false,
             mediaPrint: false,
             stylesheet: null,
@@ -28,6 +29,6 @@
     <script type="text/javascript" src="/js/html2canvas.js"></script>
     <script type="text/javascript">
         html2canvas(document.querySelector("#orderDetail")).then(function(canvas) {
-            document.body.appendChild(canvas);
+            document.querySelector("#detailprint").appendChild(canvas);
         });
     </script>
