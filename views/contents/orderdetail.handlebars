@@ -31,8 +31,8 @@
         $("#orderDetail").html(
                Canvas2Image.convertToPNG(
                   canvas,
-                  canvas.width(),
-                  canvas.height()))
+                  $("#detailprintcanvas").attr('width'),
+                  $("#detailprintcanvas").attr('height'))
 
 
      $("#printdiv").print({
