@@ -113,9 +113,13 @@
             </div>
         </div>
         {{#if locs}}
-        <div class="weui_tabbar">
+        <!--<div class="weui_tabbar">
             <button type="submit" id="sumitbtn" class="weui_btn weui_btn_primary">选好了</button>
-        </div>
+        </div>-->
+        <div class="weui_tabbar">        
+  <button id="sumitbtn" type="submit" class="weui_tabbar_item weui_btn weui_btn_mini weui_btn_primary" style="height:42px">选择</button>
+  <a id="createloc" href="/customer/location?openid={{openid}}&source=2" class="weui_tabbar_item weui_btn weui_btn_mini weui_btn_default" style="margin-top:0;height:42px;line-height:42px">新建</a>
+  </div>
          {{/if}}
     </form>
 <style>

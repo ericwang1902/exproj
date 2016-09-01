@@ -256,7 +256,12 @@ router.post('/location', function (req, res, next) {
                         callback(null, 0);
                     }
                     else {
-                        req.session.recieveloc = loc._id;//将locid放入sesstion
+                        if(loc.type=='1'){
+                           req.session.recieveloc = loc._id;//将locid放入sesstion     
+                        }else if(loc.type=='2'){
+                            req.session.sendloc = loc._id;//将locid放入sesstion 
+                        }
+                        
                         callback(null, 5);
                     }
                 })
