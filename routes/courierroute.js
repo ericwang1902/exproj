@@ -363,7 +363,7 @@ router.post('/pickupdateorder', function (req, res, next) {
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
-    if (!req.query) {
+    if (Object.prototype.hasOwnProperty.call(req, 'query') && !req.query) {
         var queryurl = req.query;
         var queryobj = qs.parse(queryurl);
         var querydata = Object.create(queryobj)
