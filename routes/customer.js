@@ -883,7 +883,7 @@ router.get('/setting', function (req, res, next) {
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
-    console.log("req.query:"+req.query)
+    console.log("req.query:"+req.query.openid)
     
     if (req.query.openid!= '') {
         var queryurl = req.query;
