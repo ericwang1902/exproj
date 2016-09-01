@@ -365,13 +365,12 @@ router.post('/pickupdateorder', function (req, res, next) {
 
 
 })
-
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
    // console.log("req.query:"+req.query.openid)
-    
+    try {
         if (!Object.prototype.hasOwnProperty.call(req.query, 'code')) {
             //有值
             var userinfoJson = {
@@ -460,6 +459,11 @@ function getuserinfo(req, res, next) {
                 }
             });
         }
+    } catch (error) {
+        console.log(error);
+        
+    }
+        
     } 
 
 
