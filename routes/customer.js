@@ -12,7 +12,6 @@ var sysorderModel = require('../models/sysorderModel');
 var uniqid = require('uniqid');
 var sysorderController = require('../controllers/sysorderController');
 var moment = require('moment')
-var qs = require('querystring');
 
 router.get('/order', function (req, res, next) {
     var openid = req.query.openid || req.session.openid;
