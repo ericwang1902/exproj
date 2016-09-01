@@ -381,9 +381,9 @@ function getuserinfo(req, res, next) {
     // console.log("req.query:"+req.query.openid)
     var booltemp = '';
     try {
-        booltemp = !Object.prototype.hasOwnProperty.call(req.query, 'code')
+        booltemp = (Object.keys(req.query).length!=0  && !Object.prototype.hasOwnProperty.call(req.query, 'code'))
     } catch (error) {
-        console.log(error);
+        console.log("error:"+error);
         throw new Error(error)
     }
     if (booltemp) {
