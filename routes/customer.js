@@ -215,7 +215,7 @@ router.post('/location', function (req, res, next) {
                     postcode: req.body.postcode,
                     provincename: req.body.provincename,
                     cityname: req.body.cityname,
-                    expareaname: req.body.expareaname,
+                    expareaname: req.body.expareaname||'',
                     address: req.body.address,
                     userid: fan._id,
                     type: req.body.type
