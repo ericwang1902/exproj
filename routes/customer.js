@@ -175,7 +175,7 @@ router.get('/location', function (req, res, next) {
 
 router.post('/location', function (req, res, next) {
 
-    //console.log(req.body);
+    console.log(req.body);
 
     if (req.query.t == '0') {
         console.log("req.query.t=" + req.query.t);
