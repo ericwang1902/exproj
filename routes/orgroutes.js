@@ -205,6 +205,7 @@ router.get('/orderdetail',isLogedIn, function (req, res, next) {
     //查询快递单详情
     sysorderController.showdetail(orderid, function (err, sysorder) {
         console.log('快递单详情：' + JSON.stringify(sysorder.template));
+        sysorder.template=sysorder.template.replace('/simsun/g', 'Microsoft YaHei')
 
         res.render('./contents/orderdetail', {
             sysorder: sysorder
