@@ -256,7 +256,7 @@ router.post('/location', function (req, res, next) {
                         callback(null, 0);
                     }
                     else {
-                        req.session.recieveloc = loc._id;
+                        req.session.recieveloc = loc._id;//将locid放入sesstion
                         callback(null, 5);
                     }
                 })

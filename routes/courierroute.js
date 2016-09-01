@@ -48,6 +48,7 @@ router.post('/userbind', function (req, res, next) {
 router.get('/resultinfo', function (req, res, next) {
     var result = req.query.result;
     var openid = req.session.openid || req.query.openid;
+
     console.log('resultinfo:' + openid)
 
     var ifclose = false;
