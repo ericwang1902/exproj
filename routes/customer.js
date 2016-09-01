@@ -604,6 +604,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
 })
 
 router.post('/send', function (req, res, next) {
+    var showdefaultlog=''
     //获取openid
     var openid = req.query.openid;
     if (req.query.type == 1) {
@@ -643,7 +644,7 @@ router.post('/send', function (req, res, next) {
                     if(fan.orgid){
                       defaultorg = fan.orgid.title;//获取默认寄件点
                     }else{
-                      defaultorg ='尚未设置';
+                      defaultorg ='';
                     }
 
                     callback(null, defaultorg);
@@ -652,6 +653,11 @@ router.post('/send', function (req, res, next) {
     ],
         // optional callback
         function (err, results) {
+            if(results[2]==''){
+                showdefaultlog='尚未设置'
+            }else{
+                showdefaultlog=results[2]
+            }
             if (err) console.log(err);
             res.render('./customer/send',
                 {
@@ -659,7 +665,8 @@ router.post('/send', function (req, res, next) {
                     openid: openid,
                     recieveloc: results[0],
                     sendloc: results[1],
-                    defaultorg:results[2]
+                    defaultorg:results[2],
+                    showdefaultlog:showdefaultlog
                 });
         });
 

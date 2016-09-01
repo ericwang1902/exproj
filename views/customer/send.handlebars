@@ -126,7 +126,7 @@
            <a style="margin-left:0px" href="/customer/setting?openid={{openid}}" class="weui_cell weui_media_box weui_media_appmsg">
                 <div class = "weui_cell_hd"><label class="weui_label" style = "width:5em">代收点</label></div>
                 <div class = "weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" style="color:crimson;font-size: 12px;" id="defaultorg" placeholder="尚未设置" name="defaultorg" value="{{defaultorg}}" disabled=true>
+                    <input class="weui_input" style="color:crimson;font-size: 12px;"  placeholder="{{showdefaultlog}}"  disabled=true>
                 </div>
                 <div class="weui_cell_ft">
                 </div>
@@ -140,8 +140,8 @@
         <input class="weui_input" type="hidden" id="receiveid" name="receiveid"  value="{{recieveloc._id}}" type="text" placeholder="必填">
         <!--寄件人地址id-->
         <input class="weui_input" type="hidden" id="sendid" name="sendid"  value="{{sendloc._id}}" type="text" placeholder="必填">
-            
-
+       <input class="weui_input" type="hidden" id="defaultorg" name="defaultorg"  value="{{defaultorg}}" type="text" placeholder="必填">
+     
         <div class = "button_sp_area" id="btn">
             <input id="sumitbtn" type="submit" class="weui_btn weui_btn_warn" value="提交订单">
         </div>
