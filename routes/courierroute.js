@@ -93,6 +93,9 @@ router.get('/resultinfo', function (req, res, next) {
                     case '11':
                         info = '电子面单系统出错！';
                         break;
+                    case '12':
+                        info = '出错了！';
+                        break;                      
                     default:
                         info = '出错了！';
                         break;
@@ -107,6 +110,9 @@ router.get('/resultinfo', function (req, res, next) {
                         break;
                     case '11':
                         des = '请联系管理员或稍后再试！'
+                    case '12':
+                        des = '新增的地址中，姓名、电话和详细地址均不可为空！';
+                        break; 
                     default:
                         break;
                 }
@@ -151,8 +157,10 @@ router.get('/resultinfo', function (req, res, next) {
                     case '11':
                         cs = 'weui_icon_warn';
                         break;
-                    default:
+                    case '12':
                         cs = 'weui_icon_warn';
+                    default:
+                        cs = 'weui_icon_warn';                        
                         break;
                 }
                 return cs;

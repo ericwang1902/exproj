@@ -205,6 +205,9 @@ router.post('/location', function (req, res, next) {
             //添加地址数据
             function (fan, callback) {
                 // arg1 now equals 'one' and arg2 now equals 'two'
+                if(req.body.name==''|| req.body.tele==''||req.body.address==''){
+                    res.redirect('/courier/resultinfo?result=12&openid=' + req.body.openid);
+                }
                 var location = {
                     company: req.body.company,
                     name: req.body.name,
@@ -880,7 +883,7 @@ router.get('/setting', function (req, res, next) {
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
-    if (Object.prototype.hasOwnProperty.call(req, 'query') && !req.query) {
+    if (Object.prototype.hasOwnProperty.call(req, 'query') && !req.que) {
         var queryurl = req.query;
         var queryobj = qs.parse(queryurl);
         var querydata = Object.create(queryobj)
