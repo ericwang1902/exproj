@@ -900,7 +900,7 @@ function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
    // console.log("req.query:"+req.query.openid)
-    
+    try {
         if (!Object.prototype.hasOwnProperty.call(req.query, 'code')) {
             //有值
             var userinfoJson = {
@@ -989,6 +989,11 @@ function getuserinfo(req, res, next) {
                 }
             });
         }
+    } catch (error) {
+        console.log(error);
+        
+    }
+        
     } 
 
 
