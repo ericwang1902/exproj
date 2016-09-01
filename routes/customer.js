@@ -14,12 +14,12 @@ var sysorderController = require('../controllers/sysorderController');
 var moment = require('moment')
 var qs = require('querystring');
 var pmx = require('pmx').init({
-  http          : true, // HTTP routes logging (default: true)
-  ignore_routes : [/socket\.io/, /notFound/], // Ignore http routes with this pattern (Default: [])
-  errors        : true, // Exceptions loggin (default: true)
-  custom_probes : true, // Auto expose JS Loop Latency and HTTP req/s as custom metrics
-  network       : true, // Network monitoring at the application level
-  ports         : true  // Shows which ports your app is listening on (default: false)
+    http: true, // HTTP routes logging (default: true)
+    ignore_routes: [/socket\.io/, /notFound/], // Ignore http routes with this pattern (Default: [])
+    errors: true, // Exceptions loggin (default: true)
+    custom_probes: true, // Auto expose JS Loop Latency and HTTP req/s as custom metrics
+    network: true, // Network monitoring at the application level
+    ports: true  // Shows which ports your app is listening on (default: false)
 });
 
 router.get('/order', function (req, res, next) {
@@ -213,7 +213,7 @@ router.post('/location', function (req, res, next) {
             //添加地址数据
             function (fan, callback) {
                 // arg1 now equals 'one' and arg2 now equals 'two'
-                if(req.body.name==''|| req.body.tele==''||req.body.address==''){
+                if (req.body.name == '' || req.body.tele == '' || req.body.address == '') {
                     res.redirect('/courier/resultinfo?result=12&openid=' + req.body.openid);
                 }
                 var location = {
@@ -223,7 +223,7 @@ router.post('/location', function (req, res, next) {
                     postcode: req.body.postcode,
                     provincename: req.body.provincename,
                     cityname: req.body.cityname,
-                    expareaname: req.body.expareaname||'',
+                    expareaname: req.body.expareaname || '',
                     address: req.body.address,
                     userid: fan._id,
                     type: req.body.type
@@ -459,7 +459,7 @@ router.get('/defaultorg', function (req, res, next) {
         console.log(orgs);
 
         res.render('./customer/defaultorg', {
-            openid:openid,
+            openid: openid,
             layout: false,
             orgs: orgs,
             helpers: {
@@ -516,7 +516,7 @@ router.post('/defaultorg', function (req, res, next) {
 
 //手机网页的入口，获取openid，创建用户
 router.get('/send', getuserinfo, function (req, res, next) {
-     var showdefaultlog=''
+    var showdefaultlog = ''
     var userinfo = req.userinfoJson;
 
     req.session.openid = req.query.openid || userinfo.openid;
@@ -585,11 +585,11 @@ router.get('/send', getuserinfo, function (req, res, next) {
                 .exec(function (err, fan) {
                     if (err) console.log(err);
                     console.log(fan)
-                    var defaultorg=''
-                    if(fan.orgid){
-                      defaultorg = fan.orgid.title;//获取默认寄件点
-                    }else{
-                      defaultorg ='';
+                    var defaultorg = ''
+                    if (fan.orgid) {
+                        defaultorg = fan.orgid.title;//获取默认寄件点
+                    } else {
+                        defaultorg = '';
                     }
 
                     callback(null, defaultorg);
@@ -599,11 +599,11 @@ router.get('/send', getuserinfo, function (req, res, next) {
         // optional callback
         function (err, results) {
             if (err) console.log(err);
-            
-            if(results[3]==''){
-                showdefaultlog='尚未设置'
-            }else{
-                showdefaultlog=results[3]
+
+            if (results[3] == '') {
+                showdefaultlog = '尚未设置'
+            } else {
+                showdefaultlog = results[3]
             }
 
             console.log('result[2]:' + results[2]);
@@ -615,13 +615,13 @@ router.get('/send', getuserinfo, function (req, res, next) {
                     sendloc: results[2],
                     fan: results[1],
                     defaultorg: results[3],
-                    showdefaultlog:showdefaultlog
+                    showdefaultlog: showdefaultlog
                 });
         });
 })
 
 router.post('/send', function (req, res, next) {
-   
+
     //获取openid
     var openid = req.query.openid;
     if (req.query.type == 1) {
@@ -649,19 +649,19 @@ router.post('/send', function (req, res, next) {
                 callback(null, sendloc);
             })
         },
-        function(callback){
-           //获取粉丝信息，设置默认受理点
+        function (callback) {
+            //获取粉丝信息，设置默认受理点
             fanModel
                 .findOne({ openid: openid })
                 .populate("orgid")//获取默认受理点
                 .exec(function (err, fan) {
                     if (err) console.log(err);
                     console.log(fan)
-                    var defaultorg=''
-                    if(fan.orgid){
-                      defaultorg = fan.orgid.title;//获取默认寄件点
-                    }else{
-                      defaultorg ='';
+                    var defaultorg = ''
+                    if (fan.orgid) {
+                        defaultorg = fan.orgid.title;//获取默认寄件点
+                    } else {
+                        defaultorg = '';
                     }
 
                     callback(null, defaultorg);
@@ -670,10 +670,10 @@ router.post('/send', function (req, res, next) {
     ],
         // optional callback
         function (err, results) {
-            if(results[2]==''){
-                showdefaultlog='尚未设置'
-            }else{
-                showdefaultlog=results[2]
+            if (results[2] == '') {
+                showdefaultlog = '尚未设置'
+            } else {
+                showdefaultlog = results[2]
             }
             if (err) console.log(err);
             res.render('./customer/send',
@@ -682,8 +682,8 @@ router.post('/send', function (req, res, next) {
                     openid: openid,
                     recieveloc: results[0],
                     sendloc: results[1],
-                    defaultorg:results[2],
-                    showdefaultlog:showdefaultlog
+                    defaultorg: results[2],
+                    showdefaultlog: showdefaultlog
                 });
         });
 
@@ -907,102 +907,105 @@ router.get('/setting', function (req, res, next) {
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
-   // console.log("req.query:"+req.query.openid)
+    // console.log("req.query:"+req.query.openid)
+    var booltemp = '';
     try {
-        if (!Object.prototype.hasOwnProperty.call(req.query, 'code')) {
-            //有值
-            var userinfoJson = {
-                openid: req.query.openid
-            }
-            req.userinfoJson = userinfoJson;
-            req.session.openid = userinfoJson.openid;
-            return next();
-        } else {
-            //没
-            //console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
-            async.waterfall([
-                //获取accesstoken
-                function (callback) {
-                    var accesstokenoptions = {
-                        url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + enumerableconstants.wechatinfo.appid + '&secret=' + enumerableconstants.wechatinfo.appsecret + '&code=' + req.query.code + '&grant_type=authorization_code'
-                    }
-                    request(accesstokenoptions, function (error, response, body) {
-                        var bodyJson = JSON.parse(body);//转成json对象 
-                        var access_token = bodyJson.access_token;
-                        var refresh_token = bodyJson.refresh_token;
-                        var openid = bodyJson.openid;
-                        req.session.openid = openid;
-                        console.log('access_token:' + access_token);
-                        console.log('refresh_token:' + refresh_token);
-                        console.log('openid:' + openid);
-                        callback(null, access_token, refresh_token, openid);
-                    })
-                },
-                //获取用户信息
-                function (access_token, refresh_token, openid, callback) {
-                    console.log('access_token:' + access_token);
-                    console.log('refresh_token:' + refresh_token);
-                    console.log('openid:' + openid);
-                    //  wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
-                    var userinfooptions = {
-                        url: 'https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN'
-                    }
-
-
-                    if (openid) {
-                        fanModel.findOne({ openid: openid }, function (err, fan) {
-                            if (err) console.log(err);
-
-                            if (!fan) {
-                                //创建粉丝数据
-                                var fan = new fanModel({
-                                    openid: openid,
-                                    orgid: null,
-                                    sendlist: null,
-                                    receivelist: null,
-                                    defaultsend: null
-                                })
-                                fan.save(function (err, fan) {
-                                    if (err) console.log(err);
-
-                                    //这个body就是用户信息
-                                    request(userinfooptions, function (error, response, body) {
-                                        callback(null, body);
-                                    })
-                                })
-                            } else {
-                                //已经有粉丝了
-                                console.log(fan);
-                                //这个body就是用户信息
-                                request(userinfooptions, function (error, response, body) {
-                                    callback(null, body);
-                                })
-                            }
-                        })
-                    } else {
-                        callback(null, null);
-                    }
-
-                }
-            ], function (err, result) {
-                // result now equals 'done'
-                console.log(result);
-
-                if (result) {
-                    var userinfoJson = JSON.parse(result);
-                    req.userinfoJson = userinfoJson;
-                    return next();
-                } else {
-                    getuserinfo();
-                }
-            });
-        }
+        booltemp = !Object.prototype.hasOwnProperty.call(req.query, 'code')
     } catch (error) {
         console.log(error);
         throw new Error(error)
     }
-        
-    } 
+    if (booltemp) {
+        //有值
+        var userinfoJson = {
+            openid: req.query.openid
+        }
+        req.userinfoJson = userinfoJson;
+        req.session.openid = userinfoJson.openid;
+        return next();
+    } else {
+        //没
+        //console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
+        async.waterfall([
+            //获取accesstoken
+            function (callback) {
+                var accesstokenoptions = {
+                    url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + enumerableconstants.wechatinfo.appid + '&secret=' + enumerableconstants.wechatinfo.appsecret + '&code=' + req.query.code + '&grant_type=authorization_code'
+                }
+                request(accesstokenoptions, function (error, response, body) {
+                    var bodyJson = JSON.parse(body);//转成json对象 
+                    var access_token = bodyJson.access_token;
+                    var refresh_token = bodyJson.refresh_token;
+                    var openid = bodyJson.openid;
+                    req.session.openid = openid;
+                    console.log('access_token:' + access_token);
+                    console.log('refresh_token:' + refresh_token);
+                    console.log('openid:' + openid);
+                    callback(null, access_token, refresh_token, openid);
+                })
+            },
+            //获取用户信息
+            function (access_token, refresh_token, openid, callback) {
+                console.log('access_token:' + access_token);
+                console.log('refresh_token:' + refresh_token);
+                console.log('openid:' + openid);
+                //  wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
+                var userinfooptions = {
+                    url: 'https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN'
+                }
+
+
+                if (openid) {
+                    fanModel.findOne({ openid: openid }, function (err, fan) {
+                        if (err) console.log(err);
+
+                        if (!fan) {
+                            //创建粉丝数据
+                            var fan = new fanModel({
+                                openid: openid,
+                                orgid: null,
+                                sendlist: null,
+                                receivelist: null,
+                                defaultsend: null
+                            })
+                            fan.save(function (err, fan) {
+                                if (err) console.log(err);
+
+                                //这个body就是用户信息
+                                request(userinfooptions, function (error, response, body) {
+                                    callback(null, body);
+                                })
+                            })
+                        } else {
+                            //已经有粉丝了
+                            console.log(fan);
+                            //这个body就是用户信息
+                            request(userinfooptions, function (error, response, body) {
+                                callback(null, body);
+                            })
+                        }
+                    })
+                } else {
+                    callback(null, null);
+                }
+
+            }
+        ], function (err, result) {
+            // result now equals 'done'
+            console.log(result);
+
+            if (result) {
+                var userinfoJson = JSON.parse(result);
+                req.userinfoJson = userinfoJson;
+                return next();
+            } else {
+                getuserinfo();
+            }
+        });
+    }
+
+
+}
 
 
 
