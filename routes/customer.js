@@ -878,16 +878,16 @@ router.get('/setting', function (req, res, next) {
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
 
-    if (req.getParameter("openid") != null && !req.getParameter("openid").equals("")) {
-        //有值
-        var userinfoJson = {
-            openid: req.query.openid
-        }
-        req.userinfoJson = userinfoJson;
-        req.session.openid = userinfoJson.openid;
-        return next();
-    }
-    else {
+    // if (req.getParameter("openid") != null && !req.getParameter("openid").equals("")) {
+    //     //有值
+    //     var userinfoJson = {
+    //         openid: req.query.openid
+    //     }
+    //     req.userinfoJson = userinfoJson;
+    //     req.session.openid = userinfoJson.openid;
+    //     return next();
+    // }
+    // else {
         //没
         console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
         async.waterfall([
