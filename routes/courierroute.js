@@ -372,17 +372,15 @@ function getuserinfo(req, res, next) {
     //添加判断openid是否存在该属性
    // console.log("req.query:"+req.query.openid)
     
-        // if (req.query!=null && req.query.openid!='') {
-        //     //有值
-        //     var userinfoJson = {
-        //         openid: req.query.openid
-        //     }
-        //     req.userinfoJson = userinfoJson;
-        //     req.session.openid = userinfoJson.openid;
-        //     return next();
-        // } else 
-        
-        {
+        if (!Object.prototype.hasOwnProperty.call(req.query, 'code')) {
+            //有值
+            var userinfoJson = {
+                openid: req.query.openid
+            }
+            req.userinfoJson = userinfoJson;
+            req.session.openid = userinfoJson.openid;
+            return next();
+        } else {
             //没
             //console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
             async.waterfall([
@@ -463,6 +461,7 @@ function getuserinfo(req, res, next) {
             });
         }
     } 
+
 
 
 module.exports = router;
