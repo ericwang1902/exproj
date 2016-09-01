@@ -12,6 +12,7 @@ var sysorderModel = require('../models/sysorderModel');
 var uniqid = require('uniqid');
 var sysorderController = require('../controllers/sysorderController');
 var moment = require('moment')
+var qs = require('querystring');
 
 router.get('/order', function (req, res, next) {
     var openid = req.query.openid || req.session.openid;
@@ -882,9 +883,9 @@ router.get('/setting', function (req, res, next) {
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
-    console.log("req.query:"+JSON.stringify(req.query))
+   // console.log("req.query:"+req.query.openid)
     
-        if (req.query.code==null) {
+        if (!Object.prototype.hasOwnProperty.call(req.query, 'code')) {
             //有值
             var userinfoJson = {
                 openid: req.query.openid
@@ -892,8 +893,7 @@ function getuserinfo(req, res, next) {
             req.userinfoJson = userinfoJson;
             req.session.openid = userinfoJson.openid;
             return next();
-        } else       
-        {
+        } else {
             //没
             //console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
             async.waterfall([
@@ -974,6 +974,7 @@ function getuserinfo(req, res, next) {
             });
         }
     } 
+
 
 
 module.exports = router;
