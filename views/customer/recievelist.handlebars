@@ -117,9 +117,10 @@
     <!--<div class="weui_tabbar">        
         <button type="submit" id="sumitbtn" class="weui_tabbar_item weui_btn weui_btn_primary">选好了</button>
     </div>-->
-    <div class="weui_tabbar">        
-        <button  id="moreop" class="weui_tabbar_item weui_btn weui_btn_primary">选择/新建</button>
-    </div>
+<div class="weui_tabbar">        
+  <button id="sumitbtn" type="submit" class="weui_tabbar_item weui_btn weui_btn_mini weui_btn_primary" style="height:42px">选择</button>
+  <button id="createloc" class="weui_tabbar_item weui_btn weui_btn_mini weui_btn_default" style="margin-top:0;height:42px;">新建</button>
+  </div>
           {{/if}}
     </form>
 <style>
@@ -133,27 +134,12 @@
 
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
-         $('#moreop').on('click',function(event){  
-             $.actions({
-                actions: [{
-                    text: "编辑",
-                    onClick: function() {
-                    //do something
-                    }
-                },{
-                    text: "删除",
-                    onClick: function() {
-                    //do something
-                    }
-                }]
-                });
-         
 
-        // $('#sumitbtn').on('click',function(event){   
-        // if(!$(':radio[name=radio1]:checked').length){
-        //     $.alert("必须选择一个收件人", "警告");
-        //     return false;
-        // }
+        $('#sumitbtn').on('click',function(event){   
+        if(!$(':radio[name=radio1]:checked').length){
+            $.alert("必须选择一个收件人", "警告");
+            return false;
+        }
     })
 </script>
 
