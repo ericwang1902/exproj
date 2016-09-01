@@ -883,7 +883,7 @@ router.get('/setting', function (req, res, next) {
 function getuserinfo(req, res, next) {
 
     //添加判断openid是否存在该属性
-    console.log("req.query:"+req.query.openid)
+   // console.log("req.query:"+req.query.openid)
     
         // if (req.query!=null && req.query.openid!='') {
         //     //有值
@@ -894,6 +894,7 @@ function getuserinfo(req, res, next) {
         //     req.session.openid = userinfoJson.openid;
         //     return next();
         // } else 
+        if(req.session.openid!='')
         {
             //没
             //console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
