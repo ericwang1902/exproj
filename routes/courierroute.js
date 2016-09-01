@@ -362,7 +362,8 @@ router.post('/pickupdateorder', function (req, res, next) {
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
 
-    var queryurl =req.query;
+    //添加判断openid是否存在该属性
+    var queryurl =req.query||'';
     var queryobj=qs.parse(queryurl);
     var querydata = Object.create(queryobj)
     
