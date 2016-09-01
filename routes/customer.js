@@ -184,10 +184,10 @@ router.get('/location', function (req, res, next) {
         showslt= true;
     } else if (source == '1') {
         showslt= false;
-        title='寄件地址'
+        title='收件地址'
     } else if (source == '2') {
         showslt= false;
-        title='收件地址'
+        title='寄件地址'
     }
     console.log('openid:' + req.query.openid);
     res.render('./customer/location', {
