@@ -580,7 +580,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                     if(fan.orgid){
                       defaultorg = fan.orgid.title;//获取默认寄件点
                     }else{
-                      defaultorg ='尚未设置';
+                      defaultorg ='';
                     }
 
                     callback(null, defaultorg);
