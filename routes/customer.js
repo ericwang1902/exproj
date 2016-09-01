@@ -884,7 +884,7 @@ function getuserinfo(req, res, next) {
     //添加判断openid是否存在该属性
     console.log("req.query:"+JSON.stringify(req.query))
     
-        if (req.query!=null && req.query.openid!='') {
+        if (req.query.code==null) {
             //有值
             var userinfoJson = {
                 openid: req.query.openid
