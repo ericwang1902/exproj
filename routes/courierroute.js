@@ -371,7 +371,8 @@ function getuserinfo(req, res, next) {
     //     req.session.openid = userinfoJson.openid;
     //     return next();
     // }
-    // else {
+    // else
+     {
         //没
         console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
         async.waterfall([
