@@ -878,7 +878,8 @@ router.get('/setting', function (req, res, next) {
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
 
-    if (req.query && req.query.openid) {
+    if (request.getParameter("openid") != null && !request.getParameter("openid").equals("")) {
+        //有值
         var userinfoJson = {
             openid: req.query.openid
         }
@@ -886,83 +887,86 @@ function getuserinfo(req, res, next) {
         req.session.openid = userinfoJson.openid;
         return next();
     }
-    console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
-    async.waterfall([
-        //获取accesstoken
-        function (callback) {
-            var accesstokenoptions = {
-                url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + enumerableconstants.wechatinfo.appid + '&secret=' + enumerableconstants.wechatinfo.appsecret + '&code=' + req.query.code + '&grant_type=authorization_code'
-            }
-            request(accesstokenoptions, function (error, response, body) {
-                var bodyJson = JSON.parse(body);//转成json对象 
-                var access_token = bodyJson.access_token;
-                var refresh_token = bodyJson.refresh_token;
-                var openid = bodyJson.openid;
-                req.session.openid =openid;
+    else {
+        //没
+        console.log('code:' + req.query.code);//获取微信重定向之后，生成的code 
+        async.waterfall([
+            //获取accesstoken
+            function (callback) {
+                var accesstokenoptions = {
+                    url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + enumerableconstants.wechatinfo.appid + '&secret=' + enumerableconstants.wechatinfo.appsecret + '&code=' + req.query.code + '&grant_type=authorization_code'
+                }
+                request(accesstokenoptions, function (error, response, body) {
+                    var bodyJson = JSON.parse(body);//转成json对象 
+                    var access_token = bodyJson.access_token;
+                    var refresh_token = bodyJson.refresh_token;
+                    var openid = bodyJson.openid;
+                    req.session.openid = openid;
+                    console.log('access_token:' + access_token);
+                    console.log('refresh_token:' + refresh_token);
+                    console.log('openid:' + openid);
+                    callback(null, access_token, refresh_token, openid);
+                })
+            },
+            //获取用户信息
+            function (access_token, refresh_token, openid, callback) {
                 console.log('access_token:' + access_token);
                 console.log('refresh_token:' + refresh_token);
                 console.log('openid:' + openid);
-                callback(null, access_token, refresh_token, openid);
-            })
-        },
-        //获取用户信息
-        function (access_token, refresh_token, openid, callback) {
-            console.log('access_token:' + access_token);
-            console.log('refresh_token:' + refresh_token);
-            console.log('openid:' + openid);
-            //wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
-            var userinfooptions = {
-                url: 'https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN'
-            }
+                //  wechatjs.sendtext(openid,'hello');//客服消息，互动48小时内有效
+                var userinfooptions = {
+                    url: 'https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN'
+                }
 
-            if(openid){
-                fanModel.findOne({ openid: openid }, function (err, fan) {
-                    if (err) console.log(err);
 
-                    if (!fan) {
-                        //创建粉丝数据
-                        var fan = new fanModel({
-                            openid: openid,
-                            orgid: null,
-                            sendlist: null,
-                            receivelist: null,
-                            defaultsend: null
-                        })
-                        fan.save(function (err, fan) {
-                            if (err) console.log(err);
+                if (openid) {
+                    fanModel.findOne({ openid: openid }, function (err, fan) {
+                        if (err) console.log(err);
 
+                        if (!fan) {
+                            //创建粉丝数据
+                            var fan = new fanModel({
+                                openid: openid,
+                                orgid: null,
+                                sendlist: null,
+                                receivelist: null,
+                                defaultsend: null
+                            })
+                            fan.save(function (err, fan) {
+                                if (err) console.log(err);
+
+                                //这个body就是用户信息
+                                request(userinfooptions, function (error, response, body) {
+                                    callback(null, body);
+                                })
+                            })
+                        } else {
+                            //已经有粉丝了
+                            console.log(fan);
                             //这个body就是用户信息
                             request(userinfooptions, function (error, response, body) {
                                 callback(null, body);
                             })
-                        })
-                    } else {
-                        //已经有粉丝了
-                        console.log(fan);
-                        //这个body就是用户信息
-                        request(userinfooptions, function (error, response, body) {
-                            callback(null, body);
-                        })
-                    }
-                })
-            }else
-            {
-                callback(null, null);
+                        }
+                    })
+                } else {
+                    callback(null, null);
+                }
+
             }
-        }
-    ], function (err, result) {
-        // result now equals 'done'
-        console.log(result);
+        ], function (err, result) {
+            // result now equals 'done'
+            console.log(result);
 
-        if (result) {
-            var userinfoJson = JSON.parse(result);
-            req.userinfoJson = userinfoJson;
-            return next();
-        } else {
-            getuserinfo();
-        }
-    });
-
+            if (result) {
+                var userinfoJson = JSON.parse(result);
+                req.userinfoJson = userinfoJson;
+                return next();
+            } else {
+                getuserinfo();
+            }
+        });
+    }
 
 }
 

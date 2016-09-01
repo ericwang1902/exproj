@@ -205,7 +205,7 @@ router.get('/orderdetail',isLogedIn, function (req, res, next) {
     //查询快递单详情
     sysorderController.showdetail(orderid, function (err, sysorder) {
         console.log('快递单详情：' + JSON.stringify(sysorder.template));
-        sysorder.template=sysorder.template.replace(/simsun/g, 'Microsoft YaHei')
+        sysorder.template=sysorder.template.replace(/simsun/g, 'Microsoft YaHei')//将样式里的宋体改成雅黑，雅黑可以在打印机打印加粗
 
         res.render('./contents/orderdetail', {
             sysorder: sysorder
