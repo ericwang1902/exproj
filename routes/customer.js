@@ -589,7 +589,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                     if (err) console.log(err);
 
                     try {
-                        var sendloc = fan.defaultsend || req.session.sendloc;
+                        var sendloc =  req.session.sendloc|| fan.defaultsend ;
 
                         locationModel.findOne({ _id: sendloc }, function (err, sendloc) {
                             if (err) console.log(err);
