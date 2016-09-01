@@ -178,23 +178,20 @@ router.post('/createorder', function (req, res, next) {
 router.get('/location', function (req, res, next) {
     var source = req.query.source;//0是直接地址库新建，1是在寄件界面创建寄件地址，2是直接创建收件地址
     var openid = req.query.openid;
+    var showslt=''
+    if (source == '0') {
+        showslt= true;
+    } else if (source == '1') {
+        showslt= false;
+    } else if (source == '2') {
+        showslt= false;
+    }
     console.log('openid:' + req.query.openid);
     res.render('./customer/location', {
         layout: false,
         openid: openid,
         source: source,
-        helpers: {
-            getvalue:function(source){
-                if(source=='0'){
-                    return true;
-                }else if(source=='1')
-                {
-                    return false;
-                }else if(source=='2'){
-                    return false;
-                }
-            }
-        }
+        showslt:showslt
     });
 
 })
