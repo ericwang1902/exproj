@@ -256,6 +256,7 @@ router.post('/location', function (req, res, next) {
                         callback(null, 0);
                     }
                     else {
+                        req.session.recieveloc = loc._id;
                         callback(null, 5);
                     }
                 })
