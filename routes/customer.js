@@ -176,9 +176,27 @@ router.post('/createorder', function (req, res, next) {
 })
 
 router.get('/location', function (req, res, next) {
+    var source = req.query.source;//0是直接地址库新建，1是在寄件界面创建寄件地址，2是直接创建收件地址
     var openid = req.query.openid;
     console.log('openid:' + req.query.openid);
-    res.render('./customer/location', { layout: false, openid: openid });
+    res.render('./customer/location', {
+        layout: false,
+        openid: openid,
+        source: source,
+        helpers: {
+            getvalue:function(source){
+                if(source=='0'){
+                    return true;
+                }else if(source=='1')
+                {
+                    return false;
+                }else if(source=='2'){
+                    return false;
+                }
+            }
+        }
+    });
+
 })
 
 router.post('/location', function (req, res, next) {
@@ -186,6 +204,7 @@ router.post('/location', function (req, res, next) {
     console.log(req.body);
 
     if (req.query.t == '0') {
+        //0是新增地址
         console.log("req.query.t=" + req.query.t);
         //新增地址
         async.waterfall([
@@ -910,9 +929,9 @@ function getuserinfo(req, res, next) {
     // console.log("req.query:"+req.query.openid)
     var booltemp = '';
     try {
-        booltemp = (Object.keys(req.query).length!=0  && !Object.prototype.hasOwnProperty.call(req.query, 'code'))
+        booltemp = (Object.keys(req.query).length != 0 && !Object.prototype.hasOwnProperty.call(req.query, 'code'))
     } catch (error) {
-        console.log("error:"+error);
+        console.log("error:" + error);
         throw new Error(error)
     }
     if (booltemp) {
