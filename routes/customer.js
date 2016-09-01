@@ -508,6 +508,7 @@ router.post('/defaultorg', function (req, res, next) {
 
 //手机网页的入口，获取openid，创建用户
 router.get('/send', getuserinfo, function (req, res, next) {
+     var showdefaultlog=''
     var userinfo = req.userinfoJson;
 
     req.session.openid = req.query.openid || userinfo.openid;
@@ -580,7 +581,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                     if(fan.orgid){
                       defaultorg = fan.orgid.title;//获取默认寄件点
                     }else{
-                      defaultorg =null;
+                      defaultorg ='';
                     }
 
                     callback(null, defaultorg);
@@ -590,6 +591,13 @@ router.get('/send', getuserinfo, function (req, res, next) {
         // optional callback
         function (err, results) {
             if (err) console.log(err);
+            
+            if(results[3]==''){
+                showdefaultlog='尚未设置'
+            }else{
+                showdefaultlog=results[3]
+            }
+
             console.log('result[2]:' + results[2]);
             res.render('./customer/send',
                 {
@@ -598,13 +606,14 @@ router.get('/send', getuserinfo, function (req, res, next) {
                     recieveloc: results[0],
                     sendloc: results[2],
                     fan: results[1],
-                    defaultorg: results[3]
+                    defaultorg: results[3],
+                    showdefaultlog:showdefaultlog
                 });
         });
 })
 
 router.post('/send', function (req, res, next) {
-    var showdefaultlog=''
+   
     //获取openid
     var openid = req.query.openid;
     if (req.query.type == 1) {
