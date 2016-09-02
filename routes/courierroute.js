@@ -24,10 +24,13 @@ router.get('/', function (req, res, next) {
     res.render('./courier/courierdash');
 });
 
+var OAuth = require('wechat-oauth');
+var client = new OAuth(enumerableconstants.wechatinfo.appid, enumerableconstants.wechatinfo.appsecret);
 
-router.get('/userbind', getuserinfo, function (req, res, next) {
-    console.log("req.userinfoJson ************" + JSON.stringify(req.userinfoJson));
-    res.render('./courier/courierbind', { layout: false, userinfo: req.userinfoJson });
+
+router.get('/userbind', getopenid, function (req, res, next) {
+    console.log("req.userinfoJson ************" + JSON.stringify(req.openid));
+    res.render('./courier/courierbind', { layout: false, openid: req.openid });
 })
 
 router.post('/userbind', function (req, res, next) {
@@ -374,6 +377,17 @@ router.post('/pickupdateorder', function (req, res, next) {
 
 
 })
+//第三方库获取openid
+function getopenid(req,res,next){
+    client.getAccessToken('code', function (err, result) {
+    var accessToken = result.data.access_token;
+    var openid = result.data.openid;
+    
+    req.openid = openid;
+    return next();
+    });
+}
+
 
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
