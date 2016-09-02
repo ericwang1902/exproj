@@ -13,6 +13,9 @@ var uniqid = require('uniqid');
 var sysorderController = require('../controllers/sysorderController');
 var moment = require('moment')
 var qs = require('querystring');
+var OAuth = require('wechat-oauth');
+var client = new OAuth(enumerableconstants.wechatinfo.appid, enumerableconstants.wechatinfo.appsecret);
+
 var pmx = require('pmx').init({
     http: true, // HTTP routes logging (default: true)
     ignore_routes: [/socket\.io/, /notFound/], // Ignore http routes with this pattern (Default: [])
