@@ -379,6 +379,7 @@ router.post('/pickupdateorder', function (req, res, next) {
 })
 //第三方库获取openid
 function getopenid(req,res,next){
+    console.log(req.query.code)
     client.getAccessToken(req.query.code, function (err, result) {
         console.log(JSON.stringify(result))
     var accessToken = result.data.access_token;
