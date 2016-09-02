@@ -540,16 +540,19 @@ router.post('/defaultorg', function (req, res, next) {
 
 })
 
-//手机网页的入口，获取openid，创建用户
-router.get('/send', getuserinfo, function (req, res, next) {
-    var showdefaultlog = ''
-    var userinfo = req.userinfoJson;
+router.get('/sendpage',function(req,res,next){
+       var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/customer/send','exproj','snsapi_userinfo');
+  res.redirect(url)  
+})
 
-    req.session.openid = req.query.openid || userinfo.openid;
+
+//手机网页的入口，获取openid，创建用户
+router.get('/send', getopenid, function (req, res, next) {
+    var showdefaultlog = ''
+
+    req.session.openid = req.query.openid || req.openid;
 
     var openid = req.session.openid;
-
-    console.log('send openid:' + userinfo.openid);
 
     async.series([
         function (callback) {
@@ -645,6 +648,7 @@ router.get('/send', getuserinfo, function (req, res, next) {
                 });
         });
 })
+
 
 router.post('/send', function (req, res, next) {
 
@@ -927,7 +931,18 @@ router.get('/setting', function (req, res, next) {
     })
 })
 
-
+//第三方库获取openid
+function getopenid(req,res,next){
+    console.log(req.query.code)
+    client.getAccessToken(req.query.code, function (err, result) {
+        console.log(JSON.stringify(result))
+    var accessToken = result.data.access_token;
+    var openid = result.data.openid;
+    
+    req.openid = openid;
+    return next();
+    });
+}
 
 //通过用户授权，获取微信jstoken和用户信息
 function getuserinfo(req, res, next) {
