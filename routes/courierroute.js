@@ -27,12 +27,18 @@ router.get('/', function (req, res, next) {
     res.render('./courier/courierdash');
 });
 
+router.get('/userbind',function(req,res,next){
+    var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/courier/userbind2','exproj','snsapi_userinfo');
+  res.redirect(url) 
+})
 
-
-router.get('/userbind', getopenid, function (req, res, next) {
+router.get('/userbind2', getopenid, function (req, res, next) {
+    
+    
     console.log("req.userinfoJson ************" + JSON.stringify(req.openid));
     res.render('./courier/courierbind', { layout: false, openid: req.openid });
 })
+
 
 router.post('/userbind', function (req, res, next) {
     //校验快递员的用户名和密码，用来绑定openid，只绑定一个；
@@ -381,8 +387,7 @@ router.post('/pickupdateorder', function (req, res, next) {
 //第三方库获取openid
 function getopenid(req,res,next){
     console.log(req.query.code)
-    try {
-        client.getAccessToken(req.query.code, function (err, result) {
+    client.getAccessToken(req.query.code, function (err, result) {
         console.log(JSON.stringify(result))
     var accessToken = result.data.access_token;
     var openid = result.data.openid;
@@ -390,10 +395,6 @@ function getopenid(req,res,next){
     req.openid = openid;
     return next();
     });
-    } catch (error) {
-        
-    }
-    
 }
 
 
