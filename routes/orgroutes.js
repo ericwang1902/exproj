@@ -17,8 +17,8 @@ router.get('/orgdash',isLogedIn, function (req, res, next) {
 
     for (var index =6; index >=0; index--) {
         dateArray.push(
-            (moment().add('days',-index).format('MM.DD'))
-            +"号")
+            (moment().add(-index,'days').format('MM.DD'))
+            )
     }
 
     sysorderController.getweekData(userid, function (err, result) {
