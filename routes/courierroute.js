@@ -19,13 +19,14 @@ var pmx = require('pmx').init({
     network: true, // Network monitoring at the application level
     ports: true  // Shows which ports your app is listening on (default: false)
 });
+var OAuth = require('wechat-oauth');
+var client = new OAuth(enumerableconstants.wechatinfo.appid, enumerableconstants.wechatinfo.appsecret);
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.render('./courier/courierdash');
 });
 
-var OAuth = require('wechat-oauth');
-var client = new OAuth(enumerableconstants.wechatinfo.appid, enumerableconstants.wechatinfo.appsecret);
 
 
 router.get('/userbind', getopenid, function (req, res, next) {
@@ -380,7 +381,8 @@ router.post('/pickupdateorder', function (req, res, next) {
 //第三方库获取openid
 function getopenid(req,res,next){
     console.log(req.query.code)
-    client.getAccessToken(req.query.code, function (err, result) {
+    try {
+        client.getAccessToken(req.query.code, function (err, result) {
         console.log(JSON.stringify(result))
     var accessToken = result.data.access_token;
     var openid = result.data.openid;
@@ -388,6 +390,10 @@ function getopenid(req,res,next){
     req.openid = openid;
     return next();
     });
+    } catch (error) {
+        
+    }
+    
 }
 
 
