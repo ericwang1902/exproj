@@ -17,7 +17,7 @@ router.get('/orgdash',isLogedIn, function (req, res, next) {
 
     for (var index =6; index >=0; index--) {
         dateArray.push(
-            (moment().add(-index,'days').format('MM.DD'))
+            (moment().add(-index,'days').format('M月D号'))
             )
     }
 
