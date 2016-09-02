@@ -27,14 +27,14 @@ router.get('/', function (req, res, next) {
     res.render('./courier/courierdash');
 });
 
-router.get('/userbind',function(req,res,next){
-    var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/courier/userbind2','exproj','snsapi_userinfo');
-  res.redirect(url) 
+router.get('/userbind', function (req, res, next) {
+    var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/courier/userbind2', 'exproj', 'snsapi_userinfo');
+    res.redirect(url)
 })
 
 router.get('/userbind2', getopenid, function (req, res, next) {
-    
-    
+
+
     console.log("req.userinfoJson ************" + JSON.stringify(req.openid));
     res.render('./courier/courierbind', { layout: false, openid: req.openid });
 })
@@ -113,7 +113,7 @@ router.get('/resultinfo', function (req, res, next) {
                         break;
                     case '12':
                         info = '出错了！';
-                        break;                      
+                        break;
                     default:
                         info = '出错了！';
                         break;
@@ -130,7 +130,7 @@ router.get('/resultinfo', function (req, res, next) {
                         des = '请联系管理员或稍后再试！'
                     case '12':
                         des = '新增的地址中，姓名、电话和详细地址均不可为空！';
-                        break; 
+                        break;
                     default:
                         break;
                 }
@@ -178,7 +178,7 @@ router.get('/resultinfo', function (req, res, next) {
                     case '12':
                         cs = 'weui_icon_warn';
                     default:
-                        cs = 'weui_icon_warn';                        
+                        cs = 'weui_icon_warn';
                         break;
                 }
                 return cs;
@@ -385,15 +385,17 @@ router.post('/pickupdateorder', function (req, res, next) {
 
 })
 //第三方库获取openid
-function getopenid(req,res,next){
-    console.log(req.query.code)
+function getopenid(req, res, next) {
     client.getAccessToken(req.query.code, function (err, result) {
-        console.log(JSON.stringify(result))
-    var accessToken = result.data.access_token;
-    var openid = result.data.openid;
-    
-    req.openid = openid;
-    return next();
+        try {
+            var accessToken = result.data.access_token;
+            var openid = result.data.openid;
+        } catch (error) {
+            console.log(err)
+            res.redirect('/courier/userbind');
+        }
+        req.openid = openid;
+        return next();
     });
 }
 
@@ -405,9 +407,9 @@ function getuserinfo(req, res, next) {
     // console.log("req.query:"+req.query.openid)
     var booltemp = '';
     try {
-        booltemp = (Object.keys(req.query).length!=0  && !Object.prototype.hasOwnProperty.call(req.query, 'code'))
+        booltemp = (Object.keys(req.query).length != 0 && !Object.prototype.hasOwnProperty.call(req.query, 'code'))
     } catch (error) {
-        console.log("error:"+error);
+        console.log("error:" + error);
         throw new Error(error)
     }
     if (booltemp) {

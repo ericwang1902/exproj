@@ -181,24 +181,24 @@ router.post('/createorder', function (req, res, next) {
 router.get('/location', function (req, res, next) {
     var source = req.query.source;//0是直接地址库新建，1是在寄件界面创建寄件地址，2是直接创建收件地址
     var openid = req.query.openid;
-    var showslt=''
-    var title=''
+    var showslt = ''
+    var title = ''
     if (source == '0') {
-        showslt= true;
+        showslt = true;
     } else if (source == '1') {
-        showslt= false;
-        title='收件地址'
+        showslt = false;
+        title = '收件地址'
     } else if (source == '2') {
-        showslt= false;
-        title='寄件地址'
+        showslt = false;
+        title = '寄件地址'
     }
     console.log('openid:' + req.query.openid);
     res.render('./customer/location', {
         layout: false,
         openid: openid,
         source: source,
-        showslt:showslt,
-        title:title
+        showslt: showslt,
+        title: title
     });
 
 })
@@ -259,12 +259,12 @@ router.post('/location', function (req, res, next) {
                         callback(null, 0);
                     }
                     else {
-                        if(loc.type=='1'){
-                           req.session.recieveloc = loc._id;//将locid放入sesstion     
-                        }else if(loc.type=='2'){
+                        if (loc.type == '1') {
+                            req.session.recieveloc = loc._id;//将locid放入sesstion     
+                        } else if (loc.type == '2') {
                             req.session.sendloc = loc._id;//将locid放入sesstion 
                         }
-                        
+
                         callback(null, 5);
                     }
                 })
@@ -543,9 +543,9 @@ router.post('/defaultorg', function (req, res, next) {
 
 })
 
-router.get('/sendpage',function(req,res,next){
-       var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/customer/send','exproj','snsapi_userinfo');
-  res.redirect(url)  
+router.get('/sendpage', function (req, res, next) {
+    var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/customer/send', 'exproj', 'snsapi_userinfo');
+    res.redirect(url)
 })
 
 
@@ -595,7 +595,7 @@ router.get('/send', getopenid, function (req, res, next) {
                     if (err) console.log(err);
 
                     try {
-                        var sendloc =  req.session.sendloc|| fan.defaultsend ;
+                        var sendloc = req.session.sendloc || fan.defaultsend;
 
                         locationModel.findOne({ _id: sendloc }, function (err, sendloc) {
                             if (err) console.log(err);
@@ -935,15 +935,19 @@ router.get('/setting', function (req, res, next) {
 })
 
 //第三方库获取openid
-function getopenid(req,res,next){
-    console.log(req.query.code)
+function getopenid(req, res, next) {
     client.getAccessToken(req.query.code, function (err, result) {
-        console.log(JSON.stringify(result))
-    var accessToken = result.data.access_token;
-    var openid = result.data.openid;
-    
-    req.openid = openid;
-    return next();
+
+        try {
+            var accessToken = result.data.access_token;
+            var openid = result.data.openid;
+        } catch (error) {
+            console.log(err)
+            res.redirect('/customer/sendpage');
+        }
+
+        req.openid = openid;
+        return next();
     });
 }
 

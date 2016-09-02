@@ -63,7 +63,11 @@
 7.0 打印
     7.0.1 快递员后台管理中心（订单列表，订单详情，打印）
     
-    
+
+v2.0
+1. 将pc端列表做成动态刷新的，或者按钮刷新；
+2. pc端增加接单并打印，最好做成一个步骤。
+3. openid获取失败的情况处理
 
 
 
@@ -73,11 +77,12 @@
 2. 使用express－validator的自定义验证器。
 
 3.微信配置项：
-3.1 枚举类型中的微信开发项；
+3.1 枚举类型中的微信开发项；★
 3.2 jssdk的配置项，参考官方文档；(这是在微信的网页里调用微信原生功能，暂时没有用到）
-3.3 网页授权的域名配置设置：接口权限→网页授权获取用户基本信息（通过oauth2.0机制获取，跟jssdk是两回事）
-3.4 模板消息功能申请开启,添加：新订单提醒（OPENTM207719853）、订单状态提醒（OPENTM202045454）
-3.5 在枚举类型中添加模板id；
+3.3 网页授权的域名配置设置：接口权限→网页授权获取用户基本信息（通过oauth2.0机制获取，跟jssdk是两回事）★
+3.4 模板消息功能申请开启,添加：新订单提醒（OPENTM207719853）、订单状态提醒（OPENTM202045454）★
+3.5 在枚举类型中添加模板id；★
+3.6 快递员绑定自动回复的设置<a href="http://exproj.robustudio.com/courier/userbind">快递员绑定链接</a>★
 4.微信坑：
 4.1 接口的内容凡事都要先打印出来；
 4.2 上线之后，bower npm install不能忘记
@@ -88,10 +93,10 @@
 //圆通正式账号：MonthCode:6Bzy2tkh,CustomName:K270113766
 
 
-维护地址(在线快递)：
+寄快递(在线快递)：http://exproj.robustudio.com/customer/sendpage
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcustomer%2fsend&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
-绑定快递员（在线快递）：
+绑定快递员（在线快递）：http://exproj.robustudio.com/courier/userbind
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a633de91613786a&redirect_uri=http%3a%2f%2fexproj.robustudio.com%2fcourier%2fuserbind&response_type=code&scope=snsapi_userinfo&state=exproj#wechat_redirect
 
 寄件：
