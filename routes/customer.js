@@ -150,7 +150,8 @@ router.post('/createorder', function (req, res, next) {
             console.log('result orgid:' + result);
             sysuserModel.find({ orgid: result.orgid }, function (err, couriers) {
                 if (err) console.log(err);
-
+                
+                console.log('couriersid11:'+JSON.stringify(couriers))
 
                 //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
                 for (i in couriers) {
