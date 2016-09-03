@@ -45,8 +45,29 @@
                             </div>
                         </div>
                 </div>
+                <div class="weui_cells weui_cells_access"> 
+                            <div class="weui_cell">
+                                <div class="weui_cell_hd">
+                                    <label class="weui_label">详细地址</label>
+                                </div>
+                                <div class="weui_cell_bd ">
+                                    <textarea class="weui_textarea"  placeholder="请填写详细地址" name="address" required="">{{location.address}}</textarea>
+                                </div>
+                            </div>
+                            <div class="weui_cell weui_cell_select weui_select_after">
+                                <div class="weui_cell_hd">
+                                    <label for="" class="weui_label">地址类型</label>
+                                </div>
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" disabled value="{{gettype location.type}}" name="postcode"  type="text" placeholder="选填">
+        
+                                </div>
+                            </div>
+                     <input class="weui_input" type="hidden" name="openid"  value="{{openid}}" type="text" placeholder="必填">
+                                    
+                 </div>                 
                 <div class="weui_cells weui_cells_access">
-                    <div class="weui_cell">
+                    <div class="weui_cell" style="display:none">
                         <div class="weui_cell_hd">
                             <label class="weui_label">收件公司</label>
                         </div>
@@ -80,27 +101,7 @@
                     </div>                    
                 </div> 
 
-                <div class="weui_cells weui_cells_access"> 
-                            <div class="weui_cell">
-                                <div class="weui_cell_hd">
-                                    <label class="weui_label">详细地址</label>
-                                </div>
-                                <div class="weui_cell_bd ">
-                                    <textarea class="weui_textarea"  placeholder="请填写详细地址" name="address" required="">{{location.address}}</textarea>
-                                </div>
-                            </div>
-                            <div class="weui_cell weui_cell_select weui_select_after">
-                                <div class="weui_cell_hd">
-                                    <label for="" class="weui_label">地址类型</label>
-                                </div>
-                                <div class="weui_cell_bd weui_cell_primary">
-                                    <input class="weui_input" disabled value="{{gettype location.type}}" name="postcode"  type="text" placeholder="选填">
-        
-                                </div>
-                            </div>
-                     <input class="weui_input" type="hidden" name="openid"  value="{{openid}}" type="text" placeholder="必填">
-                                    
-                 </div>    
+   
                      
                     <div class="weui_btn_area">
                         <button type="submit" class="weui_btn weui_btn_primary">提交</button>
