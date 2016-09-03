@@ -159,7 +159,7 @@ router.post('/createorder', function (req, res, next) {
                     wechatjs.sendTemplate1(
                         couriers[i].openid,
                         'http://exproj.robustudio.com/courier/orderhandle?openid=' + openid + '&orderid=' + result._id + '&courierid=' + couriers[i].openid,
-                        result.goodsname,
+                        result.goodsname+';寄给'+result.receiveid.provincename+result.receiveid.cityname+'的'+result.receiveid.name,
                         result.sendid.name,
                         result.sendid.tele,
                         function (err, result) {
