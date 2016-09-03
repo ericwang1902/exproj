@@ -270,6 +270,7 @@ router.post('/pickupdateorder', function (req, res, next) {
 
                 sysuserModel.findOne({ _id: courier.orgid }, function (err, org) {
                     if (err) console.log(err);
+                    console.log('log~~~~~:'+org._id)
 
                     callback(null, order, org, courier);
                 })
