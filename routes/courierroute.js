@@ -392,7 +392,7 @@ function getopenid(req, res, next) {
             var openid = result.data.openid;
         } catch (error) {
             console.log(err)
-            res.redirect('/courier/userbind');
+           return res.redirect('/courier/userbind');
         }
         req.openid = openid;
         return next();

@@ -943,7 +943,7 @@ function getopenid(req, res, next) {
             var openid = result.data.openid;
         } catch (error) {
             console.log(err)
-            res.redirect('/customer/sendpage');
+          return  res.redirect('/customer/sendpage');
         }
 
         req.openid = openid;
