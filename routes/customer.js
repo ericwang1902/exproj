@@ -506,15 +506,6 @@ router.post('/defaultorg', function (req, res, next) {
 
     async.series([
         function (callback) {
-            //查找到org的id
-            sysuserModel.findOne({ _id: defaultorgid }, function (err, org) {
-                if (err) console.log(err);
-
-                callback(null, org);
-            })
-
-        },
-        function (callback) {
             //查找到fan的doc
             fanModel.findOne({ openid: openid }, function (err, fan) {
                 if (err) console.log(err);
@@ -523,10 +514,9 @@ router.post('/defaultorg', function (req, res, next) {
             })
         }
     ], function (err, results) {
-        var fan = results[1];
-        var org = results[0];
+        var fan = results[0];
 
-        fan.orgid = org._id || fan.orgid;
+        fan.orgid = defaultorgid || fan.orgid;
 
         fan.save(function (err, fan) {
             if (err) console.log(err);
