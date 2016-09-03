@@ -211,7 +211,7 @@ router.get('/orderdetail',isLogedIn, function (req, res, next) {
         sysorder.template=sysorder.template.replace(/height="40"/g, 'height="61.5"')//将条码拉长
         sysorder.template=sysorder.template.replace(/solid #000 1px/g, 'none')//将边框去掉
         //下面两个是将寄件人调小
-        sysorder.template=sysorder.template.replace(/.no_border{ width:100%; height:100%; font-size:14px;}/g, '.no_border{ width:100%; height:100%; font-size:14px;}.send_css{font-size:12px}')
+        sysorder.template=sysorder.template.replace(/.no_border{ width:100%; height:100%; font-size:14px;}/g, '.no_border{ width:100%; height:100%; font-size:14px;}.send_css{margin-top:10px;font-size:12px}')
         sysorder.template=sysorder.template.replace(/<table class="no_border">/g, '<table class="send_css">')
         res.render('./contents/orderdetail', {
             sysorder: sysorder
