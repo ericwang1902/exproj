@@ -213,7 +213,7 @@ router.get('/orderdetail',isLogedIn, function (req, res, next) {
         //下面两个是将寄件人调小
         sysorder.template=sysorder.template.replace(/.no_border{ width:100%; height:100%; font-size:14px;}/g, '.no_border{ width:100%; height:100%; font-size:14px;}.send_css{margin-top:10px;font-size:12px}')
         sysorder.template=sysorder.template.replace(/<table class="no_border">/g, '<table class="send_css">')
-        sysorder.template=sysorder.template.replace(/style="border-top:5px solid #000;"/g, '')
+        sysorder.template=sysorder.template.replace(/style="border-top:5px solid #000;"/g, '')//去掉黑线
         res.render('./contents/orderdetail', {
             sysorder: sysorder
         })
