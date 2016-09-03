@@ -208,7 +208,7 @@ router.get('/orderdetail',isLogedIn, function (req, res, next) {
     sysorderController.showdetail(orderid, function (err, sysorder) {
         console.log('快递单详情：' + JSON.stringify(sysorder.template));
         sysorder.template=sysorder.template.replace(/simsun/g, 'Microsoft YaHei')//将样式里的宋体改成雅黑，雅黑可以在打印机打印加粗
-        sysorder.template=sysorder.template.replace(/height="40"/g, 'height="76.3"')//将条码拉长
+        sysorder.template=sysorder.template.replace(/height="40"/g, 'height="140"')//将条码拉长
         sysorder.template=sysorder.template.replace(/width="280"/g, 'width="350"')//将条码拉宽
         sysorder.template=sysorder.template.replace(/solid #000 1px/g, 'none')//将边框去掉
         //下面两个是将寄件人调小
