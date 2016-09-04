@@ -188,17 +188,17 @@ router.get('/location', function (req, res, next) {
     if (source == '0') {
         showslt = true;
         connectname='收件人姓名'
-        connecttele='收件人地址'
+        connecttele='收件人电话'
     } else if (source == '1') {
         showslt = false;
         title = '收件地址'
         connectname='收件人姓名'
-        connecttele='收件人地址'
+        connecttele='收件人电话'
     } else if (source == '2') {
         showslt = false;
         title = '寄件地址'
          connectname='寄件人姓名'
-        connecttele='寄件人地址'
+        connecttele='寄件人电话'
     }
     console.log('openid:' + req.query.openid);
     res.render('./customer/location', {
