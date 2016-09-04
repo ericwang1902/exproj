@@ -15,6 +15,19 @@
 <body>
     <form method="POST"  action="/customer/location?locid={{locid}}&t=1">
             <div class="weui_cells_title">地址详情</div>
+               <div class="weui_cells weui_cells_access"> 
+                            <div class="weui_cell">
+                                <div class="weui_cell_hd">
+                                    <label for="" class="weui_label">地址类型</label>
+                                </div>
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" disabled value="{{gettype location.type}}" name="type"  type="text" placeholder="选填">
+        
+                                </div>
+                            </div>
+                     <input class="weui_input" type="hidden" name="openid"  value="{{openid}}" type="text" placeholder="必填">
+                                    
+                 </div>  
                 <div class="weui_cells weui_cells_access">             
                        <div data-toggle="distpicker">
                             <div class="weui_cell">
@@ -43,9 +56,6 @@
 
                                 </div>
                             </div>
-                        </div>
-                </div>
-                <div class="weui_cells weui_cells_access"> 
                             <div class="weui_cell">
                                 <div class="weui_cell_hd">
                                     <label class="weui_label">详细地址</label>
@@ -53,19 +63,10 @@
                                 <div class="weui_cell_bd ">
                                     <textarea class="weui_textarea"  placeholder="请填写详细地址" id="address" name="address" required="">{{location.address}}</textarea>
                                 </div>
-                            </div>
-                            <div class="weui_cell">
-                                <div class="weui_cell_hd">
-                                    <label for="" class="weui_label">地址类型</label>
-                                </div>
-                                <div class="weui_cell_bd weui_cell_primary">
-                                    <input class="weui_input" disabled value="{{gettype location.type}}" name="type"  type="text" placeholder="选填">
-        
-                                </div>
-                            </div>
-                     <input class="weui_input" type="hidden" name="openid"  value="{{openid}}" type="text" placeholder="必填">
-                                    
-                 </div>                 
+                            </div>                           
+                        </div>
+                </div>
+                 
                 <div class="weui_cells weui_cells_access">
                     <div class="weui_cell" style="display:none">
                         <div class="weui_cell_hd">
