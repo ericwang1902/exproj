@@ -204,7 +204,9 @@ router.get('/location', function (req, res, next) {
         openid: openid,
         source: source,
         showslt: showslt,
-        title: title
+        title: title,
+        connectname:connectname,
+        connecttele:connecttele
     });
 
 })
