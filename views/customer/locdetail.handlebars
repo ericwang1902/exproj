@@ -80,7 +80,7 @@
                             <label class="weui_label">{{gettitle1 location.type}}</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" value="{{location.name}}" name="name"  required="" type="text" placeholder="必填">
+                            <input class="weui_input" value="{{location.name}}" name="name" id="username"  required="" type="text" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -88,7 +88,7 @@
                             <label class="weui_label">{{gettitle2 location.type}}</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" value="{{location.tele}}" name="tele" required="" type="tele" placeholder="必填">
+                            <input class="weui_input" value="{{location.tele}}" name="tele" id="telenum" required="" type="tele" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -104,7 +104,7 @@
    
                      
                     <div class="weui_btn_area">
-                        <button type="submit" class="weui_btn weui_btn_primary">提交</button>
+                        <button type="submit" id="submitbtn" class="weui_btn weui_btn_primary">提交</button>
                     </div>
                  
       
@@ -117,4 +117,12 @@
     width: 5em;
 }
 </style>
+<script>
+        $('#submitbtn').on('click',function(event){
+         if($('#username').val()=='' || $('#telenum').val()==''d){
+            $.alert("姓名和电话不可为空！", "警告");
+            return false;
+        }
+    })
+</script>
 </body>

@@ -85,7 +85,7 @@
                             <label class="weui_label" id="connectname">{{connectname}}</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="name"  required="" type="text" placeholder="必填">
+                            <input class="weui_input" name="name" id="username"  required="" type="text" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -93,7 +93,7 @@
                             <label class="weui_label" id="connecttele">{{connecttele}}</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="tele" required="" type="tele" placeholder="必填">
+                            <input class="weui_input" name="tele" id="telenum" required="" type="tele" placeholder="必填">
                         </div>
                     </div>
                     <div class="weui_cell">
@@ -101,7 +101,7 @@
                             <label class="weui_label">邮编</label>
                         </div>
                         <div class="weui_cell_bd weui_cell_primary">
-                            <input class="weui_input" name="postcode"  type="text" placeholder="选填">
+                            <input class="weui_input" name="postcode" id='postcode'  type="text" placeholder="选填">
                         </div>
                     </div>                    
                 </div> 
@@ -109,7 +109,7 @@
    
                      
                     <div class="weui_btn_area">
-                        <button type="submit" class="weui_btn weui_btn_primary">提交</button>
+                        <button type="submit" id="submitbtn" class="weui_btn weui_btn_primary">提交</button>
                     </div>
                  
       
@@ -123,6 +123,14 @@
 }
 </style>
 <script>
+    $('#submitbtn').on('click',function(event){
+         if($('#username').val()=='' || $('#telenum').val()==''d){
+            $.alert("姓名和电话不可为空！", "警告");
+            return false;
+        }
+    })
+
+
   $("#typeselectid").change(function(){
       if($("#typeselectid").val()=='1')
       {
