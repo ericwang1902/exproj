@@ -287,6 +287,15 @@ module.exports = {
 
          })
     },
+    //获取orgid的数组
+    findOrg:function(openid,callback){
+        sysuserModel
+        .distinct("orgid",{"openid":openid},function(err,orgs){
+            if(err) console.log(err);
+
+            callback(null,orgs);
+        })
+    },
 
     /**
      * sysuserController.remove()
