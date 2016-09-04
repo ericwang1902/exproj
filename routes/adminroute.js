@@ -4,6 +4,7 @@ var sysuserController = require('../controllers/sysuserController')
 var enumerableConstants = require('../models/enumerableConstants')
 var sysuserModel = require('../models/sysuserModel');
 var async = require('async');
+var moment = require('moment')
 
   router.get('/usercenter',isLogedIn,function(req,res,next){
     res.render('./contents/usercenter');
