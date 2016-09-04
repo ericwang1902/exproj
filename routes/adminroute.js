@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var sysuserController = require('../controllers/sysuserController')
+var sysorderController = require('../controllers/sysorderController');
 var enumerableConstants = require('../models/enumerableConstants')
 var sysuserModel = require('../models/sysuserModel');
+var sysorderModel = require('../models/sysorderModel');
 var async = require('async');
 var moment = require('moment')
 
