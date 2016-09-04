@@ -184,14 +184,19 @@ router.get('/location', function (req, res, next) {
     var openid = req.query.openid;
     var showslt = ''
     var title = ''
+    var connectname,connecttele;
     if (source == '0') {
         showslt = true;
     } else if (source == '1') {
         showslt = false;
         title = '收件地址'
+        connectname='收件人姓名'
+        connecttele='收件人地址'
     } else if (source == '2') {
         showslt = false;
         title = '寄件地址'
+         connectname='寄件人姓名'
+        connecttele='寄件人地址'
     }
     console.log('openid:' + req.query.openid);
     res.render('./customer/location', {
