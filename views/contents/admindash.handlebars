@@ -2,3 +2,64 @@
   <li role="presentation" class="active"><a href="/admin/admindash">控制面板</a></li>
   <li role="presentation" ><a href="/admin/userlist">快递员列表</a></li>
 </ul>
+
+
+<div class="row">
+  <div class="col-md-6"><canvas id="myChart" width="100%" height="100%"></canvas></div>
+  <div class="col-md-6">开发中...</div>
+</div>
+
+<script src="/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
+
+
+<script type="text/javascript">
+var ctx = document.getElementById("myChart");
+
+var datearray1 = '{{datearray}}'.split(',');
+
+// for(var index = 0;index<datearray1.length;index++){
+//     datearray1[index]=datearray1[index]+"号";
+// }
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: datearray1,
+        datasets: [{
+            label: '七日数据图',
+            data: [{{weekdata}}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+</script>

@@ -10,7 +10,19 @@ var async = require('async');
   })
 
   router.get('/admindash',isLogedIn,function(req,res,next){
-    res.render('./contents/admindash');
+     var dateArray = []
+
+    for (var index =6; index >=0; index--) {
+        dateArray.push(
+            (moment().add(-index,'days').format('M月D号'))
+            )
+    }
+
+    sysorderController.gettotalTodayOrderCount(function (err, result) {
+        console.log(JSON.stringify(result));
+        res.render('./contents/admindash', { weekdata: result, datearray: dateArray});
+    })
+
   })
 
 //管理员的快递员列表
