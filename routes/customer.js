@@ -187,6 +187,8 @@ router.get('/location', function (req, res, next) {
     var connectname,connecttele;
     if (source == '0') {
         showslt = true;
+        connectname='收件人姓名'
+        connecttele='收件人地址'
     } else if (source == '1') {
         showslt = false;
         title = '收件地址'
