@@ -783,7 +783,19 @@ router.get('/locdetail', function (req, res, next) {
                             return '收件地址';
                         if (type == '2')
                             return '寄件地址';
-                    }
+                    },
+                    gettitle1:function(type){
+                        if (type == '1')
+                            return '收件人姓名';
+                        if (type == '2')
+                            return '寄件人姓名';
+                    },
+                    gettitle2:function(type){
+                        if (type == '1')
+                            return '收件人电话';
+                        if (type == '2')
+                            return '寄件人电话';
+                    }                  
                 }
             })
         });
