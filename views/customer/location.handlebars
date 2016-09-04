@@ -124,7 +124,7 @@
 </style>
 <script>
     $('#submitbtn').on('click',function(event){
-         if($('#username').val()=='' || $('#telenum').val()==''d){
+         if($('#username').val()=='' || $('#telenum').val()==''){
             $.alert("姓名和电话不可为空！", "警告");
             return false;
         }
