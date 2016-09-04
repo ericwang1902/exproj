@@ -22,7 +22,7 @@
                                     <label class="weui_label">省</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_primary weui_select_after">
-                                    <select name="provincename" required="" class="weui_select" data-province="---- 选择省 ----"></select>
+                                    <select name="provincename" required="" class="weui_select" data-province="- 省 -"></select>
                                 </div>
                             </div>
                             <div class="weui_cell">
@@ -30,7 +30,7 @@
                                     <label class="weui_label">市</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_select weui_select_after">
-                                    <select name="cityname" required="" class="weui_select" data-city="---- 选择市 ----"></select>
+                                    <select name="cityname" required="" class="weui_select" data-city="- 市 -"></select>
                                 </div>
                             </div>
                             <div class="weui_cell">
@@ -38,7 +38,7 @@
                                     <label class="weui_label">区县</label>
                                 </div>
                                 <div class="weui_cell_bd weui_cell_select weui_select_after">
-                                    <select name="expareaname"  class="weui_select" data-district="---- 选择区 ----"></select>
+                                    <select name="expareaname"  class="weui_select" data-district="- 区(无区可不选) -"></select>
                                 </div>
                             </div>
                         </div>
@@ -126,8 +126,8 @@
 <script src="/node_modules/jquery-weui/dist/js/jquery-weui.js"></script>
 <script>
     $('#submitbtn').on('click',function(event){
-         if($('#username').val()=='' || $('#telenum').val()==''){
-            $.alert("姓名和电话不可为空！", "警告");
+         if($('#username').val()=='' || $('#telenum').val()=='' ||$('#address').val()=='' ){
+            $.alert("详细地址、姓名和电话不可为空！", "警告");
             return false;
         }
     })
