@@ -36,16 +36,7 @@ var wechat = require('./routes/wechat');
 
 var seed = require('./models/seed.js');
 var wechatbase = require('./routes/wechatbase');
-//将socketio绑定到服务器
-var http=require('http').Server(app);
-var io = require('socket.io')(http);
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });//触发news事件
-  
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-})
+
 
 
 // view engine setup
