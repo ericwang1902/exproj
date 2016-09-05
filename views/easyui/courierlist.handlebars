@@ -89,11 +89,11 @@
                     return $(this).form('validate');
                 },
                 success: function(result){
-                    var result = eval('('+result+')');
-                    if (result.errorMsg){
+                    
+                    if (result.err){
                         $.messager.show({
                             title: 'Error',
-                            msg: result.errorMsg
+                            msg: result.err
                         });
                     } else {
                         $('#dlg').dialog('close');        // close the dialog

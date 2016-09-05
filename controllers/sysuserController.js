@@ -103,7 +103,7 @@ module.exports = {
         var sysuser = new sysuserModel({
             mobile:user.mobile,
             psd:user.psd,
-            usertype : "",
+            usertype : user.usertype||"",
             openid : "",
             count : 0,
             type : "",
@@ -114,7 +114,7 @@ module.exports = {
             status : "1",
             isbroadcast : "1",
             title:"",
-            username:""
+            username:user.username||""
         });
         
         sysuserModel.findOne({mobile:user.mobile},function(err,user){
@@ -122,6 +122,7 @@ module.exports = {
            
             if(user){
                 console.log('改号码已被占用！')
+                callback(null,{err:'改号码已被占用！'})
             }else{
                 console.log('可以创建！')
                 bcrypt.genSalt(10,function(err,salt){

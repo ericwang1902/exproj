@@ -376,7 +376,21 @@ router.get('/getusers',function(req,res,next){
 router.post('/register',function(req,res,next){
   //创建用户账号
   console.log(req.body);
-  res.json(req.body);
+  var user = {
+    mobile:req.body.mobile,
+    username:req.body.username,
+    psd:req.body.psd,
+    usertype:req.body.usertype
+  }
+  sysorderController.createUser(user,function(err,result){
+    if(err)console.log(err)
+
+    if(result){
+      res.json(result);
+    }
+  })
+
+  
 });
 
 //做路由登陆验证
