@@ -393,7 +393,7 @@ router.post('/register',function(req,res,next){
   
 });
 
-router.post('/usermodify',function(req,res,next){
+router.post('/usermodify2',function(req,res,next){
   console.log(req.query.id)
   console.log(req.body)
 })
