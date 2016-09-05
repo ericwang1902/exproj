@@ -36,7 +36,7 @@ var wechat = require('./routes/wechat');
 
 var seed = require('./models/seed.js');
 var wechatbase = require('./routes/wechatbase');
-var socketio = require('./routes/socketio.js')
+// var socketio = require('./routes/socketio.js')
 
 //var test = require('./routes/test');
 
