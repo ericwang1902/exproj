@@ -189,16 +189,19 @@ router.get('/location', function (req, res, next) {
         showslt = true;
         connectname='收件人姓名'
         connecttele='收件人电话'
+        classinfo = 'weui_cell_select weui_select_after'
     } else if (source == '1') {
         showslt = false;
         title = '收件地址'
         connectname='收件人姓名'
         connecttele='收件人电话'
+        classinfo = ''
     } else if (source == '2') {
         showslt = false;
         title = '寄件地址'
          connectname='寄件人姓名'
         connecttele='寄件人电话'
+        classinfo = ''
     }
     console.log('openid:' + req.query.openid);
     res.render('./customer/location', {
@@ -208,7 +211,8 @@ router.get('/location', function (req, res, next) {
         showslt: showslt,
         title: title,
         connectname:connectname,
-        connecttele:connecttele
+        connecttele:connecttele,
+        classinfo:classinfo
     });
 
 })
