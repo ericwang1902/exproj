@@ -79,7 +79,7 @@
             if (row){
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit User');
                 $('#fm').form('load',row);
-                url = '/admin/register?id='+row.id;
+                url = '/admin/usermodify?id='+row.id;
             }
         }
         function saveUser(){
