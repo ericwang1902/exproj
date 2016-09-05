@@ -29,9 +29,7 @@
     </table>
 
     <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑用户</a>
     </div>
     
     <div id="dlg" class="easyui-dialog" style="width:400px"
@@ -46,10 +44,6 @@
             <tr>
                 <td>姓名</td>
                 <td><input name="username" class="easyui-textbox" required="true" style="width:100%"></td>
-            </tr>
-            <tr>
-                <td>密码</td>
-                <td><input name="psd" class="easyui-textbox" required="true" style="width:100%"></td>
             </tr>
             <tr>
                 <td>用户类型</td>
@@ -69,11 +63,11 @@
     
     <script type="text/javascript">
         var url;
-        function newUser(){
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
-            $('#fm').form('clear');
-            url = '/admin/register';
-        }
+        // function newUser(){
+        //     $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
+        //     $('#fm').form('clear');
+        //     url = '/admin/register';
+        // }
         function editUser(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
@@ -102,25 +96,25 @@
                 }
             });
         }
-        function destroyUser(){
-            var row = $('#dg').datagrid('getSelected');
-            if (row){
-                $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
-                    if (r){
-                        $.post('destroy_user.php',{id:row.id},function(result){
-                            if (result.success){
-                                $('#dg').datagrid('reload');    // reload the user data
-                            } else {
-                                $.messager.show({    // show error message
-                                    title: 'Error',
-                                    msg: result.errorMsg
-                                });
-                            }
-                        },'json');
-                    }
-                });
-            }
-        }
+        // function destroyUser(){
+        //     var row = $('#dg').datagrid('getSelected');
+        //     if (row){
+        //         $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
+        //             if (r){
+        //                 $.post('destroy_user.php',{id:row.id},function(result){
+        //                     if (result.success){
+        //                         $('#dg').datagrid('reload');    // reload the user data
+        //                     } else {
+        //                         $.messager.show({    // show error message
+        //                             title: 'Error',
+        //                             msg: result.errorMsg
+        //                         });
+        //                     }
+        //                 },'json');
+        //             }
+        //         });
+        //     }
+        // }
     </script>
 </body>
 </html>

@@ -390,8 +390,6 @@ router.post('/register',function(req,res,next){
       res.json(result);
     }
   })
-
-  
 });
 
 router.post('/usermodify2',function(req,res,next){
