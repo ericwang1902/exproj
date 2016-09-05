@@ -14,10 +14,6 @@ module.exports = {
         console.log(data);
       });
     })
-  },
-  io:io,//io对象
-  sendinfo:function(){
-    io.emit('news',{info:'主动发送的消息'})
   }
   
 }
