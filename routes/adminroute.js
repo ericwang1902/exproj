@@ -329,10 +329,19 @@ router.get('/getusers',function(req,res,next){
 
             var usersmodify=[];
             for (var index = 0; index < users.length; index++) {
+               var usertypename = ''
+              if (users[index].usertype=='1') {
+                usertypename='管理员'
+              } else if(users[index].usertype=='2') {
+                usertypename='快递点'
+              }else if(users[index].usertype=='3') {
+                usertypename='快递员'
+              }
+             
                 var user={
                   mobilephone:users[index].mobile,
                   username:users[index].username,
-                  type:users[index].type,
+                  type:usertypename,
                   count:users[index].count
                 }
                 usersmodify.push(user);
