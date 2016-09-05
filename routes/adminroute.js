@@ -340,9 +340,9 @@ router.get('/getusers',function(req,res,next){
              
                 var user={
                   id:users[index]._id,
-                  mobilephone:users[index].mobile,
+                  mobile:users[index].mobile,
                   username:users[index].username,
-                  type:usertypename,
+                  usertype:usertypename,
                   count:users[index].count
                 }
                 usersmodify.push(user);
