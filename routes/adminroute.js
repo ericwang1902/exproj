@@ -311,6 +311,60 @@ router.post('/usermodify',function(req,res,next){
   })
   }
 })
+//新版管理员页面的用户列表
+router.get('/courierlist',function(req,res,next){
+
+  res.render('./easyui/courierlist',{layout: false})
+})
+
+//获取用户数据的url
+router.get('/getusers',function(req,res,next){
+    async.series([
+        function(callback){
+          sysuserModel.find({},function(err,users){
+          //查找到了系统内所有的users
+            if (err) {
+              console.log(err)
+            }
+
+            var usersmodify=[];
+            for (var index = 0; index < users.length; index++) {
+                var user={
+                  mobilephone:users[index].mobile,
+                  username:users[index].username,
+                  type:users[index].type,
+                  count:users[index].count
+                }
+                usersmodify.push(user);
+            }
+            callback(null,usersmodify)
+          })
+        },
+        function(callback){
+          sysuserModel.count({},function(err,count){
+            //查找系统内所有users的总数
+            if (err) {
+              console.log(err)
+            }
+            callback(null,count)
+
+          })
+        }
+      ],function(err,results){
+        if (err) {
+          console.log(err)
+        }
+        var rows = results[0];
+        var total = results[1];
+        var result = {
+          total:total,
+          rows:rows
+        }
+        
+        res.json(result);
+      })
+})
+
 
 //做路由登陆验证
 function isLogedIn(req,res,next){
