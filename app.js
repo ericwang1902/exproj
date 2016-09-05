@@ -139,15 +139,15 @@ passport.use(new LocalStrategy(
   }
 ));
 //将socketio绑定到服务器
-var io = require('socket.io')(app);
+//var io = require('socket.io')(app);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });//触发news事件
+// io.on('connection', function (socket) {
+//   socket.emit('news', { hello: 'world' });//触发news事件
   
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-})
+//   socket.on('my other event', function (data) {
+//     console.log(data);
+//   });
+// })
 
 //路由
 app.use('/', routes);
