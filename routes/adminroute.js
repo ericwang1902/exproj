@@ -393,6 +393,11 @@ router.post('/register',function(req,res,next){
   
 });
 
+router.post('/usermodify',function(req,res,next){
+  console.log(req.query.id)
+  console.log(req.body)
+})
+
 //做路由登陆验证
 function isLogedIn(req,res,next){
   if(req.isAuthenticated()){
