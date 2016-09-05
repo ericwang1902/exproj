@@ -59,7 +59,7 @@ router.post('/register',checkRegForm,function(req,res,next){
   
   //创建用户账号
   var user = {
-    username:req.body.username,
+    mobile:req.body.mobile,
     psd:req.body.password1
   }
   sysuserController.createUser(user,function(err,result){
