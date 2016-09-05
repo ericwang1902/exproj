@@ -37,25 +37,30 @@
     <div id="dlg" class="easyui-dialog" style="width:400px"
             closed="true" buttons="#dlg-buttons">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
-            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">用户信息</div>
-            <div style="margin-bottom:10px">
-                <input name="mobile" class="easyui-textbox" required="true" label="手机号" style="width:100%">
-            </div>
-            <div style="margin-bottom:10px">
-                <input name="username" class="easyui-textbox" required="true" label="姓名" style="width:100%">
-            </div>
-            <div style="margin-bottom:10px">
-                <input name="psd" class="easyui-textbox" required="true" label="密码" style="width:100%">
-            </div>
-            <div style="margin-bottom:10px">
-                <label>用户类型</label>
-                <select id=”cc” class=”easyui-combobox” label="用户类型" name="usertype" style=”width:200px;”>
+        <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">用户信息</div>
+        <table>
+            <tr>
+                <td>手机号</td>
+                <td><input name="mobile" class="easyui-textbox" required="true" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td>姓名</td>
+                <td><input name="username" class="easyui-textbox" required="true" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td><input name="psd" class="easyui-textbox" required="true" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td>用户类型</td>
+                <td><select id=”cc” class=”easyui-combobox” label="用户类型" name="usertype" style=”width:200px;”>
                         <option value="1">管理员</option>
                         <option value="2">快递点</option>
                         <option value="3">快递员</option>
-                </select>
-            </div>
-        </form>
+                </select></td>
+            </tr>
+        </table>
+    </form>
     </div>
     <div id="dlg-buttons">
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
