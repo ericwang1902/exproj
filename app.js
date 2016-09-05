@@ -36,9 +36,16 @@ var wechat = require('./routes/wechat');
 
 var seed = require('./models/seed.js');
 var wechatbase = require('./routes/wechatbase');
-// var socketio = require('./routes/socketio.js')
-
-//var test = require('./routes/test');
+//将socketio绑定到服务器
+var http=require('http').Server(app);
+var io = require('socket.io')(http);
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });//触发news事件
+  
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+})
 
 
 // view engine setup
@@ -138,16 +145,9 @@ passport.use(new LocalStrategy(
     })
   }
 ));
-//将socketio绑定到服务器
-//var io = require('socket.io')(app);
 
-// io.on('connection', function (socket) {
-//   socket.emit('news', { hello: 'world' });//触发news事件
-  
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// })
+
+
 
 //路由
 app.use('/', routes);
@@ -159,6 +159,8 @@ app.use('/org',org);//快递点管理页面
 app.use('/courier',courier);//快递员管理路由
 app.use('/admin',admin);
 app.use('/kdniao',kdniao);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
