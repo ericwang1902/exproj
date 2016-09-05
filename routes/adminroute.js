@@ -382,7 +382,7 @@ router.post('/register',function(req,res,next){
     psd:req.body.psd,
     usertype:req.body.usertype
   }
-  sysorderController.createUser(user,function(err,result){
+  sysuserController.createUser(user,function(err,result){
     if(err)console.log(err)
 
     if(result){
