@@ -14,7 +14,7 @@
     <h2>Basic CRUD Application</h2>
     <p>Click the buttons on datagrid toolbar to do crud actions.</p>
     
-    <table id="dg" title="My Users" class="easyui-datagrid" style="width:700px;height:250px"
+    <table id="dg" title="My Users" class="easyui-datagrid" style="width:1000px;height:250px"
             url="/admin/getusers" method="get"
             toolbar="#toolbar" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
@@ -22,7 +22,7 @@
             <tr>
                 <th field="mobilephone" width="50">手机号</th>
                 <th field="username" width="50">姓名</th>
-                <th field="type" width="50">类型</th>
+                <th field="type" width="50">用户类型</th>
                 <th field="count" width="50">余单数</th>
             </tr>
         </thead>
@@ -37,9 +37,9 @@
     <div id="dlg" class="easyui-dialog" style="width:400px"
             closed="true" buttons="#dlg-buttons">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
-            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">User Information</div>
+            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">用户信息</div>
             <div style="margin-bottom:10px">
-                <input name="firstname" class="easyui-textbox" required="true" label="First Name:" style="width:100%">
+                <input name="firstname" class="easyui-textbox" required="true" label="电话" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input name="lastname" class="easyui-textbox" required="true" label="Last Name:" style="width:100%">
