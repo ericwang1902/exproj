@@ -58,7 +58,6 @@ router.get('/orguserlist',isLogedIn, function (req, res, next) {
 
 router.get('/orguserdetail',isLogedIn, function (req, res, next) {
     var id = req.query.id;//快递员id
-io.sendinfo();
     //根据快递员id查找到他所归属的快递点，读取快递点的信息。
     async.waterfall([
         function (callback) {
