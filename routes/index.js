@@ -56,7 +56,7 @@ router.get('/register',function(req,res,next){
 });
 
 router.post('/register',checkRegForm,function(req,res,next){
-  console.log('通过表单验证')
+  
   //创建用户账号
   var user = {
     username:req.body.username,

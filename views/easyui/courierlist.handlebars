@@ -39,16 +39,19 @@
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">用户信息</div>
             <div style="margin-bottom:10px">
-                <input name="firstname" class="easyui-textbox" required="true" label="电话" style="width:100%">
+                <input name="mobilephone" class="easyui-textbox" required="true" label="手机号" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="lastname" class="easyui-textbox" required="true" label="Last Name:" style="width:100%">
+                <input name="username" class="easyui-textbox" required="true" label="姓名" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="phone" class="easyui-textbox" required="true" label="Phone:" style="width:100%">
+                <input name="type" class="easyui-textbox" required="true" label="用户类型" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="email" class="easyui-textbox" required="true" validType="email" label="Email:" style="width:100%">
+                <input name="count" class="easyui-textbox" required="true" label="余单数" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="psd" class="easyui-textbox" required="true" label="密码" style="width:100%">
             </div>
         </form>
     </div>
@@ -62,7 +65,7 @@
         function newUser(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
             $('#fm').form('clear');
-            url = 'save_user.php';
+            url = '/register';
         }
         function editUser(){
             var row = $('#dg').datagrid('getSelected');

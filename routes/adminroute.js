@@ -373,7 +373,19 @@ router.get('/getusers',function(req,res,next){
         res.json(result);
       })
 })
-
+router.post('/register',function(req,res,next){
+  //创建用户账号
+  var user = {
+    mobile:req.body.mobile,
+    psd:req.body.password1
+  }
+  sysuserController.createUser(user,function(err,result){
+    if(err) render('error',{error:'注册失败！'})
+    console.log(result);
+    req.flash('sucess_msg','注册成功，请登录！');
+    res.redirect('/login');
+  });//创建用户
+});
 
 //做路由登陆验证
 function isLogedIn(req,res,next){

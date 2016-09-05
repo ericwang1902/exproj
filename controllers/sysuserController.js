@@ -101,7 +101,7 @@ module.exports = {
     //用户注册，创建用户
     createUser:function(user,callback){
         var sysuser = new sysuserModel({
-            mobile:user.username,
+            mobile:user.mobile,
             psd:user.psd,
             usertype : "",
             openid : "",
@@ -117,7 +117,7 @@ module.exports = {
             username:""
         });
         
-        sysuserModel.findOne({mobile:user.username},function(err,user){
+        sysuserModel.findOne({mobile:user.mobile},function(err,user){
             if(err) return console.error(err);
            
             if(user){
