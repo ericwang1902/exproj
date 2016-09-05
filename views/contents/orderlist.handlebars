@@ -40,11 +40,3 @@
     </ul>
 </nav>
 
-<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-<script>
-  var socket = io().connect('http://exproj.robustudio.com:8084');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
