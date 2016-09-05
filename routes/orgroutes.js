@@ -10,7 +10,7 @@ var moment = require('moment')
 var io =require('./socketio')
 /* GET users listing. */
 router.get('/orgdash',isLogedIn, function (req, res, next) {
-    io.sendinfo();
+    
     moment.locale('zh-cn')
     //获取上统计数据，CLuserid是currentLoginuserId
     var userid = req.session.CLuserid
@@ -58,7 +58,7 @@ router.get('/orguserlist',isLogedIn, function (req, res, next) {
 
 router.get('/orguserdetail',isLogedIn, function (req, res, next) {
     var id = req.query.id;//快递员id
-
+io.sendinfo();
     //根据快递员id查找到他所归属的快递点，读取快递点的信息。
     async.waterfall([
         function (callback) {
