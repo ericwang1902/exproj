@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('exproj:server');
 var http = require('http');
+var io = require('../routes/socketio')
 
 /**
  * Get port from environment and store in Express.
@@ -21,14 +22,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 //socketio设置
-var io = require('socket.io')(server);
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });//触发news事件
-  
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-})
+io.getSocketio(server);
 
 /**
  * Listen on provided port, on all network interfaces.
