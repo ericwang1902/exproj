@@ -15,7 +15,7 @@ router.get('/orderlistdatagrid',function(req,res,next){
 //封装用户treegrid数据接口
 router.get('/getorgorderdata',function(req,res,next){
     var page = req.query.page;
-    var pageItems = new Number(req.query.rows);
+    var pageItems = req.query.rows;
     console.log(page+' '+pageItems)
     sysorderController.bilist(page,pageItems,{},function(err,orders){
         if(err) console.log(err);
