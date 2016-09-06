@@ -335,7 +335,7 @@ module.exports = {
                     .exec(function(err,users){
                         var orgitem =org;
                         orgitem['children_copy']=users;
-                        orgsdata.push=orgitem;
+                        orgsdata.push(orgitem);
                         callback();
                     }
                     )
