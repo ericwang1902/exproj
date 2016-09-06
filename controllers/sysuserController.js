@@ -311,5 +311,35 @@ module.exports = {
             }
             return res.json(sysuser);
         });
+    },
+
+    //bi中获取所有org和和org下面的users，组成treegrid的数据格式返回
+    treegridData:function(callback){
+        var orgsData=[];
+        sysuserModel
+        .find( {"usertype" :"2"})
+        .exec(function(err,orgs){
+            if (err) {
+                console.log(err)
+            }
+
+            //循环orgs，查找下面的users
+            async.each(orgs,function(org,callback){
+                sysuserModel
+                .find({"orgid":org._id})
+                .exec(function(err,users){
+                    org.children = users;   
+                },function(err){
+                    if(err)console.log(err);
+                    else{
+                        console.log('成功循环结束！')
+                        console.log('users data:' + JSON.stringify(orgs))
+                        callback(null,orgs)
+                    }
+                })
+            })
+
+        })
+
     }
 };
