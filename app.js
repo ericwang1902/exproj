@@ -37,6 +37,7 @@ var wechat = require('./routes/wechat');
 var seed = require('./models/seed.js');
 var wechatbase = require('./routes/wechatbase');
 var adminbi = require('./routes/BI/adminbi');//管理员系统的bi路由
+var orgbi = require('./routes/BI/orgbi');//
 
 
 
@@ -151,7 +152,8 @@ app.use('/org',org);//快递点管理页面
 app.use('/courier',courier);//快递员管理路由
 app.use('/admin',admin);
 app.use('/kdniao',kdniao);
-app.use('/adminbi',adminbi)
+app.use('/adminbi',adminbi);
+app.use('/orgbi',orgbi);
 
 
 

@@ -43,6 +43,35 @@ module.exports = {
         })
     },
 
+    //easyui获取org的订单的接口
+    bilist:function (condition, callback2) {
+
+        async.series([
+            function (callback) {
+                sysorderModel.count(condition, function (err, count) {
+                    if (err) console.log(err);
+                    callback(null, count);
+                })
+            },
+            function (callback) {
+                sysorderModel
+                    .find(condition)
+                    .sort([['orderdate', -1]])
+                    .populate('sendid')
+                    .populate('receiveid')
+                    .populate('courierid')
+                    .populate('orgid')
+                    .exec(function (err, orders) {
+                        if (err) console.log(err);
+
+                        callback(null, orders);
+                    })
+            }
+
+        ], function (err, results) {
+            callback2(null, results[0], results[1]);
+        })
+    },
 
     listapi: function (openid, req, res) {
         sysorderModel
