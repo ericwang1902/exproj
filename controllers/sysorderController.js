@@ -44,15 +44,9 @@ module.exports = {
     },
 
     //easyui获取org的订单的接口
-    bilist:function (condition, callback2) {
+    bilist:function (page,pageItems,condition, callback2) {
 
         async.series([
-            function (callback) {
-                sysorderModel.count(condition, function (err, count) {
-                    if (err) console.log(err);
-                    callback(null, count);
-                })
-            },
             function (callback) {
                 sysorderModel
                     .find(condition)
@@ -61,6 +55,8 @@ module.exports = {
                     .populate('receiveid')
                     .populate('courierid')
                     .populate('orgid')
+                    .skip((page - 1) * pageItems)
+                    .limit(pageItems)
                     .exec(function (err, orders) {
                         if (err) console.log(err);
 
@@ -69,7 +65,7 @@ module.exports = {
             }
 
         ], function (err, results) {
-            callback2(null, results[0], results[1]);
+            callback2(null, results[0]);
         })
     },
 
