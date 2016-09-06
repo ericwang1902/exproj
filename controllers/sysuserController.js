@@ -333,7 +333,7 @@ module.exports = {
                     sysuserModel
                     .find({"orgid":org._id})
                     .exec(function(err,users){
-                        orgitem.children=users;
+                        orgitem.children='users';
                         orgsdata[index]=orgitem;
 
                         callback();
