@@ -17,6 +17,7 @@
         <thead>
             <tr>
                 <th data-options="field:'sendid'" formatter="getname">寄件人</th>
+                <th data-options="field:'sendid'" formatter="getnumber">寄件人电话</th>
                 <th data-options="field:'receiveid'" formatter="getname">收件人</th>
                 <th data-options="field:'logisticorder'">运单号</th>
             </tr>
@@ -49,7 +50,9 @@
 
  <script>
     function getname(value){
-        return value.provincename+value.cityname+value.expareaname+value.address+value.name;
+        return value.name;
     };
-
+    function getnumber(value){
+        return value.tele;
+    };
 </script>
