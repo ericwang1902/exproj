@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="/admin/admindash">控制面板</a></li>
+  <li role="presentation" ><a href="/admin/userlist">快递员列表</a></li>
+</ul>
+
+<script src="/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="/node_modules/jquery-weui/dist/lib/jquery-2.1.4.js"></script>
+<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+
+<table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"
+            data-options="
+                url: '/adminbi/getuserstreegrid',
+                method: 'get',
+                rownumbers: true,
+                idField: 'id',
+                treeField: 'name'
+            ">
+        <thead>
+            <tr>
+                <th data-options="field:'name'" width="220">Name</th>
+                <th data-options="field:'size'" width="100" align="right">Size</th>
+                <th data-options="field:'date'" width="150">Modified Date</th>
+            </tr>
+        </thead>
+    </table>
+<script type="text/javascript">
+
+</script>
