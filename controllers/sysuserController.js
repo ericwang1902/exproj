@@ -335,8 +335,9 @@ module.exports = {
                     .exec(function(err,users){
                         var orgitem =org;
                         console.log("orgitem 1:"+JSON.stringify(orgitem))
-                        orgitem['children']=users;
+                        orgitem['children_copy']=users;
                         console.log("orgitem 2:"+JSON.stringify(orgitem))
+                        console.log("users:"+JSON.stringify(users))
                         orgsdata[index]=orgitem;
                         callback();
                     }
