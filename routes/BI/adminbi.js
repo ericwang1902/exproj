@@ -14,7 +14,7 @@ var moment = require('moment')
 //新版管理员页面的用户列表
 router.get('/courierlist',function(req,res,next){
 
-  res.render('../../easyui/admin/courierlist',{layout: false})
+  res.render('./easyui/admin/courierlist',{layout: false})
 })
 
 //获取用户数据的url
