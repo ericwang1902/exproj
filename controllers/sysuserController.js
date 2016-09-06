@@ -331,7 +331,7 @@ module.exports = {
                   //  var orgitem = org;
 
                     sysuserModel
-                    .find({"orgid":org._id})
+                    .find({"orgid":org._id,"_id":{$ne:org._id}})
                     .exec(function(err,users){
                         var orgitem ={
                             _id:org._id,
