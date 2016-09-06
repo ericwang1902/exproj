@@ -17,10 +17,14 @@ router.get('/getorgorderdata',function(req,res,next){
     var page = req.query.page;
     var pageItems = parseInt( req.query.rows);
     console.log(page+' '+pageItems)
-    sysorderController.bilist(page,pageItems,{},function(err,orders){
+    sysorderController.bilist(page,pageItems,{},function(err,count,orders){
         if(err) console.log(err);
+        var result= {
+            total:count,
+            rows:orders
+        }
 
-        res.json(orders);
+        res.json(result);
     })
    
 })

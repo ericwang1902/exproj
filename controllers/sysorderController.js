@@ -48,6 +48,12 @@ module.exports = {
 
         async.series([
             function (callback) {
+                sysorderModel.count(condition, function (err, count) {
+                    if (err) console.log(err);
+                    callback(null, count);
+                })
+            },
+            function (callback) {
                 sysorderModel
                     .find(condition)
                     .sort([['orderdate', -1]])
@@ -65,7 +71,7 @@ module.exports = {
             }
 
         ], function (err, results) {
-            callback2(null, results[0]);
+            callback2(null, results[0],results[1]);
         })
     },
 
