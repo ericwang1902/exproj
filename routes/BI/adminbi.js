@@ -75,7 +75,7 @@ router.get('/getusers',function(req,res,next){
       })
 })
 
-router.geet('/userlisttreegrid',function(req,res,next){
+router.get('/userlisttreegrid',function(req,res,next){
      res.render('./easyui/admin/userlist')
 })
 //封装用户treegrid数据接口
