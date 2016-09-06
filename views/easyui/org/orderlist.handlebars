@@ -13,15 +13,15 @@
 
 
     <table id="dg" title="Custom DataGrid Pager" style="width:700px;height:250px"
-            data-options="rownumbers:true,singleSelect:true,pagination:true,url:'/orgbi/getorgorderdata',method:'get'">
+            data-options="rownumbers:true,singleSelect:true,pagination:true,pageSize:10,url:'/orgbi/getorgorderdata',method:'get'">
         <thead>
             <tr>
-                <th data-options="field:'itemid',width:80">Item ID</th>
-                <th data-options="field:'productid',width:100">Product</th>
-                <th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+                <th data-options="field:'receiveid.name',width:80">收件人</th>
+                <th data-options="field:'sendid.name',width:100">寄件人</th>
+                <!--<th data-options="field:'listprice',width:80,align:'right'">List Price</th>
                 <th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
                 <th data-options="field:'attr1',width:240">Attribute</th>
-                <th data-options="field:'status',width:60,align:'center'">Status</th>
+                <th data-options="field:'status',width:60,align:'center'">Status</th>-->
             </tr>
         </thead>
     </table>
