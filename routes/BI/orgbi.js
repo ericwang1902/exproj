@@ -15,10 +15,10 @@ router.get('/orderlistdatagrid',function(req,res,next){
 //封装用户treegrid数据接口
 router.get('/getorgorderdata',function(req,res,next){
 
-    sysorderController.bilist({},function(err,results){
+    sysorderController.bilist({},function(err,count,orders){
         if(err) console.log(err);
 
-        res.json(results);
+        res.json(orders);
     })
    
 })
