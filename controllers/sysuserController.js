@@ -336,8 +336,9 @@ module.exports = {
                         var orgitem =org;
                         console.log(JSON.stringify(orgitem));
                         orgitem['children']=users;
-                        console.log(JSON.stringify( orgitem['children']));
+                        
                         orgsdata[index]=orgitem;
+                        console.log(JSON.stringify( orgsdata[index]));
 
                         callback();
                     }
