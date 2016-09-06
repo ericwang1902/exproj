@@ -333,9 +333,17 @@ module.exports = {
                     sysuserModel
                     .find({"orgid":org._id})
                     .exec(function(err,users){
-                        var orgitem =org;
-                        orgitem['children_copy']=users;
-                        orgsdata.push(orgitem);
+                        var orgitem ={
+                            _id:org._id,
+                            mobile:org.mobile,
+                            usertype:org.usertype,
+                            username:org.username,
+                            count:org.count,
+                            account:org.account,
+                            accountpsd:org.accountpsd,
+                            children:users
+                        };
+                        orgsdata[index]=orgitem;
                         callback();
                     }
                     )
