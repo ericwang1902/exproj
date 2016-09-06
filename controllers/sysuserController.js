@@ -334,12 +334,10 @@ module.exports = {
                     .find({"orgid":org._id})
                     .exec(function(err,users){
                         var orgitem =org;
-                        console.log(JSON.stringify(orgitem));
+                        console.log("orgitem 1:"+JSON.stringify(orgitem))
                         orgitem['children']=users;
-                        
+                        console.log("orgitem 1:"+JSON.stringify(orgitem))
                         orgsdata[index]=orgitem;
-                        console.log(JSON.stringify( orgsdata[index]));
-
                         callback();
                     }
                     )
