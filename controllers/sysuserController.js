@@ -314,7 +314,7 @@ module.exports = {
     },
 
     //bi中获取所有org和和org下面的users，组成treegrid的数据格式返回
-    treegridData:function(callback){
+    treegridData:function(callback1){
         var orgsData=[];
         sysuserModel
         .find( {"usertype" :"2"})
@@ -328,16 +328,15 @@ module.exports = {
                 sysuserModel
                 .find({"orgid":org._id})
                 .exec(function(err,users){
-                    org.children = users;   
-                },function(err){
-                    if(err)console.log(err);
-                    else{
-                        console.log('成功循环结束！')
-                        console.log('users data:' + JSON.stringify(orgs))
-                        callback(null,orgs)
-                    }
-                })
+                    org.children = users;
+                    callback();
+                }
+                )
+
+            },function(err){
+                callback1(orgs)
             })
+
 
         })
 
