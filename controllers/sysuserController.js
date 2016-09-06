@@ -334,7 +334,7 @@ module.exports = {
                     .find({"orgid":org._id})
                     .exec(function(err,users){
                         orgitem.children=users;
-                        orgsdata.push(orgitem);
+                        orgsdata[index]=orgitem;
 
                         callback();
                     }
