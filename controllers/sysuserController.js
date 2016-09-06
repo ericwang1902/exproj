@@ -323,13 +323,10 @@ module.exports = {
                 console.log(err)
             }
 
-   
             //循环orgs，查找下面的users
             async.forEachOf(
                 orgs,
                 function(org,index,callback){
-                  //  var orgitem = org;
-
                     sysuserModel
                     .find({"orgid":org._id,"_id":{$ne:org._id}})
                     .exec(function(err,users){
@@ -351,9 +348,6 @@ module.exports = {
                 function(err){
                     callback1(null,orgsdata)
                 })
-
-
         })
-
     }
 };
