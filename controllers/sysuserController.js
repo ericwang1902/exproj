@@ -332,7 +332,7 @@ module.exports = {
                     .find({"orgid":org._id})
                     .exec(function(err,users){
                         orgs[index].children = users;
-                        console.log(JSON.stringify(orgs[index]))
+                        console.log(JSON.stringify(orgs[index].children))
                         callback();
                     }
                     )
