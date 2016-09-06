@@ -334,7 +334,7 @@ module.exports = {
                 )
 
             },function(err){
-                callback1(orgs)
+                callback1(null,orgs)
             })
 
 
