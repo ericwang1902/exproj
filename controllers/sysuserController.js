@@ -328,12 +328,12 @@ module.exports = {
             async.forEachOf(
                 orgs,
                 function(org,index,callback){
-                    var orgitem = org;
+                  //  var orgitem = org;
 
                     sysuserModel
                     .find({"orgid":org._id})
                     .exec(function(err,users){
-                        orgitem.children='users';
+                        var orgitem ='users';
                         orgsdata[index]=orgitem;
 
                         callback();
