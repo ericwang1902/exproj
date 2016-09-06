@@ -16,8 +16,8 @@
             data-options="rownumbers:true,singleSelect:true,pagination:true,pageSize:10,url:'/orgbi/getorgorderdata',method:'get'">
         <thead>
             <tr>
-                <th data-options="field:'receiveid.name',width:80">收件人</th>
-                <th data-options="field:'sendid.name',width:100">寄件人</th>
+                <th data-options="field:'receiveid',width:80" formatter="getname">收件人</th>
+                <th data-options="field:'sendid',width:100" formatter="getname">寄件人</th>
                 <!--<th data-options="field:'listprice',width:80,align:'right'">List Price</th>
                 <th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
                 <th data-options="field:'attr1',width:240">Attribute</th>
@@ -49,3 +49,14 @@
             });            
         })
     </script>
+
+    <script>
+    function getname(value){
+        return value.name;
+    };
+
+   function  formatShelfLife (value){
+        return value + " 月";
+
+    };
+</script>
