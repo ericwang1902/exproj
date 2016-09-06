@@ -16,7 +16,7 @@
             data-options="rownumbers:true,singleSelect:true,pagination:true,pageSize:10,url:'/orgbi/getorgorderdata',method:'get'">
         <thead>
             <tr>
-                <!--<th data-options="field:'sendid',width:80,align:'right'" formatter="getloc">寄件地址</th>-->
+                <th data-options="field:'sendid',width:80,align:'right'" formatter="getloc">寄件地址</th>
                 <th data-options="field:'sendid',width:100" formatter="getname">寄件人</th>
 
                 <!--<th data-options="field:'receiveid',width:80,align:'right'" formatter="getloc">收件地址</th>-->
@@ -57,7 +57,7 @@
     };
 
    function  getloc (value){
-        return value.provincename+value.cityname+value.expareaname+value.address;
+        return value.provincename + value.cityname + value.expareaname + value.address;
 
     };
 </script>
