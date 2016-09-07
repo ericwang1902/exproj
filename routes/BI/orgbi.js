@@ -51,11 +51,6 @@ router.post('/pickupdateorder',function(req,res,next){
     var  orderid = req.body.orderid;
     var orgid   = req.session.CLuserid;
     //根据orderid和orgid来接单
-var openid = req.query.openid || req.session.openid;//客户的openid
-    var targetstatus = req.body.targetstatus;
-    var orderid = req.body.orderid;
-    var courierid = req.body.courierid;//获取取件快递员的openid
-    console.log('/pickupdateorder courierid：' + courierid);
 
     async.waterfall([
         function (callback) {
@@ -98,14 +93,11 @@ var openid = req.query.openid || req.session.openid;//客户的openid
 
                     callback(null, orderResult, courier, org);
                 }
-                else if (body.ResultCode == '105') {
-                    //错误处理,单号不足
-                    callback(new Error('1', null));
-                }
                 else {
-                    //其他错误
-                    callback(new Error('2'), null);
+                    //错误处理,单号不足
+                    callback(new Error(body.Reason, null));
                 }
+                
 
             })
 
@@ -179,12 +171,7 @@ var openid = req.query.openid || req.session.openid;//客户的openid
         }
     ], function (err, result) {
         if (err) {
-            if (err.message == '1') {
-                 res.json({status:11});//电子面单系统出错
-            }
-            else {
-                res.json({status:0});//其他错误
-            }
+                 res.json({status:11,reason:err.message});//电子面单系统出错
 
         } else {
            res.json({status:200})//成功
