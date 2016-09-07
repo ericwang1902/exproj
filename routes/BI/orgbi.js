@@ -148,7 +148,7 @@ router.post('/pickupdateorder',function(req,res,next){
             wechatjs.sendTemplate2(fanopenid,
                 'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + fanopenid + '&courierid=' + org._id,
                 order.logisticorder,
-                'test',
+                 enumerableConstants.orderstatus[order.status].name,,
                 orderdatecn,
                 org.username,
                 org.mobile,
@@ -158,7 +158,7 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function (order, org, callback) {
             //扣减在线快递系统的count余额
-            sysusercontroller.modifyCount(org, -1, function (err, org) {
+            sysuserController.modifyCount(org, -1, function (err, org) {
                 if (err) {
                     console.log(err);
                 }
