@@ -64,7 +64,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 .populate('receiveid')
                 .exec(function (err, order) {
                     if (err) console.log(err);
-                    var fanopenid = sendid.openid;
+                    var fanopenid = order.sendid.openid;
 
                     callback(null, order,fanopenid)
                 })
