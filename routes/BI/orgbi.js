@@ -136,18 +136,18 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function (order,org,callback){
             //根据order.sendid.userid查找寄件人的openid
-            sysuserModel.findOne({_id:order.sendid.userid},function(err,useropenid){
+            sysuserModel.findOne({_id:order.sendid.userid},function(err,userinfo){
                 if(err) console.log(err);
 
-                callback(order,org,useropenid)
+                callback(order,org,userinfo)
             })
         },
-           function (order, org,useropenid, callback) {
+           function (order, org,userinfo, callback) {
             moment.locale('zh-cn');
             var orderdatecn = moment(order.pickdate).format("LLL");
             //发送模板消息
-            wechatjs.sendTemplate2(useropenid,
-                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + useropenid + '&courierid=' + courierid,
+            wechatjs.sendTemplate2(userinfo,
+                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + userinfo.openid + '&courierid=' + courierid,
                 order.logisticorder,
                 enumerableconstants.orderstatus[order.status].name,
                 orderdatecn,
