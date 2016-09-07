@@ -57,7 +57,7 @@
             </tr>
             <tr>
                 <td>电子面单</td>
-                <td><iframe id="template" ></iframe></td>
+                <td><div id="template" ></div></td>
             </tr>
             </table>
     </div>
@@ -84,7 +84,7 @@
                          $('#receloc').text(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
                           $('#recename').text(row['receiveid']['name']);
                            $('#recetele').text(row['receiveid']['tele']);
-                           $('#template').src(row['template']);
+                           $('#template').html(row['template']);
                     }
                 });
                 $('#dlg').dialog('open').dialog('center')
