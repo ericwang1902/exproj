@@ -32,7 +32,7 @@
      		<div style="margin-bottom:10px">
 				<input id="sendloc" disabled class="easyui-textbox"  label="寄件地址" style="width:100%">
 			</div>
-			<div style="margin-bottom:10px">
+			<!--<div style="margin-bottom:10px">
 				<input id="sendname" disabled class="easyui-textbox"  label="寄件人姓名" style="width:100%">
 			</div>
 			<div style="margin-bottom:10px">
@@ -46,7 +46,7 @@
 			</div>
 			<div style="margin-bottom:10px">
 				<input id="recetele" disabled class="easyui-textbox" label="收件人电话" style="width:100%">
-			</div>
+			</div>-->
 
     </div>
 
@@ -66,12 +66,12 @@
                     height: 600,
                     modal: true,
                     onOpen:function(){
-                         $('#sendloc').val(row['sendid']['provincename']);
-                          $('#sendname').val(row['sendid']['name']);
-                        $('#sendtele').val(row['sendid']['tele']);
-                         $('#receloc').val(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
-                          $('#recename').val(row['receiveid']['name']);
-                           $('#recetele').val(row['receiveid']['tele']);
+                         $('#sendloc').val(row['sendid']['name']);
+                        //   $('#sendname').val(row['sendid']['name']);
+                        // $('#sendtele').val(row['sendid']['tele']);
+                        //  $('#receloc').val(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
+                        //   $('#recename').val(row['receiveid']['name']);
+                        //    $('#recetele').val(row['receiveid']['tele']);
                     }
                 });
                 $('#dlg').dialog('open').dialog('center')
