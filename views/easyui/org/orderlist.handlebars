@@ -26,34 +26,63 @@
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="accept()">接单</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-man" plain="true" onclick="detail()">详情</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="detail()">打印</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="print()">打印</a>
     </div>
-
+ <div id="dlg" class="easyui-dialog" title="Toolbar and Buttons" style="width:400px;height:200px;padding:10px"
+            data-options="
+                iconCls: 'icon-save',
+                toolbar: [{
+                    text:'Add',
+                    iconCls:'icon-add',
+                    handler:function(){
+                        alert('add')
+                    }
+                },'-',{
+                    text:'Save',
+                    iconCls:'icon-save',
+                    handler:function(){
+                        alert('save')
+                    }
+                }],
+                buttons: [{
+                    text:'Ok',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        alert('ok');
+                    }
+                },{
+                    text:'Cancel',
+                    handler:function(){
+                        alert('cancel');;
+                    }
+                }]
+            ">
+            <input id="name">
+    </div>
 
     <script type="text/javascript">
         $(function(){
-            var pager = $('#dg').datagrid().datagrid('getPager');    // get the pager of datagrid
-            pager.pagination({
-                buttons:[{
-                    iconCls:'icon-search',
-                    handler:function(){
-                        alert('search');
-                    }
-                },{
-                    iconCls:'icon-add',
-                    handler:function(){
-                        alert('add');
-                    }
-                },{
-                    iconCls:'icon-edit',
-                    handler:function(){
-                        alert('edit');
-                    }
-                }]
-            });            
+            var pager = $('#dg').datagrid().datagrid('getPager');    // get the pager of datagrid          
         })
+
         function detail(){
             var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $('#dlg')
+                .dialog('open')
+                .dialog('center')
+                .dialog('setTitle','订单详情')
+                .dialog({
+                    onOpen:function(){
+                        $('#name').val(row._id);
+                    }
+                });
+            }
+            console.log(row)
+        }
+        function print(){
+            var row = $('#dg').datagrid('getSelected');
+
             console.log(row)
         }
         
