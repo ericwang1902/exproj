@@ -28,35 +28,7 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-man" plain="true" onclick="detail()">详情</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="print()">打印</a>
     </div>
- <div id="dlg" class="easyui-dialog" title="Toolbar and Buttons" style="width:400px;height:200px;padding:10px"
-            data-options="
-                iconCls: 'icon-save',
-                toolbar: [{
-                    text:'Add',
-                    iconCls:'icon-add',
-                    handler:function(){
-                        alert('add')
-                    }
-                },'-',{
-                    text:'Save',
-                    iconCls:'icon-save',
-                    handler:function(){
-                        alert('save')
-                    }
-                }],
-                buttons: [{
-                    text:'Ok',
-                    iconCls:'icon-ok',
-                    handler:function(){
-                        alert('ok');
-                    }
-                },{
-                    text:'Cancel',
-                    handler:function(){
-                        alert('cancel');;
-                    }
-                }]
-            ">
+ <div id="dlg" class="easyui-dialog" title="Toolbar and Buttons" style="width:400px;height:200px;padding:10px">
             <input id="name">
     </div>
 
@@ -64,8 +36,10 @@
         $(function(){
             var pager = $('#dg').datagrid().datagrid('getPager');    // get the pager of datagrid          
         })
+    </script>
 
-        function detail(){
+ <script>
+      function detail(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
                 $('#dlg')
@@ -80,15 +54,13 @@
             }
             console.log(row)
         }
+        
         function print(){
             var row = $('#dg').datagrid('getSelected');
 
             console.log(row)
         }
-        
-    </script>
 
- <script>
     function getname(value){
         return value.name+' '+value.tele;
     };
