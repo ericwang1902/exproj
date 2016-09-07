@@ -9,15 +9,18 @@ var async = require('async');
 var moment = require('moment');
 
 router.get('/orderlistdatagrid',function(req,res,next){
-     res.render('./easyui/org/orderlist')
+    var id = req.session.CLuserid
+
+     res.render('./easyui/org/orderlist',{orgid:id})
 })
 
 //封装用户treegrid数据接口
 router.get('/getorgorderdata',function(req,res,next){
+    var orgid = req.query.orgid;
     var page = req.query.page;
     var pageItems = parseInt( req.query.rows);
     console.log(page+' '+pageItems)
-    sysorderController.bilist(page,pageItems,{},function(err,count,orders){
+    sysorderController.bilist(page,pageItems,{'orgid':orgid},function(err,count,orders){
         if(err) console.log(err);
 
         for (var index = 0; index < orders.length; index++) {
