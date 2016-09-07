@@ -19,6 +19,18 @@ router.get('/getorgorderdata',function(req,res,next){
     console.log(page+' '+pageItems)
     sysorderController.bilist(page,pageItems,{},function(err,count,orders){
         if(err) console.log(err);
+
+        for (var index = 0; index < orders.length; index++) {
+        orders[index].template=orders[index].template.replace(/simsun/g, 'Microsoft YaHei')//将样式里的宋体改成雅黑，雅黑可以在打印机打印加粗
+        orders[index].template=orders[index].template.replace(/height="40"/g, 'height="76.3"')//将条码拉长
+        orders[index].template=orders[index].template.replace(/solid #000 1px/g, 'none')//将边框去掉
+        //下面两个是将寄件人调小
+        orders[index].template=orders[index].template.replace(/.no_border{ width:100%; height:100%; font-size:14px;}/g, '.no_border{ width:100%; height:100%; font-size:14px;}.send_css{margin-top:10px;font-size:12px}')
+        orders[index].template=orders[index].template.replace(/<table class="no_border">/g, '<table class="send_css">')
+        orders[index].template=orders[index].template.replace(/style="border-top:5px solid #000;"/g, '')//去掉黑线
+        
+        }
+
         var result= {
             total:count,
             rows:orders
