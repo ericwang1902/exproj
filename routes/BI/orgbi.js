@@ -52,10 +52,13 @@ router.get('/getorgorderdata',function(req,res,next){
 })
 
 //网页接单工具
-router.post('/pickupdateorder',function(req,res,next){
+router.post('/pickupdateorder',isLogedIn,function(req,res,next){
     console.log(req.body.orderid);
     var  orderid = req.body.orderid;
     var orgid   = req.session.CLuserid;
+    if(!orgid){
+        res.json({status:11,reason:"请重新登录"});
+    }
     //根据orderid和orgid来接单
 
     async.waterfall([
