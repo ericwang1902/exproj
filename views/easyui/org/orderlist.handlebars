@@ -37,23 +37,23 @@
             </tr>
             <tr>
                 <td>寄件人</td>
-                <td><input id="sendname"  style="width:100%"></td>
+                <td><label id="sendname"  style="width:100%"></td>
             </tr>
             <tr>
                 <td>寄件人电话</td>
-                <td><input id="sendtele"  style="width:100%"></td>
+                <td><label id="sendtele"  style="width:100%"></td>
             </tr>
             <tr>
                 <td>收件地址</td>
-                <td><input id="receloc"  style="width:100%"></td>
+                <td><label id="receloc"  style="width:100%"></td>
             </tr>
             <tr>
                 <td>收件人</td>
-                <td><input id="recename"  style="width:100%"></td>
+                <td><label id="recename"  style="width:100%"></td>
             </tr>
             <tr>
                 <td>收件人电话</td>
-                <td><input id="recetele"  style="width:100%"></td>
+                <td><label id="recetele"  style="width:100%"></td>
             </tr>
             </table>
     </div>
@@ -74,12 +74,12 @@
                     height: 600,
                     modal: true,
                     onOpen:function(){
-                         $('#sendloc').val(row['sendid']['name']+row['sendid']['cityname']+row['sendid']['expareaname']+row['sendid']['address']);
-                          $('#sendname').val(row['sendid']['name']);
-                        $('#sendtele').val(row['sendid']['tele']);
-                         $('#receloc').val(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
-                          $('#recename').val(row['receiveid']['name']);
-                           $('#recetele').val(row['receiveid']['tele']);
+                         $('#sendloc').text(row['sendid']['name']+row['sendid']['cityname']+row['sendid']['expareaname']+row['sendid']['address']);
+                          $('#sendname').text(row['sendid']['name']);
+                        $('#sendtele').text(row['sendid']['tele']);
+                         $('#receloc').text(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
+                          $('#recename').text(row['receiveid']['name']);
+                           $('#recetele').text(row['receiveid']['tele']);
                     }
                 });
                 $('#dlg').dialog('open').dialog('center')
