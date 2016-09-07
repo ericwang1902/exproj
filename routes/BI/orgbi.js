@@ -8,7 +8,7 @@ var sysorderModel = require('../../models/sysorderModel');
 var async = require('async');
 var moment = require('moment');
 
-router.get('/orderlistdatagrid',function(req,res,next){
+router.get('/orderlistdatagrid',isLogedIn,function(req,res,next){
     var id = req.session.CLuserid
 
      res.render('./easyui/org/orderlist',{orgid:id})
@@ -52,4 +52,14 @@ router.post('/pickupdateorder',function(req,res,next){
 
 })
 
+//做路由登陆验证
+function isLogedIn(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  }else{
+    req.flash('error_msg','您尚未登陆！');
+    res.redirect("/login");
+  }
+  
+}
 module.exports = router;
