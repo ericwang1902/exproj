@@ -148,7 +148,7 @@ router.post('/pickupdateorder',function(req,res,next){
             wechatjs.sendTemplate2(fanopenid,
                 'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + fanopenid + '&courierid=' + org._id,
                 order.logisticorder,
-                 enumerableConstants.orderstatus[order.status].name,,
+                 enumerableConstants.orderstatus[order.status].name,
                 orderdatecn,
                 org.username,
                 org.mobile,
