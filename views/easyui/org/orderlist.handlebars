@@ -62,7 +62,7 @@
                     height: 200,
                     modal: true,
                     onOpen:function(){
-                        $('#sendname').val(row.sendid.name);
+                        $('#sendname').val(row['sendid']['name']);
                     }
                 });
                 $('#dlg').dialog('open').dialog('center')
