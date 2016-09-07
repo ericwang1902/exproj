@@ -6,6 +6,7 @@ var orderoptions = require('../../controllers/orderoptions');
 var enumerableConstants = require('../../models/enumerableConstants')
 var sysuserModel = require('../../models/sysuserModel');
 var sysorderModel = require('../../models/sysorderModel');
+var fanModel = require('../models/fanModel');
 var async = require('async');
 var moment = require('moment');
 var request = require('request');
@@ -138,18 +139,18 @@ router.post('/pickupdateorder',function(req,res,next){
         },
         function (order,org,callback){
             //根据order.sendid.userid查找寄件人的openid
-            sysuserModel.findOne({_id:order.sendid.userid},function(err,userinfo){
+            fanModel.findOne({_id:order.sendid.userid},function(err,faninfo){
                 if(err) console.log(err);
 
-                callback(null,order,org,userinfo)
+                callback(null,order,org,faninfo)
             })
         },
-           function (order, org,userinfo, callback) {
+           function (order, org,faninfo, callback) {
             moment.locale('zh-cn');
             var orderdatecn = moment(order.pickdate).format("LLL");
             //发送模板消息
-            wechatjs.sendTemplate2(userinfo.openid,
-                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + userinfo.openid + '&courierid=' + org._id,
+            wechatjs.sendTemplate2(faninfo.openid,
+                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + faninfo.openid + '&courierid=' + org._id,
                 order.logisticorder,
                 enumerableconstants.orderstatus[order.status].name,
                 orderdatecn,
