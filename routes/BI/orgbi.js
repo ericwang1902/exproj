@@ -9,6 +9,8 @@ var sysorderModel = require('../../models/sysorderModel');
 var async = require('async');
 var moment = require('moment');
 var request = require('request');
+var mongoose = require('mongoose');
+var wechatjs = require('../../controllers/wechatapi');//调用wechatjs来设置
 router.get('/orderlistdatagrid',isLogedIn,function(req,res,next){
     var id = req.session.CLuserid
 
