@@ -47,7 +47,150 @@ router.get('/getorgorderdata',function(req,res,next){
 //网页接单工具
 router.post('/pickupdateorder',function(req,res,next){
     console.log(req.body.orderid);
-    res.json({status:200})
+    var  orderid = req.body.orderid;
+    var orgid   = req.session.CLuserid;
+    //根据orderid和orgid来接单
+var openid = req.query.openid || req.session.openid;//客户的openid
+    var targetstatus = req.body.targetstatus;
+    var orderid = req.body.orderid;
+    var courierid = req.body.courierid;//获取取件快递员的openid
+    console.log('/pickupdateorder courierid：' + courierid);
+
+    async.waterfall([
+        function (callback) {
+            //查找order的全部信息做下单准备用
+            sysorderModel
+                .findOne({ _id: orderid })
+                .populate('sendid')
+                .populate('receiveid')
+                .exec(function (err, order) {
+                    if (err) console.log(err);
+
+                    callback(null, order)
+                })
+        },
+        function (order, callback) {
+            //查找courier对应的快递点的快递公司、电子面单号、电子面单密码
+            //  var courierobjid = new mongoose.Types.ObjectId(courierid);
+            sysuserModel.findOne({ _id: orgid }, function (err, courier) {
+                if (err) console.log(err);
+
+                sysuserModel.findOne({ _id: courier.orgid }, function (err, org) {
+                    if (err) console.log(err);
+                    console.log('log~~~~~:'+org._id)
+
+                    callback(null, order, org, courier);
+                })
+            })
+        },
+        function (order, org, courier, callback) {
+            //快递鸟下单，下单成功后，进行本地订单数据更新，圆通快递下单接口
+            var orderoptions1 = {};
+            orderoptions1 = orderoptions.ytoOrderOptions(order, org);
+
+            request(orderoptions1, function (err, response, body) {
+                console.log('~~~~~~~~~~~~~~' + JSON.stringify(body));
+                //先判断状态码是否正确
+                if (body.ResultCode == '100') {
+                    //需要在返回的数据中获取物流运单号和打印模板,100表示成功
+                    var orderResult = body;
+
+                    callback(null, orderResult, courier, org);
+                }
+                else if (body.ResultCode == '105') {
+                    //错误处理,单号不足
+                    callback(new Error('1', null));
+                }
+                else {
+                    //其他错误
+                    callback(new Error('2'), null);
+                }
+
+            })
+
+        },
+        //处理返回的订单信息，orderResult是个json对象
+        function (orderResult, courier, org, callback) {
+            //更新订单状态
+            sysorderModel.findOne({ _id: orderid }, function (err, order) {
+                if (err) console.log(err);
+
+                if (order.status == '0') {
+                    console.log('订单状态为0~~~~~~~~~~~~~~~')
+                    order.logisticorder = orderResult.Order.LogisticCode;
+                    order.status = '1';
+                    order.template = orderResult.PrintTemplate;
+                    order.courierid = courier._id;//获取取件员的id
+                    order.pickdate = moment();
+                }
+                order.save(function (err, result) {
+                    if (err) console.log(err);
+                    console.log('订单信息：' + JSON.stringify(result))
+
+                    callback(null, result, org);
+                })
+            })
+        },
+        //订阅运单信息
+        function (order, org, callback) {
+            //订阅接口 参数
+            var bookoptions = orderoptions.bookorderoptions(org, order.logisticorder);
+            request(bookoptions, function (err, response, body) {
+                console.log('订阅接口：' + JSON.stringify(body));
+
+                callback(null, order, org);
+            })
+        },
+        function (order,org,callback){
+            //根据order.sendid.userid查找寄件人的openid
+            sysuserModel.findOne({_id:order.sendid.userid},function(err,useropenid){
+                if(err) console.log(err);
+
+                callback(order,org,useropenid)
+            })
+        },
+           function (order, org,useropenid, callback) {
+            moment.locale('zh-cn');
+            var orderdatecn = moment(order.pickdate).format("LLL");
+            //发送模板消息
+            wechatjs.sendTemplate2(useropenid,
+                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + useropenid + '&courierid=' + courierid,
+                order.logisticorder,
+                enumerableconstants.orderstatus[order.status].name,
+                orderdatecn,
+                org.username,
+                org.mobile,
+                function (err, result) { })
+
+            callback(null, order, org);
+        },
+        function (order, org, callback) {
+            //扣减在线快递系统的count余额
+            sysusercontroller.modifyCount(org, -1, function (err, org) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    callback(null, org);
+                }
+
+            })
+        }
+    ], function (err, result) {
+        if (err) {
+            if (err.message == '1') {
+                 res.json({status:11});//电子面单系统出错
+            }
+            else {
+                res.json({status:0});//其他错误
+            }
+
+        } else {
+           res.json({status:200})//成功
+        }
+    })
+
+   
 
 
 })

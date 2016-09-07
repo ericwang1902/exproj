@@ -125,10 +125,16 @@
                         $.post('/orgbi/pickupdateorder',{ "orderid": orderid},function(result){
                             if (result.status =='200'){
                                 $('#dg').datagrid('reload');    // reload the user data
-                            } else {
+
+                            } else if(result.status =='11'){
                                 $.messager.show({    // show error message
-                                    title: 'Error',
-                                    msg: result.errorMsg
+                                    title: '出错',
+                                    msg: '电子面单系统出错'
+                                });
+                            }else if(result.status =='0'){
+                                $.messager.show({    // show error message
+                                    title: '出错',
+                                    msg: '其他错误，请联系管理员'
                                 });
                             }
                         },'json');
