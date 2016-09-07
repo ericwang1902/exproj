@@ -141,7 +141,7 @@ router.post('/pickupdateorder',function(req,res,next){
             sysuserModel.findOne({_id:order.sendid.userid},function(err,userinfo){
                 if(err) console.log(err);
 
-                callback(order,org,userinfo)
+                callback(null,order,org,userinfo)
             })
         },
            function (order, org,userinfo, callback) {
