@@ -150,8 +150,8 @@ router.post('/pickupdateorder',function(req,res,next){
                 order.logisticorder,
                 'test',
                 orderdatecn,
-                courier.username,
-                courier.mobile,
+                org.username,
+                org.mobile,
                 function (err, result) { })
 
             callback(null, order, org);
