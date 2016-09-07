@@ -30,23 +30,23 @@
     </div>
  <div id="dlg" class="easyui-dialog" closed="true" style="width:600px;height:600px;padding:10px">
      		<div style="margin-bottom:10px">
-				<input id="sendloc">
-			</div>
-			<!--<div style="margin-bottom:10px">
-				<input id="sendname" disabled class="easyui-textbox"  label="寄件人姓名" style="width:100%">
+				<input id="sendloc" class="easyui-textbox" style="width:100%">
 			</div>
 			<div style="margin-bottom:10px">
-				<input id="sendtele" disabled class="easyui-textbox" label="寄件人电话" style="width:100%">
+				<input id="sendname" class="easyui-textbox" style="width:100%">
+			</div>
+			<div style="margin-bottom:10px">
+				<input id="sendtele" class="easyui-textbox" style="width:100%">
 			</div>
      		<div style="margin-bottom:10px">
-				<input id="receloc" disabled class="easyui-textbox"  label="收件人地址" style="width:100%">
+				<input id="receloc" class="easyui-textbox" style="width:100%">
 			</div>
 			<div style="margin-bottom:10px">
-				<input id="recename" disabled class="easyui-textbox"  label="收件人姓名" style="width:100%">
+				<input id="recename" class="easyui-textbox" style="width:100%">
 			</div>
 			<div style="margin-bottom:10px">
-				<input id="recetele" disabled class="easyui-textbox" label="收件人电话" style="width:100%">
-			</div>-->
+				<input id="recetele" class="easyui-textbox" style="width:100%">
+			</div>
 
     </div>
 
@@ -66,12 +66,12 @@
                     height: 600,
                     modal: true,
                     onOpen:function(){
-                         $('#sendloc').val(row['sendid']['name']);
-                        //   $('#sendname').val(row['sendid']['name']);
-                        // $('#sendtele').val(row['sendid']['tele']);
-                        //  $('#receloc').val(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
-                        //   $('#recename').val(row['receiveid']['name']);
-                        //    $('#recetele').val(row['receiveid']['tele']);
+                         $('#sendloc').val(row['sendid']['name']+row['sendid']['cityname']+row['sendid']['expareaname']+row['sendid']['address']);
+                          $('#sendname').val(row['sendid']['name']);
+                        $('#sendtele').val(row['sendid']['tele']);
+                         $('#receloc').val(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
+                          $('#recename').val(row['receiveid']['name']);
+                           $('#recetele').val(row['receiveid']['tele']);
                     }
                 });
                 $('#dlg').dialog('open').dialog('center')
