@@ -148,10 +148,10 @@ router.post('/pickupdateorder',function(req,res,next){
             wechatjs.sendTemplate2(fanopenid,
                 'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + fanopenid + '&courierid=' + org._id,
                 order.logisticorder,
-                enumerableconstants.orderstatus[order.status].name,
+                'test',
                 orderdatecn,
-                org.username,
-                org.mobile,
+                courier.username,
+                courier.mobile,
                 function (err, result) { })
 
             callback(null, order, org);
