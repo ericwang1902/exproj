@@ -118,7 +118,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 if (order.status == '0') {
                     console.log('订单状态为0~~~~~~~~~~~~~~~')
                     order.logisticorder = orderResult.Order.LogisticCode;
-                    order.status = '1';
+                    order.status = 1;
                     order.template = orderResult.PrintTemplate;
                     order.courierid = courier._id;//获取取件员的id
                     order.pickdate = moment();
