@@ -59,6 +59,8 @@
             </tr>
             </table>
     </div>
+        <!--接单dialog-->
+    <div id="dlg2">接单意味着您已经收件，是否确认？</div>
 
     <script type="text/javascript">
         $(function(){
@@ -114,8 +116,34 @@
     function getname(value){
         return value.name+' '+value.tele;
     };
-
-      var printorder = function(){
-
-  }
+    function accept(){
+        var row = $('#dg').datagrid('getSelected');
+            if (row){
+                 $('#dlg2').dialog({
+                    title: '详细信息',
+                    width: 600,
+                    height: 600,
+                    modal: true,
+                    buttons:[{
+                        text:'确认',
+                        handler:function(){
+                            var orderid = row._id;//订单id
+                            $.ajax({
+                                url: '/orgbi/pickupdateorder',
+                                data:{ "orderid": orderid}
+                                success: function(){
+                                    $.alert('接单成功！')
+                                }
+                                });
+                        }
+                    },{
+                        text:'取消',
+                        handler:function(){
+                            $('#dlg2').dialog('close')
+                        }
+                    }]
+                });
+                $('#dlg').dialog('open').dialog('center')
+            }
+    }
 </script>
