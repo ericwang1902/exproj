@@ -148,16 +148,16 @@ router.post('/pickupdateorder',function(req,res,next){
             moment.locale('zh-cn');
             var orderdatecn = moment(order.pickdate).format("LLL");
             //发送模板消息
-            wechatjs.sendTemplate2(userinfo,
+            wechatjs.sendTemplate2(userinfo.openid,
                 'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + userinfo.openid + '&courierid=' + courierid,
                 order.logisticorder,
                 enumerableconstants.orderstatus[order.status].name,
                 orderdatecn,
                 org.username,
                 org.mobile,
-                function (err, result) { })
+                function (err, result) { callback(null, order, org);})
 
-            callback(null, order, org);
+            
         },
         function (order, org, callback) {
             //扣减在线快递系统的count余额
