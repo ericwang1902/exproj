@@ -133,6 +133,7 @@
                                 data:{ "orderid": orderid}
                                 success: function(){
                                     $.alert('接单成功！')
+                                    $('#dg').datagrid('reload');
                                 }
                                 });
                         }
