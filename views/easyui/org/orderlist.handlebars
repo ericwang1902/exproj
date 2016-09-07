@@ -27,7 +27,6 @@
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="accept()">接单</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-man" plain="true" onclick="detail()">详情</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="print()">打印</a>
     </div>
  <div id="dlg" class="easyui-dialog" closed="true" style="width:800px;height:600px;padding:10px">
             <table border="1" class="easyui-table">
@@ -89,7 +88,7 @@
                     toolbar:[{
                         text:'打印',
                         iconCls:'icon-print',
-                        handler:function(){alert('打印')}
+                        handler:function(){printorder()}
                     }]
                 });
                 $('#dlg').dialog('open').dialog('center')
@@ -97,13 +96,25 @@
             console.log(row)
         }
         
-        function print(){
-            var row = $('#dg').datagrid('getSelected');
-
-            console.log(row)
-        }
 
     function getname(value){
         return value.name+' '+value.tele;
     };
+
+      var printorder = function(){
+     $("#template").print({
+            globalStyles: false,
+            mediaPrint: false,
+            stylesheet: null,
+            noPrintSelector: ".no-print",
+            iframe: true,
+            append: null,
+            prepend: null,
+            manuallyCopyFormValues: true,
+            deferred: $.Deferred(),
+            timeout: 250,
+                title: null,
+                doctype: '<!doctype html>'
+    });
+  }
 </script>
