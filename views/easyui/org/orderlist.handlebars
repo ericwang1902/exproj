@@ -88,7 +88,22 @@
                     toolbar:[{
                         text:'打印',
                         iconCls:'icon-print',
-                        handler:function(){printorder()}
+                        handler:function(){
+                             $("#template").print({
+                                    globalStyles: false,
+                                    mediaPrint: false,
+                                    stylesheet: null,
+                                    noPrintSelector: ".no-print",
+                                    iframe: true,
+                                    append: null,
+                                    prepend: null,
+                                    manuallyCopyFormValues: true,
+                                    deferred: $.Deferred(),
+                                    timeout: 250,
+                                        title: null,
+                                        doctype: '<!doctype html>'
+                            });    
+                        }
                     }]
                 });
                 $('#dlg').dialog('open').dialog('center')
@@ -102,19 +117,6 @@
     };
 
       var printorder = function(){
-     $("#template").print({
-            globalStyles: false,
-            mediaPrint: false,
-            stylesheet: null,
-            noPrintSelector: ".no-print",
-            iframe: true,
-            append: null,
-            prepend: null,
-            manuallyCopyFormValues: true,
-            deferred: $.Deferred(),
-            timeout: 250,
-                title: null,
-                doctype: '<!doctype html>'
-    });
+
   }
 </script>
