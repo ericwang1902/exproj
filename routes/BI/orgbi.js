@@ -67,9 +67,15 @@ router.post('/pickupdateorder',function(req,res,next){
                 .populate('receiveid')
                 .exec(function (err, order) {
                     if (err) console.log(err);
-                    var fanopenid = order.sendid.openid;
+                    var userid = order.sendid.userid;
 
-                    callback(null, order,fanopenid)
+                    fanModel.findOne({_id:userid},function(err,fan){
+                        if(err) console.log(err);
+                        
+                        callback(null, order,fan.openid);
+                    })
+
+                    
                 })
         },
         function (order,fanopenid, callback) {
