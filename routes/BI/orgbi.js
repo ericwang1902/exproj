@@ -12,6 +12,9 @@ var moment = require('moment');
 var request = require('request');
 var mongoose = require('mongoose');
 var wechatjs = require('../../controllers/wechatapi');//调用wechatjs来设置
+
+
+
 router.get('/orderlistdatagrid',isLogedIn,function(req,res,next){
     var id = req.session.CLuserid
 
@@ -149,9 +152,9 @@ router.post('/pickupdateorder',function(req,res,next){
                 orderdatecn,
                 org.username,
                 org.mobile,
-                function (err, result) { callback(null, order, org);})
+                function (err, result) { })
 
-            
+            callback(null, order, org);
         },
         function (order, org, callback) {
             //扣减在线快递系统的count余额
