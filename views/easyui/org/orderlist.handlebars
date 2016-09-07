@@ -123,7 +123,7 @@
                 $.messager.confirm('警告','确认接单意味着您已经取件，是否确认?',function(r){
                     if (r){
                         $.post('/orgbi/pickupdateorder',{ "orderid": orderid},function(result){
-                            if (result =='200'){
+                            if (result.status =='200'){
                                 $('#dg').datagrid('reload');    // reload the user data
                             } else {
                                 $.messager.show({    // show error message
