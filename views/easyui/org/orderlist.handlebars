@@ -85,7 +85,12 @@
                           $('#recename').text(row['receiveid']['name']);
                            $('#recetele').text(row['receiveid']['tele']);
                            $('#template').html(row['template']);
-                    }
+                    },
+                    toolbar:[{
+                        text:'Edit',
+                        iconCls:'icon-print',
+                        handler:function(){alert('edit')}
+                    }]"
                 });
                 $('#dlg').dialog('open').dialog('center')
             }
