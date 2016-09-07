@@ -37,23 +37,27 @@
             </tr>
             <tr>
                 <td>寄件人</td>
-                <td><label id="sendname"  style="width:100%"></td>
+                <td><label id="sendname" class="easyui-label"  style="width:100%"></label></td>
             </tr>
             <tr>
                 <td>寄件人电话</td>
-                <td><label id="sendtele"  style="width:100%"></td>
+                <td><label id="sendtele" class="easyui-label" style="width:100%"></label></td>
             </tr>
             <tr>
                 <td>收件地址</td>
-                <td><label id="receloc"  style="width:100%"></td>
+                <td><label id="receloc"  class="easyui-label" style="width:100%"></label></td>
             </tr>
             <tr>
                 <td>收件人</td>
-                <td><label id="recename"  style="width:100%"></td>
+                <td><label id="recename" class="easyui-label"  style="width:100%"></label></td>
             </tr>
             <tr>
                 <td>收件人电话</td>
-                <td><label id="recetele"  style="width:100%"></td>
+                <td><label id="recetele" class="easyui-label"  style="width:100%"></label></td>
+            </tr>
+            <tr>
+                <td>电子面单</td>
+                <td><iframe id="template" ></iframe></td>
             </tr>
             </table>
     </div>
@@ -80,6 +84,7 @@
                          $('#receloc').text(row['receiveid']['provincename']+row['receiveid']['cityname']+row['receiveid']['expareaname']+row['receiveid']['address']);
                           $('#recename').text(row['receiveid']['name']);
                            $('#recetele').text(row['receiveid']['tele']);
+                           $('#template').src(row['receiveid']['template']);
                     }
                 });
                 $('#dlg').dialog('open').dialog('center')
