@@ -46,7 +46,7 @@ router.get('/getorgorderdata',function(req,res,next){
 
 //网页接单工具
 router.post('/pickupdateorder',function(req,res,next){
-    console.log(req.query.orderid);
+    console.log(req.body.orderid);
     res.json({status:200})
 
 

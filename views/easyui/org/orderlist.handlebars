@@ -59,10 +59,7 @@
             </tr>
             </table>
     </div>
-        <!--接单dialog-->
-    <div id="dlg2" class="easyui-dialog" closed="true" >
-        接单意味着您已经收件，是否确认？
-    </div>
+
 
     <script type="text/javascript">
         $(function(){
@@ -121,32 +118,20 @@
     function accept(){
         var row = $('#dg').datagrid('getSelected');
             if (row){
-                 $('#dlg2').dialog({
-                    title: '详细信息',
-                    width: 600,
-                    height: 600,
-                    modal: true,
-                    buttons:[{
-                        text:'确认',
-                        handler:function(){
-                            var orderid = row._id;//订单id
-                            $.ajax({
-                                url: '/orgbi/pickupdateorder',
-                                data:{ "orderid": orderid}
-                                success: function(){
-                                    $.alert('接单成功！')
-                                    $('#dg').datagrid('reload');
-                                }
+                $.messager.confirm('警告','确认接单意味着您已经取件，是否确认?',function(r){
+                    if (r){
+                        $.post('/orgbi/pickupdateorder',{ "orderid": orderid},function(result){
+                            if (result =='200'){
+                                $('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                $.messager.show({    // show error message
+                                    title: 'Error',
+                                    msg: result.errorMsg
                                 });
-                        }
-                    },{
-                        text:'取消',
-                        handler:function(){
-                            $('#dlg2').dialog('close')
-                        }
-                    }]
+                            }
+                        },'json');
+                    }
                 });
-                $('#dlg').dialog('open').dialog('center')
             }
     }
 </script>
