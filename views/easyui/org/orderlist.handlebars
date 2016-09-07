@@ -64,8 +64,10 @@
     <script type="text/javascript">
         $(function(){
             var pager = $('#dg').datagrid().datagrid('getPager');    // get the pager of datagrid      
-            pager.pagination(
+            pager.pagination({
                 pageList: [20, 30, 50]
+            }
+                
             )    
         })
     </script>
