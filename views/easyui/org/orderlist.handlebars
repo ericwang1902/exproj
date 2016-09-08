@@ -130,11 +130,14 @@
                         $.post('/orgbi/pickupdateorder',{ "orderid": orderid},function(result){
                             if (result.status =='200'){
                                 $('#dg').datagrid('reload');    // reload the user data
-
+                                $.messager.show({    // show error message
+                                    title: '提示',
+                                    msg: "接单成功！！！"
+                                });
                             } else if(result.status =='11'){
                                 $.messager.show({    // show error message
                                     title: '出错',
-                                    msg: result.reason
+                                    msg: result.reason+",不要重复接单！"
                                 });
                             }
                         },'json');

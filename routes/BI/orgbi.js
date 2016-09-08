@@ -83,7 +83,7 @@ router.post('/pickupdateorder',function(req,res,next){
                 })
         },
         function (order,fanopenid, callback) {
-            //查找courier对应的快递点的快递公司、电子面单号、电子面单密码
+            //查找courier对应的快递点的快递公司、电子面单号、电子面单密码 
             //  var courierobjid = new mongoose.Types.ObjectId(courierid);
             sysuserModel.findOne({ _id: orgid }, function (err, courier) {
                 if (err) console.log(err);
