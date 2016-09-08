@@ -156,7 +156,7 @@ router.post('/pickupdateorder',function(req,res,next){
             var orderdatecn = moment(order.pickdate).format("LLL");
             //发送模板消息
             wechatjs.sendTemplate2(fanopenid,
-                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + fanopenid + '&courierid=' + org._id,
+                'http://exproj.robustudio.com/customer/order?orderid=' + order._id + '&openid=' + fanopenid + '&courierid=' + org.openid,
                 order.logisticorder,
                  enumerableConstants.orderstatus[order.status].name,
                 orderdatecn,
