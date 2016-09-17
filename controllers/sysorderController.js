@@ -345,7 +345,7 @@ module.exports = {
 
 
     },
-    //获取系统全部的一周数据
+    //获取系统全部的一周数据，接单数
     gettotalTodayOrderCount: function (callback1) {
         async.series([
             function (callback) {
@@ -428,6 +428,96 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
                         },
                         status:'1'
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            }
+        ], function (err, results) {
+
+            if (err) {
+                console.log(err)
+            } else {
+                callback1(null, results)
+            }
+
+        })
+    },
+    //获取系统全部的一周数据，下单数
+    gettotalTodayOrderCountAll: function (callback1) {
+        async.series([
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-6, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-5, 'days')
+                        }
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-5, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-4, 'days')
+                        }
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-4, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-3, 'days')
+                        }
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-3, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-2, 'days')
+                        }
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-2, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(-1, 'days')
+                        }
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(-1, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(0, 'days')
+                        }
+                    }, function (err, count1) {
+                        callback(null, count1);
+                    });
+            },
+            function (callback) {
+                sysorderModel.count(
+                    {
+                        orderdate: {
+                            $gte: moment().second(0).minute(0).hour(0).add(0, 'days'),
+                            $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
+                        }
                     }, function (err, count1) {
                         callback(null, count1);
                     });
