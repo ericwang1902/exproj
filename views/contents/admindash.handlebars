@@ -58,7 +58,7 @@ var myChart = new Chart(ctx, {
 });
 
 var ctx1 = document.getElementById("myLineChart");
-var data = {
+var data1 = {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
             datasets: [
             {
@@ -83,7 +83,7 @@ var data = {
             }
             ]
             };
-var options ={
+var options1 ={
 
             ///Boolean - Whether grid lines are shown across the chart
             scaleShowGridLines : true,
@@ -131,6 +131,13 @@ var options ={
             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
 
             };
-var myLineChart = new Chart(ctx1).Line(data, options);
+var myLineChart = new Chart(
+        ctx1,
+        {
+             type: 'line',
+             data:data1,
+             options:options1
+        }
+);
 
 </script>
