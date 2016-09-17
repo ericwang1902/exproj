@@ -727,7 +727,15 @@ router.post('/send', function (req, res, next) {
 })
 
 router.get('/sendrecord', function (req, res, next) {
-    var openid = req.query.openid;
+    var url = client.getAuthorizeURL('http://' + 'exproj.robustudio.com' + '/customer/sendrecordpage', 'exproj', 'snsapi_userinfo');
+    res.redirect(url)
+
+})
+
+router.get('/sendrecordpage',getopenid,function(req,res,next){
+    req.session.openid = req.query.openid || req.openid;
+
+    var openid = req.session.openid;
 
     try {
         //根据openid查找orderlist
@@ -745,8 +753,8 @@ router.get('/sendrecord', function (req, res, next) {
         res.redirect('/courier/resultinfo?result=-1&openid=' + openid);
 
     }
-
 })
+
 router.get('/sendrecordapi', function (req, res, next) {
     var openid = req.session.openid || req.query.openid;
 
