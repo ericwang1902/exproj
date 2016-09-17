@@ -115,6 +115,9 @@ router.get('/resultinfo', function (req, res, next) {
                     case '12':
                         info = '出错了！';
                         break;
+                     case '111':
+                        info = '余单不足！';
+                        break;                       
                     default:
                         info = '出错了！';
                         break;
@@ -133,6 +136,9 @@ router.get('/resultinfo', function (req, res, next) {
                     case '12':
                         des = '新增的地址中，姓名、电话和详细地址均不可为空！';
                         break;
+                    case '111':
+                        des = '本平台中的余单不足，请联系管理员充值！';
+                        break;                        
                     default:
                         break;
                 }
@@ -179,6 +185,8 @@ router.get('/resultinfo', function (req, res, next) {
                         break;
                     case '12':
                         cs = 'weui_icon_warn';
+                    case '111':
+                        cs = 'weui_icon_warn';                       
                     default:
                         cs = 'weui_icon_warn';
                         break;
@@ -355,15 +363,16 @@ router.post('/pickupdateorder', function (req, res, next) {
                 orderdatecn,
                 courier.username,
                 courier.mobile,
-                function (err, result) { })
+                function (err, result) { callback(null, order, org);})
 
-            callback(null, order, org);
+            
         },
         function (order, org, callback) {
             //扣减在线快递系统的count余额
             sysusercontroller.modifyCount(org, -1, function (err, org) {
                 if (err) {
                     console.log(err);
+                    callback(err,null);
                 }
                 else {
                     callback(null, org);
@@ -375,6 +384,8 @@ router.post('/pickupdateorder', function (req, res, next) {
         if (err) {
             if (err.message == '1') {
                 res.redirect('/courier/resultinfo?result=11' + '&openid=' + openid);
+            }else if(err.message =='111'){
+                res.redirect('/courier/resultinfo?result=111' + '&openid=' + openid);
             }
             else {
                 res.redirect('/courier/resultinfo?result=0' + '&openid=' + openid);

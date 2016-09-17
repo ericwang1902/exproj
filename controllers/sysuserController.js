@@ -223,13 +223,19 @@ module.exports = {
             if(err) console.log(err);
             //查找到该org，对该org的count进行修改
             if(org){
-                console.log('org:'+org);
-                org.count=org.count+value;
-                org.save(function(err,orgresult){
-                    if(err) console.log(err);
+                if(org.count>=1){
+                    console.log('org:'+org);
+                    org.count=org.count+value;
+                    org.save(function(err,orgresult){
+                        if(err) console.log(err);
 
-                     callback(null,orgresult)
-                })
+                        callback(null,orgresult)
+                    })
+                }
+                else{
+                    callback(new Error('111'), null);//平台面单不足
+                }
+               
             }
            
         })
