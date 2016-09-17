@@ -248,7 +248,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-6, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-5, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -260,7 +261,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-5, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-4, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -272,7 +274,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-4, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-3, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -284,7 +287,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-3, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-2, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -296,7 +300,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-2, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-1, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -308,7 +313,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-1, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(0, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -320,7 +326,8 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(0, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
                         },
-                        orgid: userid
+                        orgid: userid,
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -347,7 +354,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(-6, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-5, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -358,7 +366,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(-5, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-4, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -369,7 +378,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(-4, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-3, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -380,7 +390,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(-3, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-2, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -391,7 +402,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(-2, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-1, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -402,7 +414,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(-1, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(0, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -413,7 +426,8 @@ module.exports = {
                         orderdate: {
                             $gte: moment().second(0).minute(0).hour(0).add(0, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
-                        }
+                        },
+                        status:'1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
