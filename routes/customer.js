@@ -154,6 +154,7 @@ router.post('/createorder', function (req, res, next) {
                 console.log('couriersid11:'+JSON.stringify(couriers))
 
                 async.each(couriers, function(courier, callback) {
+                        if(courier.openid){//增加是否有openid的判断
                         wechatjs.sendTemplate1(
                         courier.openid,
                         'http://exproj.robustudio.com/courier/orderhandle?openid=' + openid + '&orderid=' + result._id + '&courierid=' + courier.openid,
@@ -169,7 +170,7 @@ router.post('/createorder', function (req, res, next) {
                                 console.log('result:' + JSON.stringify(result));
                                 callback();
                             }
-                        })
+                        })}
                 }, function(err) {              
                     if( err ) {
                     console.log('A file failed to process');
