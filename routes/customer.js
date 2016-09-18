@@ -170,7 +170,9 @@ router.post('/createorder', function (req, res, next) {
                                 console.log('result:' + JSON.stringify(result));
                                 callback();
                             }
-                        })}
+                        })}else{
+                            callback();
+                        }
                 }, function(err) {              
                     if( err ) {
                     console.log('A file failed to process');
