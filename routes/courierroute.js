@@ -117,7 +117,10 @@ router.get('/resultinfo', function (req, res, next) {
                         break;
                      case '111':
                         info = '余单不足！';
-                        break;                       
+                        break;        
+                     case '222':
+                        info = '出错了！';
+                        break;                                         
                     default:
                         info = '出错了！';
                         break;
@@ -138,7 +141,10 @@ router.get('/resultinfo', function (req, res, next) {
                         break;
                     case '111':
                         des = '本平台中的余单不足，请联系管理员充值！';
-                        break;                        
+                        break;  
+                    case '222':
+                        des = '该代理点快递员未绑定微信，请联系公众号客服！';
+                        break;                                               
                     default:
                         break;
                 }
@@ -186,7 +192,9 @@ router.get('/resultinfo', function (req, res, next) {
                     case '12':
                         cs = 'weui_icon_warn';
                     case '111':
-                        cs = 'weui_icon_warn';                       
+                        cs = 'weui_icon_warn';   
+                    case '222':
+                        cs = 'weui_icon_warn';                                              
                     default:
                         cs = 'weui_icon_warn';
                         break;
