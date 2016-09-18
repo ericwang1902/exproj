@@ -5,7 +5,7 @@ module.exports={
     getOrderOptions:function(order,org){
         console.log('org info:'+JSON.stringify(org));
         var orderoptions={};
-        switch (org.type) {
+        switch (parseInt(org.type)) {
             case enumerableconstants.expCompany[12].num:
                 orderoptions = ytoOrderOptions(order,org);
                 console.log(111111111111111111111111111111);
