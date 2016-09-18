@@ -3,6 +3,7 @@ var kdniao =require('./kdniao')
 
 module.exports={
     getOrderOptions:function(order,org){
+        console.log('org info:'+JSON.stringify(org));
         var orderoptions={};
         switch (org.type) {
             case enumerableconstants.expCompany[12].num:
