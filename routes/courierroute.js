@@ -289,7 +289,7 @@ router.post('/pickupdateorder', function (req, res, next) {
         function (order, org, courier, callback) {
             //快递鸟下单，下单成功后，进行本地订单数据更新，圆通快递下单接口
             var orderoptions1 = {};
-            orderoptions1 = orderoptions.ytoOrderOptions(order, org);
+            orderoptions1 = orderoptions.getOrderOptions(order, org);
 
             request(orderoptions1, function (err, response, body) {
                 console.log('~~~~~~~~~~~~~~' + JSON.stringify(body));

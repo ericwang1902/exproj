@@ -84,6 +84,11 @@ var expCompany=[
          num:15,
         code:'UC',
         name:'优速快递'
+    },
+     {
+         num:16,
+        code:'YD',
+        name:'韵达快递'
     }
 ]
 
