@@ -7,11 +7,11 @@ module.exports={
         var orderoptions={};
         switch (parseInt(org.type)) {
             case enumerableconstants.expCompany[12].num:
-                orderoptions = ytoOrderOptions(order,org);
+                orderoptions = this.ytoOrderOptions(order,org);
                 console.log(111111111111111111111111111111);
                 break;
             case enumerableconstants.expCompany[16].num:
-                orderoptions = ydOrderOptions(order,org);
+                orderoptions = this.ydOrderOptions(order,org);
                 break;
             default:
                 break;
