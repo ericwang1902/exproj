@@ -153,23 +153,31 @@ router.post('/createorder', function (req, res, next) {
                 
                 console.log('couriersid11:'+JSON.stringify(couriers))
 
-                //循环couriers，发送模板消息，根据courier的isbroadcast字段来发送
-                for (i in couriers) {
-
-                    // wechatjs.sendtext(couriers[i].openid,JSON.stringify(result));
-                    wechatjs.sendTemplate1(
-                        couriers[i].openid,
-                        'http://exproj.robustudio.com/courier/orderhandle?openid=' + openid + '&orderid=' + result._id + '&courierid=' + couriers[i].openid,
+                async.each(couriers, function(courier, callback) {
+                        wechatjs.sendTemplate1(
+                        courier.openid,
+                        'http://exproj.robustudio.com/courier/orderhandle?openid=' + openid + '&orderid=' + result._id + '&courierid=' + courier.openid,
                         result.goodsname+';寄给'+result.receiveid.provincename+result.receiveid.cityname+'的'+result.receiveid.name,
                         result.sendid.name,
                         result.sendid.tele,
                         function (err, result) {
-                            if (err) console.log(err);
-                            console.log('result:' + JSON.stringify(result));
+                            if (err) {
+                                console.log(err);
+                                callback('微信消息发送出错！')
+                            }
+                            else{
+                                console.log('result:' + JSON.stringify(result));
+                                callback();
+                            }
                         })
-                }
-                res.redirect('/courier/resultinfo?result=10&openid=' + openid);
-
+                }, function(err) {              
+                    if( err ) {
+                    console.log('A file failed to process');
+                    } else {
+                    console.log('All files have been processed successfully');
+                    res.redirect('/courier/resultinfo?result=10&openid=' + openid);
+                    }
+                });
             })
         })
 
