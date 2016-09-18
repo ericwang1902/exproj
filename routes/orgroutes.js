@@ -50,7 +50,17 @@ router.get('/orguserlist',isLogedIn, function (req, res, next) {
         res.render('./org/orguserlist', {
             id: id,
             users: users1,
-            pagesArray: pagesArray
+            pagesArray: pagesArray,
+            helpers:{
+                ifwechat:function(openid){
+                    if(openid){
+                        return '已绑定';
+                    }
+                    else{
+                        return '未绑定';
+                    }
+                }
+            }
         });
     })
 
