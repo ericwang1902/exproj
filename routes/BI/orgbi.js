@@ -99,7 +99,7 @@ router.post('/pickupdateorder',function(req,res,next){
         function (order, org, courier,fanopenid, callback) {
             //快递鸟下单，下单成功后，进行本地订单数据更新，圆通快递下单接口
             var orderoptions1 = {};
-            orderoptions1 = orderoptions.ytoOrderOptions(order, org);
+            orderoptions1 = orderoptions.getOrderOptions(order, org);
 
             request(orderoptions1, function (err, response, body) {
                 console.log('~~~~~~~~~~~~~~' + JSON.stringify(body));
@@ -162,15 +162,16 @@ router.post('/pickupdateorder',function(req,res,next){
                 orderdatecn,
                 org.username,
                 org.mobile,
-                function (err, result) { })
+                function (err, result) {callback(null, order, org); })
 
-            callback(null, order, org);
+            
         },
         function (order, org, callback) {
             //扣减在线快递系统的count余额
             sysuserController.modifyCount(org, -1, function (err, org) {
                 if (err) {
                     console.log(err);
+                    callback(err,null);
                 }
                 else {
                     callback(null, org);
@@ -180,8 +181,11 @@ router.post('/pickupdateorder',function(req,res,next){
         }
     ], function (err, result) {
         if (err) {
-                 res.json({status:11,reason:err.message});//电子面单系统出错
-
+            if(err.message=='111'){
+                res.json({status:111,reason:'本平台单号不足！请联系管理员充值！'});
+            }else{
+                res.json({status:11,reason:err.message});//电子面单系统出错
+            }            
         } else {
            res.json({status:200})//成功
         }

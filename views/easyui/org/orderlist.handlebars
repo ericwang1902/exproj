@@ -145,6 +145,11 @@
                                     title: '出错',
                                     msg: result.reason+",不要重复接单！"
                                 });
+                            }else if(result.status =='111'){
+                                $.messager.show({    // show error message
+                                    title: '出错',
+                                    msg: result.reason;
+                                });
                             }
                         },'json');
                     }
