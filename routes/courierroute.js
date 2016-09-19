@@ -268,6 +268,7 @@ router.post('/pickupdateorder', function (req, res, next) {
     console.log('/pickupdateorder courierid：' + courierid);
 
     async.waterfall([
+        
         function (callback) {
             //查找order的全部信息做下单准备用
             sysorderModel
@@ -289,8 +290,13 @@ router.post('/pickupdateorder', function (req, res, next) {
                 sysuserModel.findOne({ _id: courier.orgid }, function (err, org) {
                     if (err) console.log(err);
                     console.log('log~~~~~:'+org._id)
+                    if(org.count>=1){
+                        callback(null, order, org, courier);
+                    }else{
+                        callback(new Error('111'), null);//平台面单不足
+                    }
 
-                    callback(null, order, org, courier);
+                    
                 })
             })
         },
@@ -380,7 +386,6 @@ router.post('/pickupdateorder', function (req, res, next) {
             sysusercontroller.modifyCount(org, -1, function (err, org) {
                 if (err) {
                     console.log(err);
-                    callback(err,null);
                 }
                 else {
                     callback(null, org);

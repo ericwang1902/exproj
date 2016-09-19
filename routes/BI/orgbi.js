@@ -91,8 +91,13 @@ router.post('/pickupdateorder',function(req,res,next){
                 sysuserModel.findOne({ _id: courier.orgid }, function (err, org) {
                     if (err) console.log(err);
                     console.log('log~~~~~:'+org._id)
+                    if (org.count>=1) {
+                        callback(null, order, org, courier,fanopenid);
+                    } else {
+                        callback(new Error('111'), null);//平台面单不足
+                    }
 
-                    callback(null, order, org, courier,fanopenid);
+                    
                 })
             })
         },
@@ -171,7 +176,6 @@ router.post('/pickupdateorder',function(req,res,next){
             sysuserController.modifyCount(org, -1, function (err, org) {
                 if (err) {
                     console.log(err);
-                    callback(err,null);
                 }
                 else {
                     callback(null, org);
