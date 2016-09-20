@@ -13,8 +13,7 @@ var moment = require('moment')
   })
 
   router.get('/admindash',isLogedIn,function(req,res,next){
-     var dateArray = []
-
+     var dateArray = [];
     for (var index =6; index >=0; index--) {
         dateArray.push(
             (moment().add(-index,'days').format('M月D号'))
@@ -22,7 +21,9 @@ var moment = require('moment')
     }
 
     var hourArray =[];
-    var hourDataArray=[];
+        for (var index =0; index <24; index++) {
+        hourArray.push(index+1+'点');
+    }
 
 
     // sysorderController.gettotalTodayOrderCount(function (err, result) {
@@ -42,10 +43,6 @@ var moment = require('moment')
       },
       function(callback){
         sysorderController.getHourOrderAll(function(err,result){
-          for (var index =0; index<24; index++) {
-                hourArray[index]=result[index].hour;
-                hourDataArray[index]=result[index].amount;
-              }
           callback(null,result);
         })
       }
@@ -53,7 +50,7 @@ var moment = require('moment')
       res.render('./contents/admindash', 
       { weekdata: results[0],
         weekdataAll:results[1],
-        hourdataAll:hourDataArray, 
+        hourdataAll:results[2], 
         hourarray:hourArray,
         datearray: dateArray
       });
