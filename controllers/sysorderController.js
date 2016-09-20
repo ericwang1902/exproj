@@ -540,7 +540,7 @@ module.exports = {
             [
                 {
                     $group: {
-                        _id: { hour: { $hour: moment("$orderdate") } },
+                        _id: { hour: { $hour: "$orderdate"+9 } },
                         totalcount: { $sum: 1 }
                     }
                 }
