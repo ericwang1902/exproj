@@ -534,7 +534,7 @@ module.exports = {
     },
     //获取所有订单在全天各时段的下单分布
     getHourOrderAll: function (callback1) {
-        var orderArray1 =[];
+        var orderArray1 =new Array(24);
         async.forEachOf(
                 orderArray1,
                 function(dataItem,key,callback){
