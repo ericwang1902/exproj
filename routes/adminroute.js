@@ -43,8 +43,8 @@ var moment = require('moment')
       function(callback){
         sysorderController.getHourOrderAll(function(err,result){
           for (var index =0; index<24; index++) {
-                hourArray[index].push(result[index].hour);
-                hourDataArray[index].push(result[index].amount);
+                hourArray[index]=result[index].hour;
+                hourDataArray[index]=result[index].amount;
               }
           callback(null,result);
         })
