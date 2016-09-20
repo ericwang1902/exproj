@@ -21,6 +21,10 @@ var moment = require('moment')
             )
     }
 
+    var hourArray =[];
+    var hourDataArray=[];
+
+
     // sysorderController.gettotalTodayOrderCount(function (err, result) {
     //     console.log(JSON.stringify(result));
     //     res.render('./contents/admindash', { weekdata: result, datearray: dateArray});
@@ -35,9 +39,24 @@ var moment = require('moment')
         sysorderController.gettotalTodayOrderCountAll(function (err, result) {
           callback(null,result);
         })
+      },
+      function(callback){
+        sysorderController.getHourOrderAll(function(err,result){
+          for (var index =0; index<24; index++) {
+                hourArray[index].push(result[index].hour);
+                hourDataArray[index].push(result[index].amount);
+              }
+          callback(null,result);
+        })
       }
     ],function(err,results){
-      res.render('./contents/admindash', { weekdata: results[0],weekdataAll:results[1], datearray: dateArray});
+      res.render('./contents/admindash', 
+      { weekdata: results[0],
+        weekdataAll:results[1],
+        hourdataAll:hourDataArray, 
+        hourarray:hourArray,
+        datearray: dateArray
+      });
     })
 
   })
