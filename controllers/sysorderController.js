@@ -540,14 +540,18 @@ module.exports = {
             [
                 {
                     $group: {
-                        _id: { hour: { $hour: "$orderdate"+9 } },
+                        _id: { hour: { $hour: "$orderdate" } },
                         totalcount: { $sum: 1 }
                     }
                 }
             ],
             function (err, result) {
                 for (var index = 0; index < result.length; index++) {
-                    hourData[result[index]._id.hour]=result[index].totalcount;
+                    if(result[index]._id.hour+9>24){
+                        hourData[result[index]._id.hour+9-24]=result[index].totalcount;
+                    }else{
+                        hourData[result[index]._id.hour]=result[index].totalcount;
+                    }   
                 }
 
                 callback1(null, hourData);
