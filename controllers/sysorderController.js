@@ -542,8 +542,8 @@ module.exports = {
                     {     
                         orderdate:{
                             $hour:{
-                                 $gte: dataItem.key,
-                                 $lt: dataItem.key+1
+                                 $gte: key,
+                                 $lt: key+1
                             }
                         }
                         

@@ -22,7 +22,7 @@ var moment = require('moment')
 
     var hourArray =[];
         for (var index =0; index <24; index++) {
-        hourArray.push(index+1+'点');
+        hourArray.push(index+'点');
     }
 
 
