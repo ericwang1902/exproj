@@ -44,7 +44,7 @@ module.exports = {
     },
 
     //easyui获取org的订单的接口
-    bilist:function (page,pageItems,condition, callback2) {
+    bilist: function (page, pageItems, condition, callback2) {
 
         async.series([
             function (callback) {
@@ -71,7 +71,7 @@ module.exports = {
             }
 
         ], function (err, results) {
-            callback2(null, results[0],results[1]);
+            callback2(null, results[0], results[1]);
         })
     },
 
@@ -249,7 +249,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(-5, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -262,7 +262,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(-4, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -275,7 +275,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(-3, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -288,7 +288,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(-2, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -301,7 +301,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(-1, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -314,7 +314,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(0, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -327,7 +327,7 @@ module.exports = {
                             $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
                         },
                         orgid: userid,
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -355,7 +355,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-6, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-5, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -367,7 +367,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-5, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-4, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -379,7 +379,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-4, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-3, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -391,7 +391,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-3, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-2, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -403,7 +403,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-2, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(-1, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -415,7 +415,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(-1, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(0, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -427,7 +427,7 @@ module.exports = {
                             $gte: moment().second(0).minute(0).hour(0).add(0, 'days'),
                             $lt: moment().second(0).minute(0).hour(0).add(1, 'days')
                         },
-                        status:'1'
+                        status: '1'
                     }, function (err, count1) {
                         callback(null, count1);
                     });
@@ -534,42 +534,25 @@ module.exports = {
     },
     //获取所有订单在全天各时段的下单分布
     getHourOrderAll: function (callback1) {
-
+        var hourData=new Array(24);
         sysorderModel.aggregate(
-                        [
-                            {
-                                $group:{
-                                    _id:{hour:{$hour:"$orderdate"}},
-                                    totalcount:{$sum:1}
-                                }
-                            }
-                        ],
-                        function(err,result){
-                            console.log(JSON.stringify(result));
-                        }
-                    )
+            [
+                {
+                    $group: {
+                        _id: { hour: { $hour: "$orderdate" } },
+                        totalcount: { $sum: 1 }
+                    }
+                }
+            ],
+            function (err, result) {
+                for (var index = 0; index < result.length; index++) {
+                    hourData[result[index]._id.hour]=result[index].totalcount;
+                }
 
-        var orderArray1 =new Array(24);
-        async.forEachOf(
-                orderArray1,
-                function(dataItem,key,callback){
-                    sysorderModel.count(
-                    {     
-                        orderdate:{
-                            $hour:{
-                                 $gte: key,
-                                 $lt: key+1
-                            }
-                        }
-                        
-                    }, function (err,count) {
-                        orderArray1[key]=count;
-                        callback();
-                    });
-                },
-                function(err){
-                    callback1(null,orderArray1);
-                });
+                callback1(null, hourData);
+            }
+        )
+
     }
 
 
