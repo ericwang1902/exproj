@@ -550,7 +550,7 @@ module.exports = {
                     if(result[index]._id.hour+9>24){
                         hourData[result[index]._id.hour+9-24]=result[index].totalcount;
                     }else{
-                        hourData[result[index]._id.hour]=result[index].totalcount;
+                        hourData[result[index]._id.hour+9]=result[index].totalcount;
                     }   
                 }
 
