@@ -534,6 +534,21 @@ module.exports = {
     },
     //获取所有订单在全天各时段的下单分布
     getHourOrderAll: function (callback1) {
+
+        sysorderModel.aggregate(
+                        [
+                            {
+                                $group:{
+                                    _id:{hour:{$hour:"$orderdate"}},
+                                    totalcount:{$sum:1}
+                                }
+                            }
+                        ],
+                        function(err,result){
+                            console.log(JSON.stringify(result));
+                        }
+                    )
+
         var orderArray1 =new Array(24);
         async.forEachOf(
                 orderArray1,
