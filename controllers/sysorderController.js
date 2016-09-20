@@ -535,11 +535,12 @@ module.exports = {
     //获取所有订单在全天各时段的下单分布
     getHourOrderAll: function (callback1) {
         var hourData=new Array(24);
+        moment.locale('zh-cn');
         sysorderModel.aggregate(
             [
                 {
                     $group: {
-                        _id: { hour: { $hour: "$orderdate" } },
+                        _id: { hour: { $hour: moment("$orderdate") } },
                         totalcount: { $sum: 1 }
                     }
                 }
