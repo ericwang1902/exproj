@@ -29,8 +29,8 @@ var bcrypt = require('bcryptjs');
 
 var mongoose = require('mongoose');
 var options = {
-    user: 'myUserName',
-    pass: 'myPassword'
+    user: 'ericwang1902',
+    pass: 'qwer12345'
 }
 mongoose.connect('mongodb://localhost/my_database',options);
 
