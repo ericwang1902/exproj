@@ -28,8 +28,11 @@ var sysuserModel = require('./models/sysuserModel');
 var bcrypt = require('bcryptjs');
 
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/my_database');
+var options = {
+    user: 'myUserName',
+    pass: 'myPassword'
+}
+mongoose.connect('mongodb://localhost/my_database',options);
 
 var app = express();
 var wechat = require('./routes/wechat');
